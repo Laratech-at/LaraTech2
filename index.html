@@ -240,6 +240,7 @@
               class="nav-link active"
               data-lang-en="Home"
               data-lang-sq="Ballina"
+              data-lang-de="Startseite"
               >Home</a
             >
             <a
@@ -247,6 +248,7 @@
               class="nav-link"
               data-lang-en="Services"
               data-lang-sq="Shërbimet"
+              data-lang-de="Dienstleistungen"
               >Services</a
             >
             <a
@@ -254,6 +256,7 @@
               class="nav-link"
               data-lang-en="Projects"
               data-lang-sq="Projektet"
+              data-lang-de="Projekte"
               >Projects</a
             >
             <a
@@ -261,6 +264,7 @@
               class="nav-link"
               data-lang-en="About"
               data-lang-sq="Rreth Nesh"
+              data-lang-de="Über uns"
               >About</a
             >
             <a
@@ -268,6 +272,7 @@
               class="nav-link"
               data-lang-en="Blog"
               data-lang-sq="Blog"
+              data-lang-de="Blog"
               >Blog</a
             >
             <a
@@ -275,48 +280,50 @@
               class="nav-link"
               data-lang-en="Contact"
               data-lang-sq="Kontakti"
+              data-lang-de="Kontakt"
               >Contact</a
             >
           </div>
 
           <!-- Controls -->
           <div class="flex items-center space-x-4">
-            <!-- Language Switcher -->
-            <div class="relative">
+            <!-- Language Dropdown -->
+            <div class="lang-dropdown">
               <button
-                id="lang-toggle"
-                class="glass-button px-3 py-2 rounded-lg text-sm font-semibold uppercase"
+                id="lang-dropdown-btn"
+                class="lang-dropdown-btn"
+                aria-label="Select Language"
               >
-                <span id="current-lang">EN</span>
+                <span id="current-lang-flag" class="lang-flag">🇬🇧</span>
+                <span id="current-lang-code">EN</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
               </button>
+              <div id="lang-dropdown-content" class="lang-dropdown-content">
+                <div class="lang-option active" data-lang="en">
+                  <span class="lang-flag">🇬🇧</span>
+                  <span>English</span>
+                </div>
+                <div class="lang-option" data-lang="sq">
+                  <span class="lang-flag">🇦🇱</span>
+                  <span>Shqip</span>
+                </div>
+                <div class="lang-option" data-lang="de">
+                  <span class="lang-flag">🇩🇪</span>
+                  <span>Deutsch</span>
+                </div>
+              </div>
             </div>
 
             <!-- Theme Toggle -->
             <button
               id="theme-toggle"
-              class="glass-button p-2 rounded-lg"
-              aria-label="Toggle theme"
+              class="theme-toggle"
+              aria-label="Toggle Dark/Light Mode"
             >
-              <svg
-                id="theme-icon-light"
-                class="w-6 h-6 hidden dark:block"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                />
-              </svg>
-              <svg
-                id="theme-icon-dark"
-                class="w-6 h-6 block dark:hidden"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
-                />
-              </svg>
+              <span class="sun-icon">☀️</span>
+              <span class="moon-icon">🌙</span>
             </button>
 
             <!-- Mobile Menu Toggle -->
@@ -353,6 +360,7 @@
             class="block nav-link-mobile active"
             data-lang-en="Home"
             data-lang-sq="Ballina"
+            data-lang-de="Startseite"
             >Home</a
           >
           <a
@@ -360,6 +368,7 @@
             class="block nav-link-mobile"
             data-lang-en="Services"
             data-lang-sq="Shërbimet"
+            data-lang-de="Dienstleistungen"
             >Services</a
           >
           <a
@@ -367,6 +376,7 @@
             class="block nav-link-mobile"
             data-lang-en="Projects"
             data-lang-sq="Projektet"
+            data-lang-de="Projekte"
             >Projects</a
           >
           <a
@@ -374,6 +384,7 @@
             class="block nav-link-mobile"
             data-lang-en="About"
             data-lang-sq="Rreth Nesh"
+            data-lang-de="Über uns"
             >About</a
           >
           <a
@@ -381,6 +392,7 @@
             class="block nav-link-mobile"
             data-lang-en="Blog"
             data-lang-sq="Blog"
+            data-lang-de="Blog"
             >Blog</a
           >
           <a
@@ -388,6 +400,7 @@
             class="block nav-link-mobile"
             data-lang-en="Contact"
             data-lang-sq="Kontakti"
+            data-lang-de="Kontakt"
             >Contact</a
           >
           <a
@@ -395,6 +408,7 @@
             class="block cta-button w-full text-center mt-4"
             data-lang-en="Start Your Project"
             data-lang-sq="Filloni Projektin Tuaj"
+            data-lang-de="Projekt Starten"
             >Start Your Project</a
           >
         </div>
@@ -418,12 +432,14 @@
               class="text-gradient glitch-text"
               data-lang-en="Digital Innovation"
               data-lang-sq="Inovacion Digjital"
+              data-lang-de="Digitale Innovation"
               >Digital Innovation</span
             ><br />
             <span
               class="text-gradient"
               data-lang-en="Meets Automation"
               data-lang-sq="Takon Automatizimin"
+              data-lang-de="Trifft auf Automatisierung"
               >Meets Automation</span
             >
           </h1>
@@ -432,6 +448,7 @@
             class="hero-subtitle text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto"
             data-lang-en="Expert automation, AI workflows, web development, and smart-tech solutions for businesses in Kosovo and beyond."
             data-lang-sq="Automatizim ekspert, flukse AI, zhvillim ueb dhe zgjidhje smart-tech për biznese në Kosovë dhe më gjerë."
+            data-lang-de="Experten-Automatisierung, KI-Workflows, Webentwicklung und Smart-Tech-Lösungen für Unternehmen im Kosovo und darüber hinaus."
           >
             Expert automation, AI workflows, web development, and smart-tech
             solutions for businesses in Kosovo and beyond.
@@ -445,6 +462,7 @@
               class="cta-button magnetic-button neural-glow"
               data-lang-en="Start Your Project"
               data-lang-sq="Filloni Projektin Tuaj"
+              data-lang-de="Projekt Starten"
             >
               Start Your Project
             </a>
@@ -453,6 +471,7 @@
               class="secondary-button magnetic-button"
               data-lang-en="Explore Services"
               data-lang-sq="Eksploro Shërbimet"
+              data-lang-de="Dienste Erkunden"
             >
               Explore Services
             </a>
@@ -471,6 +490,7 @@
                 class="text-sm md:text-base text-gray-600 dark:text-gray-400 mt-2"
                 data-lang-en="Automations Delivered"
                 data-lang-sq="Automatizime të Dorëzuara"
+                data-lang-de="Automatisierungen Geliefert"
               >
                 Automations Delivered
               </div>
@@ -486,6 +506,7 @@
                 class="text-sm md:text-base text-gray-600 dark:text-gray-400 mt-2"
                 data-lang-en="Happy Clients"
                 data-lang-sq="Klientë të Kënaqur"
+                data-lang-de="Zufriedene Kunden"
               >
                 Happy Clients
               </div>
@@ -501,6 +522,7 @@
                 class="text-sm md:text-base text-gray-600 dark:text-gray-400 mt-2"
                 data-lang-en="Uptime %"
                 data-lang-sq="% Kohë Aktive"
+                data-lang-de="Betriebszeit %"
               >
                 Uptime %
               </div>
@@ -516,6 +538,7 @@
                 class="text-sm md:text-base text-gray-600 dark:text-gray-400 mt-2"
                 data-lang-en="Support Hours"
                 data-lang-sq="Orë Mbështetje"
+                data-lang-de="Support-Stunden"
               >
                 Support Hours
               </div>
@@ -552,6 +575,7 @@
             class="text-4xl md:text-6xl font-display font-bold mb-4"
             data-lang-en="Our Services"
             data-lang-sq="Shërbimet Tona"
+            data-lang-de="Unsere Dienstleistungen"
           >
             Our Services
           </h2>
@@ -559,6 +583,7 @@
             class="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
             data-lang-en="Comprehensive digital solutions tailored to transform your business"
             data-lang-sq="Zgjidhje digjitale gjithëpërfshirëse të përshtatura për të transformuar biznesin tuaj"
+            data-lang-de="Umfassende digitale Lösungen maßgeschneidert, um Ihr Unternehmen zu transformieren"
           >
             Comprehensive digital solutions tailored to transform your business
           </p>
@@ -591,6 +616,7 @@
                 class="text-2xl font-display font-bold mb-4"
                 data-lang-en="Automation & AI Workflows"
                 data-lang-sq="Automatizim & Flukse AI"
+                data-lang-de="Automatisierung & KI-Workflows"
               >
                 Automation & AI Workflows
               </h3>
@@ -598,6 +624,7 @@
                 class="text-gray-600 dark:text-gray-300 mb-6"
                 data-lang-en="Streamline operations with OpenAI, n8n, and custom automation solutions."
                 data-lang-sq="Thjeshtoni operacionet me OpenAI, n8n dhe zgjidhje automatizimi të personalizuara."
+                data-lang-de="Optimieren Sie Abläufe mit OpenAI, n8n und maßgeschneiderten Automatisierungslösungen."
               >
                 Streamline operations with OpenAI, n8n, and custom automation
                 solutions.
@@ -606,7 +633,7 @@
                 href="services.html#automation"
                 class="text-teal-blue hover:text-neon-blue font-semibold inline-flex items-center group-hover:translate-x-2 transition-transform duration-300"
               >
-                <span data-lang-en="Learn More" data-lang-sq="Mëso Më Shumë"
+                <span data-lang-en="Learn More" data-lang-sq="Mëso Më Shumë" data-lang-de="Mehr Erfahren" data-lang-de="Mehr Erfahren"
                   >Learn More</span
                 >
                 <svg
@@ -652,6 +679,7 @@
                 class="text-2xl font-display font-bold mb-4"
                 data-lang-en="Web Development"
                 data-lang-sq="Zhvillim Ueb"
+                data-lang-de="Webentwicklung"
               >
                 Web Development
               </h3>
@@ -659,6 +687,7 @@
                 class="text-gray-600 dark:text-gray-300 mb-6"
                 data-lang-en="Modern, fast, and SEO-optimized websites and web applications."
                 data-lang-sq="Faqe interneti dhe aplikacione ueb moderne, të shpejta dhe të optimizuara për SEO."
+                data-lang-de="Moderne, schnelle und SEO-optimierte Websites und Webanwendungen."
               >
                 Modern, fast, and SEO-optimized websites and web applications.
               </p>
@@ -666,7 +695,7 @@
                 href="services.html#web"
                 class="text-electric-orange hover:text-teal-blue font-semibold inline-flex items-center group-hover:translate-x-2 transition-transform duration-300"
               >
-                <span data-lang-en="Learn More" data-lang-sq="Mëso Më Shumë"
+                <span data-lang-en="Learn More" data-lang-sq="Mëso Më Shumë" data-lang-de="Mehr Erfahren"
                   >Learn More</span
                 >
                 <svg
@@ -712,6 +741,7 @@
                 class="text-2xl font-display font-bold mb-4"
                 data-lang-en="Smart Home & Security"
                 data-lang-sq="Shtëpi Inteligjente & Siguri"
+                data-lang-de="Smart Home & Sicherheit"
               >
                 Smart Home & Security
               </h3>
@@ -719,6 +749,7 @@
                 class="text-gray-600 dark:text-gray-300 mb-6"
                 data-lang-en="Complete smart home integration and surveillance systems."
                 data-lang-sq="Integrim i plotë i shtëpisë inteligjente dhe sisteme monitorimi."
+                data-lang-de="Komplette Smart-Home-Integration und Überwachungssysteme."
               >
                 Complete smart home integration and surveillance systems.
               </p>
@@ -726,7 +757,7 @@
                 href="services.html#smarthome"
                 class="text-neon-blue hover:text-electric-orange font-semibold inline-flex items-center group-hover:translate-x-2 transition-transform duration-300"
               >
-                <span data-lang-en="Learn More" data-lang-sq="Mëso Më Shumë"
+                <span data-lang-en="Learn More" data-lang-sq="Mëso Më Shumë" data-lang-de="Mehr Erfahren"
                   >Learn More</span
                 >
                 <svg
@@ -772,6 +803,7 @@
                 class="text-2xl font-display font-bold mb-4"
                 data-lang-en="IT Consulting & Support"
                 data-lang-sq="Konsulencë IT & Mbështetje"
+                data-lang-de="IT-Beratung & Support"
               >
                 IT Consulting & Support
               </h3>
@@ -779,6 +811,7 @@
                 class="text-gray-600 dark:text-gray-300 mb-6"
                 data-lang-en="Expert IT guidance and ongoing technical support for your business."
                 data-lang-sq="Udhëzim ekspert IT dhe mbështetje teknike e vazhdueshme për biznesin tuaj."
+                data-lang-de="Fachkundige IT-Beratung und fortlaufender technischer Support für Ihr Unternehmen."
               >
                 Expert IT guidance and ongoing technical support for your
                 business.
@@ -787,7 +820,7 @@
                 href="services.html#consulting"
                 class="text-teal-blue hover:text-electric-orange font-semibold inline-flex items-center group-hover:translate-x-2 transition-transform duration-300"
               >
-                <span data-lang-en="Learn More" data-lang-sq="Mëso Më Shumë"
+                <span data-lang-en="Learn More" data-lang-sq="Mëso Më Shumë" data-lang-de="Mehr Erfahren"
                   >Learn More</span
                 >
                 <svg
@@ -833,6 +866,7 @@
                 class="text-2xl font-display font-bold mb-4"
                 data-lang-en="Business Process Optimization"
                 data-lang-sq="Optimizim i Proceseve të Biznesit"
+                data-lang-de="Geschäftsprozess-Optimierung"
               >
                 Business Process Optimization
               </h3>
@@ -840,6 +874,7 @@
                 class="text-gray-600 dark:text-gray-300 mb-6"
                 data-lang-en="Transform and optimize workflows to maximize efficiency and ROI."
                 data-lang-sq="Transformoni dhe optimizoni flukset e punës për të maksimizuar efikasitetin dhe ROI."
+                data-lang-de="Transformieren und optimieren Sie Arbeitsabläufe, um Effizienz und ROI zu maximieren."
               >
                 Transform and optimize workflows to maximize efficiency and ROI.
               </p>
@@ -847,7 +882,7 @@
                 href="services.html#optimization"
                 class="text-electric-orange hover:text-neon-blue font-semibold inline-flex items-center group-hover:translate-x-2 transition-transform duration-300"
               >
-                <span data-lang-en="Learn More" data-lang-sq="Mëso Më Shumë"
+                <span data-lang-en="Learn More" data-lang-sq="Mëso Më Shumë" data-lang-de="Mehr Erfahren"
                   >Learn More</span
                 >
                 <svg
@@ -893,6 +928,7 @@
                 class="text-2xl font-display font-bold mb-4"
                 data-lang-en="Digital Presence Setup"
                 data-lang-sq="Krijimi i Prezencës Digjitale"
+                data-lang-de="Aufbau Digitaler Präsenz"
               >
                 Digital Presence Setup
               </h3>
@@ -900,6 +936,7 @@
                 class="text-gray-600 dark:text-gray-300 mb-6"
                 data-lang-en="Google Business, social media, and complete digital branding."
                 data-lang-sq="Google Business, media sociale dhe branding digjital i plotë."
+                data-lang-de="Google Business, Social Media und komplettes digitales Branding."
               >
                 Google Business, social media, and complete digital branding.
               </p>
@@ -907,7 +944,7 @@
                 href="services.html#digital"
                 class="text-neon-blue hover:text-teal-blue font-semibold inline-flex items-center group-hover:translate-x-2 transition-transform duration-300"
               >
-                <span data-lang-en="Learn More" data-lang-sq="Mëso Më Shumë"
+                <span data-lang-en="Learn More" data-lang-sq="Mëso Më Shumë" data-lang-de="Mehr Erfahren"
                   >Learn More</span
                 >
                 <svg
@@ -934,6 +971,7 @@
             class="cta-button magnetic-button inline-block"
             data-lang-en="View All Services"
             data-lang-sq="Shiko Të Gjitha Shërbimet"
+            data-lang-de="Alle Dienstleistungen Ansehen"
           >
             View All Services
           </a>
@@ -1805,6 +1843,19 @@
         s0.parentNode.insertBefore(s1, s0);
       })();
     </script>
+
+    <!-- Floating WhatsApp Button -->
+    <a
+      href="https://wa.me/38349479759"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="floating-whatsapp"
+      aria-label="Contact us on WhatsApp"
+    >
+      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+    </a>
 
     <!-- Custom Scripts -->
     <script src="js/main.js"></script>

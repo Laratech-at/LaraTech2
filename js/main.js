@@ -24,24 +24,68 @@ const initTheme = () => {
 };
 
 // ============================================
-// Language Switcher (EN / SQ)
+// Language Switcher (EN / SQ / DE) with Dropdown
 // ============================================
 const initLanguageSwitcher = () => {
-  const langToggle = document.getElementById("lang-toggle");
-  const currentLangDisplay = document.getElementById("current-lang");
+  const langDropdownBtn = document.getElementById("lang-dropdown-btn");
+  const langDropdownContent = document.getElementById("lang-dropdown-content");
+  const currentLangFlag = document.getElementById("current-lang-flag");
+  const currentLangCode = document.getElementById("current-lang-code");
+  const langOptions = document.querySelectorAll(".lang-option");
+
+  // Language configuration with flags
+  const languages = {
+    en: { flag: "🇬🇧", name: "English", code: "EN" },
+    sq: { flag: "🇦🇱", name: "Shqip", code: "SQ" },
+    de: { flag: "🇩🇪", name: "Deutsch", code: "DE" }
+  };
 
   // Get saved language or default to EN
   let currentLang = localStorage.getItem("lang") || "en";
   updateLanguage(currentLang);
 
-  langToggle?.addEventListener("click", () => {
-    currentLang = currentLang === "en" ? "sq" : "en";
-    localStorage.setItem("lang", currentLang);
-    updateLanguage(currentLang);
+  // Toggle dropdown
+  langDropdownBtn?.addEventListener("click", (e) => {
+    e.stopPropagation();
+    langDropdownContent?.classList.toggle("show");
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (!langDropdownBtn?.contains(e.target) && !langDropdownContent?.contains(e.target)) {
+      langDropdownContent?.classList.remove("show");
+    }
+  });
+
+  // Language option click handlers
+  langOptions.forEach((option) => {
+    option.addEventListener("click", () => {
+      const selectedLang = option.getAttribute("data-lang");
+      if (selectedLang && selectedLang !== currentLang) {
+        currentLang = selectedLang;
+        localStorage.setItem("lang", currentLang);
+        updateLanguage(currentLang);
+        langDropdownContent?.classList.remove("show");
+      }
+    });
   });
 
   function updateLanguage(lang) {
-    currentLangDisplay.textContent = lang.toUpperCase();
+    const langConfig = languages[lang];
+    if (!langConfig) return;
+
+    // Update button display
+    if (currentLangFlag) currentLangFlag.textContent = langConfig.flag;
+    if (currentLangCode) currentLangCode.textContent = langConfig.code;
+
+    // Update active state in dropdown
+    langOptions.forEach((option) => {
+      if (option.getAttribute("data-lang") === lang) {
+        option.classList.add("active");
+      } else {
+        option.classList.remove("active");
+      }
+    });
 
     // Update all elements with language attributes
     document.querySelectorAll("[data-lang-en]").forEach((element) => {

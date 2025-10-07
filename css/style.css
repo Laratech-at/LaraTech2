@@ -943,6 +943,227 @@ html.dark .logo-theme:hover {
   }
 }
 
+/* Language Dropdown with Flags */
+.lang-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.lang-dropdown-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.lang-dropdown-btn:hover {
+  background: rgba(0, 200, 200, 0.2);
+  border-color: var(--color-teal-blue);
+  transform: scale(1.05);
+}
+
+.lang-flag {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+.lang-dropdown-content {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  border-radius: 0.5rem;
+  box-shadow: 0 8px 32px 0 var(--glass-shadow);
+  min-width: 150px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.lang-dropdown-content.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.lang-option {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.lang-option:hover {
+  background: rgba(0, 200, 200, 0.2);
+}
+
+.lang-option.active {
+  background: rgba(0, 200, 200, 0.3);
+  border-left: 3px solid var(--color-teal-blue);
+}
+
+.lang-option:first-child {
+  border-radius: 0.5rem 0.5rem 0 0;
+}
+
+.lang-option:last-child {
+  border-radius: 0 0 0.5rem 0.5rem;
+}
+
+/* Theme Toggle - Sun/Moon Design */
+.theme-toggle {
+  position: relative;
+  width: 60px;
+  height: 32px;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 2px solid var(--glass-border);
+  border-radius: 50px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  padding: 0;
+}
+
+.theme-toggle:hover {
+  border-color: var(--color-teal-blue);
+  transform: scale(1.05);
+}
+
+.theme-toggle::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 24px;
+  height: 24px;
+  background: linear-gradient(135deg, var(--color-teal-blue), var(--color-neon-blue));
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+  z-index: 1;
+}
+
+.dark .theme-toggle::before {
+  transform: translateX(28px);
+  background: linear-gradient(135deg, #1e293b, #334155);
+}
+
+.sun-icon,
+.moon-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1rem;
+  line-height: 1;
+  transition: all 0.3s ease;
+  z-index: 2;
+}
+
+.sun-icon {
+  left: 6px;
+  opacity: 1;
+}
+
+.moon-icon {
+  right: 6px;
+  opacity: 0.3;
+}
+
+.dark .sun-icon {
+  opacity: 0.3;
+}
+
+.dark .moon-icon {
+  opacity: 1;
+}
+
+/* Floating WhatsApp CTA Button */
+.floating-whatsapp {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 999;
+  animation: float-bounce 3s ease-in-out infinite;
+}
+
+.floating-whatsapp:hover {
+  transform: scale(1.1);
+  box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
+}
+
+.floating-whatsapp svg {
+  width: 32px;
+  height: 32px;
+  fill: white;
+}
+
+@keyframes float-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+/* Full Width Navbar Fix */
+#navbar {
+  background: transparent;
+  width: 100%;
+  left: 0;
+  right: 0;
+}
+
+#navbar .glass-nav {
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 8px 32px 0 var(--glass-shadow);
+}
+
+#navbar.scrolled {
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+#navbar.scrolled .glass-nav {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+}
+
 /* Tooltip */
 .tooltip {
   position: relative;
