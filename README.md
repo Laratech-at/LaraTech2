@@ -49,7 +49,10 @@ LaraTech2/
 ├── js/
 │   ├── main.js            # Core functionality
 │   └── animations.js      # GSAP animations
-├── assets/                # Images, logo, favicon (to be added)
+├── assets/                # Images, logo, favicon
+│   ├── Logo.png          # Company logo (PNG format)
+│   ├── favicon.png       # Company favicon (PNG format)
+│   └── favicon.svg       # Company favicon (SVG format)
 ├── robots.txt             # Search engine instructions
 ├── sitemap.xml            # Site structure for SEO
 ├── .htaccess              # Server configuration
@@ -103,14 +106,15 @@ src = "https://embed.tawk.to/YOUR_PROPERTY_ID/YOUR_WIDGET_ID";
 
 - Update the iframe `src` with accurate coordinates for your address
 
-### 3. Add Assets
+### 3. Assets Added ✅
 
-Create an `assets/` folder and add:
+The following assets are now included:
 
-- `favicon.svg` - Company favicon
-- `logo.svg` or `logo.png` - Company logo
-- `og-image.jpg` - Open Graph image (1200x630px)
-- Project screenshots/photos
+- ✅ `Logo.png` - Company logo (PNG format)
+- ✅ `favicon.png` - Company favicon (PNG format) 
+- ✅ `favicon.svg` - Company favicon (SVG format)
+
+**Note:** The logo and favicon are now integrated into all HTML pages. The navigation displays the logo without redundant text for a cleaner look.
 
 ### 4. Deploy
 
@@ -231,6 +235,24 @@ The contact form currently prevents default submit. To integrate:
 - 🐦 X (Twitter): x.com/Laratech_eu
 - 📘 Facebook: facebook.com/laratech.eu
 
+## 📝 Change Log
+
+### Latest Updates (January 2025)
+
+#### ✅ Logo & Favicon Integration
+- **Added:** `Logo.png` - Company logo integrated into all HTML pages
+- **Added:** `favicon.png` - Primary favicon for all browsers
+- **Updated:** Navigation bars now display logo without redundant "LaraTech" text
+- **Modified:** All HTML files (`index.html`, `services.html`, `about.html`, `blog.html`, `contact.html`, `projects.html`)
+- **Result:** Cleaner navigation design with logo as primary brand identifier
+
+#### 🔧 Technical Improvements
+- **Enhanced:** Favicon implementation with PNG primary and SVG fallback
+- **Improved:** Logo hover animations maintained across all pages
+- **Optimized:** Asset loading and display consistency
+
+---
+
 ## 📝 License
 
 © 2025 LaraTech sh.p.k. All rights reserved.
@@ -244,7 +266,7 @@ For technical support or questions about the website, contact:
 
 ---
 
-**Last Updated**: October 7, 2025
+**Last Updated**: January 7, 2025
 
 **Version**: 1.0.0
 
