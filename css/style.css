@@ -88,16 +88,14 @@
 
 /* Navigation Styles */
 #navbar {
-  background: transparent;
-}
-
-#navbar.scrolled {
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
+#navbar.scrolled {
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
 }
 
 .nav-link {
@@ -536,7 +534,7 @@ button:focus-visible {
   bottom: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 9998;
   padding: 1.5rem;
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
@@ -549,6 +547,72 @@ button:focus-visible {
 
 .cookie-banner.show {
   transform: translateY(0);
+}
+
+.cookie-banner-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.cookie-banner-text {
+  flex: 1;
+  min-width: 250px;
+  font-size: 0.875rem;
+}
+
+.cookie-banner-buttons {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.cookie-accept-btn,
+.cookie-reject-btn,
+.cookie-learn-more-btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 0.875rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  white-space: nowrap;
+}
+
+.cookie-accept-btn {
+  background: linear-gradient(135deg, var(--color-teal-blue), var(--color-neon-blue));
+  color: white;
+  border-color: var(--color-teal-blue);
+}
+
+.cookie-accept-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 200, 200, 0.3);
+}
+
+.cookie-reject-btn {
+  background: transparent;
+  color: var(--color-teal-blue);
+  border-color: var(--color-teal-blue);
+}
+
+.cookie-reject-btn:hover {
+  background: rgba(0, 200, 200, 0.1);
+}
+
+.cookie-learn-more-btn {
+  background: transparent;
+  color: var(--color-electric-orange);
+  border-color: var(--color-electric-orange);
+}
+
+.cookie-learn-more-btn:hover {
+  background: rgba(255, 107, 0, 0.1);
 }
 
 /* Form Styles */
@@ -691,6 +755,32 @@ html.light .logo-theme:hover {
 
 html.dark .logo-theme:hover {
   filter: invert(1) brightness(0.8) !important;
+}
+
+/* Footer Logo - always white/inverted for contrast on dark footer */
+footer .logo-theme,
+footer img[alt*="Logo"],
+footer img[alt*="logo"] {
+  filter: invert(1) brightness(2) !important;
+  background: transparent !important;
+}
+
+footer .logo-theme:hover,
+footer img[alt*="Logo"]:hover,
+footer img[alt*="logo"]:hover {
+  filter: invert(1) brightness(1.8) !important;
+}
+
+html.dark footer .logo-theme,
+html.dark footer img[alt*="Logo"],
+html.dark footer img[alt*="logo"] {
+  filter: invert(1) brightness(2) !important;
+}
+
+html.light footer .logo-theme,
+html.light footer img[alt*="Logo"],
+html.light footer img[alt*="logo"] {
+  filter: invert(1) brightness(2) !important;
 }
 
 /* Light Mode Specific Adjustments */
@@ -957,7 +1047,7 @@ html.dark .logo-theme:hover {
   background: var(--glass-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid var(--glass-border);
+  border: 2px solid rgba(0, 200, 200, 0.5);
   border-radius: 0.5rem;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1036,7 +1126,7 @@ html.dark .logo-theme:hover {
   background: var(--glass-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 2px solid var(--glass-border);
+  border: 2px solid rgba(0, 200, 200, 0.5);
   border-radius: 50px;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -1050,13 +1140,17 @@ html.dark .logo-theme:hover {
 }
 
 .theme-toggle::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 2px;
   left: 2px;
   width: 24px;
   height: 24px;
-  background: linear-gradient(135deg, var(--color-teal-blue), var(--color-neon-blue));
+  background: linear-gradient(
+    135deg,
+    var(--color-teal-blue),
+    var(--color-neon-blue)
+  );
   border-radius: 50%;
   transition: transform 0.3s ease;
   z-index: 1;
@@ -1111,7 +1205,7 @@ html.dark .logo-theme:hover {
   box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
   cursor: pointer;
   transition: all 0.3s ease;
-  z-index: 999;
+  z-index: 9999;
   animation: float-bounce 3s ease-in-out infinite;
 }
 
@@ -1127,7 +1221,8 @@ html.dark .logo-theme:hover {
 }
 
 @keyframes float-bounce {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0);
   }
   50% {
@@ -1135,34 +1230,7 @@ html.dark .logo-theme:hover {
   }
 }
 
-/* Full Width Navbar Fix */
-#navbar {
-  background: transparent;
-  width: 100%;
-  left: 0;
-  right: 0;
-}
-
-#navbar .glass-nav {
-  background: var(--glass-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 8px 32px 0 var(--glass-shadow);
-}
-
-#navbar.scrolled {
-  background: var(--glass-bg);
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-}
-
-#navbar.scrolled .glass-nav {
-  background: transparent;
-  border: none;
-  box-shadow: none;
-}
+/* Full Width Navbar - Removed conflicting styles */
 
 /* Tooltip */
 .tooltip {

@@ -37,7 +37,7 @@ const initLanguageSwitcher = () => {
   const languages = {
     en: { flag: "🇬🇧", name: "English", code: "EN" },
     sq: { flag: "🇦🇱", name: "Shqip", code: "SQ" },
-    de: { flag: "🇩🇪", name: "Deutsch", code: "DE" }
+    de: { flag: "🇩🇪", name: "Deutsch", code: "DE" },
   };
 
   // Get saved language or default to EN
@@ -52,7 +52,10 @@ const initLanguageSwitcher = () => {
 
   // Close dropdown when clicking outside
   document.addEventListener("click", (e) => {
-    if (!langDropdownBtn?.contains(e.target) && !langDropdownContent?.contains(e.target)) {
+    if (
+      !langDropdownBtn?.contains(e.target) &&
+      !langDropdownContent?.contains(e.target)
+    ) {
       langDropdownContent?.classList.remove("show");
     }
   });
@@ -606,17 +609,35 @@ const initLazyLoading = () => {
 const initCookieConsent = () => {
   const cookieBanner = document.getElementById("cookie-banner");
   const acceptButton = document.getElementById("accept-cookies");
+  const rejectButton = document.getElementById("reject-cookies");
 
-  // Check if user has already accepted cookies
-  if (!localStorage.getItem("cookies-accepted")) {
+  // Check if user has already made a choice
+  const cookieChoice = localStorage.getItem("cookies-choice");
+  
+  if (!cookieChoice) {
     setTimeout(() => {
       cookieBanner?.classList.add("show");
     }, 2000);
   }
 
+  // Accept cookies
   acceptButton?.addEventListener("click", () => {
+    localStorage.setItem("cookies-choice", "accepted");
     localStorage.setItem("cookies-accepted", "true");
     cookieBanner?.classList.remove("show");
+    
+    // Here you can enable analytics, tracking, etc.
+    console.log("Cookies accepted");
+  });
+
+  // Reject cookies
+  rejectButton?.addEventListener("click", () => {
+    localStorage.setItem("cookies-choice", "rejected");
+    localStorage.removeItem("cookies-accepted");
+    cookieBanner?.classList.remove("show");
+    
+    // Here you can disable analytics, tracking, etc.
+    console.log("Cookies rejected");
   });
 };
 
