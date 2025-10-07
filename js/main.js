@@ -252,7 +252,9 @@ const initParticles = () => {
   if (!particlesContainer) return;
 
   // Respect prefers-reduced-motion for accessibility
-  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const reduceMotion = window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  ).matches;
   if (reduceMotion) return;
 
   // Create canvas for neural network

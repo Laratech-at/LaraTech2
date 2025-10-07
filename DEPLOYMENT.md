@@ -38,10 +38,16 @@ Update in `contact.html`:
 
 Place these files in the `assets/` folder:
 
-- **Logo**: `logo.svg` or `logo.png` (transparent background)
-- **Favicon**: Already included (`favicon.svg`)
+- **Logo**: `Logo.png` (transparent background) - **Already included with adaptive theming**
+- **Favicon**: Already included (`favicon.png` and `favicon.svg`)
 - **Open Graph Image**: `og-image.jpg` (1200x630px for social sharing)
 - **Project Images**: Add screenshots/photos for projects section
+
+**Logo Theme System:** The logo automatically adapts to light/dark themes:
+- **Light Mode**: Displays in original colors
+- **Dark Mode**: Inverts to white for optimal contrast
+- **Size**: Optimized for navbar and footer visibility
+- **Implementation**: Uses CSS `filter: invert(1)` for dark mode
 
 Update references in HTML:
 

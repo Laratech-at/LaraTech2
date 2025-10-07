@@ -310,10 +310,14 @@
 
 /* Circuit Board Pattern Overlay */
 /* Disable intrusive pseudo-element overlays for production */
-#particles-container::before { content: none; }
+#particles-container::before {
+  content: none;
+}
 
 /* Data Stream Glow Effect */
-#particles-container::after { content: none; }
+#particles-container::after {
+  content: none;
+}
 
 @keyframes data-flow {
   0%,
@@ -653,18 +657,27 @@ img[data-src].loaded {
 /* Logo Theme Adjustments */
 .logo-theme {
   transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+  /* Add a subtle border to help visualize the logo area */
+  border-radius: 4px;
+  padding: 2px;
 }
 
-/* Light mode logo adjustments */
-.light .logo-theme {
-  filter: brightness(0.9) contrast(1.1);
-  opacity: 0.95;
+/* Ensure logo theme styles have high specificity */
+html.light .logo-theme,
+html.dark .logo-theme {
+  transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
 }
 
-/* Dark mode logo adjustments */
-.dark .logo-theme {
-  filter: brightness(1.3) contrast(1.2);
-  opacity: 0.9;
+/* Light mode logo adjustments - keep original colors for light background */
+html.light .logo-theme {
+  filter: none !important;
+  opacity: 1 !important;
+}
+
+/* Dark mode logo adjustments - invert colors so black becomes white on dark background */
+html.dark .logo-theme {
+  filter: invert(1) !important;
+  opacity: 1 !important;
 }
 
 /* Hover effects for logo in both themes */
@@ -672,12 +685,12 @@ img[data-src].loaded {
   transform: scale(1.05);
 }
 
-.light .logo-theme:hover {
-  filter: brightness(1) contrast(1.2);
+html.light .logo-theme:hover {
+  filter: brightness(0.8) !important;
 }
 
-.dark .logo-theme:hover {
-  filter: brightness(1.4) contrast(1.3);
+html.dark .logo-theme:hover {
+  filter: invert(1) brightness(0.8) !important;
 }
 
 /* Light Mode Specific Adjustments */

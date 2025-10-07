@@ -269,38 +269,41 @@ const initGSAPAnimations = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: "#cta",
-        start: "top 80%",
+        start: "top 95%",
         toggleActions: "play none none none",
       },
     });
 
     tl.from("#cta h2", {
       opacity: 0,
-      y: 50,
-      scale: 0.9,
-      duration: 0.8,
+      y: 30,
+      scale: 0.95,
+      duration: 0.5,
       ease: "power3.out",
+      immediateRender: false,
     })
       .from(
         "#cta p",
         {
           opacity: 0,
-          y: 30,
-          duration: 0.6,
+          y: 20,
+          duration: 0.4,
           ease: "power2.out",
+          immediateRender: false,
         },
-        "-=0.6"
+        "-=0.3"
       )
       .from(
         "#cta .cta-button, #cta .secondary-button",
         {
           opacity: 0,
-          scale: 0.8,
-          stagger: 0.15,
-          duration: 0.6,
+          scale: 0.9,
+          stagger: 0.1,
+          duration: 0.4,
           ease: "back.out(1.7)",
+          immediateRender: false,
         },
-        "-=0.5"
+        "-=0.2"
       );
   };
 
