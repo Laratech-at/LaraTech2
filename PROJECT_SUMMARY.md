@@ -144,6 +144,7 @@ The following assets are now included and integrated:
 **Navigation Update:** The "LaraTech" text has been removed from navigation bars since the logo now serves as the primary brand identifier.
 
 **Logo Theme System:** The logo now automatically adapts to the current theme:
+
 - **Light Mode:** Displays in original colors (black on transparent background)
 - **Dark Mode:** Inverts to white for optimal contrast against dark backgrounds
 - **Size:** Optimized to `h-16` (64px) for better visibility in navbar and footer

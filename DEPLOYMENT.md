@@ -44,6 +44,7 @@ Place these files in the `assets/` folder:
 - **Project Images**: Add screenshots/photos for projects section
 
 **Logo Theme System:** The logo automatically adapts to light/dark themes:
+
 - **Light Mode**: Displays in original colors
 - **Dark Mode**: Inverts to white for optimal contrast
 - **Size**: Optimized for navbar and footer visibility
