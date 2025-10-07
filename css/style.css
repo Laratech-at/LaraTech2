@@ -289,7 +289,12 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  background: radial-gradient(ellipse at center, transparent 0%, rgba(0, 200, 200, 0.02) 100%);
+  background: radial-gradient(
+    ellipse at center,
+    transparent 0%,
+    rgba(0, 200, 200, 0.02) 100%
+  );
+  z-index: 1;
 }
 
 #neural-canvas {
@@ -299,52 +304,68 @@
   width: 100%;
   height: 100%;
   pointer-events: none;
-  z-index: 1;
+  z-index: 2;
 }
 
 /* Circuit Board Pattern Overlay */
 #particles-container::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
-    linear-gradient(90deg, rgba(0, 200, 200, 0.03) 1px, transparent 1px),
-    linear-gradient(rgba(0, 200, 200, 0.03) 1px, transparent 1px);
+  background-image: linear-gradient(
+      90deg,
+      rgba(0, 200, 200, 0.1) 1px,
+      transparent 1px
+    ),
+    linear-gradient(rgba(0, 200, 200, 0.1) 1px, transparent 1px);
   background-size: 50px 50px;
   animation: circuit-pulse 8s ease-in-out infinite;
-  z-index: 0;
+  z-index: 1;
 }
 
 @keyframes circuit-pulse {
-  0%, 100% {
-    opacity: 0.3;
+  0%,
+  100% {
+    opacity: 0.5;
   }
   50% {
-    opacity: 0.6;
+    opacity: 0.8;
   }
 }
 
 /* Data Stream Glow Effect */
 #particles-container::after {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(0, 255, 255, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(255, 107, 0, 0.1) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(0, 200, 200, 0.05) 0%, transparent 50%);
+  background: radial-gradient(
+      circle at 20% 80%,
+      rgba(0, 255, 255, 0.2) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 80% 20%,
+      rgba(255, 107, 0, 0.2) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 40% 40%,
+      rgba(0, 200, 200, 0.1) 0%,
+      transparent 50%
+    );
   animation: data-flow 12s ease-in-out infinite;
-  z-index: 0;
+  z-index: 1;
 }
 
 @keyframes data-flow {
-  0%, 100% {
+  0%,
+  100% {
     transform: scale(1) rotate(0deg);
     opacity: 0.5;
   }
@@ -803,15 +824,16 @@ img[data-src].loaded {
 }
 
 .neural-glow::before {
-  content: '';
+  content: "";
   position: absolute;
   top: -2px;
   left: -2px;
   right: -2px;
   bottom: -2px;
-  background: linear-gradient(45deg, 
-    var(--color-teal-blue), 
-    var(--color-neon-blue), 
+  background: linear-gradient(
+    45deg,
+    var(--color-teal-blue),
+    var(--color-neon-blue),
     var(--color-electric-orange),
     var(--color-teal-blue)
   );
@@ -827,7 +849,8 @@ img[data-src].loaded {
 }
 
 @keyframes neural-pulse {
-  0%, 100% {
+  0%,
+  100% {
     background-size: 200% 200%;
     background-position: 0% 50%;
   }
@@ -850,19 +873,20 @@ img[data-src].loaded {
 }
 
 .binary-rain::before {
-  content: '01001000 01100101 01101100 01101100 01101111 00100000 01010111 01101111 01110010 01101100 01100100';
+  content: "01001000 01100101 01101100 01101100 01101111 00100000 01010111 01101111 01110010 01101100 01100100";
   position: absolute;
   top: -100%;
   left: 0;
   width: 100%;
   height: 200%;
-  font-family: 'Courier New', monospace;
-  font-size: 12px;
-  color: rgba(0, 200, 200, 0.1);
+  font-family: "Courier New", monospace;
+  font-size: 14px;
+  color: rgba(0, 200, 200, 0.3);
   line-height: 1.2;
   word-spacing: 20px;
   animation: binary-fall 20s linear infinite;
   white-space: pre-wrap;
+  z-index: 1;
 }
 
 @keyframes binary-fall {
@@ -890,7 +914,7 @@ img[data-src].loaded {
 }
 
 .holographic::before {
-  content: '';
+  content: "";
   position: absolute;
   top: 0;
   left: -100%;
@@ -906,7 +930,8 @@ img[data-src].loaded {
 }
 
 @keyframes holographic-shift {
-  0%, 100% {
+  0%,
+  100% {
     background-position: 0% 50%;
   }
   50% {

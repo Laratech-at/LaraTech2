@@ -399,10 +399,10 @@ const initParticles = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     
     // Draw connections
-    ctx.strokeStyle = 'rgba(0, 200, 200, 0.3)';
-    ctx.lineWidth = 1;
+    ctx.strokeStyle = 'rgba(0, 200, 200, 0.6)';
+    ctx.lineWidth = 2;
     connections.forEach(conn => {
-      const alpha = conn.strength * 0.6;
+      const alpha = conn.strength * 0.8;
       ctx.strokeStyle = `rgba(0, 200, 200, ${alpha})`;
       
       ctx.beginPath();
@@ -414,9 +414,9 @@ const initParticles = () => {
       const pulseX = conn.from.x + (conn.to.x - conn.from.x) * (0.5 + 0.3 * Math.sin(conn.pulse));
       const pulseY = conn.from.y + (conn.to.y - conn.from.y) * (0.5 + 0.3 * Math.sin(conn.pulse));
       
-      ctx.fillStyle = `rgba(0, 255, 255, ${alpha * 0.8})`;
+      ctx.fillStyle = `rgba(0, 255, 255, ${alpha * 0.9})`;
       ctx.beginPath();
-      ctx.arc(pulseX, pulseY, 1, 0, Math.PI * 2);
+      ctx.arc(pulseX, pulseY, 2, 0, Math.PI * 2);
       ctx.fill();
       
       conn.pulse += 0.05;
@@ -426,34 +426,34 @@ const initParticles = () => {
     dataStreams.forEach(stream => {
       // Draw trail
       stream.trail.forEach((point, index) => {
-        const trailAlpha = (index / stream.trail.length) * point.opacity * 0.5;
+        const trailAlpha = (index / stream.trail.length) * point.opacity * 0.7;
         ctx.fillStyle = `rgba(0, 255, 255, ${trailAlpha})`;
         ctx.beginPath();
-        ctx.arc(point.x, point.y, stream.size * 0.5, 0, Math.PI * 2);
+        ctx.arc(point.x, point.y, stream.size * 0.8, 0, Math.PI * 2);
         ctx.fill();
       });
       
       // Draw current position
       ctx.fillStyle = `rgba(0, 255, 255, ${stream.opacity})`;
       ctx.beginPath();
-      ctx.arc(stream.x, stream.y, stream.size, 0, Math.PI * 2);
+      ctx.arc(stream.x, stream.y, stream.size * 1.5, 0, Math.PI * 2);
       ctx.fill();
     });
     
     // Draw nodes
     nodes.forEach(node => {
-      const pulseSize = node.size + Math.sin(node.pulse) * 1;
+      const pulseSize = node.size + Math.sin(node.pulse) * 2;
       const alpha = node.activity;
       
       // Node glow
-      const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, pulseSize * 3);
-      gradient.addColorStop(0, `rgba(0, 200, 200, ${alpha * 0.8})`);
-      gradient.addColorStop(0.5, `rgba(0, 255, 255, ${alpha * 0.4})`);
+      const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, pulseSize * 4);
+      gradient.addColorStop(0, `rgba(0, 200, 200, ${alpha * 0.9})`);
+      gradient.addColorStop(0.5, `rgba(0, 255, 255, ${alpha * 0.6})`);
       gradient.addColorStop(1, 'rgba(0, 255, 255, 0)');
       
       ctx.fillStyle = gradient;
       ctx.beginPath();
-      ctx.arc(node.x, node.y, pulseSize * 3, 0, Math.PI * 2);
+      ctx.arc(node.x, node.y, pulseSize * 4, 0, Math.PI * 2);
       ctx.fill();
       
       // Node core
@@ -467,7 +467,7 @@ const initParticles = () => {
       // Node center
       ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
       ctx.beginPath();
-      ctx.arc(node.x, node.y, pulseSize * 0.3, 0, Math.PI * 2);
+      ctx.arc(node.x, node.y, pulseSize * 0.4, 0, Math.PI * 2);
       ctx.fill();
     });
   };
