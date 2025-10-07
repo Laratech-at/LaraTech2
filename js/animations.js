@@ -258,18 +258,24 @@ const initGSAPAnimations = () => {
   // Partner Logos Animation
   // ============================================
   const animatePartnerLogos = () => {
+    // Set initial state
+    gsap.set(".partner-logo", { opacity: 1 });
+    
     gsap.from(".partner-logo", {
       scrollTrigger: {
         trigger: "#partners",
-        start: "top 80%",
-        toggleActions: "play none none none", // Removed reverse action
+        start: "top 85%",
+        end: "bottom 20%",
+        toggleActions: "play none none none",
+        onEnter: () => console.log("Partner logos animating"),
       },
       opacity: 0,
       scale: 0.8,
       y: 30,
-      stagger: 0.1,
-      duration: 0.6,
+      stagger: 0.15,
+      duration: 0.8,
       ease: "power2.out",
+      clearProps: "all", // Clear all properties after animation
     });
   };
 
