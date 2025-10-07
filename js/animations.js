@@ -280,8 +280,8 @@ const initGSAPAnimations = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: "#cta",
-        start: "top 70%",
-        toggleActions: "play none none reverse",
+        start: "top 80%",
+        toggleActions: "play none none none",
       },
     });
 
@@ -300,18 +300,18 @@ const initGSAPAnimations = () => {
           duration: 0.6,
           ease: "power2.out",
         },
-        "-=0.4"
+        "-=0.6"
       )
       .from(
         "#cta .cta-button, #cta .secondary-button",
         {
           opacity: 0,
           scale: 0.8,
-          stagger: 0.2,
+          stagger: 0.15,
           duration: 0.6,
           ease: "back.out(1.7)",
         },
-        "-=0.3"
+        "-=0.5"
       );
   };
 
