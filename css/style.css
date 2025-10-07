@@ -344,6 +344,8 @@
 .partner-logo {
   transition: all 0.3s ease;
   cursor: default;
+  opacity: 1; /* Ensure visibility by default */
+  visibility: visible;
 }
 
 .partner-logo:hover {

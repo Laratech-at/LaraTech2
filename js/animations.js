@@ -262,7 +262,7 @@ const initGSAPAnimations = () => {
       scrollTrigger: {
         trigger: "#partners",
         start: "top 80%",
-        toggleActions: "play none none reverse",
+        toggleActions: "play none none none", // Removed reverse action
       },
       opacity: 0,
       scale: 0.8,
