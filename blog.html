@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog - LaraTech sh.p.k</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "teal-blue": "#00C8C8",
+              "neon-blue": "#00FFFF",
+              "electric-orange": "#FF6B00",
+              "jet-black": "#0A0A0A",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              display: ["Orbitron", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="bg-gray-50 dark:bg-jet-black text-gray-900 dark:text-gray-100">
+    <nav id="navbar" class="fixed top-0 w-full z-40 py-4">
+      <div class="container mx-auto px-4 md:px-6">
+        <div
+          class="glass-nav flex items-center justify-between p-4 rounded-2xl"
+        >
+          <a href="index.html" class="flex items-center space-x-3">
+            <div
+              class="w-10 h-10 bg-gradient-to-br from-teal-blue to-neon-blue rounded-lg flex items-center justify-center"
+            >
+              <span class="text-2xl font-display font-bold text-white">L</span>
+            </div>
+            <span class="text-xl font-display font-bold hidden sm:block"
+              >LaraTech</span
+            >
+          </a>
+          <div class="hidden lg:flex items-center space-x-8">
+            <a href="index.html" class="nav-link">Home</a>
+            <a href="services.html" class="nav-link">Services</a>
+            <a href="projects.html" class="nav-link">Projects</a>
+            <a href="about.html" class="nav-link">About</a>
+            <a href="blog.html" class="nav-link active">Blog</a>
+            <a href="contact.html" class="nav-link">Contact</a>
+          </div>
+          <div class="flex items-center space-x-4">
+            <button
+              id="lang-toggle"
+              class="glass-button px-3 py-2 rounded-lg text-sm font-semibold"
+            >
+              <span id="current-lang">EN</span>
+            </button>
+            <button id="theme-toggle" class="glass-button p-2 rounded-lg">
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <section class="pt-32 pb-20">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="text-center max-w-4xl mx-auto mb-16">
+          <h1
+            class="text-5xl md:text-7xl font-display font-bold mb-6 text-gradient"
+          >
+            Blog & Insights
+          </h1>
+          <p class="text-xl text-gray-600 dark:text-gray-300">
+            Technical guides, case studies, and industry insights
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <article class="blog-card glass-card overflow-hidden">
+            <div
+              class="h-48 bg-gradient-to-br from-teal-blue to-neon-blue"
+            ></div>
+            <div class="p-6">
+              <div
+                class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-3"
+              >
+                <span>October 7, 2025</span>
+                <span>•</span>
+                <span>5 min read</span>
+              </div>
+              <h2 class="text-2xl font-display font-bold mb-3">
+                Getting Started with n8n Automation
+              </h2>
+              <p class="text-gray-600 dark:text-gray-300 mb-4">
+                Learn how to build your first automated workflow with n8n and
+                integrate it with popular business tools.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="tag">Automation</span>
+                <span class="tag">n8n</span>
+                <span class="tag">Tutorial</span>
+              </div>
+              <a
+                href="#"
+                class="text-teal-blue hover:text-neon-blue font-semibold"
+                >Read More →</a
+              >
+            </div>
+          </article>
+
+          <article class="blog-card glass-card overflow-hidden">
+            <div
+              class="h-48 bg-gradient-to-br from-electric-orange to-teal-blue"
+            ></div>
+            <div class="p-6">
+              <div
+                class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-3"
+              >
+                <span>October 5, 2025</span>
+                <span>•</span>
+                <span>8 min read</span>
+              </div>
+              <h2 class="text-2xl font-display font-bold mb-3">
+                Smart Home Security Best Practices
+              </h2>
+              <p class="text-gray-600 dark:text-gray-300 mb-4">
+                Essential tips for securing your smart home devices and
+                protecting your privacy in a connected world.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="tag">Smart Home</span>
+                <span class="tag">Security</span>
+                <span class="tag">IoT</span>
+              </div>
+              <a
+                href="#"
+                class="text-electric-orange hover:text-teal-blue font-semibold"
+                >Read More →</a
+              >
+            </div>
+          </article>
+
+          <article class="blog-card glass-card overflow-hidden">
+            <div
+              class="h-48 bg-gradient-to-br from-neon-blue to-electric-orange"
+            ></div>
+            <div class="p-6">
+              <div
+                class="flex items-center gap-2 text-sm text-gray-600 dark:text-gray-400 mb-3"
+              >
+                <span>October 1, 2025</span>
+                <span>•</span>
+                <span>6 min read</span>
+              </div>
+              <h2 class="text-2xl font-display font-bold mb-3">
+                OpenAI API Integration Guide
+              </h2>
+              <p class="text-gray-600 dark:text-gray-300 mb-4">
+                Step-by-step guide to integrating ChatGPT and other OpenAI
+                models into your business workflows.
+              </p>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="tag">AI</span>
+                <span class="tag">OpenAI</span>
+                <span class="tag">Development</span>
+              </div>
+              <a
+                href="#"
+                class="text-neon-blue hover:text-electric-orange font-semibold"
+                >Read More →</a
+              >
+            </div>
+          </article>
+        </div>
+
+        <div class="text-center mt-12">
+          <p class="text-gray-600 dark:text-gray-300 mb-4">
+            More articles coming soon! Subscribe to our newsletter for updates.
+          </p>
+          <a href="contact.html" class="cta-button inline-block">Contact Us</a>
+        </div>
+      </div>
+    </section>
+
+    <footer class="bg-gray-900 dark:bg-black text-gray-300 pt-16 pb-8">
+      <div class="container mx-auto px-4 md:px-6">
+        <div class="text-center text-sm text-gray-500">
+          <p>&copy; 2025 LaraTech sh.p.k. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>

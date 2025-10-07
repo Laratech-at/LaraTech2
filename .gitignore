@@ -1,0 +1,41 @@
+# LaraTech Project - Git Ignore
+
+# OS Files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor Files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Node Modules (if using build tools)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Build Output
+dist/
+build/
+.cache/
+
+# Environment Variables
+.env
+.env.local
+.env.production
+
+# Temporary Files
+*.tmp
+*.temp
+*.log
+
+# Backup Files
+*.bak
+*.backup
+
+# Private/Local Assets
+assets/private/
+assets/temp/

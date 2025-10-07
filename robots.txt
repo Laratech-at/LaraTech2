@@ -1,0 +1,12 @@
+# robots.txt for LaraTech sh.p.k
+# October 7, 2025
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://laratech.ai/sitemap.xml
+
+# Disallow admin/private areas (if any)
+# Disallow: /admin/
+# Disallow: /private/
