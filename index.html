@@ -159,58 +159,71 @@
     <!-- Loading Animation Overlay -->
     <div
       id="loading-overlay"
-      class="fixed inset-0 z-50 bg-black flex items-center justify-center"
+      class="fixed inset-0 z-50 bg-gradient-to-br from-gray-900 via-jet-black to-gray-900 flex items-center justify-center overflow-hidden"
     >
-      <div
-        id="arc-container"
-        class="relative w-full h-full flex items-center justify-center"
-      >
-        <svg
-          id="arc-svg"
-          width="800"
-          height="400"
-          viewBox="0 0 800 400"
-          class="max-w-full"
-        >
-          <defs>
-            <linearGradient id="arcGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-              <stop offset="0%" style="stop-color: #00ffff; stop-opacity: 1" />
-              <stop offset="50%" style="stop-color: #00c8c8; stop-opacity: 1" />
-              <stop
-                offset="100%"
-                style="stop-color: #ff6b00; stop-opacity: 1"
-              />
-            </linearGradient>
-            <filter id="glow">
-              <feGaussianBlur stdDeviation="4" result="coloredBlur" />
-              <feMerge>
-                <feMergeNode in="coloredBlur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-          <path
-            id="arc-path"
-            d="M 50 200 Q 400 50 750 200"
-            stroke="url(#arcGradient)"
-            stroke-width="3"
-            fill="none"
-            filter="url(#glow)"
-            stroke-dasharray="1000"
-            stroke-dashoffset="1000"
+      <!-- Animated Background Particles -->
+      <div class="absolute inset-0 opacity-30">
+        <div class="loading-particle" style="left: 10%; animation-delay: 0s;"></div>
+        <div class="loading-particle" style="left: 25%; animation-delay: 1s;"></div>
+        <div class="loading-particle" style="left: 40%; animation-delay: 0.5s;"></div>
+        <div class="loading-particle" style="left: 60%; animation-delay: 1.5s;"></div>
+        <div class="loading-particle" style="left: 75%; animation-delay: 0.3s;"></div>
+        <div class="loading-particle" style="left: 90%; animation-delay: 1.2s;"></div>
+      </div>
+
+      <div class="text-center relative z-10">
+        <!-- Logo Container with Glow -->
+        <div class="mb-12 relative">
+          <div class="logo-glow-pulse absolute inset-0 blur-3xl opacity-60"></div>
+          <img
+            src="assets/Logo.png"
+            alt="LaraTech Logo"
+            id="loading-logo"
+            class="h-32 md:h-40 w-auto mx-auto relative z-10 opacity-0"
+            style="filter: brightness(2);"
           />
-        </svg>
+        </div>
+
+        <!-- Company Name -->
         <div
-          id="logo-text"
-          class="absolute text-6xl md:text-8xl font-display font-bold opacity-0"
+          id="loading-text"
+          class="text-4xl md:text-6xl font-display font-bold mb-8 opacity-0"
           style="
             background: linear-gradient(90deg, #00ffff, #00c8c8, #ff6b00);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            background-size: 200% 200%;
+            animation: gradient-shift 3s ease infinite;
           "
         >
           LaraTech
+        </div>
+
+        <!-- Progress Bar Container -->
+        <div class="w-64 md:w-96 mx-auto">
+          <div class="relative h-2 bg-gray-800 rounded-full overflow-hidden mb-4">
+            <div
+              id="loading-progress-bar"
+              class="absolute left-0 top-0 h-full bg-gradient-to-r from-teal-blue via-neon-blue to-electric-orange rounded-full transition-all duration-300"
+              style="width: 0%; box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);"
+            ></div>
+          </div>
+          <!-- Percentage Display -->
+          <div
+            id="loading-percentage"
+            class="text-teal-blue text-xl font-semibold tracking-wider"
+          >
+            0%
+          </div>
+        </div>
+
+        <!-- Loading Status Text -->
+        <div
+          id="loading-status"
+          class="mt-6 text-gray-400 text-sm tracking-widest uppercase opacity-0"
+        >
+          Initializing...
         </div>
       </div>
     </div>
@@ -221,9 +234,7 @@
       class="fixed top-0 w-full z-40 transition-all duration-300 py-4 px-4 md:px-6"
     >
       <div class="container mx-auto">
-        <div
-          class="flex items-center justify-between"
-        >
+        <div class="flex items-center justify-between">
           <!-- Logo -->
           <a href="index.html" class="flex items-center space-x-3 group">
             <img
@@ -295,20 +306,6 @@
                 aria-label="Select Language"
               >
                 <span id="current-lang-flag" class="lang-flag">🇬🇧</span>
-                <span id="current-lang-code">EN</span>
-                <svg
-                  class="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M19 9l-7 7-7-7"
-                  />
-                </svg>
               </button>
               <div id="lang-dropdown-content" class="lang-dropdown-content">
                 <div class="lang-option active" data-lang="en">
@@ -456,12 +453,12 @@
 
           <p
             class="hero-subtitle text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto"
-            data-lang-en="Expert automation, AI workflows, web development, and smart-tech solutions for businesses in Kosovo and beyond."
-            data-lang-sq="Automatizim ekspert, flukse AI, zhvillim ueb dhe zgjidhje smart-tech për biznese në Kosovë dhe më gjerë."
-            data-lang-de="Experten-Automatisierung, KI-Workflows, Webentwicklung und Smart-Tech-Lösungen für Unternehmen im Kosovo und darüber hinaus."
+            data-lang-en="Expert automation, AI workflows, web development, and smart-tech solutions from Kosovo for businesses globally."
+            data-lang-sq="Automatizim ekspert, flukse AI, zhvillim ueb dhe zgjidhje smart-tech nga Kosova për biznese globale."
+            data-lang-de="Experten-Automatisierung, KI-Workflows, Webentwicklung und Smart-Tech-Lösungen aus dem Kosovo für Unternehmen weltweit."
           >
             Expert automation, AI workflows, web development, and smart-tech
-            solutions for businesses in Kosovo and beyond.
+            solutions from Kosovo for businesses globally.
           </p>
 
           <div
@@ -1645,9 +1642,14 @@
                     d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                   />
                 </svg>
-                <span
-                  >Rr. Safet Boletini 46, Iliridë<br />Mitrovica, Kosovo</span
+                <a 
+                  href="#" 
+                  data-directions
+                  class="hover:text-teal-blue transition-colors cursor-pointer"
+                  title="Get directions"
                 >
+                  Rr. Safet Boletini 46, Iliridë<br />Mitrovica, Kosovo
+                </a>
               </li>
               <li class="flex items-center">
                 <svg
@@ -1894,6 +1896,17 @@
         />
       </svg>
     </a>
+
+    <!-- Back to Top Button -->
+    <button
+      id="back-to-top"
+      class="back-to-top"
+      aria-label="Back to top"
+    >
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+      </svg>
+    </button>
 
     <!-- Custom Scripts -->
     <script src="js/main.js"></script>

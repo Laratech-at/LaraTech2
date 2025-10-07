@@ -88,10 +88,13 @@
 
 /* Navigation Styles */
 #navbar {
+  position: sticky;
+  top: 0;
   background: var(--glass-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
 }
 
 #navbar.scrolled {
@@ -585,7 +588,11 @@ button:focus-visible {
 }
 
 .cookie-accept-btn {
-  background: linear-gradient(135deg, var(--color-teal-blue), var(--color-neon-blue));
+  background: linear-gradient(
+    135deg,
+    var(--color-teal-blue),
+    var(--color-neon-blue)
+  );
   color: white;
   border-color: var(--color-teal-blue);
 }
@@ -1042,27 +1049,27 @@ html.light footer img[alt*="logo"] {
 .lang-dropdown-btn {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  justify-content: center;
+  padding: 0.5rem;
   background: var(--glass-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   border: 2px solid rgba(0, 200, 200, 0.5);
-  border-radius: 0.5rem;
+  border-radius: 50%;
   cursor: pointer;
   transition: all 0.3s ease;
-  font-size: 0.875rem;
-  font-weight: 600;
+  width: 45px;
+  height: 45px;
 }
 
 .lang-dropdown-btn:hover {
   background: rgba(0, 200, 200, 0.2);
   border-color: var(--color-teal-blue);
-  transform: scale(1.05);
+  transform: scale(1.1);
 }
 
 .lang-flag {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   line-height: 1;
 }
 
@@ -1220,6 +1227,44 @@ html.light footer img[alt*="logo"] {
   fill: white;
 }
 
+/* Back to Top Button */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  left: 30px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--color-teal-blue), var(--color-neon-blue));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 20px rgba(0, 200, 200, 0.4);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(100px);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.back-to-top:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 30px rgba(0, 200, 200, 0.6);
+}
+
+.back-to-top svg {
+  width: 24px;
+  height: 24px;
+  fill: white;
+}
+
 @keyframes float-bounce {
   0%,
   100% {
@@ -1231,6 +1276,82 @@ html.light footer img[alt*="logo"] {
 }
 
 /* Full Width Navbar - Removed conflicting styles */
+
+/* Technologies & Partners Floating Animation */
+.tech-logo,
+.partner-logo {
+  transition: all 0.3s ease;
+  animation: float-gentle 6s ease-in-out infinite;
+}
+
+.tech-logo:hover,
+.partner-logo:hover {
+  transform: translateY(-10px) scale(1.1);
+  filter: brightness(1.2);
+}
+
+.tech-logo:nth-child(1) { animation-delay: 0s; }
+.tech-logo:nth-child(2) { animation-delay: 0.5s; }
+.tech-logo:nth-child(3) { animation-delay: 1s; }
+.tech-logo:nth-child(4) { animation-delay: 1.5s; }
+.tech-logo:nth-child(5) { animation-delay: 2s; }
+.tech-logo:nth-child(6) { animation-delay: 2.5s; }
+.tech-logo:nth-child(7) { animation-delay: 3s; }
+.tech-logo:nth-child(8) { animation-delay: 3.5s; }
+
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+/* Loading Screen Enhancements */
+.loading-particle {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: linear-gradient(135deg, var(--color-teal-blue), var(--color-neon-blue));
+  border-radius: 50%;
+  top: -10px;
+  animation: particle-fall 8s linear infinite;
+  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
+}
+
+@keyframes particle-fall {
+  0% {
+    top: -10px;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    top: calc(100% + 10px);
+    opacity: 0;
+  }
+}
+
+.logo-glow-pulse {
+  background: radial-gradient(circle, rgba(0, 255, 255, 0.4) 0%, transparent 70%);
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.8;
+  }
+}
 
 /* Tooltip */
 .tooltip {

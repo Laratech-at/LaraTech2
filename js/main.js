@@ -221,44 +221,81 @@ const initFadeInObserver = () => {
 // ============================================
 const initLoadingAnimation = () => {
   const loadingOverlay = document.getElementById("loading-overlay");
-  const arcPath = document.getElementById("arc-path");
-  const logoText = document.getElementById("logo-text");
+  const loadingLogo = document.getElementById("loading-logo");
+  const loadingText = document.getElementById("loading-text");
+  const loadingStatus = document.getElementById("loading-status");
+  const progressBar = document.getElementById("loading-progress-bar");
+  const percentageText = document.getElementById("loading-percentage");
 
-  // Animate arc drawing
+  let progress = 0;
+  const loadingSteps = [
+    { percent: 25, status: "Loading assets..." },
+    { percent: 50, status: "Initializing components..." },
+    { percent: 75, status: "Preparing interface..." },
+    { percent: 100, status: "Ready!" }
+  ];
+  
+  let currentStep = 0;
+
+  // Fade in logo
   setTimeout(() => {
-    arcPath?.animate([{ strokeDashoffset: 1000 }, { strokeDashoffset: 0 }], {
-      duration: 1500,
-      easing: "ease-in-out",
-      fill: "forwards",
-    });
+    if (loadingLogo) {
+      loadingLogo.style.transition = "opacity 0.8s ease";
+      loadingLogo.style.opacity = "1";
+    }
   }, 300);
 
-  // Show logo text with flicker
+  // Fade in text
   setTimeout(() => {
-    if (logoText) {
-      logoText.style.opacity = "1";
-
-      // Flicker effect
-      const flickers = [0, 100, 200, 300, 400];
-      flickers.forEach((delay) => {
-        setTimeout(() => {
-          logoText.style.opacity = "0.5";
-          setTimeout(() => (logoText.style.opacity = "1"), 50);
-        }, 1800 + delay);
-      });
+    if (loadingText) {
+      loadingText.style.transition = "opacity 0.8s ease";
+      loadingText.style.opacity = "1";
     }
-  }, 1800);
+  }, 800);
 
-  // Fade out loading overlay
+  // Fade in status
   setTimeout(() => {
-    if (loadingOverlay) {
-      loadingOverlay.style.transition = "opacity 0.5s ease";
-      loadingOverlay.style.opacity = "0";
+    if (loadingStatus) {
+      loadingStatus.style.transition = "opacity 0.5s ease";
+      loadingStatus.style.opacity = "1";
+    }
+  }, 1200);
+
+  // Progress bar animation
+  const progressInterval = setInterval(() => {
+    if (progress >= 100) {
+      clearInterval(progressInterval);
+      // Fade out loading overlay
       setTimeout(() => {
-        loadingOverlay.style.display = "none";
+        if (loadingOverlay) {
+          loadingOverlay.style.transition = "opacity 0.6s ease";
+          loadingOverlay.style.opacity = "0";
+          setTimeout(() => {
+            loadingOverlay.style.display = "none";
+          }, 600);
+        }
       }, 500);
+      return;
     }
-  }, 3500);
+
+    progress += 2;
+    
+    if (progressBar) {
+      progressBar.style.width = `${progress}%`;
+    }
+    
+    if (percentageText) {
+      percentageText.textContent = `${progress}%`;
+    }
+
+    // Update status text at milestones
+    if (currentStep < loadingSteps.length && progress >= loadingSteps[currentStep].percent) {
+      if (loadingStatus) {
+        loadingStatus.textContent = loadingSteps[currentStep].status;
+      }
+      currentStep++;
+    }
+  }, 40); // Updates every 40ms for smooth animation
 };
 
 // ============================================
@@ -613,7 +650,7 @@ const initCookieConsent = () => {
 
   // Check if user has already made a choice
   const cookieChoice = localStorage.getItem("cookies-choice");
-  
+
   if (!cookieChoice) {
     setTimeout(() => {
       cookieBanner?.classList.add("show");
@@ -625,7 +662,7 @@ const initCookieConsent = () => {
     localStorage.setItem("cookies-choice", "accepted");
     localStorage.setItem("cookies-accepted", "true");
     cookieBanner?.classList.remove("show");
-    
+
     // Here you can enable analytics, tracking, etc.
     console.log("Cookies accepted");
   });
@@ -635,7 +672,7 @@ const initCookieConsent = () => {
     localStorage.setItem("cookies-choice", "rejected");
     localStorage.removeItem("cookies-accepted");
     cookieBanner?.classList.remove("show");
-    
+
     // Here you can disable analytics, tracking, etc.
     console.log("Cookies rejected");
   });
@@ -844,6 +881,32 @@ const initDirectionsButton = () => {
 };
 
 // ============================================
+// Back to Top Button
+// ============================================
+const initBackToTop = () => {
+  const backToTopButton = document.getElementById("back-to-top");
+  
+  if (!backToTopButton) return;
+
+  // Show/hide button based on scroll position
+  window.addEventListener("scroll", () => {
+    if (window.pageYOffset > 300) {
+      backToTopButton.classList.add("show");
+    } else {
+      backToTopButton.classList.remove("show");
+    }
+  });
+
+  // Scroll to top when clicked
+  backToTopButton.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+};
+
+// ============================================
 // Initialize All Functions on Page Load
 // ============================================
 const init = () => {
@@ -877,6 +940,7 @@ const init = () => {
   initBeforeAfterSlider();
   initPerformanceMonitoring();
   initDirectionsButton();
+  initBackToTop();
 
   console.log("LaraTech website initialized successfully! 🚀");
 };
