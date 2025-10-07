@@ -294,7 +294,8 @@
     transparent 0%,
     rgba(0, 200, 200, 0.02) 100%
   );
-  z-index: 1;
+  z-index: 0; /* behind content */
+  pointer-events: none; /* never block interactions */
 }
 
 #neural-canvas {
@@ -308,60 +309,11 @@
 }
 
 /* Circuit Board Pattern Overlay */
-#particles-container::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(
-      90deg,
-      rgba(0, 200, 200, 0.1) 1px,
-      transparent 1px
-    ),
-    linear-gradient(rgba(0, 200, 200, 0.1) 1px, transparent 1px);
-  background-size: 50px 50px;
-  animation: circuit-pulse 8s ease-in-out infinite;
-  z-index: 1;
-}
-
-@keyframes circuit-pulse {
-  0%,
-  100% {
-    opacity: 0.5;
-  }
-  50% {
-    opacity: 0.8;
-  }
-}
+/* Disable intrusive pseudo-element overlays for production */
+#particles-container::before { content: none; }
 
 /* Data Stream Glow Effect */
-#particles-container::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-      circle at 20% 80%,
-      rgba(0, 255, 255, 0.2) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 80% 20%,
-      rgba(255, 107, 0, 0.2) 0%,
-      transparent 50%
-    ),
-    radial-gradient(
-      circle at 40% 40%,
-      rgba(0, 200, 200, 0.1) 0%,
-      transparent 50%
-    );
-  animation: data-flow 12s ease-in-out infinite;
-  z-index: 1;
-}
+#particles-container::after { content: none; }
 
 @keyframes data-flow {
   0%,
@@ -696,6 +648,36 @@ img[data-src].loaded {
 
 .dark .glass-nav {
   background: rgba(10, 10, 10, 0.8);
+}
+
+/* Logo Theme Adjustments */
+.logo-theme {
+  transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* Light mode logo adjustments */
+.light .logo-theme {
+  filter: brightness(0.9) contrast(1.1);
+  opacity: 0.95;
+}
+
+/* Dark mode logo adjustments */
+.dark .logo-theme {
+  filter: brightness(1.3) contrast(1.2);
+  opacity: 0.9;
+}
+
+/* Hover effects for logo in both themes */
+.logo-theme:hover {
+  transform: scale(1.05);
+}
+
+.light .logo-theme:hover {
+  filter: brightness(1) contrast(1.2);
+}
+
+.dark .logo-theme:hover {
+  filter: brightness(1.4) contrast(1.3);
 }
 
 /* Light Mode Specific Adjustments */

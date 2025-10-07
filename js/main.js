@@ -251,6 +251,10 @@ const initParticles = () => {
   const particlesContainer = document.getElementById("particles-container");
   if (!particlesContainer) return;
 
+  // Respect prefers-reduced-motion for accessibility
+  const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduceMotion) return;
+
   // Create canvas for neural network
   const canvas = document.createElement("canvas");
   canvas.id = "neural-canvas";
@@ -261,7 +265,7 @@ const initParticles = () => {
   canvas.style.height = "100%";
   canvas.style.pointerEvents = "none";
   canvas.style.zIndex = "1";
-  
+
   particlesContainer.appendChild(canvas);
 
   const ctx = canvas.getContext("2d");
@@ -272,7 +276,7 @@ const initParticles = () => {
   const nodes = [];
   const connections = [];
   const dataStreams = [];
-  
+
   const nodeCount = 25;
   const maxConnections = 3;
   const maxDistance = 150;
@@ -294,8 +298,8 @@ const initParticles = () => {
         size: Math.random() * 3 + 2,
         pulse: Math.random() * Math.PI * 2,
         connections: [],
-        type: Math.random() > 0.7 ? 'data' : 'neural',
-        activity: Math.random()
+        type: Math.random() > 0.7 ? "data" : "neural",
+        activity: Math.random(),
       });
     }
   };
@@ -310,14 +314,17 @@ const initParticles = () => {
           const dx = node.x - otherNode.x;
           const dy = node.y - otherNode.y;
           const distance = Math.sqrt(dx * dx + dy * dy);
-          
-          if (distance < maxDistance && node.connections.length < maxConnections) {
+
+          if (
+            distance < maxDistance &&
+            node.connections.length < maxConnections
+          ) {
             connections.push({
               from: node,
               to: otherNode,
               distance: distance,
-              strength: 1 - (distance / maxDistance),
-              pulse: Math.random() * Math.PI * 2
+              strength: 1 - distance / maxDistance,
+              pulse: Math.random() * Math.PI * 2,
             });
             node.connections.push(otherNode);
           }
@@ -330,7 +337,7 @@ const initParticles = () => {
   const createDataStreams = () => {
     dataStreams.length = 0;
     const streamCount = 8;
-    
+
     for (let i = 0; i < streamCount; i++) {
       dataStreams.push({
         x: Math.random() * canvas.width,
@@ -340,54 +347,54 @@ const initParticles = () => {
         size: Math.random() * 2 + 1,
         opacity: Math.random() * 0.8 + 0.2,
         trail: [],
-        maxTrailLength: 20
+        maxTrailLength: 20,
       });
     }
   };
 
   // Update nodes
   const updateNodes = () => {
-    nodes.forEach(node => {
+    nodes.forEach((node) => {
       // Update position
       node.x += node.vx;
       node.y += node.vy;
-      
+
       // Bounce off edges
       if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
       if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
-      
+
       // Keep within bounds
       node.x = Math.max(0, Math.min(canvas.width, node.x));
       node.y = Math.max(0, Math.min(canvas.height, node.y));
-      
+
       // Update pulse
       node.pulse += 0.02;
-      
+
       // Update activity based on mouse proximity
       const dx = node.x - mouse.x;
       const dy = node.y - mouse.y;
       const mouseDistance = Math.sqrt(dx * dx + dy * dy);
-      node.activity = Math.max(0.3, 1 - (mouseDistance / 200));
+      node.activity = Math.max(0.3, 1 - mouseDistance / 200);
     });
   };
 
   // Update data streams
   const updateDataStreams = () => {
-    dataStreams.forEach(stream => {
+    dataStreams.forEach((stream) => {
       // Update position
       stream.x += stream.vx;
       stream.y += stream.vy;
-      
+
       // Add to trail
       stream.trail.push({ x: stream.x, y: stream.y, opacity: stream.opacity });
       if (stream.trail.length > stream.maxTrailLength) {
         stream.trail.shift();
       }
-      
+
       // Bounce off edges
       if (stream.x < 0 || stream.x > canvas.width) stream.vx *= -1;
       if (stream.y < 0 || stream.y > canvas.height) stream.vy *= -1;
-      
+
       // Keep within bounds
       stream.x = Math.max(0, Math.min(canvas.width, stream.x));
       stream.y = Math.max(0, Math.min(canvas.height, stream.y));
@@ -397,33 +404,37 @@ const initParticles = () => {
   // Draw neural network
   const draw = () => {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    
+
     // Draw connections
-    ctx.strokeStyle = 'rgba(0, 200, 200, 0.6)';
+    ctx.strokeStyle = "rgba(0, 200, 200, 0.6)";
     ctx.lineWidth = 2;
-    connections.forEach(conn => {
+    connections.forEach((conn) => {
       const alpha = conn.strength * 0.8;
       ctx.strokeStyle = `rgba(0, 200, 200, ${alpha})`;
-      
+
       ctx.beginPath();
       ctx.moveTo(conn.from.x, conn.from.y);
       ctx.lineTo(conn.to.x, conn.to.y);
       ctx.stroke();
-      
+
       // Animated pulse along connection
-      const pulseX = conn.from.x + (conn.to.x - conn.from.x) * (0.5 + 0.3 * Math.sin(conn.pulse));
-      const pulseY = conn.from.y + (conn.to.y - conn.from.y) * (0.5 + 0.3 * Math.sin(conn.pulse));
-      
+      const pulseX =
+        conn.from.x +
+        (conn.to.x - conn.from.x) * (0.5 + 0.3 * Math.sin(conn.pulse));
+      const pulseY =
+        conn.from.y +
+        (conn.to.y - conn.from.y) * (0.5 + 0.3 * Math.sin(conn.pulse));
+
       ctx.fillStyle = `rgba(0, 255, 255, ${alpha * 0.9})`;
       ctx.beginPath();
       ctx.arc(pulseX, pulseY, 2, 0, Math.PI * 2);
       ctx.fill();
-      
+
       conn.pulse += 0.05;
     });
-    
+
     // Draw data streams
-    dataStreams.forEach(stream => {
+    dataStreams.forEach((stream) => {
       // Draw trail
       stream.trail.forEach((point, index) => {
         const trailAlpha = (index / stream.trail.length) * point.opacity * 0.7;
@@ -432,40 +443,48 @@ const initParticles = () => {
         ctx.arc(point.x, point.y, stream.size * 0.8, 0, Math.PI * 2);
         ctx.fill();
       });
-      
+
       // Draw current position
       ctx.fillStyle = `rgba(0, 255, 255, ${stream.opacity})`;
       ctx.beginPath();
       ctx.arc(stream.x, stream.y, stream.size * 1.5, 0, Math.PI * 2);
       ctx.fill();
     });
-    
+
     // Draw nodes
-    nodes.forEach(node => {
+    nodes.forEach((node) => {
       const pulseSize = node.size + Math.sin(node.pulse) * 2;
       const alpha = node.activity;
-      
+
       // Node glow
-      const gradient = ctx.createRadialGradient(node.x, node.y, 0, node.x, node.y, pulseSize * 4);
+      const gradient = ctx.createRadialGradient(
+        node.x,
+        node.y,
+        0,
+        node.x,
+        node.y,
+        pulseSize * 4
+      );
       gradient.addColorStop(0, `rgba(0, 200, 200, ${alpha * 0.9})`);
       gradient.addColorStop(0.5, `rgba(0, 255, 255, ${alpha * 0.6})`);
-      gradient.addColorStop(1, 'rgba(0, 255, 255, 0)');
-      
+      gradient.addColorStop(1, "rgba(0, 255, 255, 0)");
+
       ctx.fillStyle = gradient;
       ctx.beginPath();
       ctx.arc(node.x, node.y, pulseSize * 4, 0, Math.PI * 2);
       ctx.fill();
-      
+
       // Node core
-      ctx.fillStyle = node.type === 'data' 
-        ? `rgba(255, 107, 0, ${alpha})` 
-        : `rgba(0, 200, 200, ${alpha})`;
+      ctx.fillStyle =
+        node.type === "data"
+          ? `rgba(255, 107, 0, ${alpha})`
+          : `rgba(0, 200, 200, ${alpha})`;
       ctx.beginPath();
       ctx.arc(node.x, node.y, pulseSize, 0, Math.PI * 2);
       ctx.fill();
-      
+
       // Node center
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)';
+      ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
       ctx.beginPath();
       ctx.arc(node.x, node.y, pulseSize * 0.4, 0, Math.PI * 2);
       ctx.fill();
@@ -492,25 +511,25 @@ const initParticles = () => {
   initNodes();
   createConnections();
   createDataStreams();
-  
+
   // Event listeners
-  window.addEventListener('resize', () => {
+  window.addEventListener("resize", () => {
     resizeCanvas();
     createConnections();
   });
-  
-  canvas.addEventListener('mousemove', handleMouseMove);
-  
+
+  canvas.addEventListener("mousemove", handleMouseMove);
+
   // Start animation
   animate();
-  
+
   // Cleanup function
   return () => {
     if (animationId) {
       cancelAnimationFrame(animationId);
     }
-    window.removeEventListener('resize', resizeCanvas);
-    canvas.removeEventListener('mousemove', handleMouseMove);
+    window.removeEventListener("resize", resizeCanvas);
+    canvas.removeEventListener("mousemove", handleMouseMove);
   };
 };
 
