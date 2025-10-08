@@ -141,6 +141,11 @@ const initStickyNav = () => {
   const navbar = document.getElementById("navbar");
   let lastScroll = 0;
 
+  // Add glassmorphism effect immediately
+  if (navbar) {
+    navbar.classList.add("glass-nav");
+  }
+
   window.addEventListener("scroll", () => {
     const currentScroll = window.pageYOffset;
 
@@ -934,7 +939,7 @@ const init = () => {
   initCounters();
   initFadeInObserver();
   initMagneticButtons();
-  initParticles();
+  // initParticles(); // Disabled - replaced with Liquid Ether
   initLazyLoading();
   initCookieConsent();
   initContactForm();

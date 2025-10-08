@@ -1947,6 +1947,1319 @@
       </svg>
     </button>
 
+    <!-- Three.js CDN - Multiple fallbacks for Liquid Ether -->
+    <script src="https://unpkg.com/three@0.158.0/build/three.min.js"></script>
+    <script>
+      // Fallback if first CDN fails
+      if (typeof THREE === "undefined") {
+        const script = document.createElement("script");
+        script.src =
+          "https://cdnjs.cloudflare.com/ajax/libs/three.js/r158/three.min.js";
+        script.onerror = function () {
+          // Second fallback
+          const script2 = document.createElement("script");
+          script2.src =
+            "https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js";
+          document.head.appendChild(script2);
+        };
+        document.head.appendChild(script);
+      }
+    </script>
+
+    <!-- Liquid Ether Background Script -->
+    <script>
+      // Shader sources for Liquid Ether
+      const FACE_VERT = `
+        attribute vec3 position;
+        uniform vec2 px;
+        uniform vec2 boundarySpace;
+        varying vec2 uv;
+        precision highp float;
+        void main(){
+          vec3 pos = position;
+          vec2 scale = 1.0 - boundarySpace * 2.0;
+          pos.xy = pos.xy * scale;
+          uv = vec2(0.5)+(pos.xy)*0.5;
+          gl_Position = vec4(pos, 1.0);
+        }
+      `;
+
+      const LINE_VERT = `
+        attribute vec3 position;
+        uniform vec2 px;
+        precision highp float;
+        varying vec2 uv;
+        void main(){
+          vec3 pos = position;
+          uv = 0.5 + pos.xy * 0.5;
+          vec2 n = sign(pos.xy);
+          pos.xy = abs(pos.xy) - px * 1.0;
+          pos.xy *= n;
+          gl_Position = vec4(pos, 1.0);
+        }
+      `;
+
+      const MOUSE_VERT = `
+        precision highp float;
+        attribute vec3 position;
+        attribute vec2 uv;
+        uniform vec2 center;
+        uniform vec2 scale;
+        uniform vec2 px;
+        varying vec2 vUv;
+        void main(){
+          vec2 pos = position.xy * scale * 2.0 * px + center;
+          vUv = uv;
+          gl_Position = vec4(pos, 0.0, 1.0);
+        }
+      `;
+
+      const ADVECTION_FRAG = `
+        precision highp float;
+        uniform sampler2D velocity;
+        uniform float dt;
+        uniform bool isBFECC;
+        uniform vec2 fboSize;
+        uniform vec2 px;
+        varying vec2 uv;
+        void main(){
+          vec2 ratio = max(fboSize.x, fboSize.y) / fboSize;
+          if(isBFECC == false){
+            vec2 vel = texture2D(velocity, uv).xy;
+            vec2 uv2 = uv - vel * dt * ratio;
+            vec2 newVel = texture2D(velocity, uv2).xy;
+            gl_FragColor = vec4(newVel, 0.0, 0.0);
+          } else {
+            vec2 spot_new = uv;
+            vec2 vel_old = texture2D(velocity, uv).xy;
+            vec2 spot_old = spot_new - vel_old * dt * ratio;
+            vec2 vel_new1 = texture2D(velocity, spot_old).xy;
+            vec2 spot_new2 = spot_old + vel_new1 * dt * ratio;
+            vec2 error = spot_new2 - spot_new;
+            vec2 spot_new3 = spot_new - error / 2.0;
+            vec2 vel_2 = texture2D(velocity, spot_new3).xy;
+            vec2 spot_old2 = spot_new3 - vel_2 * dt * ratio;
+            vec2 newVel2 = texture2D(velocity, spot_old2).xy; 
+            gl_FragColor = vec4(newVel2, 0.0, 0.0);
+          }
+        }
+      `;
+
+      const COLOR_FRAG = `
+        precision highp float;
+        uniform sampler2D velocity;
+        uniform sampler2D palette;
+        uniform vec4 bgColor;
+        varying vec2 uv;
+        void main(){
+          vec2 vel = texture2D(velocity, uv).xy;
+          float lenv = clamp(length(vel), 0.0, 1.0);
+          vec3 c = texture2D(palette, vec2(lenv, 0.5)).rgb;
+          vec3 outRGB = mix(bgColor.rgb, c, lenv);
+          float outA = mix(bgColor.a, 1.0, lenv);
+          gl_FragColor = vec4(outRGB, outA);
+        }
+      `;
+
+      const DIVERGENCE_FRAG = `
+        precision highp float;
+        uniform sampler2D velocity;
+        uniform float dt;
+        uniform vec2 px;
+        varying vec2 uv;
+        void main(){
+          float x0 = texture2D(velocity, uv-vec2(px.x, 0.0)).x;
+          float x1 = texture2D(velocity, uv+vec2(px.x, 0.0)).x;
+          float y0 = texture2D(velocity, uv-vec2(0.0, px.y)).y;
+          float y1 = texture2D(velocity, uv+vec2(0.0, px.y)).y;
+          float divergence = (x1 - x0 + y1 - y0) / 2.0;
+          gl_FragColor = vec4(divergence / dt);
+        }
+      `;
+
+      const EXTERNAL_FORCE_FRAG = `
+        precision highp float;
+        uniform vec2 force;
+        uniform vec2 center;
+        uniform vec2 scale;
+        uniform vec2 px;
+        varying vec2 vUv;
+        void main(){
+          vec2 circle = (vUv - 0.5) * 2.0;
+          float d = 1.0 - min(length(circle), 1.0);
+          d *= d;
+          gl_FragColor = vec4(force * d, 0.0, 1.0);
+        }
+      `;
+
+      const POISSON_FRAG = `
+        precision highp float;
+        uniform sampler2D pressure;
+        uniform sampler2D divergence;
+        uniform vec2 px;
+        varying vec2 uv;
+        void main(){
+          float p0 = texture2D(pressure, uv + vec2(px.x * 2.0, 0.0)).r;
+          float p1 = texture2D(pressure, uv - vec2(px.x * 2.0, 0.0)).r;
+          float p2 = texture2D(pressure, uv + vec2(0.0, px.y * 2.0)).r;
+          float p3 = texture2D(pressure, uv - vec2(0.0, px.y * 2.0)).r;
+          float div = texture2D(divergence, uv).r;
+          float newP = (p0 + p1 + p2 + p3) / 4.0 - div;
+          gl_FragColor = vec4(newP);
+        }
+      `;
+
+      const PRESSURE_FRAG = `
+        precision highp float;
+        uniform sampler2D pressure;
+        uniform sampler2D velocity;
+        uniform vec2 px;
+        uniform float dt;
+        varying vec2 uv;
+        void main(){
+          float step = 1.0;
+          float p0 = texture2D(pressure, uv + vec2(px.x * step, 0.0)).r;
+          float p1 = texture2D(pressure, uv - vec2(px.x * step, 0.0)).r;
+          float p2 = texture2D(pressure, uv + vec2(0.0, px.y * step)).r;
+          float p3 = texture2D(pressure, uv - vec2(0.0, px.y * step)).r;
+          vec2 v = texture2D(velocity, uv).xy;
+          vec2 gradP = vec2(p0 - p1, p2 - p3) * 0.5;
+          v = v - gradP * dt;
+          gl_FragColor = vec4(v, 0.0, 1.0);
+        }
+      `;
+
+      const VISCOUS_FRAG = `
+        precision highp float;
+        uniform sampler2D velocity;
+        uniform sampler2D velocity_new;
+        uniform float v;
+        uniform vec2 px;
+        uniform float dt;
+        varying vec2 uv;
+        void main(){
+          vec2 old = texture2D(velocity, uv).xy;
+          vec2 new0 = texture2D(velocity_new, uv + vec2(px.x * 2.0, 0.0)).xy;
+          vec2 new1 = texture2D(velocity_new, uv - vec2(px.x * 2.0, 0.0)).xy;
+          vec2 new2 = texture2D(velocity_new, uv + vec2(0.0, px.y * 2.0)).xy;
+          vec2 new3 = texture2D(velocity_new, uv - vec2(0.0, px.y * 2.0)).xy;
+          vec2 newv = 4.0 * old + v * dt * (new0 + new1 + new2 + new3);
+          newv /= 4.0 * (1.0 + v * dt);
+          gl_FragColor = vec4(newv, 0.0, 0.0);
+        }
+      `;
+
+      // Liquid Ether Vanilla JavaScript Implementation
+      class LiquidEther {
+        constructor(container, options = {}) {
+          this.container = container;
+          this.options = {
+            mouseForce: 20,
+            cursorSize: 100,
+            isViscous: false,
+            viscous: 30,
+            iterationsViscous: 32,
+            iterationsPoisson: 32,
+            dt: 0.014,
+            BFECC: true,
+            resolution: 0.5,
+            isBounce: false,
+            colors: ["#00c8c8", "#ff6b00", "#00ffff"],
+            autoDemo: true,
+            autoSpeed: 0.5,
+            autoIntensity: 2.2,
+            takeoverDuration: 0.25,
+            autoResumeDelay: 1000,
+            autoRampDuration: 0.6,
+            ...options,
+          };
+
+          this.webgl = null;
+          this.isRunning = false;
+          this.isVisible = true;
+          this.performanceMode = false;
+
+          this.init();
+        }
+
+        init() {
+          try {
+            this.setupContainer();
+            this.createPaletteTexture();
+            this.initClasses();
+            this.setupEventListeners();
+            this.start();
+          } catch (error) {
+            console.error("Liquid Ether Error:", error);
+          }
+        }
+
+        setupContainer() {
+          // Don't override container position - it's already set in CSS
+          // Just ensure it has the right properties
+          if (
+            !this.container.style.position ||
+            this.container.style.position === "static"
+          ) {
+            this.container.style.position = "absolute";
+          }
+          this.container.style.overflow = "hidden";
+          this.container.style.touchAction = "none";
+        }
+
+        createPaletteTexture() {
+          const colors = this.options.colors;
+          const w = colors.length;
+          const data = new Uint8Array(w * 4);
+
+          for (let i = 0; i < w; i++) {
+            const c = new THREE.Color(colors[i]);
+            data[i * 4 + 0] = Math.round(c.r * 255);
+            data[i * 4 + 1] = Math.round(c.g * 255);
+            data[i * 4 + 2] = Math.round(c.b * 255);
+            data[i * 4 + 3] = 255;
+          }
+
+          this.paletteTex = new THREE.DataTexture(data, w, 1, THREE.RGBAFormat);
+          this.paletteTex.magFilter = THREE.LinearFilter;
+          this.paletteTex.minFilter = THREE.LinearFilter;
+          this.paletteTex.wrapS = THREE.ClampToEdgeWrapping;
+          this.paletteTex.wrapT = THREE.ClampToEdgeWrapping;
+          this.paletteTex.generateMipmaps = false;
+          this.paletteTex.needsUpdate = true;
+
+          // Transparent background so fluid is visible
+          this.bgVec4 = new THREE.Vector4(0, 0, 0, 0);
+        }
+
+        initClasses() {
+          // Common class for shared functionality
+          this.Common = {
+            width: 0,
+            height: 0,
+            aspect: 1,
+            pixelRatio: 1,
+            time: 0,
+            delta: 0,
+            container: null,
+            renderer: null,
+            clock: null,
+
+            init: (container) => {
+              this.Common.container = container;
+              this.Common.pixelRatio = Math.min(
+                window.devicePixelRatio || 1,
+                2
+              );
+              this.Common.resize();
+              this.Common.renderer = new THREE.WebGLRenderer({
+                antialias: true,
+                alpha: true,
+                powerPreference: this.performanceMode
+                  ? "low-power"
+                  : "high-performance",
+              });
+              this.Common.renderer.autoClear = false;
+              this.Common.renderer.setClearColor(new THREE.Color(0x000000), 0);
+              this.Common.renderer.setPixelRatio(this.Common.pixelRatio);
+              this.Common.renderer.setSize(
+                this.Common.width,
+                this.Common.height
+              );
+              this.Common.renderer.domElement.style.width = "100%";
+              this.Common.renderer.domElement.style.height = "100%";
+              this.Common.renderer.domElement.style.display = "block";
+              // Attach canvas to container
+              this.Common.container.prepend(this.Common.renderer.domElement);
+              this.Common.clock = new THREE.Clock();
+              this.Common.clock.start();
+            },
+
+            resize: () => {
+              if (!this.Common.container) return;
+              const rect = this.Common.container.getBoundingClientRect();
+              // Ensure we get valid dimensions
+              this.Common.width = Math.max(
+                1,
+                Math.floor(rect.width || window.innerWidth)
+              );
+              this.Common.height = Math.max(
+                1,
+                Math.floor(rect.height || window.innerHeight)
+              );
+
+              // If height is still too small, use parent dimensions
+              if (
+                this.Common.height < 100 &&
+                this.Common.container.parentElement
+              ) {
+                const parentRect =
+                  this.Common.container.parentElement.getBoundingClientRect();
+                this.Common.height = Math.max(1, Math.floor(parentRect.height));
+              }
+
+              this.Common.aspect = this.Common.width / this.Common.height;
+
+              if (this.Common.renderer) {
+                this.Common.renderer.setSize(
+                  this.Common.width,
+                  this.Common.height,
+                  false
+                );
+              }
+            },
+
+            update: () => {
+              this.Common.delta = this.Common.clock.getDelta();
+              this.Common.time += this.Common.delta;
+            },
+          };
+
+          // Mouse class for interaction
+          this.Mouse = {
+            mouseMoved: false,
+            coords: new THREE.Vector2(),
+            coords_old: new THREE.Vector2(),
+            diff: new THREE.Vector2(),
+            timer: null,
+            container: null,
+            isHoverInside: false,
+            hasUserControl: false,
+            isAutoActive: false,
+            autoIntensity: this.options.autoIntensity,
+            takeoverActive: false,
+            takeoverStartTime: 0,
+            takeoverDuration: this.options.takeoverDuration,
+            takeoverFrom: new THREE.Vector2(),
+            takeoverTo: new THREE.Vector2(),
+            onInteract: null,
+
+            init: (container) => {
+              this.Mouse.container = container;
+              container.addEventListener(
+                "mousemove",
+                this.Mouse.onDocumentMouseMove.bind(this.Mouse),
+                false
+              );
+              container.addEventListener(
+                "touchstart",
+                this.Mouse.onDocumentTouchStart.bind(this.Mouse),
+                { passive: false }
+              );
+              container.addEventListener(
+                "touchmove",
+                this.Mouse.onDocumentTouchMove.bind(this.Mouse),
+                { passive: false }
+              );
+              container.addEventListener(
+                "mouseenter",
+                this.Mouse.onMouseEnter.bind(this.Mouse),
+                false
+              );
+              container.addEventListener(
+                "mouseleave",
+                this.Mouse.onMouseLeave.bind(this.Mouse),
+                false
+              );
+              container.addEventListener(
+                "touchend",
+                this.Mouse.onTouchEnd.bind(this.Mouse),
+                false
+              );
+            },
+
+            dispose: () => {
+              if (!this.Mouse.container) return;
+              this.Mouse.container.removeEventListener(
+                "mousemove",
+                this.Mouse.onDocumentMouseMove.bind(this.Mouse),
+                false
+              );
+              this.Mouse.container.removeEventListener(
+                "touchstart",
+                this.Mouse.onDocumentTouchStart.bind(this.Mouse),
+                false
+              );
+              this.Mouse.container.removeEventListener(
+                "touchmove",
+                this.Mouse.onDocumentTouchMove.bind(this.Mouse),
+                false
+              );
+              this.Mouse.container.removeEventListener(
+                "mouseenter",
+                this.Mouse.onMouseEnter.bind(this.Mouse),
+                false
+              );
+              this.Mouse.container.removeEventListener(
+                "mouseleave",
+                this.Mouse.onMouseLeave.bind(this.Mouse),
+                false
+              );
+              this.Mouse.container.removeEventListener(
+                "touchend",
+                this.Mouse.onTouchEnd.bind(this.Mouse),
+                false
+              );
+            },
+
+            setCoords: (x, y) => {
+              if (!this.Mouse.container) return;
+              if (this.Mouse.timer) clearTimeout(this.Mouse.timer);
+              const rect = this.Mouse.container.getBoundingClientRect();
+              const nx = (x - rect.left) / rect.width;
+              const ny = (y - rect.top) / rect.height;
+              this.Mouse.coords.set(nx * 2 - 1, -(ny * 2 - 1));
+              this.Mouse.mouseMoved = true;
+              this.Mouse.timer = setTimeout(() => {
+                this.Mouse.mouseMoved = false;
+              }, 100);
+            },
+
+            setNormalized: (nx, ny) => {
+              this.Mouse.coords.set(nx, ny);
+              this.Mouse.mouseMoved = true;
+            },
+
+            onDocumentMouseMove: (event) => {
+              if (this.Mouse.onInteract) this.Mouse.onInteract();
+              if (
+                this.Mouse.isAutoActive &&
+                !this.Mouse.hasUserControl &&
+                !this.Mouse.takeoverActive
+              ) {
+                const rect = this.Mouse.container.getBoundingClientRect();
+                const nx = (event.clientX - rect.left) / rect.width;
+                const ny = (event.clientY - rect.top) / rect.height;
+                this.Mouse.takeoverFrom.copy(this.Mouse.coords);
+                this.Mouse.takeoverTo.set(nx * 2 - 1, -(ny * 2 - 1));
+                this.Mouse.takeoverStartTime = performance.now();
+                this.Mouse.takeoverActive = true;
+                this.Mouse.hasUserControl = true;
+                this.Mouse.isAutoActive = false;
+                return;
+              }
+              this.Mouse.setCoords(event.clientX, event.clientY);
+              this.Mouse.hasUserControl = true;
+            },
+
+            onDocumentTouchStart: (event) => {
+              if (event.touches.length === 1) {
+                const t = event.touches[0];
+                if (this.Mouse.onInteract) this.Mouse.onInteract();
+                this.Mouse.setCoords(t.pageX, t.pageY);
+                this.Mouse.hasUserControl = true;
+              }
+            },
+
+            onDocumentTouchMove: (event) => {
+              if (event.touches.length === 1) {
+                const t = event.touches[0];
+                if (this.Mouse.onInteract) this.Mouse.onInteract();
+                this.Mouse.setCoords(t.pageX, t.pageY);
+              }
+            },
+
+            onTouchEnd: () => {
+              this.Mouse.isHoverInside = false;
+            },
+
+            onMouseEnter: () => {
+              this.Mouse.isHoverInside = true;
+            },
+
+            onMouseLeave: () => {
+              this.Mouse.isHoverInside = false;
+            },
+
+            update: () => {
+              if (this.Mouse.takeoverActive) {
+                const t =
+                  (performance.now() - this.Mouse.takeoverStartTime) /
+                  (this.Mouse.takeoverDuration * 1000);
+                if (t >= 1) {
+                  this.Mouse.takeoverActive = false;
+                  this.Mouse.coords.copy(this.Mouse.takeoverTo);
+                  this.Mouse.coords_old.copy(this.Mouse.coords);
+                  this.Mouse.diff.set(0, 0);
+                } else {
+                  const k = t * t * (3 - 2 * t);
+                  this.Mouse.coords
+                    .copy(this.Mouse.takeoverFrom)
+                    .lerp(this.Mouse.takeoverTo, k);
+                }
+              }
+              this.Mouse.diff.subVectors(
+                this.Mouse.coords,
+                this.Mouse.coords_old
+              );
+              this.Mouse.coords_old.copy(this.Mouse.coords);
+              if (
+                this.Mouse.coords_old.x === 0 &&
+                this.Mouse.coords_old.y === 0
+              )
+                this.Mouse.diff.set(0, 0);
+              if (this.Mouse.isAutoActive && !this.Mouse.takeoverActive)
+                this.Mouse.diff.multiplyScalar(this.Mouse.autoIntensity);
+            },
+          };
+
+          // Auto Driver for automatic movement
+          this.AutoDriver = {
+            mouse: this.Mouse,
+            manager: this,
+            enabled: this.options.autoDemo,
+            speed: this.options.autoSpeed,
+            resumeDelay: this.options.autoResumeDelay,
+            rampDurationMs: this.options.autoRampDuration * 1000,
+            active: false,
+            current: new THREE.Vector2(0, 0),
+            target: new THREE.Vector2(),
+            lastTime: performance.now(),
+            activationTime: 0,
+            margin: 0.2,
+            _tmpDir: new THREE.Vector2(),
+
+            pickNewTarget: () => {
+              const r = Math.random;
+              this.AutoDriver.target.set(
+                (r() * 2 - 1) * (1 - this.AutoDriver.margin),
+                (r() * 2 - 1) * (1 - this.AutoDriver.margin)
+              );
+            },
+
+            forceStop: () => {
+              this.AutoDriver.active = false;
+              this.Mouse.isAutoActive = false;
+            },
+
+            update: () => {
+              if (!this.AutoDriver.enabled) return;
+              const now = performance.now();
+              const idle = now - this.lastUserInteraction;
+              if (idle < this.AutoDriver.resumeDelay) {
+                if (this.AutoDriver.active) this.AutoDriver.forceStop();
+                return;
+              }
+              if (this.Mouse.isHoverInside) {
+                if (this.AutoDriver.active) this.AutoDriver.forceStop();
+                return;
+              }
+              if (!this.AutoDriver.active) {
+                this.AutoDriver.active = true;
+                this.AutoDriver.current.copy(this.Mouse.coords);
+                this.AutoDriver.lastTime = now;
+                this.AutoDriver.activationTime = now;
+              }
+              if (!this.AutoDriver.active) return;
+              this.Mouse.isAutoActive = true;
+              let dtSec = (now - this.AutoDriver.lastTime) / 1000;
+              this.AutoDriver.lastTime = now;
+              if (dtSec > 0.2) dtSec = 0.016;
+              const dir = this.AutoDriver._tmpDir.subVectors(
+                this.AutoDriver.target,
+                this.AutoDriver.current
+              );
+              const dist = dir.length();
+              if (dist < 0.01) {
+                this.AutoDriver.pickNewTarget();
+                return;
+              }
+              dir.normalize();
+              let ramp = 1;
+              if (this.AutoDriver.rampDurationMs > 0) {
+                const t = Math.min(
+                  1,
+                  (now - this.AutoDriver.activationTime) /
+                    this.AutoDriver.rampDurationMs
+                );
+                ramp = t * t * (3 - 2 * t);
+              }
+              const step = this.AutoDriver.speed * dtSec * ramp;
+              const move = Math.min(step, dist);
+              this.AutoDriver.current.addScaledVector(dir, move);
+              this.Mouse.setNormalized(
+                this.AutoDriver.current.x,
+                this.AutoDriver.current.y
+              );
+            },
+          };
+
+          this.lastUserInteraction = performance.now();
+          this.Mouse.onInteract = () => {
+            this.lastUserInteraction = performance.now();
+            if (this.AutoDriver) this.AutoDriver.forceStop();
+          };
+
+          this.initSimulation();
+        }
+
+        initSimulation() {
+          // Initialize the WebGL manager
+          this.Common.init(this.container);
+          this.Mouse.init(this.container);
+          this.Mouse.autoIntensity = this.options.autoIntensity;
+          this.Mouse.takeoverDuration = this.options.takeoverDuration;
+
+          // Expose Common/Mouse before creating simulation so shader passes can access them
+          Common = this.Common;
+          Mouse = this.Mouse;
+
+          // Create simulation
+          this.simulation = new Simulation(this.options);
+          this.output = new Output(this.paletteTex, this.bgVec4);
+
+          this.webgl = {
+            output: this.output,
+            autoDriver: this.AutoDriver,
+            running: false,
+            start: () => {
+              if (this.webgl.running) return;
+              this.webgl.running = true;
+              this.loop();
+            },
+            pause: () => {
+              this.webgl.running = false;
+              if (this.rafRef) {
+                cancelAnimationFrame(this.rafRef);
+                this.rafRef = null;
+              }
+            },
+            resize: () => {
+              this.Common.resize();
+              this.simulation.resize();
+            },
+            render: () => {
+              if (this.AutoDriver) this.AutoDriver.update();
+              this.Mouse.update();
+              this.Common.update();
+              this.output.update();
+            },
+          };
+        }
+
+        start() {
+          this.webgl.start();
+          this.isRunning = true;
+        }
+
+        stop() {
+          this.webgl.pause();
+          this.isRunning = false;
+        }
+
+        loop() {
+          if (!this.webgl.running) return;
+          this.webgl.render();
+          this.rafRef = requestAnimationFrame(() => this.loop());
+        }
+
+        setupEventListeners() {
+          // Window resize
+          this.resizeHandler = () => {
+            this.webgl.resize();
+          };
+          window.addEventListener("resize", this.resizeHandler);
+
+          // Visibility change
+          this.visibilityHandler = () => {
+            const hidden = document.hidden;
+            if (hidden) {
+              this.webgl.pause();
+            } else if (this.isVisible) {
+              this.webgl.start();
+            }
+          };
+          document.addEventListener("visibilitychange", this.visibilityHandler);
+
+          // Intersection Observer for performance
+          if ("IntersectionObserver" in window) {
+            this.intersectionObserver = new IntersectionObserver(
+              (entries) => {
+                const entry = entries[0];
+                this.isVisible =
+                  entry.isIntersecting && entry.intersectionRatio > 0;
+                if (this.isVisible && !document.hidden) {
+                  this.webgl.start();
+                } else {
+                  this.webgl.pause();
+                }
+              },
+              { threshold: [0, 0.01, 0.1] }
+            );
+            this.intersectionObserver.observe(this.container);
+          }
+        }
+
+        dispose() {
+          this.stop();
+
+          if (this.resizeHandler) {
+            window.removeEventListener("resize", this.resizeHandler);
+          }
+          if (this.visibilityHandler) {
+            document.removeEventListener(
+              "visibilitychange",
+              this.visibilityHandler
+            );
+          }
+          if (this.intersectionObserver) {
+            this.intersectionObserver.disconnect();
+          }
+          if (this.rafRef) {
+            cancelAnimationFrame(this.rafRef);
+          }
+
+          this.Mouse.dispose();
+
+          if (this.Common.renderer) {
+            const canvas = this.Common.renderer.domElement;
+            if (canvas && canvas.parentNode) {
+              canvas.parentNode.removeChild(canvas);
+            }
+            this.Common.renderer.dispose();
+          }
+        }
+      }
+
+      // Shader Pass classes
+      class ShaderPass {
+        constructor(props) {
+          this.props = props || {};
+          this.uniforms = this.props.material?.uniforms;
+          this.scene = null;
+          this.camera = null;
+          this.material = null;
+          this.geometry = null;
+          this.plane = null;
+        }
+
+        init() {
+          this.scene = new THREE.Scene();
+          this.camera = new THREE.Camera();
+          if (this.uniforms) {
+            this.material = new THREE.RawShaderMaterial(this.props.material);
+            this.geometry = new THREE.PlaneGeometry(2.0, 2.0);
+            this.plane = new THREE.Mesh(this.geometry, this.material);
+            this.scene.add(this.plane);
+          }
+        }
+
+        update() {
+          Common.renderer.setRenderTarget(this.props.output || null);
+          Common.renderer.render(this.scene, this.camera);
+          Common.renderer.setRenderTarget(null);
+        }
+      }
+
+      class Advection extends ShaderPass {
+        constructor(simProps) {
+          super({
+            material: {
+              vertexShader: FACE_VERT,
+              fragmentShader: ADVECTION_FRAG,
+              uniforms: {
+                boundarySpace: { value: simProps.cellScale },
+                px: { value: simProps.cellScale },
+                fboSize: { value: simProps.fboSize },
+                velocity: { value: simProps.src.texture },
+                dt: { value: simProps.dt },
+                isBFECC: { value: true },
+              },
+            },
+            output: simProps.dst,
+          });
+          this.uniforms = this.props.material.uniforms;
+          this.init();
+        }
+
+        init() {
+          super.init();
+          this.createBoundary();
+        }
+
+        createBoundary() {
+          const boundaryG = new THREE.BufferGeometry();
+          const vertices_boundary = new Float32Array([
+            -1, -1, 0, -1, 1, 0, -1, 1, 0, 1, 1, 0, 1, 1, 0, 1, -1, 0, 1, -1, 0,
+            -1, -1, 0,
+          ]);
+          boundaryG.setAttribute(
+            "position",
+            new THREE.BufferAttribute(vertices_boundary, 3)
+          );
+          const boundaryM = new THREE.RawShaderMaterial({
+            vertexShader: LINE_VERT,
+            fragmentShader: ADVECTION_FRAG,
+            uniforms: this.uniforms,
+          });
+          this.line = new THREE.LineSegments(boundaryG, boundaryM);
+          this.scene.add(this.line);
+        }
+
+        update({ dt, isBounce, BFECC }) {
+          this.uniforms.dt.value = dt;
+          this.line.visible = isBounce;
+          this.uniforms.isBFECC.value = BFECC;
+          super.update();
+        }
+      }
+
+      class ExternalForce extends ShaderPass {
+        constructor(simProps) {
+          super({ output: simProps.dst });
+          this.init(simProps);
+        }
+
+        init(simProps) {
+          super.init();
+          const mouseG = new THREE.PlaneGeometry(1, 1);
+          const mouseM = new THREE.RawShaderMaterial({
+            vertexShader: MOUSE_VERT,
+            fragmentShader: EXTERNAL_FORCE_FRAG,
+            blending: THREE.AdditiveBlending,
+            depthWrite: false,
+            uniforms: {
+              px: { value: simProps.cellScale },
+              force: { value: new THREE.Vector2(0.0, 0.0) },
+              center: { value: new THREE.Vector2(0.0, 0.0) },
+              scale: {
+                value: new THREE.Vector2(
+                  simProps.cursor_size,
+                  simProps.cursor_size
+                ),
+              },
+            },
+          });
+          this.mouse = new THREE.Mesh(mouseG, mouseM);
+          this.scene.add(this.mouse);
+        }
+
+        update(props) {
+          const forceX = (Mouse.diff.x / 2) * props.mouse_force;
+          const forceY = (Mouse.diff.y / 2) * props.mouse_force;
+          const cursorSizeX = props.cursor_size * props.cellScale.x;
+          const cursorSizeY = props.cursor_size * props.cellScale.y;
+          const centerX = Math.min(
+            Math.max(Mouse.coords.x, -1 + cursorSizeX + props.cellScale.x * 2),
+            1 - cursorSizeX - props.cellScale.x * 2
+          );
+          const centerY = Math.min(
+            Math.max(Mouse.coords.y, -1 + cursorSizeY + props.cellScale.y * 2),
+            1 - cursorSizeY - props.cellScale.y * 2
+          );
+          const uniforms = this.mouse.material.uniforms;
+          uniforms.force.value.set(forceX, forceY);
+          uniforms.center.value.set(centerX, centerY);
+          uniforms.scale.value.set(props.cursor_size, props.cursor_size);
+          super.update();
+        }
+      }
+
+      class Viscous extends ShaderPass {
+        constructor(simProps) {
+          super({
+            material: {
+              vertexShader: FACE_VERT,
+              fragmentShader: VISCOUS_FRAG,
+              uniforms: {
+                boundarySpace: { value: simProps.boundarySpace },
+                velocity: { value: simProps.src.texture },
+                velocity_new: { value: simProps.dst_.texture },
+                v: { value: simProps.viscous },
+                px: { value: simProps.cellScale },
+                dt: { value: simProps.dt },
+              },
+            },
+            output: simProps.dst,
+            output0: simProps.dst_,
+            output1: simProps.dst,
+          });
+          this.init();
+        }
+
+        update({ viscous, iterations, dt }) {
+          let fbo_in, fbo_out;
+          this.uniforms.v.value = viscous;
+          for (let i = 0; i < iterations; i++) {
+            if (i % 2 === 0) {
+              fbo_in = this.props.output0;
+              fbo_out = this.props.output1;
+            } else {
+              fbo_in = this.props.output1;
+              fbo_out = this.props.output0;
+            }
+            this.uniforms.velocity_new.value = fbo_in.texture;
+            this.props.output = fbo_out;
+            this.uniforms.dt.value = dt;
+            super.update();
+          }
+          return fbo_out;
+        }
+      }
+
+      class Divergence extends ShaderPass {
+        constructor(simProps) {
+          super({
+            material: {
+              vertexShader: FACE_VERT,
+              fragmentShader: DIVERGENCE_FRAG,
+              uniforms: {
+                boundarySpace: { value: simProps.boundarySpace },
+                velocity: { value: simProps.src.texture },
+                px: { value: simProps.cellScale },
+                dt: { value: simProps.dt },
+              },
+            },
+            output: simProps.dst,
+          });
+          this.init();
+        }
+
+        update({ vel }) {
+          this.uniforms.velocity.value = vel.texture;
+          super.update();
+        }
+      }
+
+      class Poisson extends ShaderPass {
+        constructor(simProps) {
+          super({
+            material: {
+              vertexShader: FACE_VERT,
+              fragmentShader: POISSON_FRAG,
+              uniforms: {
+                boundarySpace: { value: simProps.boundarySpace },
+                pressure: { value: simProps.dst_.texture },
+                divergence: { value: simProps.src.texture },
+                px: { value: simProps.cellScale },
+              },
+            },
+            output: simProps.dst,
+            output0: simProps.dst_,
+            output1: simProps.dst,
+          });
+          this.init();
+        }
+
+        update({ iterations }) {
+          let p_in, p_out;
+          for (let i = 0; i < iterations; i++) {
+            if (i % 2 === 0) {
+              p_in = this.props.output0;
+              p_out = this.props.output1;
+            } else {
+              p_in = this.props.output1;
+              p_out = this.props.output0;
+            }
+            this.uniforms.pressure.value = p_in.texture;
+            this.props.output = p_out;
+            super.update();
+          }
+          return p_out;
+        }
+      }
+
+      class Pressure extends ShaderPass {
+        constructor(simProps) {
+          super({
+            material: {
+              vertexShader: FACE_VERT,
+              fragmentShader: PRESSURE_FRAG,
+              uniforms: {
+                boundarySpace: { value: simProps.boundarySpace },
+                pressure: { value: simProps.src_p.texture },
+                velocity: { value: simProps.src_v.texture },
+                px: { value: simProps.cellScale },
+                dt: { value: simProps.dt },
+              },
+            },
+            output: simProps.dst,
+          });
+          this.init();
+        }
+
+        update({ vel, pressure }) {
+          this.uniforms.velocity.value = vel.texture;
+          this.uniforms.pressure.value = pressure.texture;
+          super.update();
+        }
+      }
+
+      class Simulation {
+        constructor(options) {
+          this.options = {
+            iterations_poisson: 32,
+            iterations_viscous: 32,
+            mouse_force: 20,
+            resolution: 0.5,
+            cursor_size: 100,
+            viscous: 30,
+            isBounce: false,
+            dt: 0.014,
+            isViscous: false,
+            BFECC: true,
+            ...options,
+          };
+          this.fbos = {
+            vel_0: null,
+            vel_1: null,
+            vel_viscous0: null,
+            vel_viscous1: null,
+            div: null,
+            pressure_0: null,
+            pressure_1: null,
+          };
+          this.fboSize = new THREE.Vector2();
+          this.cellScale = new THREE.Vector2();
+          this.boundarySpace = new THREE.Vector2();
+          this.init();
+        }
+
+        init() {
+          this.calcSize();
+          this.createAllFBO();
+          this.createShaderPass();
+        }
+
+        getFloatType() {
+          const isIOS = /(iPad|iPhone|iPod)/i.test(navigator.userAgent);
+          return isIOS ? THREE.HalfFloatType : THREE.FloatType;
+        }
+
+        createAllFBO() {
+          const type = this.getFloatType();
+          const opts = {
+            type,
+            depthBuffer: false,
+            stencilBuffer: false,
+            minFilter: THREE.LinearFilter,
+            magFilter: THREE.LinearFilter,
+            wrapS: THREE.ClampToEdgeWrapping,
+            wrapT: THREE.ClampToEdgeWrapping,
+          };
+          for (let key in this.fbos) {
+            this.fbos[key] = new THREE.WebGLRenderTarget(
+              this.fboSize.x,
+              this.fboSize.y,
+              opts
+            );
+          }
+        }
+
+        createShaderPass() {
+          this.advection = new Advection({
+            cellScale: this.cellScale,
+            fboSize: this.fboSize,
+            dt: this.options.dt,
+            src: this.fbos.vel_0,
+            dst: this.fbos.vel_1,
+          });
+          this.externalForce = new ExternalForce({
+            cellScale: this.cellScale,
+            cursor_size: this.options.cursor_size,
+            dst: this.fbos.vel_1,
+          });
+          this.viscous = new Viscous({
+            cellScale: this.cellScale,
+            boundarySpace: this.boundarySpace,
+            viscous: this.options.viscous,
+            src: this.fbos.vel_1,
+            dst: this.fbos.vel_viscous1,
+            dst_: this.fbos.vel_viscous0,
+            dt: this.options.dt,
+          });
+          this.divergence = new Divergence({
+            cellScale: this.cellScale,
+            boundarySpace: this.boundarySpace,
+            src: this.fbos.vel_viscous0,
+            dst: this.fbos.div,
+            dt: this.options.dt,
+          });
+          this.poisson = new Poisson({
+            cellScale: this.cellScale,
+            boundarySpace: this.boundarySpace,
+            src: this.fbos.div,
+            dst: this.fbos.pressure_1,
+            dst_: this.fbos.pressure_0,
+          });
+          this.pressure = new Pressure({
+            cellScale: this.cellScale,
+            boundarySpace: this.boundarySpace,
+            src_p: this.fbos.pressure_0,
+            src_v: this.fbos.vel_viscous0,
+            dst: this.fbos.vel_0,
+            dt: this.options.dt,
+          });
+        }
+
+        calcSize() {
+          const width = Math.max(
+            1,
+            Math.round(this.options.resolution * Common.width)
+          );
+          const height = Math.max(
+            1,
+            Math.round(this.options.resolution * Common.height)
+          );
+          const px_x = 1.0 / width;
+          const px_y = 1.0 / height;
+          this.cellScale.set(px_x, px_y);
+          this.fboSize.set(width, height);
+        }
+
+        resize() {
+          this.calcSize();
+          for (let key in this.fbos) {
+            this.fbos[key].setSize(this.fboSize.x, this.fboSize.y);
+          }
+        }
+
+        update() {
+          if (this.options.isBounce) {
+            this.boundarySpace.set(0, 0);
+          } else {
+            this.boundarySpace.copy(this.cellScale);
+          }
+          this.advection.update({
+            dt: this.options.dt,
+            isBounce: this.options.isBounce,
+            BFECC: this.options.BFECC,
+          });
+          this.externalForce.update({
+            cursor_size: this.options.cursor_size,
+            mouse_force: this.options.mouse_force,
+            cellScale: this.cellScale,
+          });
+          let vel = this.fbos.vel_1;
+          if (this.options.isViscous) {
+            vel = this.viscous.update({
+              viscous: this.options.viscous,
+              iterations: this.options.iterations_viscous,
+              dt: this.options.dt,
+            });
+          }
+          this.divergence.update({ vel });
+          const pressure = this.poisson.update({
+            iterations: this.options.iterations_poisson,
+          });
+          this.pressure.update({ vel, pressure });
+        }
+      }
+
+      class Output {
+        constructor(paletteTex, bgVec4) {
+          this._paletteTex = paletteTex;
+          this._bgVec4 = bgVec4;
+          this.init();
+        }
+
+        init() {
+          this.simulation = new Simulation();
+          this.scene = new THREE.Scene();
+          this.camera = new THREE.Camera();
+          this.output = new THREE.Mesh(
+            new THREE.PlaneGeometry(2, 2),
+            new THREE.RawShaderMaterial({
+              vertexShader: FACE_VERT,
+              fragmentShader: COLOR_FRAG,
+              transparent: true,
+              depthWrite: false,
+              uniforms: {
+                velocity: { value: this.simulation.fbos.vel_0.texture },
+                boundarySpace: { value: new THREE.Vector2() },
+                palette: { value: this._paletteTex },
+                bgColor: { value: this._bgVec4 },
+              },
+            })
+          );
+          this.scene.add(this.output);
+        }
+
+        addScene(mesh) {
+          this.scene.add(mesh);
+        }
+
+        resize() {
+          this.simulation.resize();
+        }
+
+        render() {
+          Common.renderer.setRenderTarget(null);
+          Common.renderer.render(this.scene, this.camera);
+        }
+
+        update() {
+          this.simulation.update();
+          this.render();
+        }
+      }
+
+      // Global references for shader classes
+      let liquidEther;
+      let Common, Mouse;
+
+      // Initialize Liquid Ether when DOM is ready
+      function initializeLiquidEther() {
+        if (typeof THREE === "undefined") {
+          setTimeout(initializeLiquidEther, 100);
+          return;
+        }
+
+        try {
+          const container = document.getElementById("particles-container");
+          if (!container) {
+            console.error("Liquid Ether: Container not found!");
+            return;
+          }
+
+          liquidEther = new LiquidEther(container, {
+            colors: ["#00c8c8", "#ff6b00", "#00ffff"],
+            mouseForce: 20, // Matching demo settings
+            cursorSize: 65, // From screenshot
+            resolution: 0.5, // From screenshot
+            dt: 0.014,
+            BFECC: true,
+            isViscous: false, // Viscous toggle OFF in screenshot
+            viscous: 30,
+            iterationsViscous: 32,
+            iterationsPoisson: 32, // Pressure: 32 from screenshot
+            isBounce: false, // Bounce Edges OFF
+            autoDemo: true, // Auto Animate ON
+            autoSpeed: 0.5, // From screenshot
+            autoIntensity: 2.2, // Auto Intensity: 2.2 from screenshot (shown as 22 but divided by 10)
+            takeoverDuration: 0.25,
+            autoResumeDelay: 1000, // Back to 1 second for smoother transition
+            autoRampDuration: 0.6,
+          });
+
+          // Force a resize after initialization to ensure proper dimensions
+          setTimeout(() => {
+            if (liquidEther && liquidEther.webgl) {
+              liquidEther.webgl.resize();
+            }
+          }, 100);
+        } catch (error) {
+          console.error("❌ Failed to initialize Liquid Ether:", error);
+          console.error("Error stack:", error.stack);
+        }
+      }
+
+      // Start initialization when DOM is ready
+      if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", initializeLiquidEther);
+      } else {
+        // DOM already loaded
+        initializeLiquidEther();
+      }
+
+      // Cleanup on page unload
+      window.addEventListener("beforeunload", () => {
+        if (liquidEther) {
+          liquidEther.dispose();
+        }
+      });
+    </script>
+
     <!-- Custom Scripts -->
     <script src="js/main.js"></script>
     <script src="js/animations.js"></script>
