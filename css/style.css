@@ -1085,15 +1085,15 @@ html.light footer img[alt*="logo"] {
     height: 45px;
     justify-content: center;
   }
-  
+
   .lang-flag {
     font-size: 1.5rem;
   }
-  
+
   .lang-code {
     display: none;
   }
-  
+
   .lang-dropdown-btn svg {
     display: none;
   }

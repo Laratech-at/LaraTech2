@@ -69,7 +69,8 @@ const initGSAPAnimations = () => {
     if (particles.length > 0) {
       gsap.to(".particle", {
         y: (i, el) =>
-          (1 - parseFloat(el.style.top) / 100) * ScrollTrigger.maxScroll(window),
+          (1 - parseFloat(el.style.top) / 100) *
+          ScrollTrigger.maxScroll(window),
         ease: "none",
         scrollTrigger: {
           start: 0,
