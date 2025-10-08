@@ -16,7 +16,7 @@
   --glass-shadow: rgba(0, 0, 0, 0.2);
 }
 
-/* Liquid Ether Canvas - Ensure proper positioning and mouse interaction */
+/* Prevent layout shift during loading */
 #particles-container {
   position: absolute;
   top: 0;
@@ -27,6 +27,9 @@
   overflow: hidden;
   touch-action: none; /* Critical for Liquid Ether */
   pointer-events: none; /* Allow mouse events to pass through container */
+  /* Prevent layout shift */
+  min-height: 100vh;
+  contain: layout style paint;
 }
 
 #particles-container canvas {
@@ -43,6 +46,9 @@
 /* Hero content - allow mouse events to pass through to Liquid Ether */
 #hero .container {
   pointer-events: none; /* Allow mouse events to pass through to background */
+  /* Prevent layout shift */
+  min-height: 100vh;
+  contain: layout style paint;
 }
 
 /* Make interactive elements clickable again */
@@ -62,7 +68,11 @@
 #hero .container h3,
 #hero .container p,
 #hero .container span,
-#hero .container div:not(.stat-card):not(.magnetic-button):not(.cta-button):not(.secondary-button):not(.glass-button) {
+#hero
+  .container
+  div:not(.stat-card):not(.magnetic-button):not(.cta-button):not(
+    .secondary-button
+  ):not(.glass-button) {
   pointer-events: none; /* Allow mouse events to pass through text elements */
 }
 
