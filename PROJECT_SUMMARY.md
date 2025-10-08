@@ -34,7 +34,7 @@
 - ✅ **Cookie Consent** - GDPR-compliant banner with accept/reject buttons
 - ✅ **Lazy Loading** - Images load on scroll for performance
 - ✅ **Progress Bar** - Reading progress indicator
-- ✅ **Particles Background** - Animated floating particles
+- ✅ **Liquid Ether Background** - Interactive fluid simulation with mouse interaction
 - ✅ **Sticky Navigation** - Always visible navbar with glassmorphism
 - ✅ **Back-to-Top Button** - Smooth scroll to top functionality
 - ✅ **Floating WhatsApp** - Direct contact button (+383 49 479 759)
@@ -273,16 +273,48 @@ Off White:     #F3F4F6  (Light mode text)
 
 ## ✨ Special Features Implemented
 
-1. **Opening Animation** - Black screen → animated arc → logo flicker → site
-2. **Glitch Effect** - Subtle text glitch on hero title every few seconds
-3. **Magnetic Buttons** - CTAs attract toward cursor on proximity
-4. **Scroll Progress** - Top bar fills as user scrolls
-5. **Dynamic Stats** - Numbers animate up when visible
-6. **3D Card Tilt** - Services tilt in 3D on hover (respects reduced motion)
-7. **Text Gradient Animation** - Headlines with flowing gradient
-8. **Particle System** - Floating particles in hero background
-9. **Neon Pulse** - Buttons pulse with neon glow effect
-10. **Story Scroll** - Process steps animate in from sides
+1. **Liquid Ether Background** - Interactive fluid simulation with mouse/touch controls
+2. **Opening Animation** - Black screen → animated arc → logo flicker → site
+3. **Glitch Effect** - Subtle text glitch on hero title every few seconds
+4. **Magnetic Buttons** - CTAs attract toward cursor on proximity
+5. **Scroll Progress** - Top bar fills as user scrolls
+6. **Dynamic Stats** - Numbers animate up when visible
+7. **3D Card Tilt** - Services tilt in 3D on hover (respects reduced motion)
+8. **Text Gradient Animation** - Headlines with flowing gradient
+9. **Glassmorphism UI** - Transparent navbar and buttons with backdrop blur
+10. **Neon Pulse** - Buttons pulse with neon glow effect
+11. **Story Scroll** - Process steps animate in from sides
+
+## 🌊 Liquid Ether Implementation Details
+
+### Technical Specifications
+- **Library**: Three.js r158 (CDN with multiple fallbacks)
+- **Simulation**: Real-time fluid dynamics with WebGL shaders
+- **Performance**: 60fps with optimized settings (resolution: 0.5)
+- **Interaction**: Mouse/touch controls with smooth response
+- **Colors**: Teal Blue (#00c8c8), Electric Orange (#ff6b00), Neon Blue (#00ffff)
+- **Auto-demo**: Configurable intensity (2.2) and speed (0.5)
+
+### Configuration Settings
+```javascript
+{
+  mouseForce: 20,        // Mouse interaction strength
+  cursorSize: 65,        // Cursor influence radius
+  resolution: 0.5,       // Performance optimization
+  isViscous: false,      // Viscous fluid disabled
+  iterationsPoisson: 32, // Pressure solver iterations
+  isBounce: false,       // Edge bouncing disabled
+  autoDemo: true,        // Automatic animation
+  autoSpeed: 0.5,        // Animation speed
+  autoIntensity: 2.2     // Animation intensity
+}
+```
+
+### Glassmorphism Enhancements
+- **Navbar**: 20px blur with 24px border-radius
+- **Buttons**: Transparent background with backdrop filter
+- **Colors**: Theme-independent fluid colors
+- **Performance**: Optimized for smooth 60fps rendering
 
 ## 🎓 Technologies Used
 
@@ -292,6 +324,7 @@ Off White:     #F3F4F6  (Light mode text)
 - **Vanilla JavaScript** - Zero dependencies, pure JS
 - **GSAP 3.12.5** - Professional animations
 - **ScrollTrigger** - Scroll-based animations
+- **Three.js** - 3D graphics for Liquid Ether fluid simulation
 - **Google Fonts** - Inter & Orbitron
 - **Tawk.to** - Live chat
 - **Google Analytics** - Tracking
