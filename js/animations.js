@@ -65,17 +65,20 @@ const initGSAPAnimations = () => {
   // ============================================
   const initParallax = () => {
     // Parallax background particles
-    gsap.to(".particle", {
-      y: (i, el) =>
-        (1 - parseFloat(el.style.top) / 100) * ScrollTrigger.maxScroll(window),
-      ease: "none",
-      scrollTrigger: {
-        start: 0,
-        end: "max",
-        invalidateOnRefresh: true,
-        scrub: 0.5,
-      },
-    });
+    const particles = document.querySelectorAll(".particle");
+    if (particles.length > 0) {
+      gsap.to(".particle", {
+        y: (i, el) =>
+          (1 - parseFloat(el.style.top) / 100) * ScrollTrigger.maxScroll(window),
+        ease: "none",
+        scrollTrigger: {
+          start: 0,
+          end: "max",
+          invalidateOnRefresh: true,
+          scrub: 0.5,
+        },
+      });
+    }
 
     // Parallax hero elements
     gsap.to("#hero", {

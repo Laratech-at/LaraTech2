@@ -163,24 +163,43 @@
     >
       <!-- Animated Background Particles -->
       <div class="absolute inset-0 opacity-30">
-        <div class="loading-particle" style="left: 10%; animation-delay: 0s;"></div>
-        <div class="loading-particle" style="left: 25%; animation-delay: 1s;"></div>
-        <div class="loading-particle" style="left: 40%; animation-delay: 0.5s;"></div>
-        <div class="loading-particle" style="left: 60%; animation-delay: 1.5s;"></div>
-        <div class="loading-particle" style="left: 75%; animation-delay: 0.3s;"></div>
-        <div class="loading-particle" style="left: 90%; animation-delay: 1.2s;"></div>
+        <div
+          class="loading-particle"
+          style="left: 10%; animation-delay: 0s"
+        ></div>
+        <div
+          class="loading-particle"
+          style="left: 25%; animation-delay: 1s"
+        ></div>
+        <div
+          class="loading-particle"
+          style="left: 40%; animation-delay: 0.5s"
+        ></div>
+        <div
+          class="loading-particle"
+          style="left: 60%; animation-delay: 1.5s"
+        ></div>
+        <div
+          class="loading-particle"
+          style="left: 75%; animation-delay: 0.3s"
+        ></div>
+        <div
+          class="loading-particle"
+          style="left: 90%; animation-delay: 1.2s"
+        ></div>
       </div>
 
       <div class="text-center relative z-10">
         <!-- Logo Container with Glow -->
         <div class="mb-12 relative">
-          <div class="logo-glow-pulse absolute inset-0 blur-3xl opacity-60"></div>
+          <div
+            class="logo-glow-pulse absolute inset-0 blur-3xl opacity-60"
+          ></div>
           <img
             src="assets/Logo.png"
             alt="LaraTech Logo"
             id="loading-logo"
             class="h-32 md:h-40 w-auto mx-auto relative z-10 opacity-0"
-            style="filter: brightness(2);"
           />
         </div>
 
@@ -202,11 +221,13 @@
 
         <!-- Progress Bar Container -->
         <div class="w-64 md:w-96 mx-auto">
-          <div class="relative h-2 bg-gray-800 rounded-full overflow-hidden mb-4">
+          <div
+            class="relative h-2 bg-gray-800 rounded-full overflow-hidden mb-4"
+          >
             <div
               id="loading-progress-bar"
               class="absolute left-0 top-0 h-full bg-gradient-to-r from-teal-blue via-neon-blue to-electric-orange rounded-full transition-all duration-300"
-              style="width: 0%; box-shadow: 0 0 20px rgba(0, 255, 255, 0.8);"
+              style="width: 0%; box-shadow: 0 0 20px rgba(0, 255, 255, 0.8)"
             ></div>
           </div>
           <!-- Percentage Display -->
@@ -306,6 +327,10 @@
                 aria-label="Select Language"
               >
                 <span id="current-lang-flag" class="lang-flag">🇬🇧</span>
+                <span id="current-lang-code" class="lang-code">EN</span>
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                </svg>
               </button>
               <div id="lang-dropdown-content" class="lang-dropdown-content">
                 <div class="lang-option active" data-lang="en">
@@ -1642,8 +1667,8 @@
                     d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
                   />
                 </svg>
-                <a 
-                  href="#" 
+                <a
+                  href="#"
                   data-directions
                   class="hover:text-teal-blue transition-colors cursor-pointer"
                   title="Get directions"
@@ -1868,6 +1893,8 @@
     </div>
 
     <!-- Tawk.to Chat Widget -->
+    <!-- Uncomment and replace with your actual Tawk.to property ID -->
+    <!--
     <script type="text/javascript">
       var Tawk_API = Tawk_API || {},
         Tawk_LoadStart = new Date();
@@ -1881,6 +1908,7 @@
         s0.parentNode.insertBefore(s1, s0);
       })();
     </script>
+    -->
 
     <!-- Floating WhatsApp Button -->
     <a
@@ -1898,13 +1926,14 @@
     </a>
 
     <!-- Back to Top Button -->
-    <button
-      id="back-to-top"
-      class="back-to-top"
-      aria-label="Back to top"
-    >
+    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M5 10l7-7m0 0l7 7m-7-7v18"
+        />
       </svg>
     </button>
 

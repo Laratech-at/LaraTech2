@@ -232,9 +232,9 @@ const initLoadingAnimation = () => {
     { percent: 25, status: "Loading assets..." },
     { percent: 50, status: "Initializing components..." },
     { percent: 75, status: "Preparing interface..." },
-    { percent: 100, status: "Ready!" }
+    { percent: 100, status: "Ready!" },
   ];
-  
+
   let currentStep = 0;
 
   // Fade in logo
@@ -279,17 +279,20 @@ const initLoadingAnimation = () => {
     }
 
     progress += 2;
-    
+
     if (progressBar) {
       progressBar.style.width = `${progress}%`;
     }
-    
+
     if (percentageText) {
       percentageText.textContent = `${progress}%`;
     }
 
     // Update status text at milestones
-    if (currentStep < loadingSteps.length && progress >= loadingSteps[currentStep].percent) {
+    if (
+      currentStep < loadingSteps.length &&
+      progress >= loadingSteps[currentStep].percent
+    ) {
       if (loadingStatus) {
         loadingStatus.textContent = loadingSteps[currentStep].status;
       }
@@ -885,7 +888,7 @@ const initDirectionsButton = () => {
 // ============================================
 const initBackToTop = () => {
   const backToTopButton = document.getElementById("back-to-top");
-  
+
   if (!backToTopButton) return;
 
   // Show/hide button based on scroll position
@@ -901,7 +904,7 @@ const initBackToTop = () => {
   backToTopButton.addEventListener("click", () => {
     window.scrollTo({
       top: 0,
-      behavior: "smooth"
+      behavior: "smooth",
     });
   });
 };
