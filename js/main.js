@@ -966,13 +966,14 @@ const initPerformanceMonitoring = () => {
 
   const measureFPS = () => {
     if (!isMonitoring) return;
-    
+
     frameCount++;
     const currentTime = performance.now();
 
-    if (currentTime - lastTime >= 2000) { // Check every 2 seconds instead of 1
+    if (currentTime - lastTime >= 2000) {
+      // Check every 2 seconds instead of 1
       const fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
-      
+
       // Only log if FPS is consistently low
       if (fps < 25) {
         console.warn("⚠️ Low FPS detected:", fps);

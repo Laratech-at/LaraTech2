@@ -34,7 +34,15 @@ self.addEventListener("install", (event) => {
       .open(STATIC_CACHE)
       .then((cache) => {
         console.log("Service Worker: Caching critical resources");
-        return cache.addAll(CRITICAL_RESOURCES);
+        // Cache resources individually to handle failures gracefully
+        return Promise.allSettled(
+          CRITICAL_RESOURCES.map((resource) =>
+            cache.add(resource).catch((error) => {
+              console.warn(`Service Worker: Failed to cache ${resource}:`, error);
+              return null; // Continue with other resources
+            })
+          )
+        );
       })
       .then(() => {
         console.log("Service Worker: Installation complete");

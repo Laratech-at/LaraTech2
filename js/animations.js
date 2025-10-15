@@ -605,7 +605,7 @@ const initGSAPAnimations = () => {
     animateTestimonials();
     animateSectionHeaders();
     animateStats();
-    
+
     // Reduced animations for better performance
     // initParallax(); // Disabled - causes performance issues
     // animatePartnerLogos(); // Disabled - not critical
