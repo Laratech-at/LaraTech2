@@ -566,7 +566,7 @@ const initGSAPAnimations = () => {
   };
 
   // ============================================
-  // Initialize All Animations
+  // Initialize All Animations (Performance Optimized)
   // ============================================
   const initAll = () => {
     // Check for reduced motion preference
@@ -579,7 +579,26 @@ const initGSAPAnimations = () => {
       return;
     }
 
-    // Core animations
+    // Check device capabilities for performance optimization
+    const isLowEndDevice =
+      navigator.hardwareConcurrency <= 2 ||
+      navigator.deviceMemory <= 4 ||
+      /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
+
+    if (isLowEndDevice) {
+      console.log("Low-end device detected - using simplified animations");
+      // Only essential animations for low-end devices
+      animateHero();
+      animateServiceCards();
+      animateProjectCards();
+      animateSectionHeaders();
+      initMicroInteractions();
+      return;
+    }
+
+    // Core animations for capable devices
     animateHero();
     initParallax();
     animateServiceCards();

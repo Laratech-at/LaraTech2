@@ -47,6 +47,57 @@
     <!-- Canonical URL -->
     <link rel="canonical" href="https://laratech.ai/" />
 
+    <!-- Resource Hints for Performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="//www.google-analytics.com" />
+    <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+
+    <!-- Preload Critical Resources -->
+    <link rel="preload" href="css/style.css" as="style" />
+    <link rel="preload" href="js/main.js" as="script" />
+    <link rel="preload" href="assets/logo.png" as="image" />
+
+    <!-- Prefetch Next Page Resources -->
+    <link rel="prefetch" href="about.html" />
+    <link rel="prefetch" href="services.html" />
+    <link rel="prefetch" href="projects.html" />
+
+    <!-- Critical CSS Inlined -->
+    <style>
+      /* Critical CSS for above-the-fold content */
+      body {
+        margin: 0;
+        font-family: system-ui, -apple-system, sans-serif;
+      }
+      .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+      }
+      .navbar {
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+      .cta-button {
+        display: inline-block;
+        padding: 1rem 2rem;
+        background: linear-gradient(135deg, #00c8c8, #00ffff);
+        color: white;
+        border-radius: 0.75rem;
+      }
+      /* Prevent layout shift */
+      #particles-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+      }
+    </style>
+
     <!-- Structured Data -->
     <script type="application/ld+json">
       {
@@ -3349,7 +3400,12 @@
     </script>
 
     <!-- Custom Scripts -->
-    <script src="js/main.js"></script>
-    <script src="js/animations.js"></script>
+    <!-- Optimized Script Loading -->
+    <script src="js/main.js" defer></script>
+    <script src="js/animations.js" defer></script>
+    <script src="js/image-optimization.js" defer></script>
+    <script src="js/performance-analytics.js" defer></script>
+    <script src="js/bundle-optimization.js" defer></script>
+    <script src="js/performance-testing.js" defer></script>
   </body>
 </html>

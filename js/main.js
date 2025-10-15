@@ -135,18 +135,19 @@ const initMobileMenu = () => {
 };
 
 // ============================================
-// Sticky Navigation on Scroll
+// Sticky Navigation on Scroll (Optimized)
 // ============================================
 const initStickyNav = () => {
   const navbar = document.getElementById("navbar");
   let lastScroll = 0;
+  let ticking = false;
 
   // Add glassmorphism effect immediately
   if (navbar) {
     navbar.classList.add("glass-nav");
   }
 
-  window.addEventListener("scroll", () => {
+  const updateNavbar = () => {
     const currentScroll = window.pageYOffset;
 
     if (currentScroll > 100) {
@@ -156,7 +157,17 @@ const initStickyNav = () => {
     }
 
     lastScroll = currentScroll;
-  });
+    ticking = false;
+  };
+
+  const requestTick = () => {
+    if (!ticking) {
+      requestAnimationFrame(updateNavbar);
+      ticking = true;
+    }
+  };
+
+  window.addEventListener("scroll", requestTick, { passive: true });
 };
 
 // ============================================
@@ -307,31 +318,63 @@ const initLoadingAnimation = () => {
 };
 
 // ============================================
-// Magnetic Button Effect
+// Magnetic Button Effect (Optimized)
 // ============================================
 const initMagneticButtons = () => {
   const magneticButtons = document.querySelectorAll(".magnetic-button");
+  let animationFrameId = null;
 
   magneticButtons.forEach((button) => {
-    button.addEventListener("mousemove", (e) => {
-      const rect = button.getBoundingClientRect();
-      const x = e.clientX - rect.left - rect.width / 2;
-      const y = e.clientY - rect.top - rect.height / 2;
+    let isHovering = false;
+    let targetX = 0;
+    let targetY = 0;
+    let currentX = 0;
+    let currentY = 0;
 
-      const distance = Math.sqrt(x * x + y * y);
-      const maxDistance = 100;
-
-      if (distance < maxDistance) {
-        const strength = (maxDistance - distance) / maxDistance;
-        const moveX = x * strength * 0.3;
-        const moveY = y * strength * 0.3;
-
-        button.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    const animate = () => {
+      if (!isHovering) {
+        currentX += (0 - currentX) * 0.1;
+        currentY += (0 - currentY) * 0.1;
+      } else {
+        currentX += (targetX - currentX) * 0.1;
+        currentY += (targetY - currentY) * 0.1;
       }
-    });
+
+      button.style.transform = `translate(${currentX}px, ${currentY}px) translateZ(0)`;
+
+      if (isHovering || Math.abs(currentX) > 0.1 || Math.abs(currentY) > 0.1) {
+        animationFrameId = requestAnimationFrame(animate);
+      }
+    };
+
+    button.addEventListener(
+      "mousemove",
+      (e) => {
+        const rect = button.getBoundingClientRect();
+        const x = e.clientX - rect.left - rect.width / 2;
+        const y = e.clientY - rect.top - rect.height / 2;
+
+        const distance = Math.sqrt(x * x + y * y);
+        const maxDistance = 100;
+
+        if (distance < maxDistance) {
+          const strength = (maxDistance - distance) / maxDistance;
+          targetX = x * strength * 0.3;
+          targetY = y * strength * 0.3;
+          isHovering = true;
+
+          if (!animationFrameId) {
+            animate();
+          }
+        }
+      },
+      { passive: true }
+    );
 
     button.addEventListener("mouseleave", () => {
-      button.style.transform = "translate(0, 0)";
+      isHovering = false;
+      targetX = 0;
+      targetY = 0;
     });
   });
 };
@@ -771,19 +814,31 @@ const initLightbox = () => {
 };
 
 // ============================================
-// Progress Bar (Reading Progress)
+// Progress Bar (Reading Progress) - Optimized
 // ============================================
 const initProgressBar = () => {
   const progressBar = document.createElement("div");
   progressBar.classList.add("progress-bar");
   document.body.appendChild(progressBar);
 
-  window.addEventListener("scroll", () => {
+  let ticking = false;
+
+  const updateProgress = () => {
     const windowHeight =
       document.documentElement.scrollHeight - window.innerHeight;
     const scrolled = window.pageYOffset / windowHeight;
-    progressBar.style.transform = `scaleX(${scrolled})`;
-  });
+    progressBar.style.transform = `scaleX(${scrolled}) translateZ(0)`;
+    ticking = false;
+  };
+
+  const requestTick = () => {
+    if (!ticking) {
+      requestAnimationFrame(updateProgress);
+      ticking = true;
+    }
+  };
+
+  window.addEventListener("scroll", requestTick, { passive: true });
 };
 
 // ============================================
@@ -820,22 +875,41 @@ const initBeforeAfterSlider = () => {
 };
 
 // ============================================
-// Core Web Vitals Monitoring
+// Core Web Vitals Monitoring (Enhanced)
 // ============================================
 const initPerformanceMonitoring = () => {
   if ("PerformanceObserver" in window) {
+    const performanceMetrics = {
+      lcp: 0,
+      fid: 0,
+      cls: 0,
+      fcp: 0,
+    };
+
     // Measure Largest Contentful Paint (LCP)
     const lcpObserver = new PerformanceObserver((list) => {
       const entries = list.getEntries();
       const lastEntry = entries[entries.length - 1];
-      console.log("LCP:", lastEntry.renderTime || lastEntry.loadTime);
+      performanceMetrics.lcp = lastEntry.renderTime || lastEntry.loadTime;
+      console.log("LCP:", performanceMetrics.lcp, "ms");
+
+      // Alert if LCP is poor (>2.5s)
+      if (performanceMetrics.lcp > 2500) {
+        console.warn("⚠️ Poor LCP detected:", performanceMetrics.lcp, "ms");
+      }
     });
     lcpObserver.observe({ entryTypes: ["largest-contentful-paint"] });
 
     // Measure First Input Delay (FID)
     const fidObserver = new PerformanceObserver((list) => {
       list.getEntries().forEach((entry) => {
-        console.log("FID:", entry.processingStart - entry.startTime);
+        performanceMetrics.fid = entry.processingStart - entry.startTime;
+        console.log("FID:", performanceMetrics.fid, "ms");
+
+        // Alert if FID is poor (>100ms)
+        if (performanceMetrics.fid > 100) {
+          console.warn("⚠️ Poor FID detected:", performanceMetrics.fid, "ms");
+        }
       });
     });
     fidObserver.observe({ entryTypes: ["first-input"] });
@@ -846,12 +920,69 @@ const initPerformanceMonitoring = () => {
       list.getEntries().forEach((entry) => {
         if (!entry.hadRecentInput) {
           clsScore += entry.value;
-          console.log("CLS:", clsScore);
+          performanceMetrics.cls = clsScore;
+          console.log("CLS:", performanceMetrics.cls);
+
+          // Alert if CLS is poor (>0.25)
+          if (performanceMetrics.cls > 0.25) {
+            console.warn("⚠️ Poor CLS detected:", performanceMetrics.cls);
+          }
         }
       });
     });
     clsObserver.observe({ entryTypes: ["layout-shift"] });
+
+    // Measure First Contentful Paint (FCP)
+    const fcpObserver = new PerformanceObserver((list) => {
+      list.getEntries().forEach((entry) => {
+        performanceMetrics.fcp = entry.startTime;
+        console.log("FCP:", performanceMetrics.fcp, "ms");
+
+        // Alert if FCP is poor (>1.8s)
+        if (performanceMetrics.fcp > 1800) {
+          console.warn("⚠️ Poor FCP detected:", performanceMetrics.fcp, "ms");
+        }
+      });
+    });
+    fcpObserver.observe({ entryTypes: ["paint"] });
+
+    // Monitor long tasks (main thread blocking)
+    const longTaskObserver = new PerformanceObserver((list) => {
+      list.getEntries().forEach((entry) => {
+        console.warn("⚠️ Long task detected:", entry.duration, "ms");
+        console.log("Long task details:", entry);
+      });
+    });
+    longTaskObserver.observe({ entryTypes: ["longtask"] });
+
+    // Store metrics for later analysis
+    window.performanceMetrics = performanceMetrics;
   }
+
+  // Monitor frame rate
+  let frameCount = 0;
+  let lastTime = performance.now();
+
+  const measureFPS = () => {
+    frameCount++;
+    const currentTime = performance.now();
+
+    if (currentTime - lastTime >= 1000) {
+      const fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
+      console.log("FPS:", fps);
+
+      if (fps < 30) {
+        console.warn("⚠️ Low FPS detected:", fps);
+      }
+
+      frameCount = 0;
+      lastTime = currentTime;
+    }
+
+    requestAnimationFrame(measureFPS);
+  };
+
+  requestAnimationFrame(measureFPS);
 };
 
 // ============================================
@@ -915,8 +1046,48 @@ const initBackToTop = () => {
 };
 
 // ============================================
-// Initialize All Functions on Page Load
+// Service Worker Registration
 // ============================================
+const initServiceWorker = () => {
+  if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+      navigator.serviceWorker
+        .register("/sw.js")
+        .then((registration) => {
+          console.log(
+            "Service Worker registered successfully:",
+            registration.scope
+          );
+
+          // Check for updates
+          registration.addEventListener("updatefound", () => {
+            const newWorker = registration.installing;
+            newWorker.addEventListener("statechange", () => {
+              if (
+                newWorker.state === "installed" &&
+                navigator.serviceWorker.controller
+              ) {
+                // New version available
+                if (confirm("New version available! Reload to update?")) {
+                  window.location.reload();
+                }
+              }
+            });
+          });
+        })
+        .catch((error) => {
+          console.error("Service Worker registration failed:", error);
+        });
+    });
+
+    // Handle service worker messages
+    navigator.serviceWorker.addEventListener("message", (event) => {
+      if (event.data.type === "CACHE_UPDATED") {
+        console.log("Cache updated:", event.data.url);
+      }
+    });
+  }
+};
 const init = () => {
   // Respect prefers-reduced-motion
   const prefersReducedMotion = window.matchMedia(
@@ -950,6 +1121,7 @@ const init = () => {
   initDirectionsButton();
   initBackToTop();
   initProjectsFilter();
+  initServiceWorker();
 
   console.log("LaraTech website initialized successfully! 🚀");
 };
