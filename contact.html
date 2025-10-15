@@ -32,12 +32,17 @@
     />
     <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body class="bg-gray-50 dark:bg-jet-black text-gray-900 dark:text-gray-100">
-    <nav id="navbar" class="fixed top-0 w-full z-40 py-4">
-      <div class="container mx-auto px-4 md:px-6">
-        <div
-          class="glass-nav flex items-center justify-between p-4 rounded-2xl"
-        >
+  <body
+    class="bg-gray-50 dark:bg-jet-black text-gray-900 dark:text-gray-100 transition-colors duration-300"
+  >
+    <!-- Navigation -->
+    <nav
+      id="navbar"
+      class="fixed top-0 w-full z-40 transition-all duration-300 py-4 px-4 md:px-6"
+    >
+      <div class="container mx-auto">
+        <div class="flex items-center justify-between">
+          <!-- Logo -->
           <a href="index.html" class="flex items-center space-x-3 group">
             <img
               src="assets/Logo.png"
@@ -45,29 +50,195 @@
               class="h-16 w-auto object-contain group-hover:scale-110 transition-transform duration-300 logo-theme"
             />
           </a>
+
+          <!-- Desktop Menu -->
           <div class="hidden lg:flex items-center space-x-8">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="services.html" class="nav-link">Services</a>
-            <a href="projects.html" class="nav-link">Projects</a>
-            <a href="about.html" class="nav-link">About</a>
-            <a href="blog.html" class="nav-link">Blog</a>
-            <a href="contact.html" class="nav-link active">Contact</a>
-          </div>
-          <div class="flex items-center space-x-4">
-            <button
-              id="lang-toggle"
-              class="glass-button px-3 py-2 rounded-lg text-sm font-semibold"
+            <a
+              href="index.html"
+              class="nav-link"
+              data-lang-en="Home"
+              data-lang-sq="Ballina"
+              data-lang-de="Startseite"
+              >Home</a
             >
-              <span id="current-lang">EN</span>
+            <a
+              href="services.html"
+              class="nav-link"
+              data-lang-en="Services"
+              data-lang-sq="Shërbimet"
+              data-lang-de="Dienstleistungen"
+              >Services</a
+            >
+            <a
+              href="projects.html"
+              class="nav-link"
+              data-lang-en="Projects"
+              data-lang-sq="Projektet"
+              data-lang-de="Projekte"
+              >Projects</a
+            >
+            <a
+              href="about.html"
+              class="nav-link"
+              data-lang-en="About"
+              data-lang-sq="Rreth Nesh"
+              data-lang-de="Über uns"
+              >About</a
+            >
+            <a
+              href="blog.html"
+              class="nav-link"
+              data-lang-en="Blog"
+              data-lang-sq="Blog"
+              data-lang-de="Blog"
+              >Blog</a
+            >
+            <a
+              href="contact.html"
+              class="nav-link active"
+              data-lang-en="Contact"
+              data-lang-sq="Kontakti"
+              data-lang-de="Kontakt"
+              >Contact</a
+            >
+          </div>
+
+          <!-- Controls -->
+          <div class="flex items-center space-x-4">
+            <!-- Language Dropdown -->
+            <div class="lang-dropdown">
+              <button
+                id="lang-dropdown-btn"
+                class="lang-dropdown-btn"
+                aria-label="Select Language"
+              >
+                <span id="current-lang-flag" class="lang-flag">🇬🇧</span>
+                <span id="current-lang-code" class="lang-code">EN</span>
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              <div id="lang-dropdown-content" class="lang-dropdown-content">
+                <div class="lang-option active" data-lang="en">
+                  <span class="lang-flag">🇬🇧</span>
+                  <span>English</span>
+                </div>
+                <div class="lang-option" data-lang="sq">
+                  <span class="lang-flag">🇦🇱</span>
+                  <span>Shqip</span>
+                </div>
+                <div class="lang-option" data-lang="de">
+                  <span class="lang-flag">🇩🇪</span>
+                  <span>Deutsch</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Theme Toggle -->
+            <button
+              id="theme-toggle"
+              class="theme-toggle"
+              aria-label="Toggle Dark/Light Mode"
+            >
+              <span class="sun-icon">☀️</span>
+              <span class="moon-icon">🌙</span>
             </button>
-            <button id="theme-toggle" class="glass-button p-2 rounded-lg">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+
+            <!-- Mobile Menu Toggle -->
+            <button
+              id="mobile-menu-toggle"
+              class="lg:hidden glass-button p-2 rounded-lg"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path
-                  d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
                 />
               </svg>
             </button>
           </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="lg:hidden hidden mt-4 container mx-auto px-4 md:px-6"
+      >
+        <div class="glass-nav p-6 rounded-2xl space-y-4">
+          <a
+            href="index.html"
+            class="block nav-link-mobile"
+            data-lang-en="Home"
+            data-lang-sq="Ballina"
+            data-lang-de="Startseite"
+            >Home</a
+          >
+          <a
+            href="services.html"
+            class="block nav-link-mobile"
+            data-lang-en="Services"
+            data-lang-sq="Shërbimet"
+            data-lang-de="Dienstleistungen"
+            >Services</a
+          >
+          <a
+            href="projects.html"
+            class="block nav-link-mobile"
+            data-lang-en="Projects"
+            data-lang-sq="Projektet"
+            data-lang-de="Projekte"
+            >Projects</a
+          >
+          <a
+            href="about.html"
+            class="block nav-link-mobile"
+            data-lang-en="About"
+            data-lang-sq="Rreth Nesh"
+            data-lang-de="Über uns"
+            >About</a
+          >
+          <a
+            href="blog.html"
+            class="block nav-link-mobile"
+            data-lang-en="Blog"
+            data-lang-sq="Blog"
+            data-lang-de="Blog"
+            >Blog</a
+          >
+          <a
+            href="contact.html"
+            class="block nav-link-mobile active"
+            data-lang-en="Contact"
+            data-lang-sq="Kontakti"
+            data-lang-de="Kontakt"
+            >Contact</a
+          >
+          <a
+            href="contact.html"
+            class="block cta-button w-full text-center mt-4"
+            data-lang-en="Start Your Project"
+            data-lang-sq="Filloni Projektin Tuaj"
+            data-lang-de="Starten Sie Ihr Projekt"
+            >Start Your Project</a
+          >
         </div>
       </div>
     </nav>
@@ -80,9 +251,91 @@
           >
             Get In Touch
           </h1>
-          <p class="text-xl text-gray-600 dark:text-gray-300">
+          <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
             Let's discuss your project and bring your vision to life
           </p>
+
+          <!-- Lead Magnet Section -->
+          <div
+            class="bg-gradient-to-br from-teal-blue/10 to-electric-orange/10 rounded-lg p-8 mb-12"
+          >
+            <h2 class="text-2xl font-display font-bold mb-4">
+              Free Resources to Get Started
+            </h2>
+            <p class="text-gray-600 dark:text-gray-300 mb-6">
+              Download our free guides and tools to help you plan your
+              automation project
+            </p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div class="bg-white dark:bg-gray-800 rounded-lg p-6 text-left">
+                <div class="flex items-center mb-4">
+                  <div
+                    class="w-12 h-12 bg-teal-blue/20 rounded-lg flex items-center justify-center mr-4"
+                  >
+                    <svg
+                      class="w-6 h-6 text-teal-blue"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z"
+                      />
+                    </svg>
+                  </div>
+                  <h3 class="text-lg font-semibold">
+                    Automation ROI Calculator
+                  </h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                  Calculate potential time and cost savings from automating your
+                  business processes.
+                </p>
+                <button
+                  class="text-teal-blue hover:text-electric-orange font-semibold"
+                >
+                  Download Free →
+                </button>
+              </div>
+
+              <div class="bg-white dark:bg-gray-800 rounded-lg p-6 text-left">
+                <div class="flex items-center mb-4">
+                  <div
+                    class="w-12 h-12 bg-electric-orange/20 rounded-lg flex items-center justify-center mr-4"
+                  >
+                    <svg
+                      class="w-6 h-6 text-electric-orange"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
+                      />
+                    </svg>
+                  </div>
+                  <h3 class="text-lg font-semibold">
+                    Smart Home Planning Guide
+                  </h3>
+                </div>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                  Complete guide to planning and implementing smart home
+                  solutions for your property.
+                </p>
+                <button
+                  class="text-electric-orange hover:text-teal-blue font-semibold"
+                >
+                  Download Free →
+                </button>
+              </div>
+            </div>
+          </div>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
@@ -255,33 +508,145 @@
                 </div>
 
                 <div>
+                  <label for="company" class="block text-sm font-semibold mb-2"
+                    >Company</label
+                  >
+                  <input
+                    type="text"
+                    id="company"
+                    name="company"
+                    class="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-teal-blue"
+                  />
+                </div>
+
+                <div>
                   <label for="service" class="block text-sm font-semibold mb-2"
-                    >Service Interest</label
+                    >Service Interest *</label
                   >
                   <select
                     id="service"
                     name="service"
+                    required
                     class="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-teal-blue"
                   >
-                    <option>Automation & AI</option>
-                    <option>Web Development</option>
-                    <option>Smart Home</option>
-                    <option>IT Consulting</option>
-                    <option>Other</option>
+                    <option value="">Select a service...</option>
+                    <option value="automation">
+                      Automation & AI Workflows
+                    </option>
+                    <option value="web-development">Web Development</option>
+                    <option value="smart-home">Smart Home Solutions</option>
+                    <option value="consulting">IT Consulting</option>
+                    <option value="other">Other</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="budget" class="block text-sm font-semibold mb-2"
+                    >Project Budget Range</label
+                  >
+                  <select
+                    id="budget"
+                    name="budget"
+                    class="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-teal-blue"
+                  >
+                    <option value="">Select budget range...</option>
+                    <option value="under-5k">Under €5,000</option>
+                    <option value="5k-15k">€5,000 - €15,000</option>
+                    <option value="15k-30k">€15,000 - €30,000</option>
+                    <option value="30k-50k">€30,000 - €50,000</option>
+                    <option value="over-50k">Over €50,000</option>
+                    <option value="discuss">Prefer to discuss</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label for="timeline" class="block text-sm font-semibold mb-2"
+                    >Project Timeline</label
+                  >
+                  <select
+                    id="timeline"
+                    name="timeline"
+                    class="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-teal-blue"
+                  >
+                    <option value="">Select timeline...</option>
+                    <option value="asap">ASAP</option>
+                    <option value="1-month">Within 1 month</option>
+                    <option value="3-months">Within 3 months</option>
+                    <option value="6-months">Within 6 months</option>
+                    <option value="flexible">Flexible</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label
+                    for="contact-method"
+                    class="block text-sm font-semibold mb-2"
+                    >Preferred Contact Method</label
+                  >
+                  <select
+                    id="contact-method"
+                    name="contact-method"
+                    class="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-teal-blue"
+                  >
+                    <option value="">Select preferred method...</option>
+                    <option value="email">Email</option>
+                    <option value="phone">Phone Call</option>
+                    <option value="whatsapp">WhatsApp</option>
+                    <option value="video">Video Call</option>
                   </select>
                 </div>
 
                 <div>
                   <label for="message" class="block text-sm font-semibold mb-2"
-                    >Message *</label
+                    >Project Description *</label
                   >
                   <textarea
                     id="message"
                     name="message"
                     required
                     rows="5"
+                    placeholder="Please describe your project requirements, goals, and any specific challenges you're facing..."
                     class="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-teal-blue"
                   ></textarea>
+                </div>
+
+                <div class="flex items-start">
+                  <input
+                    type="checkbox"
+                    id="newsletter"
+                    name="newsletter"
+                    class="mt-1 mr-3"
+                  />
+                  <label
+                    for="newsletter"
+                    class="text-sm text-gray-600 dark:text-gray-300"
+                  >
+                    I'd like to receive updates about new services, case
+                    studies, and automation tips via email.
+                  </label>
+                </div>
+
+                <div class="flex items-start">
+                  <input
+                    type="checkbox"
+                    id="privacy"
+                    name="privacy"
+                    required
+                    class="mt-1 mr-3"
+                  />
+                  <label
+                    for="privacy"
+                    class="text-sm text-gray-600 dark:text-gray-300"
+                  >
+                    I agree to the
+                    <a
+                      href="privacy-policy.html"
+                      class="text-teal-blue hover:underline"
+                      >Privacy Policy</a
+                    >
+                    and consent to LaraTech processing my personal data for the
+                    purpose of responding to my inquiry.
+                  </label>
                 </div>
 
                 <button type="submit" class="cta-button w-full">
@@ -306,8 +671,28 @@
 
     <footer class="bg-gray-900 dark:bg-black text-gray-300 pt-16 pb-8">
       <div class="container mx-auto px-4 md:px-6">
-        <div class="text-center text-sm text-gray-500">
+        <div
+          class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500"
+        >
           <p>&copy; 2025 LaraTech sh.p.k. All rights reserved.</p>
+          <div class="flex space-x-6 mt-4 md:mt-0">
+            <a
+              href="privacy-policy.html"
+              class="hover:text-teal-blue transition-colors"
+              data-lang-en="Privacy Policy"
+              data-lang-sq="Politika e Privatësisë"
+              data-lang-de="Datenschutzrichtlinie"
+              >Privacy Policy</a
+            >
+            <a
+              href="terms-of-service.html"
+              class="hover:text-teal-blue transition-colors"
+              data-lang-en="Terms of Service"
+              data-lang-sq="Kushtet e Shërbimit"
+              data-lang-de="Nutzungsbedingungen"
+              >Terms of Service</a
+            >
+          </div>
         </div>
       </div>
     </footer>

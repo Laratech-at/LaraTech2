@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>[BLOG_TITLE] | LaraTech sh.p.k Blog</title>
+    <meta
+      name="description"
+      content="[BLOG_DESCRIPTION] - Expert insights on automation, web development, and smart home solutions from LaraTech sh.p.k"
+    />
+    <meta name="keywords" content="[BLOG_KEYWORDS]" />
+    <meta name="author" content="LaraTech sh.p.k" />
+
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://laratech.ai/blog/[BLOG_SLUG]" />
+    <meta property="og:title" content="[BLOG_TITLE]" />
+    <meta property="og:description" content="[BLOG_DESCRIPTION]" />
+    <meta
+      property="og:image"
+      content="https://laratech.ai/assets/blog/[BLOG_FEATURED_IMAGE]"
+    />
+    <meta property="article:published_time" content="[PUBLISH_DATE]" />
+    <meta property="article:author" content="LaraTech sh.p.k" />
+    <meta property="article:section" content="[BLOG_CATEGORY]" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://laratech.ai/blog/[BLOG_SLUG]" />
+    <meta name="twitter:title" content="[BLOG_TITLE]" />
+    <meta name="twitter:description" content="[BLOG_DESCRIPTION]" />
+    <meta
+      name="twitter:image"
+      content="https://laratech.ai/assets/blog/[BLOG_FEATURED_IMAGE]"
+    />
+
+    <link rel="icon" type="image/png" href="../assets/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "teal-blue": "#00C8C8",
+              "neon-blue": "#00FFFF",
+              "electric-orange": "#FF6B00",
+              "jet-black": "#0A0A0A",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              display: ["Orbitron", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  </head>
+  <body
+    class="bg-gray-50 dark:bg-jet-black text-gray-900 dark:text-gray-100 transition-colors duration-300"
+  >
+    <!-- Navigation -->
+    <nav
+      id="navbar"
+      class="fixed top-0 w-full z-40 transition-all duration-300 py-4 px-4 md:px-6"
+    >
+      <div class="container mx-auto">
+        <div class="flex items-center justify-between">
+          <!-- Logo -->
+          <a href="../index.html" class="flex items-center space-x-3 group">
+            <img
+              src="../assets/Logo.png"
+              alt="LaraTech Logo"
+              class="h-16 w-auto object-contain group-hover:scale-110 transition-transform duration-300 logo-theme"
+            />
+          </a>
+
+          <!-- Desktop Menu -->
+          <div class="hidden lg:flex items-center space-x-8">
+            <a
+              href="../index.html"
+              class="nav-link"
+              data-lang-en="Home"
+              data-lang-sq="Ballina"
+              data-lang-de="Startseite"
+              >Home</a
+            >
+            <a
+              href="../services.html"
+              class="nav-link"
+              data-lang-en="Services"
+              data-lang-sq="Shërbimet"
+              data-lang-de="Dienstleistungen"
+              >Services</a
+            >
+            <a
+              href="../projects.html"
+              class="nav-link"
+              data-lang-en="Projects"
+              data-lang-sq="Projektet"
+              data-lang-de="Projekte"
+              >Projects</a
+            >
+            <a
+              href="../about.html"
+              class="nav-link"
+              data-lang-en="About"
+              data-lang-sq="Rreth Nesh"
+              data-lang-de="Über uns"
+              >About</a
+            >
+            <a
+              href="../blog.html"
+              class="nav-link active"
+              data-lang-en="Blog"
+              data-lang-sq="Blog"
+              data-lang-de="Blog"
+              >Blog</a
+            >
+            <a
+              href="../contact.html"
+              class="nav-link"
+              data-lang-en="Contact"
+              data-lang-sq="Kontakti"
+              data-lang-de="Kontakt"
+              >Contact</a
+            >
+          </div>
+
+          <!-- Controls -->
+          <div class="flex items-center space-x-4">
+            <!-- Language Dropdown -->
+            <div class="lang-dropdown">
+              <button
+                id="lang-dropdown-btn"
+                class="lang-dropdown-btn"
+                aria-label="Select Language"
+              >
+                <span id="current-lang-flag" class="lang-flag">🇬🇧</span>
+                <span id="current-lang-code" class="lang-code">EN</span>
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              <div id="lang-dropdown-content" class="lang-dropdown-content">
+                <div class="lang-option active" data-lang="en">
+                  <span class="lang-flag">🇬🇧</span>
+                  <span>English</span>
+                </div>
+                <div class="lang-option" data-lang="sq">
+                  <span class="lang-flag">🇦🇱</span>
+                  <span>Shqip</span>
+                </div>
+                <div class="lang-option" data-lang="de">
+                  <span class="lang-flag">🇩🇪</span>
+                  <span>Deutsch</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Theme Toggle -->
+            <button
+              id="theme-toggle"
+              class="theme-toggle"
+              aria-label="Toggle Dark Mode"
+            >
+              <svg
+                id="theme-icon-dark"
+                class="w-5 h-5 hidden dark:block"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                ></path>
+              </svg>
+              <svg
+                id="theme-icon-light"
+                class="w-5 h-5 block dark:hidden"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+
+            <!-- Mobile Menu Button -->
+            <button
+              id="mobile-menu-btn"
+              class="lg:hidden p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div
+          id="mobile-menu"
+          class="lg:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-700 hidden"
+        >
+          <div class="flex flex-col space-y-2 pt-4">
+            <a
+              href="../index.html"
+              class="nav-link-mobile"
+              data-lang-en="Home"
+              data-lang-sq="Ballina"
+              data-lang-de="Startseite"
+              >Home</a
+            >
+            <a
+              href="../services.html"
+              class="nav-link-mobile"
+              data-lang-en="Services"
+              data-lang-sq="Shërbimet"
+              data-lang-de="Dienstleistungen"
+              >Services</a
+            >
+            <a
+              href="../projects.html"
+              class="nav-link-mobile"
+              data-lang-en="Projects"
+              data-lang-sq="Projektet"
+              data-lang-de="Projekte"
+              >Projects</a
+            >
+            <a
+              href="../about.html"
+              class="nav-link-mobile"
+              data-lang-en="About"
+              data-lang-sq="Rreth Nesh"
+              data-lang-de="Über uns"
+              >About</a
+            >
+            <a
+              href="../blog.html"
+              class="nav-link-mobile"
+              data-lang-en="Blog"
+              data-lang-sq="Blog"
+              data-lang-de="Blog"
+              >Blog</a
+            >
+            <a
+              href="../contact.html"
+              class="nav-link-mobile"
+              data-lang-en="Contact"
+              data-lang-sq="Kontakti"
+              data-lang-de="Kontakt"
+              >Contact</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24">
+      <!-- Breadcrumb -->
+      <section class="py-4 bg-gray-100 dark:bg-gray-900">
+        <div class="container mx-auto px-4">
+          <nav class="text-sm">
+            <ol class="flex items-center space-x-2">
+              <li>
+                <a href="../index.html" class="text-teal-blue hover:underline"
+                  >Home</a
+                >
+              </li>
+              <li><span class="text-gray-500">/</span></li>
+              <li>
+                <a href="../blog.html" class="text-teal-blue hover:underline"
+                  >Blog</a
+                >
+              </li>
+              <li><span class="text-gray-500">/</span></li>
+              <li>
+                <span class="text-gray-600 dark:text-gray-300"
+                  >[BLOG_TITLE]</span
+                >
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </section>
+
+      <!-- Article Header -->
+      <section class="py-12">
+        <div class="container mx-auto px-4 max-w-4xl">
+          <div class="text-center mb-8">
+            <div class="mb-4">
+              <span
+                class="inline-block px-4 py-2 bg-teal-blue/20 text-teal-blue rounded-full text-sm font-semibold"
+              >
+                [BLOG_CATEGORY]
+              </span>
+            </div>
+            <h1 class="text-4xl md:text-5xl font-display font-bold mb-6">
+              [BLOG_TITLE]
+            </h1>
+            <div
+              class="flex flex-wrap justify-center items-center gap-4 text-sm text-gray-600 dark:text-gray-300 mb-6"
+            >
+              <span>By LaraTech Team</span>
+              <span>•</span>
+              <span>[PUBLISH_DATE]</span>
+              <span>•</span>
+              <span>[READING_TIME] min read</span>
+            </div>
+            <p class="text-xl text-gray-600 dark:text-gray-300">
+              [BLOG_DESCRIPTION]
+            </p>
+          </div>
+
+          <!-- Featured Image -->
+          <div class="mb-8">
+            <img
+              src="../assets/blog/[BLOG_FEATURED_IMAGE]"
+              alt="[BLOG_TITLE]"
+              class="w-full h-64 md:h-96 object-cover rounded-lg shadow-lg"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Article Content -->
+      <article class="py-8">
+        <div class="container mx-auto px-4 max-w-4xl">
+          <div class="prose prose-lg dark:prose-invert max-w-none">
+            <!-- Table of Contents (for longer articles) -->
+            <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg mb-8">
+              <h3 class="text-lg font-semibold mb-4">Table of Contents</h3>
+              <ul class="space-y-2">
+                <li>
+                  <a href="#introduction" class="text-teal-blue hover:underline"
+                    >1. Introduction</a
+                  >
+                </li>
+                <li>
+                  <a href="#main-content" class="text-teal-blue hover:underline"
+                    >2. [MAIN_SECTION_1]</a
+                  >
+                </li>
+                <li>
+                  <a href="#key-points" class="text-teal-blue hover:underline"
+                    >3. [MAIN_SECTION_2]</a
+                  >
+                </li>
+                <li>
+                  <a href="#conclusion" class="text-teal-blue hover:underline"
+                    >4. Conclusion</a
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <!-- Introduction -->
+            <section id="introduction">
+              <h2 class="text-3xl font-display font-bold mb-6 text-teal-blue">
+                Introduction
+              </h2>
+              <p class="mb-4">[INTRODUCTION_PARAGRAPH_1]</p>
+              <p class="mb-4">[INTRODUCTION_PARAGRAPH_2]</p>
+              <p class="mb-8">[INTRODUCTION_PARAGRAPH_3]</p>
+            </section>
+
+            <!-- Main Content Sections -->
+            <section id="main-content">
+              <h2
+                class="text-3xl font-display font-bold mb-6 text-electric-orange"
+              >
+                [MAIN_SECTION_1_TITLE]
+              </h2>
+
+              <h3 class="text-2xl font-semibold mb-4">[SUBSECTION_1_TITLE]</h3>
+              <p class="mb-4">[SUBSECTION_1_CONTENT]</p>
+
+              <!-- Code Block Example -->
+              <div
+                class="bg-gray-900 text-gray-100 p-6 rounded-lg mb-6 overflow-x-auto"
+              >
+                <pre><code>[CODE_EXAMPLE]</code></pre>
+              </div>
+
+              <h3 class="text-2xl font-semibold mb-4">[SUBSECTION_2_TITLE]</h3>
+              <p class="mb-4">[SUBSECTION_2_CONTENT]</p>
+
+              <!-- List Example -->
+              <ul class="list-disc pl-6 mb-6 space-y-2">
+                <li>[LIST_ITEM_1]</li>
+                <li>[LIST_ITEM_2]</li>
+                <li>[LIST_ITEM_3]</li>
+              </ul>
+            </section>
+
+            <section id="key-points">
+              <h2 class="text-3xl font-display font-bold mb-6 text-neon-blue">
+                [MAIN_SECTION_2_TITLE]
+              </h2>
+
+              <!-- Image with Caption -->
+              <figure class="mb-6">
+                <img
+                  src="../assets/blog/[CONTENT_IMAGE]"
+                  alt="[IMAGE_DESCRIPTION]"
+                  class="w-full rounded-lg shadow-lg"
+                />
+                <figcaption
+                  class="text-sm text-gray-600 dark:text-gray-300 mt-2 text-center"
+                >
+                  [IMAGE_CAPTION]
+                </figcaption>
+              </figure>
+
+              <p class="mb-4">[SECTION_2_CONTENT]</p>
+
+              <!-- Highlight Box -->
+              <div
+                class="bg-gradient-to-r from-teal-blue/10 to-electric-orange/10 p-6 rounded-lg mb-6 border-l-4 border-teal-blue"
+              >
+                <h4 class="font-semibold mb-2">💡 Key Insight</h4>
+                <p>[KEY_INSIGHT_TEXT]</p>
+              </div>
+            </section>
+
+            <!-- Conclusion -->
+            <section id="conclusion">
+              <h2 class="text-3xl font-display font-bold mb-6 text-teal-blue">
+                Conclusion
+              </h2>
+              <p class="mb-4">[CONCLUSION_PARAGRAPH_1]</p>
+              <p class="mb-4">[CONCLUSION_PARAGRAPH_2]</p>
+              <p class="mb-8">[CONCLUSION_PARAGRAPH_3]</p>
+            </section>
+
+            <!-- Call to Action -->
+            <div
+              class="bg-gradient-to-br from-teal-blue/10 to-electric-orange/10 p-8 rounded-lg text-center"
+            >
+              <h3 class="text-2xl font-display font-bold mb-4">
+                Ready to Get Started?
+              </h3>
+              <p class="text-lg mb-6">[CTA_DESCRIPTION]</p>
+              <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="../contact.html" class="btn-primary">
+                  Contact Us Today
+                </a>
+                <a href="../services.html" class="btn-secondary">
+                  View Our Services
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Author Bio -->
+      <section class="py-12 bg-gray-100 dark:bg-gray-900">
+        <div class="container mx-auto px-4 max-w-4xl">
+          <div class="flex items-start space-x-6">
+            <img
+              src="../assets/[AUTHOR_PHOTO]"
+              alt="LaraTech Team"
+              class="w-20 h-20 rounded-full"
+            />
+            <div>
+              <h3 class="text-xl font-semibold mb-2">About the Author</h3>
+              <p class="text-gray-600 dark:text-gray-300 mb-4">
+                [AUTHOR_BIO_TEXT]
+              </p>
+              <div class="flex space-x-4">
+                <a
+                  href="https://linkedin.com/company/laratech.ai"
+                  class="text-teal-blue hover:text-electric-orange transition-colors"
+                >
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                    />
+                  </svg>
+                </a>
+                <a
+                  href="https://x.com/Laratech_eu"
+                  class="text-teal-blue hover:text-electric-orange transition-colors"
+                >
+                  <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                      d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Related Posts -->
+      <section class="py-12">
+        <div class="container mx-auto px-4 max-w-6xl">
+          <h2 class="text-3xl font-display font-bold mb-8 text-center">
+            Related Articles
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <article
+              class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+            >
+              <img
+                src="../assets/blog/[RELATED_POST_1_IMAGE]"
+                alt="[RELATED_POST_1_TITLE]"
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <span class="text-sm text-teal-blue font-semibold"
+                  >[RELATED_POST_1_CATEGORY]</span
+                >
+                <h3 class="text-xl font-semibold mb-2 mt-2">
+                  <a
+                    href="../blog/[RELATED_POST_1_SLUG].html"
+                    class="hover:text-teal-blue transition-colors"
+                  >
+                    [RELATED_POST_1_TITLE]
+                  </a>
+                </h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                  [RELATED_POST_1_DESCRIPTION]
+                </p>
+                <div class="flex items-center text-sm text-gray-500">
+                  <span>[RELATED_POST_1_DATE]</span>
+                  <span class="mx-2">•</span>
+                  <span>[RELATED_POST_1_READ_TIME] min read</span>
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+            >
+              <img
+                src="../assets/blog/[RELATED_POST_2_IMAGE]"
+                alt="[RELATED_POST_2_TITLE]"
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <span class="text-sm text-teal-blue font-semibold"
+                  >[RELATED_POST_2_CATEGORY]</span
+                >
+                <h3 class="text-xl font-semibold mb-2 mt-2">
+                  <a
+                    href="../blog/[RELATED_POST_2_SLUG].html"
+                    class="hover:text-teal-blue transition-colors"
+                  >
+                    [RELATED_POST_2_TITLE]
+                  </a>
+                </h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                  [RELATED_POST_2_DESCRIPTION]
+                </p>
+                <div class="flex items-center text-sm text-gray-500">
+                  <span>[RELATED_POST_2_DATE]</span>
+                  <span class="mx-2">•</span>
+                  <span>[RELATED_POST_2_READ_TIME] min read</span>
+                </div>
+              </div>
+            </article>
+
+            <article
+              class="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden hover:shadow-xl transition-shadow"
+            >
+              <img
+                src="../assets/blog/[RELATED_POST_3_IMAGE]"
+                alt="[RELATED_POST_3_TITLE]"
+                class="w-full h-48 object-cover"
+              />
+              <div class="p-6">
+                <span class="text-sm text-teal-blue font-semibold"
+                  >[RELATED_POST_3_CATEGORY]</span
+                >
+                <h3 class="text-xl font-semibold mb-2 mt-2">
+                  <a
+                    href="../blog/[RELATED_POST_3_SLUG].html"
+                    class="hover:text-teal-blue transition-colors"
+                  >
+                    [RELATED_POST_3_TITLE]
+                  </a>
+                </h3>
+                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                  [RELATED_POST_3_DESCRIPTION]
+                </p>
+                <div class="flex items-center text-sm text-gray-500">
+                  <span>[RELATED_POST_3_DATE]</span>
+                  <span class="mx-2">•</span>
+                  <span>[RELATED_POST_3_READ_TIME] min read</span>
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- Social Sharing -->
+      <section class="py-8 bg-gray-100 dark:bg-gray-900">
+        <div class="container mx-auto px-4 max-w-4xl text-center">
+          <h3 class="text-xl font-semibold mb-4">Share this article</h3>
+          <div class="flex justify-center space-x-4">
+            <a
+              href="https://www.linkedin.com/sharing/share-offsite/?url=https://laratech.ai/blog/[BLOG_SLUG]"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-12 h-12 bg-blue-600 text-white rounded-full flex items-center justify-center hover:bg-blue-700 transition-colors"
+            >
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://twitter.com/intent/tweet?url=https://laratech.ai/blog/[BLOG_SLUG]&text=[BLOG_TITLE]"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-12 h-12 bg-blue-400 text-white rounded-full flex items-center justify-center hover:bg-blue-500 transition-colors"
+            >
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                />
+              </svg>
+            </a>
+            <a
+              href="https://www.facebook.com/sharer/sharer.php?u=https://laratech.ai/blog/[BLOG_SLUG]"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="w-12 h-12 bg-blue-800 text-white rounded-full flex items-center justify-center hover:bg-blue-900 transition-colors"
+            >
+              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                <path
+                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                />
+              </svg>
+            </a>
+            <button
+              onclick="copyToClipboard('https://laratech.ai/blog/[BLOG_SLUG]')"
+              class="w-12 h-12 bg-gray-600 text-white rounded-full flex items-center justify-center hover:bg-gray-700 transition-colors"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <!-- Company Info -->
+          <div class="md:col-span-2">
+            <div class="flex items-center space-x-3 mb-4">
+              <img
+                src="../assets/Logo.png"
+                alt="LaraTech Logo"
+                class="h-16 w-auto object-contain logo-theme"
+              />
+            </div>
+            <p
+              class="text-gray-300 mb-4"
+              data-lang-en="Digital & Automation Services | Smart-Tech & Web Solutions"
+              data-lang-sq="Shërbime Digjitale & Automatizimi | Zgjidhje Smart-Tech & Web"
+              data-lang-de="Digitale & Automatisierungsdienstleistungen | Smart-Tech & Web-Lösungen"
+            >
+              Digital & Automation Services | Smart-Tech & Web Solutions
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="https://linkedin.com/company/laratech.ai"
+                class="text-gray-400 hover:text-teal-blue transition-colors"
+                aria-label="LinkedIn"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://instagram.com/laratech.ai"
+                class="text-gray-400 hover:text-teal-blue transition-colors"
+                aria-label="Instagram"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.198 14.895 3.708 13.744 3.708 12.447s.49-2.448 1.297-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.807.875 1.297 2.026 1.297 3.323s-.49 2.448-1.297 3.323c-.875.807-2.026 1.297-3.323 1.297zm7.83-9.281h-1.297v1.297h1.297V7.707zm-3.323 1.297c-.49 0-.807-.317-.807-.807s.317-.807.807-.807.807.317.807.807-.317.807-.807.807zm6.62 0c-3.323 0-6.62-2.297-6.62-5.62s2.297-5.62 5.62-5.62 5.62 2.297 5.62 5.62-2.297 5.62-5.62 5.62z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://x.com/Laratech_eu"
+                class="text-gray-400 hover:text-teal-blue transition-colors"
+                aria-label="X (Twitter)"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://facebook.com/laratech.eu"
+                class="text-gray-400 hover:text-teal-blue transition-colors"
+                aria-label="Facebook"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h3
+              class="text-lg font-semibold mb-4"
+              data-lang-en="Quick Links"
+              data-lang-sq="Lidhje të Shpejta"
+              data-lang-de="Schnelle Links"
+            >
+              Quick Links
+            </h3>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="../services.html"
+                  class="text-gray-300 hover:text-teal-blue transition-colors"
+                  data-lang-en="Services"
+                  data-lang-sq="Shërbimet"
+                  data-lang-de="Dienstleistungen"
+                  >Services</a
+                >
+              </li>
+              <li>
+                <a
+                  href="../projects.html"
+                  class="text-gray-300 hover:text-teal-blue transition-colors"
+                  data-lang-en="Projects"
+                  data-lang-sq="Projektet"
+                  data-lang-de="Projekte"
+                  >Projects</a
+                >
+              </li>
+              <li>
+                <a
+                  href="../about.html"
+                  class="text-gray-300 hover:text-teal-blue transition-colors"
+                  data-lang-en="About"
+                  data-lang-sq="Rreth Nesh"
+                  data-lang-de="Über uns"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a
+                  href="../blog.html"
+                  class="text-gray-300 hover:text-teal-blue transition-colors"
+                  data-lang-en="Blog"
+                  data-lang-sq="Blog"
+                  data-lang-de="Blog"
+                  >Blog</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact Info -->
+          <div>
+            <h3
+              class="text-lg font-semibold mb-4"
+              data-lang-en="Contact"
+              data-lang-sq="Kontakti"
+              data-lang-de="Kontakt"
+            >
+              Contact
+            </h3>
+            <div class="space-y-2 text-gray-300">
+              <p>📧 office@laratech.ai</p>
+              <p>📞 +383 49 479 759</p>
+              <p
+                data-lang-en="📍 Mitrovica, Kosovo"
+                data-lang-sq="📍 Mitrovicë, Kosovo"
+                data-lang-de="📍 Mitrovica, Kosovo"
+              >
+                📍 Mitrovica, Kosovo
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div
+          class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p
+            class="text-gray-400 text-sm"
+            data-lang-en="© 2025 LaraTech sh.p.k. All rights reserved."
+            data-lang-sq="© 2025 LaraTech sh.p.k. Të gjitha të drejtat e rezervuara."
+            data-lang-de="© 2025 LaraTech sh.p.k. Alle Rechte vorbehalten."
+          >
+            © 2025 LaraTech sh.p.k. All rights reserved.
+          </p>
+          <div class="flex space-x-6 mt-4 md:mt-0">
+            <a
+              href="../privacy-policy.html"
+              class="text-gray-400 hover:text-teal-blue transition-colors text-sm"
+              data-lang-en="Privacy Policy"
+              data-lang-sq="Politika e Privatësisë"
+              data-lang-de="Datenschutzrichtlinie"
+              >Privacy Policy</a
+            >
+            <a
+              href="../terms-of-service.html"
+              class="text-gray-400 hover:text-teal-blue transition-colors text-sm"
+              data-lang-en="Terms of Service"
+              data-lang-sq="Kushtet e Shërbimit"
+              data-lang-de="Nutzungsbedingungen"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="../js/main.js"></script>
+    <script src="../js/animations.js"></script>
+
+    <!-- Copy to Clipboard Function -->
+    <script>
+      function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(function () {
+          // Show success message
+          const button = event.target.closest("button");
+          const originalContent = button.innerHTML;
+          button.innerHTML =
+            '<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" /></svg>';
+          setTimeout(() => {
+            button.innerHTML = originalContent;
+          }, 2000);
+        });
+      }
+    </script>
+  </body>
+</html>

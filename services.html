@@ -41,15 +41,14 @@
   <body
     class="bg-gray-50 dark:bg-jet-black text-gray-900 dark:text-gray-100 transition-colors duration-300"
   >
-    <!-- Navigation (Same as index.html) -->
+    <!-- Navigation -->
     <nav
       id="navbar"
-      class="fixed top-0 w-full z-40 transition-all duration-300 py-4"
+      class="fixed top-0 w-full z-40 transition-all duration-300 py-4 px-4 md:px-6"
     >
-      <div class="container mx-auto px-4 md:px-6">
-        <div
-          class="glass-nav flex items-center justify-between p-4 rounded-2xl"
-        >
+      <div class="container mx-auto">
+        <div class="flex items-center justify-between">
+          <!-- Logo -->
           <a href="index.html" class="flex items-center space-x-3 group">
             <img
               src="assets/Logo.png"
@@ -57,45 +56,111 @@
               class="h-16 w-auto object-contain group-hover:scale-110 transition-transform duration-300 logo-theme"
             />
           </a>
+
+          <!-- Desktop Menu -->
           <div class="hidden lg:flex items-center space-x-8">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="services.html" class="nav-link active">Services</a>
-            <a href="projects.html" class="nav-link">Projects</a>
-            <a href="about.html" class="nav-link">About</a>
-            <a href="blog.html" class="nav-link">Blog</a>
-            <a href="contact.html" class="nav-link">Contact</a>
+            <a
+              href="index.html"
+              class="nav-link"
+              data-lang-en="Home"
+              data-lang-sq="Ballina"
+              data-lang-de="Startseite"
+              >Home</a
+            >
+            <a
+              href="services.html"
+              class="nav-link active"
+              data-lang-en="Services"
+              data-lang-sq="Shërbimet"
+              data-lang-de="Dienstleistungen"
+              >Services</a
+            >
+            <a
+              href="projects.html"
+              class="nav-link"
+              data-lang-en="Projects"
+              data-lang-sq="Projektet"
+              data-lang-de="Projekte"
+              >Projects</a
+            >
+            <a
+              href="about.html"
+              class="nav-link"
+              data-lang-en="About"
+              data-lang-sq="Rreth Nesh"
+              data-lang-de="Über uns"
+              >About</a
+            >
+            <a
+              href="blog.html"
+              class="nav-link"
+              data-lang-en="Blog"
+              data-lang-sq="Blog"
+              data-lang-de="Blog"
+              >Blog</a
+            >
+            <a
+              href="contact.html"
+              class="nav-link"
+              data-lang-en="Contact"
+              data-lang-sq="Kontakti"
+              data-lang-de="Kontakt"
+              >Contact</a
+            >
           </div>
+
+          <!-- Controls -->
           <div class="flex items-center space-x-4">
-            <div class="relative">
+            <!-- Language Dropdown -->
+            <div class="lang-dropdown">
               <button
-                id="lang-toggle"
-                class="glass-button px-3 py-2 rounded-lg text-sm font-semibold uppercase"
+                id="lang-dropdown-btn"
+                class="lang-dropdown-btn"
+                aria-label="Select Language"
               >
-                <span id="current-lang">EN</span>
+                <span id="current-lang-flag" class="lang-flag">🇬🇧</span>
+                <span id="current-lang-code" class="lang-code">EN</span>
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
               </button>
+              <div id="lang-dropdown-content" class="lang-dropdown-content">
+                <div class="lang-option active" data-lang="en">
+                  <span class="lang-flag">🇬🇧</span>
+                  <span>English</span>
+                </div>
+                <div class="lang-option" data-lang="sq">
+                  <span class="lang-flag">🇦🇱</span>
+                  <span>Shqip</span>
+                </div>
+                <div class="lang-option" data-lang="de">
+                  <span class="lang-flag">🇩🇪</span>
+                  <span>Deutsch</span>
+                </div>
+              </div>
             </div>
-            <button id="theme-toggle" class="glass-button p-2 rounded-lg">
-              <svg
-                id="theme-icon-light"
-                class="w-6 h-6 hidden dark:block"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
-                />
-              </svg>
-              <svg
-                id="theme-icon-dark"
-                class="w-6 h-6 block dark:hidden"
-                fill="currentColor"
-                viewBox="0 0 20 20"
-              >
-                <path
-                  d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
-                />
-              </svg>
+
+            <!-- Theme Toggle -->
+            <button
+              id="theme-toggle"
+              class="theme-toggle"
+              aria-label="Toggle Dark/Light Mode"
+            >
+              <span class="sun-icon">☀️</span>
+              <span class="moon-icon">🌙</span>
             </button>
+
+            <!-- Mobile Menu Toggle -->
             <button
               id="mobile-menu-toggle"
               class="lg:hidden glass-button p-2 rounded-lg"
@@ -117,19 +182,69 @@
           </div>
         </div>
       </div>
+
+      <!-- Mobile Menu -->
       <div
         id="mobile-menu"
         class="lg:hidden hidden mt-4 container mx-auto px-4 md:px-6"
       >
         <div class="glass-nav p-6 rounded-2xl space-y-4">
-          <a href="index.html" class="block nav-link-mobile">Home</a>
-          <a href="services.html" class="block nav-link-mobile active"
+          <a
+            href="index.html"
+            class="block nav-link-mobile"
+            data-lang-en="Home"
+            data-lang-sq="Ballina"
+            data-lang-de="Startseite"
+            >Home</a
+          >
+          <a
+            href="services.html"
+            class="block nav-link-mobile active"
+            data-lang-en="Services"
+            data-lang-sq="Shërbimet"
+            data-lang-de="Dienstleistungen"
             >Services</a
           >
-          <a href="projects.html" class="block nav-link-mobile">Projects</a>
-          <a href="about.html" class="block nav-link-mobile">About</a>
-          <a href="blog.html" class="block nav-link-mobile">Blog</a>
-          <a href="contact.html" class="block nav-link-mobile">Contact</a>
+          <a
+            href="projects.html"
+            class="block nav-link-mobile"
+            data-lang-en="Projects"
+            data-lang-sq="Projektet"
+            data-lang-de="Projekte"
+            >Projects</a
+          >
+          <a
+            href="about.html"
+            class="block nav-link-mobile"
+            data-lang-en="About"
+            data-lang-sq="Rreth Nesh"
+            data-lang-de="Über uns"
+            >About</a
+          >
+          <a
+            href="blog.html"
+            class="block nav-link-mobile"
+            data-lang-en="Blog"
+            data-lang-sq="Blog"
+            data-lang-de="Blog"
+            >Blog</a
+          >
+          <a
+            href="contact.html"
+            class="block nav-link-mobile"
+            data-lang-en="Contact"
+            data-lang-sq="Kontakti"
+            data-lang-de="Kontakt"
+            >Contact</a
+          >
+          <a
+            href="contact.html"
+            class="block cta-button w-full text-center mt-4"
+            data-lang-en="Start Your Project"
+            data-lang-sq="Filloni Projektin Tuaj"
+            data-lang-de="Starten Sie Ihr Projekt"
+            >Start Your Project</a
+          >
         </div>
       </div>
     </nav>
@@ -923,9 +1038,27 @@
           </div>
         </div>
         <div
-          class="border-t border-gray-800 pt-8 text-center text-sm text-gray-500"
+          class="border-t border-gray-800 pt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500"
         >
           <p>&copy; 2025 LaraTech sh.p.k. All rights reserved.</p>
+          <div class="flex space-x-6 mt-4 md:mt-0">
+            <a
+              href="privacy-policy.html"
+              class="hover:text-teal-blue transition-colors"
+              data-lang-en="Privacy Policy"
+              data-lang-sq="Politika e Privatësisë"
+              data-lang-de="Datenschutzrichtlinie"
+              >Privacy Policy</a
+            >
+            <a
+              href="terms-of-service.html"
+              class="hover:text-teal-blue transition-colors"
+              data-lang-en="Terms of Service"
+              data-lang-sq="Kushtet e Shërbimit"
+              data-lang-de="Nutzungsbedingungen"
+              >Terms of Service</a
+            >
+          </div>
         </div>
       </div>
     </footer>

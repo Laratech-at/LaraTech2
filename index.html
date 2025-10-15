@@ -44,6 +44,77 @@
       content="https://laratech.ai/assets/og-image.jpg"
     />
 
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://laratech.ai/" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "LaraTech sh.p.k",
+        "alternateName": "LaraTech",
+        "url": "https://laratech.ai",
+        "logo": "https://laratech.ai/assets/Logo.png",
+        "description": "Digital & Automation Services, Smart-Tech & Web Solutions in Kosovo. Expert automation, AI workflows, web development, and smart home solutions.",
+        "foundingDate": "2024",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Rr. Safet Boletini 46",
+          "addressLocality": "Iliridë",
+          "addressRegion": "Mitrovica",
+          "addressCountry": "XK"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "telephone": "+383-49-479-759",
+          "contactType": "customer service",
+          "email": "office@laratech.ai",
+          "availableLanguage": ["English", "Albanian", "German"]
+        },
+        "sameAs": [
+          "https://linkedin.com/company/laratech.ai",
+          "https://instagram.com/laratech.ai",
+          "https://x.com/Laratech_eu",
+          "https://facebook.com/laratech.eu"
+        ],
+        "serviceArea": {
+          "@type": "Country",
+          "name": "Kosovo"
+        },
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "Digital Services",
+          "itemListElement": [
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Automation & AI Workflows",
+                "description": "Custom automation solutions using n8n and AI technologies"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Web Development",
+                "description": "Modern web applications and websites"
+              }
+            },
+            {
+              "@type": "Offer",
+              "itemOffered": {
+                "@type": "Service",
+                "name": "Smart Home Solutions",
+                "description": "Home automation and IoT integration"
+              }
+            }
+          ]
+        }
+      }
+    </script>
+
     <title>
       LaraTech sh.p.k - Digital & Automation Services | Smart-Tech Solutions
       Kosovo
@@ -160,34 +231,6 @@
       id="loading-overlay"
       class="fixed inset-0 z-50 bg-gradient-to-br from-gray-900 via-jet-black to-gray-900 flex items-center justify-center overflow-hidden"
     >
-      <!-- Animated Background Particles -->
-      <div class="absolute inset-0 opacity-30">
-        <div
-          class="loading-particle"
-          style="left: 10%; animation-delay: 0s"
-        ></div>
-        <div
-          class="loading-particle"
-          style="left: 25%; animation-delay: 1s"
-        ></div>
-        <div
-          class="loading-particle"
-          style="left: 40%; animation-delay: 0.5s"
-        ></div>
-        <div
-          class="loading-particle"
-          style="left: 60%; animation-delay: 1.5s"
-        ></div>
-        <div
-          class="loading-particle"
-          style="left: 75%; animation-delay: 0.3s"
-        ></div>
-        <div
-          class="loading-particle"
-          style="left: 90%; animation-delay: 1.2s"
-        ></div>
-      </div>
-
       <div class="text-center relative z-10">
         <!-- Logo Container with Glow -->
         <div class="mb-12 relative">
@@ -457,14 +500,11 @@
     </nav>
 
     <!-- Hero Section -->
-    <section
-      id="hero"
-      class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20"
-    >
+    <section id="hero" class="relative pb-20 md:pb-32 overflow-hidden">
       <!-- Neural Network Background (subtle, behind content) -->
       <div id="particles-container" class="absolute inset-0"></div>
 
-      <div class="container mx-auto px-4 md:px-6 relative z-20">
+      <div class="container mx-auto px-4 md:px-6 relative z-20 pt-32 pb-20">
         <div class="text-center max-w-5xl mx-auto">
           <h1
             class="hero-title text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-6 leading-tight"
@@ -1831,17 +1871,19 @@
           </p>
           <div class="flex space-x-6 mt-4 md:mt-0">
             <a
-              href="#"
+              href="privacy-policy.html"
               class="hover:text-teal-blue transition-colors"
               data-lang-en="Privacy Policy"
               data-lang-sq="Politika e Privatësisë"
+              data-lang-de="Datenschutzrichtlinie"
               >Privacy Policy</a
             >
             <a
-              href="#"
+              href="terms-of-service.html"
               class="hover:text-teal-blue transition-colors"
               data-lang-en="Terms of Service"
               data-lang-sq="Kushtet e Shërbimit"
+              data-lang-de="Nutzungsbedingungen"
               >Terms of Service</a
             >
             <a
@@ -1956,11 +1998,11 @@
     </script>
     <script type="module">
       // Load Three.js as ES module
-      import * as THREE from 'three';
+      import * as THREE from "three";
       window.THREE = THREE;
-      
+
       // Initialize Liquid Ether when THREE is loaded
-      if (typeof initializeLiquidEther === 'function') {
+      if (typeof initializeLiquidEther === "function") {
         initializeLiquidEther();
       }
     </script>

@@ -34,12 +34,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   </head>
-  <body class="bg-gray-50 dark:bg-jet-black text-gray-900 dark:text-gray-100">
-    <nav id="navbar" class="fixed top-0 w-full z-40 py-4">
-      <div class="container mx-auto px-4 md:px-6">
-        <div
-          class="glass-nav flex items-center justify-between p-4 rounded-2xl"
-        >
+  <body
+    class="bg-gray-50 dark:bg-jet-black text-gray-900 dark:text-gray-100 transition-colors duration-300"
+  >
+    <!-- Navigation -->
+    <nav
+      id="navbar"
+      class="fixed top-0 w-full z-40 transition-all duration-300 py-4 px-4 md:px-6"
+    >
+      <div class="container mx-auto">
+        <div class="flex items-center justify-between">
+          <!-- Logo -->
           <a href="index.html" class="flex items-center space-x-3 group">
             <img
               src="assets/Logo.png"
@@ -47,29 +52,195 @@
               class="h-16 w-auto object-contain group-hover:scale-110 transition-transform duration-300 logo-theme"
             />
           </a>
+
+          <!-- Desktop Menu -->
           <div class="hidden lg:flex items-center space-x-8">
-            <a href="index.html" class="nav-link">Home</a>
-            <a href="services.html" class="nav-link">Services</a>
-            <a href="projects.html" class="nav-link active">Projects</a>
-            <a href="about.html" class="nav-link">About</a>
-            <a href="blog.html" class="nav-link">Blog</a>
-            <a href="contact.html" class="nav-link">Contact</a>
-          </div>
-          <div class="flex items-center space-x-4">
-            <button
-              id="lang-toggle"
-              class="glass-button px-3 py-2 rounded-lg text-sm font-semibold"
+            <a
+              href="index.html"
+              class="nav-link"
+              data-lang-en="Home"
+              data-lang-sq="Ballina"
+              data-lang-de="Startseite"
+              >Home</a
             >
-              <span id="current-lang">EN</span>
+            <a
+              href="services.html"
+              class="nav-link"
+              data-lang-en="Services"
+              data-lang-sq="Shërbimet"
+              data-lang-de="Dienstleistungen"
+              >Services</a
+            >
+            <a
+              href="projects.html"
+              class="nav-link active"
+              data-lang-en="Projects"
+              data-lang-sq="Projektet"
+              data-lang-de="Projekte"
+              >Projects</a
+            >
+            <a
+              href="about.html"
+              class="nav-link"
+              data-lang-en="About"
+              data-lang-sq="Rreth Nesh"
+              data-lang-de="Über uns"
+              >About</a
+            >
+            <a
+              href="blog.html"
+              class="nav-link"
+              data-lang-en="Blog"
+              data-lang-sq="Blog"
+              data-lang-de="Blog"
+              >Blog</a
+            >
+            <a
+              href="contact.html"
+              class="nav-link"
+              data-lang-en="Contact"
+              data-lang-sq="Kontakti"
+              data-lang-de="Kontakt"
+              >Contact</a
+            >
+          </div>
+
+          <!-- Controls -->
+          <div class="flex items-center space-x-4">
+            <!-- Language Dropdown -->
+            <div class="lang-dropdown">
+              <button
+                id="lang-dropdown-btn"
+                class="lang-dropdown-btn"
+                aria-label="Select Language"
+              >
+                <span id="current-lang-flag" class="lang-flag">🇬🇧</span>
+                <span id="current-lang-code" class="lang-code">EN</span>
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              <div id="lang-dropdown-content" class="lang-dropdown-content">
+                <div class="lang-option active" data-lang="en">
+                  <span class="lang-flag">🇬🇧</span>
+                  <span>English</span>
+                </div>
+                <div class="lang-option" data-lang="sq">
+                  <span class="lang-flag">🇦🇱</span>
+                  <span>Shqip</span>
+                </div>
+                <div class="lang-option" data-lang="de">
+                  <span class="lang-flag">🇩🇪</span>
+                  <span>Deutsch</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Theme Toggle -->
+            <button
+              id="theme-toggle"
+              class="theme-toggle"
+              aria-label="Toggle Dark/Light Mode"
+            >
+              <span class="sun-icon">☀️</span>
+              <span class="moon-icon">🌙</span>
             </button>
-            <button id="theme-toggle" class="glass-button p-2 rounded-lg">
-              <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+
+            <!-- Mobile Menu Toggle -->
+            <button
+              id="mobile-menu-toggle"
+              class="lg:hidden glass-button p-2 rounded-lg"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
                 <path
-                  d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
                 />
               </svg>
             </button>
           </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="lg:hidden hidden mt-4 container mx-auto px-4 md:px-6"
+      >
+        <div class="glass-nav p-6 rounded-2xl space-y-4">
+          <a
+            href="index.html"
+            class="block nav-link-mobile"
+            data-lang-en="Home"
+            data-lang-sq="Ballina"
+            data-lang-de="Startseite"
+            >Home</a
+          >
+          <a
+            href="services.html"
+            class="block nav-link-mobile"
+            data-lang-en="Services"
+            data-lang-sq="Shërbimet"
+            data-lang-de="Dienstleistungen"
+            >Services</a
+          >
+          <a
+            href="projects.html"
+            class="block nav-link-mobile active"
+            data-lang-en="Projects"
+            data-lang-sq="Projektet"
+            data-lang-de="Projekte"
+            >Projects</a
+          >
+          <a
+            href="about.html"
+            class="block nav-link-mobile"
+            data-lang-en="About"
+            data-lang-sq="Rreth Nesh"
+            data-lang-de="Über uns"
+            >About</a
+          >
+          <a
+            href="blog.html"
+            class="block nav-link-mobile"
+            data-lang-en="Blog"
+            data-lang-sq="Blog"
+            data-lang-de="Blog"
+            >Blog</a
+          >
+          <a
+            href="contact.html"
+            class="block nav-link-mobile"
+            data-lang-en="Contact"
+            data-lang-sq="Kontakti"
+            data-lang-de="Kontakt"
+            >Contact</a
+          >
+          <a
+            href="contact.html"
+            class="block cta-button w-full text-center mt-4"
+            data-lang-en="Start Your Project"
+            data-lang-sq="Filloni Projektin Tuaj"
+            data-lang-de="Starten Sie Ihr Projekt"
+            >Start Your Project</a
+          >
         </div>
       </div>
     </nav>
@@ -82,13 +253,101 @@
           >
             Our Projects
           </h1>
-          <p class="text-xl text-gray-600 dark:text-gray-300">
+          <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
             Real-world solutions that drive results
           </p>
+
+          <!-- Filter Controls -->
+          <div class="flex flex-wrap justify-center gap-4 mb-8">
+            <button
+              class="filter-btn active"
+              data-filter="all"
+              data-lang-en="All Projects"
+              data-lang-sq="Të Gjitha Projektet"
+              data-lang-de="Alle Projekte"
+            >
+              All Projects
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="automation"
+              data-lang-en="Automation"
+              data-lang-sq="Automatizimi"
+              data-lang-de="Automatisierung"
+            >
+              Automation
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="web-development"
+              data-lang-en="Web Development"
+              data-lang-sq="Zhvillimi i Faqeve"
+              data-lang-de="Webentwicklung"
+            >
+              Web Development
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="smart-home"
+              data-lang-en="Smart Home"
+              data-lang-sq="Shtëpi e Zgjuar"
+              data-lang-de="Smart Home"
+            >
+              Smart Home
+            </button>
+            <button
+              class="filter-btn"
+              data-filter="ai-workflows"
+              data-lang-en="AI Workflows"
+              data-lang-sq="Rrjedhat AI"
+              data-lang-de="KI-Workflows"
+            >
+              AI Workflows
+            </button>
+          </div>
+
+          <!-- View Toggle -->
+          <div class="flex justify-center items-center gap-4 mb-8">
+            <span class="text-sm text-gray-600 dark:text-gray-300">View:</span>
+            <button
+              id="grid-view-btn"
+              class="view-toggle-btn active"
+              data-view="grid"
+              aria-label="Grid View"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                />
+              </svg>
+            </button>
+            <button
+              id="list-view-btn"
+              class="view-toggle-btn"
+              data-view="list"
+              aria-label="List View"
+            >
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path
+                  fill-rule="evenodd"
+                  d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                  clip-rule="evenodd"
+                />
+              </svg>
+            </button>
+          </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12">
-          <div class="project-card-3d glass-card overflow-hidden">
+        <!-- Projects Grid -->
+        <div
+          id="projects-container"
+          class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12"
+        >
+          <div
+            class="project-card-3d glass-card overflow-hidden"
+            data-category="web-development"
+            data-project="topyachts"
+          >
             <div
               class="relative h-64 bg-gradient-to-br from-teal-blue to-neon-blue flex items-center justify-center"
             >
@@ -97,29 +356,50 @@
               >
             </div>
             <div class="p-8">
-              <h3 class="text-2xl font-display font-bold mb-3">
-                TopYachts Platform
-              </h3>
-              <p class="text-gray-600 dark:text-gray-300 mb-6">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-2xl font-display font-bold">
+                  TopYachts Platform
+                </h3>
+                <span class="text-sm text-gray-500">3 months</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 mb-4">
                 Full-stack yacht charter booking platform with real-time
                 availability, payment processing, and admin dashboard.
               </p>
+              <div class="flex items-center gap-4 mb-4 text-sm text-gray-500">
+                <span><strong>Client:</strong> Maritime Industry</span>
+                <span><strong>Team:</strong> 3 developers</span>
+              </div>
               <div class="flex flex-wrap gap-2 mb-6">
                 <span class="glass-badge px-3 py-1 text-sm">Next.js</span>
                 <span class="glass-badge px-3 py-1 text-sm">Supabase</span>
                 <span class="glass-badge px-3 py-1 text-sm">Stripe</span>
               </div>
-              <button
-                data-lightbox="https://placeholder.com/topyachts-demo.mp4"
-                data-lightbox-type="video"
-                class="text-teal-blue hover:text-neon-blue font-semibold"
-              >
-                View Demo →
-              </button>
+              <div class="flex items-center justify-between">
+                <div class="text-sm text-gray-500">
+                  <span class="text-green-600 font-semibold"
+                    >+150% bookings</span
+                  >
+                  <span class="mx-2">•</span>
+                  <span class="text-blue-600 font-semibold"
+                    >-40% admin time</span
+                  >
+                </div>
+                <a
+                  href="case-studies/topyachts-platform.html"
+                  class="text-teal-blue hover:text-neon-blue font-semibold"
+                >
+                  View Case Study →
+                </a>
+              </div>
             </div>
           </div>
 
-          <div class="project-card-3d glass-card overflow-hidden">
+          <div
+            class="project-card-3d glass-card overflow-hidden"
+            data-category="automation"
+            data-project="business-automation"
+          >
             <div
               class="relative h-64 bg-gradient-to-br from-electric-orange to-teal-blue flex items-center justify-center"
             >
@@ -128,27 +408,50 @@
               >
             </div>
             <div class="p-8">
-              <h3 class="text-2xl font-display font-bold mb-3">
-                Business Automation Suite
-              </h3>
-              <p class="text-gray-600 dark:text-gray-300 mb-6">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-2xl font-display font-bold">
+                  Business Automation Suite
+                </h3>
+                <span class="text-sm text-gray-500">2 months</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 mb-4">
                 Custom n8n workflows automating invoicing, customer
                 communication, and data processing for Austrian SMEs.
               </p>
+              <div class="flex items-center gap-4 mb-4 text-sm text-gray-500">
+                <span><strong>Client:</strong> Manufacturing</span>
+                <span><strong>Team:</strong> 2 developers</span>
+              </div>
               <div class="flex flex-wrap gap-2 mb-6">
                 <span class="glass-badge px-3 py-1 text-sm">n8n</span>
                 <span class="glass-badge px-3 py-1 text-sm">OpenAI</span>
                 <span class="glass-badge px-3 py-1 text-sm">APIs</span>
               </div>
-              <a
-                href="contact.html"
-                class="text-electric-orange hover:text-teal-blue font-semibold"
-                >Request Similar Solution →</a
-              >
+              <div class="flex items-center justify-between">
+                <div class="text-sm text-gray-500">
+                  <span class="text-green-600 font-semibold"
+                    >-60% manual work</span
+                  >
+                  <span class="mx-2">•</span>
+                  <span class="text-blue-600 font-semibold"
+                    >+200% efficiency</span
+                  >
+                </div>
+                <a
+                  href="case-studies/business-automation-suite.html"
+                  class="text-electric-orange hover:text-teal-blue font-semibold"
+                >
+                  View Case Study →
+                </a>
+              </div>
             </div>
           </div>
 
-          <div class="project-card-3d glass-card overflow-hidden">
+          <div
+            class="project-card-3d glass-card overflow-hidden"
+            data-category="smart-home"
+            data-project="smart-home-integration"
+          >
             <div
               class="relative h-64 bg-gradient-to-br from-neon-blue to-electric-orange flex items-center justify-center"
             >
@@ -167,13 +470,20 @@
               </svg>
             </div>
             <div class="p-8">
-              <h3 class="text-2xl font-display font-bold mb-3">
-                Smart Home Integration
-              </h3>
-              <p class="text-gray-600 dark:text-gray-300 mb-6">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-2xl font-display font-bold">
+                  Smart Home Integration
+                </h3>
+                <span class="text-sm text-gray-500">1 month</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 mb-4">
                 Complete home automation with lighting, climate control, and
                 security system integration.
               </p>
+              <div class="flex items-center gap-4 mb-4 text-sm text-gray-500">
+                <span><strong>Client:</strong> Residential</span>
+                <span><strong>Team:</strong> 2 specialists</span>
+              </div>
               <div class="flex flex-wrap gap-2 mb-6">
                 <span class="glass-badge px-3 py-1 text-sm"
                   >Home Assistant</span
@@ -181,15 +491,31 @@
                 <span class="glass-badge px-3 py-1 text-sm">IoT</span>
                 <span class="glass-badge px-3 py-1 text-sm">Security</span>
               </div>
-              <a
-                href="contact.html"
-                class="text-neon-blue hover:text-electric-orange font-semibold"
-                >Get Started →</a
-              >
+              <div class="flex items-center justify-between">
+                <div class="text-sm text-gray-500">
+                  <span class="text-green-600 font-semibold"
+                    >-30% energy costs</span
+                  >
+                  <span class="mx-2">•</span>
+                  <span class="text-blue-600 font-semibold"
+                    >24/7 monitoring</span
+                  >
+                </div>
+                <a
+                  href="case-studies/smart-home-integration.html"
+                  class="text-neon-blue hover:text-electric-orange font-semibold"
+                >
+                  View Case Study →
+                </a>
+              </div>
             </div>
           </div>
 
-          <div class="project-card-3d glass-card overflow-hidden">
+          <div
+            class="project-card-3d glass-card overflow-hidden"
+            data-category="web-development"
+            data-project="ecommerce-platform"
+          >
             <div
               class="relative h-64 bg-gradient-to-br from-teal-blue to-electric-orange flex items-center justify-center"
             >
@@ -198,23 +524,40 @@
               >
             </div>
             <div class="p-8">
-              <h3 class="text-2xl font-display font-bold mb-3">
-                E-Commerce Platform
-              </h3>
-              <p class="text-gray-600 dark:text-gray-300 mb-6">
+              <div class="flex items-center justify-between mb-3">
+                <h3 class="text-2xl font-display font-bold">
+                  E-Commerce Platform
+                </h3>
+                <span class="text-sm text-gray-500">4 months</span>
+              </div>
+              <p class="text-gray-600 dark:text-gray-300 mb-4">
                 Modern online store with inventory management, payment gateway,
                 and customer analytics.
               </p>
+              <div class="flex items-center gap-4 mb-4 text-sm text-gray-500">
+                <span><strong>Client:</strong> Retail</span>
+                <span><strong>Team:</strong> 4 developers</span>
+              </div>
               <div class="flex flex-wrap gap-2 mb-6">
                 <span class="glass-badge px-3 py-1 text-sm">React</span>
                 <span class="glass-badge px-3 py-1 text-sm">Node.js</span>
                 <span class="glass-badge px-3 py-1 text-sm">PostgreSQL</span>
               </div>
-              <a
-                href="contact.html"
-                class="text-teal-blue hover:text-electric-orange font-semibold"
-                >Launch Your Store →</a
-              >
+              <div class="flex items-center justify-between">
+                <div class="text-sm text-gray-500">
+                  <span class="text-green-600 font-semibold">+300% sales</span>
+                  <span class="mx-2">•</span>
+                  <span class="text-blue-600 font-semibold"
+                    >-50% cart abandonment</span
+                  >
+                </div>
+                <a
+                  href="case-studies/ecommerce-platform.html"
+                  class="text-teal-blue hover:text-electric-orange font-semibold"
+                >
+                  View Case Study →
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -239,8 +582,28 @@
 
     <footer class="bg-gray-900 dark:bg-black text-gray-300 pt-16 pb-8">
       <div class="container mx-auto px-4 md:px-6">
-        <div class="text-center text-sm text-gray-500">
+        <div
+          class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500"
+        >
           <p>&copy; 2025 LaraTech sh.p.k. All rights reserved.</p>
+          <div class="flex space-x-6 mt-4 md:mt-0">
+            <a
+              href="privacy-policy.html"
+              class="hover:text-teal-blue transition-colors"
+              data-lang-en="Privacy Policy"
+              data-lang-sq="Politika e Privatësisë"
+              data-lang-de="Datenschutzrichtlinie"
+              >Privacy Policy</a
+            >
+            <a
+              href="terms-of-service.html"
+              class="hover:text-teal-blue transition-colors"
+              data-lang-en="Terms of Service"
+              data-lang-sq="Kushtet e Shërbimit"
+              data-lang-de="Nutzungsbedingungen"
+              >Terms of Service</a
+            >
+          </div>
         </div>
       </div>
     </footer>

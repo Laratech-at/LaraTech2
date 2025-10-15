@@ -25,7 +25,7 @@
   height: 100%;
   z-index: 1;
   overflow: hidden;
-  touch-action: none; /* Critical for Liquid Ether */
+  touch-action: pan-x pan-y; /* Allow scrolling while preserving Liquid Ether */
   pointer-events: none; /* Allow mouse events to pass through container */
   /* Prevent layout shift */
   min-height: 100vh;
@@ -47,7 +47,6 @@
 #hero .container {
   pointer-events: none; /* Allow mouse events to pass through to background */
   /* Prevent layout shift */
-  min-height: 100vh;
   contain: layout style paint;
 }
 
@@ -1461,37 +1460,6 @@ html.light footer img[alt*="logo"] {
 }
 
 /* Loading Screen Enhancements */
-.loading-particle {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: linear-gradient(
-    135deg,
-    var(--color-teal-blue),
-    var(--color-neon-blue)
-  );
-  border-radius: 50%;
-  top: -10px;
-  animation: particle-fall 8s linear infinite;
-  box-shadow: 0 0 10px rgba(0, 255, 255, 0.5);
-}
-
-@keyframes particle-fall {
-  0% {
-    top: -10px;
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    top: calc(100% + 10px);
-    opacity: 0;
-  }
-}
 
 .logo-glow-pulse {
   background: radial-gradient(
@@ -1544,4 +1512,99 @@ html.light footer img[alt*="logo"] {
 .tooltip:hover::after {
   opacity: 1;
   transform: translateX(-50%) translateY(-12px);
+}
+
+/* ========================================
+   Projects Filter & View Controls
+   ======================================== */
+
+/* Filter Buttons */
+.filter-btn {
+  @apply px-6 py-3 rounded-lg font-semibold transition-all duration-300;
+  @apply bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300;
+  @apply hover:bg-teal-blue hover:text-white;
+  @apply focus:outline-none focus:ring-2 focus:ring-teal-blue focus:ring-offset-2;
+}
+
+.filter-btn.active {
+  @apply bg-teal-blue text-white;
+  @apply shadow-lg shadow-teal-blue/25;
+}
+
+.filter-btn:hover {
+  @apply transform scale-105;
+}
+
+/* View Toggle Buttons */
+.view-toggle-btn {
+  @apply p-3 rounded-lg transition-all duration-300;
+  @apply bg-gray-200 dark:bg-gray-700 text-gray-600 dark:text-gray-400;
+  @apply hover:bg-teal-blue hover:text-white;
+  @apply focus:outline-none focus:ring-2 focus:ring-teal-blue focus:ring-offset-2;
+}
+
+.view-toggle-btn.active {
+  @apply bg-teal-blue text-white;
+  @apply shadow-lg shadow-teal-blue/25;
+}
+
+.view-toggle-btn:hover {
+  @apply transform scale-105;
+}
+
+/* Project Cards Enhanced */
+.project-card-3d {
+  @apply transition-all duration-500;
+}
+
+.project-card-3d.hidden {
+  @apply opacity-0 scale-95 pointer-events-none;
+}
+
+.project-card-3d.fade-in {
+  @apply opacity-100 scale-100;
+}
+
+/* List View Styles */
+#projects-container.list-view {
+  @apply grid-cols-1;
+}
+
+#projects-container.list-view .project-card-3d {
+  @apply flex flex-row;
+}
+
+#projects-container.list-view .project-card-3d > div:first-child {
+  @apply w-64 flex-shrink-0;
+}
+
+#projects-container.list-view .project-card-3d > div:last-child {
+  @apply flex-1;
+}
+
+/* Responsive Filter Buttons */
+@media (max-width: 640px) {
+  .filter-btn {
+    @apply px-4 py-2 text-sm;
+  }
+
+  .view-toggle-btn {
+    @apply p-2;
+  }
+}
+
+/* Animation for Filter Changes */
+@keyframes filterFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.project-card-3d.filter-animate {
+  animation: filterFadeIn 0.5s ease-out;
 }

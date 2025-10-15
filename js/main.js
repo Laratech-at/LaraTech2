@@ -949,8 +949,125 @@ const init = () => {
   initPerformanceMonitoring();
   initDirectionsButton();
   initBackToTop();
+  initProjectsFilter();
 
   console.log("LaraTech website initialized successfully! 🚀");
+};
+
+// ============================================
+// Projects Filter & View Toggle
+// ============================================
+const initProjectsFilter = () => {
+  const filterButtons = document.querySelectorAll(".filter-btn");
+  const viewToggleButtons = document.querySelectorAll(".view-toggle-btn");
+  const projectsContainer = document.getElementById("projects-container");
+  const projectCards = document.querySelectorAll(".project-card-3d");
+
+  if (!filterButtons.length || !projectsContainer) return;
+
+  let currentFilter = "all";
+  let currentView = "grid";
+
+  // Filter functionality
+  const filterProjects = (filter) => {
+    currentFilter = filter;
+
+    // Update active filter button
+    filterButtons.forEach((btn) => {
+      btn.classList.remove("active");
+      if (btn.getAttribute("data-filter") === filter) {
+        btn.classList.add("active");
+      }
+    });
+
+    // Filter and animate project cards
+    projectCards.forEach((card, index) => {
+      const category = card.getAttribute("data-category");
+      const shouldShow = filter === "all" || category === filter;
+
+      if (shouldShow) {
+        card.classList.remove("hidden");
+        card.classList.add("fade-in");
+        // Stagger animation
+        setTimeout(() => {
+          card.classList.add("filter-animate");
+        }, index * 100);
+      } else {
+        card.classList.add("hidden");
+        card.classList.remove("fade-in", "filter-animate");
+      }
+    });
+
+    // Update container layout
+    updateContainerLayout();
+  };
+
+  // View toggle functionality
+  const toggleView = (view) => {
+    currentView = view;
+
+    // Update active view button
+    viewToggleButtons.forEach((btn) => {
+      btn.classList.remove("active");
+      if (btn.getAttribute("data-view") === view) {
+        btn.classList.add("active");
+      }
+    });
+
+    // Update container classes
+    updateContainerLayout();
+  };
+
+  // Update container layout based on current view
+  const updateContainerLayout = () => {
+    if (currentView === "list") {
+      projectsContainer.classList.add("list-view");
+      projectsContainer.classList.remove(
+        "grid",
+        "grid-cols-1",
+        "lg:grid-cols-2"
+      );
+    } else {
+      projectsContainer.classList.remove("list-view");
+      projectsContainer.classList.add("grid", "grid-cols-1", "lg:grid-cols-2");
+    }
+  };
+
+  // Event listeners for filter buttons
+  filterButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const filter = btn.getAttribute("data-filter");
+      filterProjects(filter);
+
+      // Track filter usage
+      if (typeof gtag !== "undefined") {
+        gtag("event", "project_filter", {
+          filter_category: filter,
+          page_location: window.location.href,
+        });
+      }
+    });
+  });
+
+  // Event listeners for view toggle buttons
+  viewToggleButtons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const view = btn.getAttribute("data-view");
+      toggleView(view);
+
+      // Track view toggle usage
+      if (typeof gtag !== "undefined") {
+        gtag("event", "project_view_toggle", {
+          view_type: view,
+          page_location: window.location.href,
+        });
+      }
+    });
+  });
+
+  // Initialize with default state
+  filterProjects("all");
+  toggleView("grid");
 };
 
 // Run initialization when DOM is ready
@@ -978,4 +1095,5 @@ window.LaraTech = {
   initBeforeAfterSlider,
   initPerformanceMonitoring,
   initDirectionsButton,
+  initProjectsFilter,
 };

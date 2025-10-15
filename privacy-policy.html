@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Privacy Policy - LaraTech sh.p.k</title>
+    <meta
+      name="description"
+      content="Privacy Policy for LaraTech sh.p.k - Learn how we collect, use, and protect your personal data in compliance with GDPR and Kosovo regulations."
+    />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "teal-blue": "#00C8C8",
+              "neon-blue": "#00FFFF",
+              "electric-orange": "#FF6B00",
+              "jet-black": "#0A0A0A",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              display: ["Orbitron", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body
+    class="bg-gray-50 dark:bg-jet-black text-gray-900 dark:text-gray-100 transition-colors duration-300"
+  >
+    <!-- Navigation -->
+    <nav
+      id="navbar"
+      class="fixed top-0 w-full z-40 transition-all duration-300 py-4 px-4 md:px-6"
+    >
+      <div class="container mx-auto">
+        <div class="flex items-center justify-between">
+          <!-- Logo -->
+          <a href="index.html" class="flex items-center space-x-3 group">
+            <img
+              src="assets/Logo.png"
+              alt="LaraTech Logo"
+              class="h-16 w-auto object-contain group-hover:scale-110 transition-transform duration-300 logo-theme"
+            />
+          </a>
+
+          <!-- Desktop Menu -->
+          <div class="hidden lg:flex items-center space-x-8">
+            <a
+              href="index.html"
+              class="nav-link"
+              data-lang-en="Home"
+              data-lang-sq="Ballina"
+              data-lang-de="Startseite"
+              >Home</a
+            >
+            <a
+              href="services.html"
+              class="nav-link"
+              data-lang-en="Services"
+              data-lang-sq="Shërbimet"
+              data-lang-de="Dienstleistungen"
+              >Services</a
+            >
+            <a
+              href="projects.html"
+              class="nav-link"
+              data-lang-en="Projects"
+              data-lang-sq="Projektet"
+              data-lang-de="Projekte"
+              >Projects</a
+            >
+            <a
+              href="about.html"
+              class="nav-link"
+              data-lang-en="About"
+              data-lang-sq="Rreth Nesh"
+              data-lang-de="Über uns"
+              >About</a
+            >
+            <a
+              href="blog.html"
+              class="nav-link"
+              data-lang-en="Blog"
+              data-lang-sq="Blog"
+              data-lang-de="Blog"
+              >Blog</a
+            >
+            <a
+              href="contact.html"
+              class="nav-link"
+              data-lang-en="Contact"
+              data-lang-sq="Kontakti"
+              data-lang-de="Kontakt"
+              >Contact</a
+            >
+          </div>
+
+          <!-- Controls -->
+          <div class="flex items-center space-x-4">
+            <!-- Language Dropdown -->
+            <div class="lang-dropdown">
+              <button
+                id="lang-dropdown-btn"
+                class="lang-dropdown-btn"
+                aria-label="Select Language"
+              >
+                <span id="current-lang-flag" class="lang-flag">🇬🇧</span>
+                <span id="current-lang-code" class="lang-code">EN</span>
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              <div id="lang-dropdown-content" class="lang-dropdown-content">
+                <div class="lang-option active" data-lang="en">
+                  <span class="lang-flag">🇬🇧</span>
+                  <span>English</span>
+                </div>
+                <div class="lang-option" data-lang="sq">
+                  <span class="lang-flag">🇦🇱</span>
+                  <span>Shqip</span>
+                </div>
+                <div class="lang-option" data-lang="de">
+                  <span class="lang-flag">🇩🇪</span>
+                  <span>Deutsch</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Theme Toggle -->
+            <button
+              id="theme-toggle"
+              class="theme-toggle"
+              aria-label="Toggle Dark Mode"
+            >
+              <svg
+                id="theme-icon-dark"
+                class="w-5 h-5 hidden dark:block"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                ></path>
+              </svg>
+              <svg
+                id="theme-icon-light"
+                class="w-5 h-5 block dark:hidden"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+
+            <!-- Mobile Menu Button -->
+            <button
+              id="mobile-menu-btn"
+              class="lg:hidden p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div
+          id="mobile-menu"
+          class="lg:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-700 hidden"
+        >
+          <div class="flex flex-col space-y-2 pt-4">
+            <a
+              href="index.html"
+              class="nav-link-mobile"
+              data-lang-en="Home"
+              data-lang-sq="Ballina"
+              data-lang-de="Startseite"
+              >Home</a
+            >
+            <a
+              href="services.html"
+              class="nav-link-mobile"
+              data-lang-en="Services"
+              data-lang-sq="Shërbimet"
+              data-lang-de="Dienstleistungen"
+              >Services</a
+            >
+            <a
+              href="projects.html"
+              class="nav-link-mobile"
+              data-lang-en="Projects"
+              data-lang-sq="Projektet"
+              data-lang-de="Projekte"
+              >Projects</a
+            >
+            <a
+              href="about.html"
+              class="nav-link-mobile"
+              data-lang-en="About"
+              data-lang-sq="Rreth Nesh"
+              data-lang-de="Über uns"
+              >About</a
+            >
+            <a
+              href="blog.html"
+              class="nav-link-mobile"
+              data-lang-en="Blog"
+              data-lang-sq="Blog"
+              data-lang-de="Blog"
+              >Blog</a
+            >
+            <a
+              href="contact.html"
+              class="nav-link-mobile"
+              data-lang-en="Contact"
+              data-lang-sq="Kontakti"
+              data-lang-de="Kontakt"
+              >Contact</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24">
+      <!-- Hero Section -->
+      <section
+        class="py-20 bg-gradient-to-br from-teal-blue/10 to-electric-orange/10"
+      >
+        <div class="container mx-auto px-4">
+          <div class="text-center max-w-4xl mx-auto">
+            <h1
+              class="text-4xl md:text-6xl font-display font-bold mb-6"
+              data-lang-en="Privacy Policy"
+              data-lang-sq="Politika e Privatësisë"
+              data-lang-de="Datenschutzrichtlinie"
+            >
+              Privacy Policy
+            </h1>
+            <p
+              class="text-xl text-gray-600 dark:text-gray-300"
+              data-lang-en="Last updated: January 7, 2025"
+              data-lang-sq="Përditësuar së fundmi: 7 Janar 2025"
+              data-lang-de="Zuletzt aktualisiert: 7. Januar 2025"
+            >
+              Last updated: January 7, 2025
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Privacy Policy Content -->
+      <section class="py-16">
+        <div class="container mx-auto px-4 max-w-4xl">
+          <div class="prose prose-lg dark:prose-invert max-w-none">
+            <!-- Introduction -->
+            <div class="mb-12">
+              <h2
+                class="text-2xl font-display font-bold mb-4 text-teal-blue"
+                data-lang-en="1. Introduction"
+                data-lang-sq="1. Hyrje"
+                data-lang-de="1. Einführung"
+              >
+                1. Introduction
+              </h2>
+              <p
+                data-lang-en='LaraTech sh.p.k ("we," "our," or "us") respects your privacy and is committed to protecting your personal data. This privacy policy explains how we collect, use, and safeguard your information when you visit our website or use our services.'
+                data-lang-sq='LaraTech sh.p.k ("ne," "tonë," ose "ne") respekton privatësinë tuaj dhe është i përkushtuar për të mbrojtur të dhënat tuaja personale. Kjo politikë e privatësisë shpjegon se si ne mbledhim, përdorim dhe mbrojmë informacionin tuaj kur vizitoni faqen tonë të internetit ose përdorni shërbimet tona.'
+                data-lang-de='LaraTech sh.p.k ("wir," "unser" oder "uns") respektiert Ihre Privatsphäre und ist verpflichtet, Ihre persönlichen Daten zu schützen. Diese Datenschutzrichtlinie erklärt, wie wir Ihre Informationen sammeln, verwenden und schützen, wenn Sie unsere Website besuchen oder unsere Dienstleistungen nutzen.'
+              >
+                LaraTech sh.p.k ("we," "our," or "us") respects your privacy and
+                is committed to protecting your personal data. This privacy
+                policy explains how we collect, use, and safeguard your
+                information when you visit our website or use our services.
+              </p>
+            </div>
+
+            <!-- Information We Collect -->
+            <div class="mb-12">
+              <h2
+                class="text-2xl font-display font-bold mb-4 text-teal-blue"
+                data-lang-en="2. Information We Collect"
+                data-lang-sq="2. Informacioni që Mbledhim"
+                data-lang-de="2. Informationen, die wir sammeln"
+              >
+                2. Information We Collect
+              </h2>
+
+              <h3
+                class="text-xl font-semibold mb-3"
+                data-lang-en="2.1 Personal Information"
+                data-lang-sq="2.1 Informacioni Personal"
+                data-lang-de="2.1 Persönliche Informationen"
+              >
+                2.1 Personal Information
+              </h3>
+              <p
+                data-lang-en="We may collect the following personal information:"
+                data-lang-sq="Ne mund të mbledhim informacionin personal të mëposhtëm:"
+                data-lang-de="Wir können folgende persönliche Informationen sammeln:"
+              >
+                We may collect the following personal information:
+              </p>
+              <ul class="list-disc pl-6 mb-4">
+                <li
+                  data-lang-en="Name and contact information (email address, phone number)"
+                  data-lang-sq="Emri dhe informacioni i kontaktit (adresa e email-it, numri i telefonit)"
+                  data-lang-de="Name und Kontaktinformationen (E-Mail-Adresse, Telefonnummer)"
+                >
+                  Name and contact information (email address, phone number)
+                </li>
+                <li
+                  data-lang-en="Company information (if applicable)"
+                  data-lang-sq="Informacioni i kompanisë (nëse është i zbatueshëm)"
+                  data-lang-de="Firmeninformationen (falls zutreffend)"
+                >
+                  Company information (if applicable)
+                </li>
+                <li
+                  data-lang-en="Project requirements and preferences"
+                  data-lang-sq="Kërkesat dhe preferencat e projektit"
+                  data-lang-de="Projektanforderungen und Präferenzen"
+                >
+                  Project requirements and preferences
+                </li>
+                <li
+                  data-lang-en="Communication history with our team"
+                  data-lang-sq="Historia e komunikimit me ekipin tonë"
+                  data-lang-de="Kommunikationsverlauf mit unserem Team"
+                >
+                  Communication history with our team
+                </li>
+              </ul>
+
+              <h3
+                class="text-xl font-semibold mb-3"
+                data-lang-en="2.2 Technical Information"
+                data-lang-sq="2.2 Informacioni Teknik"
+                data-lang-de="2.2 Technische Informationen"
+              >
+                2.2 Technical Information
+              </h3>
+              <p
+                data-lang-en="We automatically collect certain technical information when you visit our website:"
+                data-lang-sq="Ne automatikisht mbledhim informacion të caktuar teknik kur vizitoni faqen tonë të internetit:"
+                data-lang-de="Wir sammeln automatisch bestimmte technische Informationen, wenn Sie unsere Website besuchen:"
+              >
+                We automatically collect certain technical information when you
+                visit our website:
+              </p>
+              <ul class="list-disc pl-6 mb-4">
+                <li
+                  data-lang-en="IP address and location data"
+                  data-lang-sq="Adresa IP dhe të dhënat e vendndodhjes"
+                  data-lang-de="IP-Adresse und Standortdaten"
+                >
+                  IP address and location data
+                </li>
+                <li
+                  data-lang-en="Browser type and version"
+                  data-lang-sq="Lloji dhe versioni i shfletuesit"
+                  data-lang-de="Browser-Typ und Version"
+                >
+                  Browser type and version
+                </li>
+                <li
+                  data-lang-en="Device information and screen resolution"
+                  data-lang-sq="Informacioni i pajisjes dhe rezolucioni i ekranit"
+                  data-lang-de="Geräteinformationen und Bildschirmauflösung"
+                >
+                  Device information and screen resolution
+                </li>
+                <li
+                  data-lang-en="Pages visited and time spent on our website"
+                  data-lang-sq="Faqet e vizituara dhe koha e kaluar në faqen tonë të internetit"
+                  data-lang-de="Besuchte Seiten und auf unserer Website verbrachte Zeit"
+                >
+                  Pages visited and time spent on our website
+                </li>
+              </ul>
+            </div>
+
+            <!-- How We Use Information -->
+            <div class="mb-12">
+              <h2
+                class="text-2xl font-display font-bold mb-4 text-teal-blue"
+                data-lang-en="3. How We Use Your Information"
+                data-lang-sq="3. Si Përdorim Informacionin Tuaj"
+                data-lang-de="3. Wie wir Ihre Informationen verwenden"
+              >
+                3. How We Use Your Information
+              </h2>
+              <p
+                data-lang-en="We use your personal information for the following purposes:"
+                data-lang-sq="Ne përdorim informacionin tuaj personal për qëllimet e mëposhtme:"
+                data-lang-de="Wir verwenden Ihre persönlichen Informationen für folgende Zwecke:"
+              >
+                We use your personal information for the following purposes:
+              </p>
+              <ul class="list-disc pl-6 mb-4">
+                <li
+                  data-lang-en="To provide and improve our services"
+                  data-lang-sq="Për të ofruar dhe përmirësuar shërbimet tona"
+                  data-lang-de="Zur Bereitstellung und Verbesserung unserer Dienstleistungen"
+                >
+                  To provide and improve our services
+                </li>
+                <li
+                  data-lang-en="To respond to your inquiries and provide customer support"
+                  data-lang-sq="Për t'u përgjigjur pyetjeve tuaja dhe për të ofruar mbështetje për klientët"
+                  data-lang-de="Zur Beantwortung Ihrer Anfragen und zur Bereitstellung von Kundensupport"
+                >
+                  To respond to your inquiries and provide customer support
+                </li>
+                <li
+                  data-lang-en="To send you relevant information about our services (with your consent)"
+                  data-lang-sq="Për t'ju dërguar informacion të përshtatshëm për shërbimet tona (me pëlqimin tuaj)"
+                  data-lang-de="Zur Zusendung relevanter Informationen über unsere Dienstleistungen (mit Ihrer Zustimmung)"
+                >
+                  To send you relevant information about our services (with your
+                  consent)
+                </li>
+                <li
+                  data-lang-en="To analyze website usage and improve user experience"
+                  data-lang-sq="Për të analizuar përdorimin e faqes së internetit dhe për të përmirësuar përvojën e përdoruesit"
+                  data-lang-de="Zur Analyse der Website-Nutzung und Verbesserung der Benutzererfahrung"
+                >
+                  To analyze website usage and improve user experience
+                </li>
+                <li
+                  data-lang-en="To comply with legal obligations"
+                  data-lang-sq="Për të përputhur me detyrimet ligjore"
+                  data-lang-de="Zur Einhaltung rechtlicher Verpflichtungen"
+                >
+                  To comply with legal obligations
+                </li>
+              </ul>
+            </div>
+
+            <!-- Cookies -->
+            <div class="mb-12">
+              <h2
+                class="text-2xl font-display font-bold mb-4 text-teal-blue"
+                data-lang-en="4. Cookies and Tracking Technologies"
+                data-lang-sq="4. Cookies dhe Teknologjitë e Gjurmimit"
+                data-lang-de="4. Cookies und Tracking-Technologien"
+              >
+                4. Cookies and Tracking Technologies
+              </h2>
+              <p
+                data-lang-en="We use cookies and similar tracking technologies to enhance your browsing experience:"
+                data-lang-sq="Ne përdorim cookies dhe teknologji të ngjashme gjurmimi për të përmirësuar përvojën tuaj të shfletimit:"
+                data-lang-de="Wir verwenden Cookies und ähnliche Tracking-Technologien, um Ihre Browsing-Erfahrung zu verbessern:"
+              >
+                We use cookies and similar tracking technologies to enhance your
+                browsing experience:
+              </p>
+              <ul class="list-disc pl-6 mb-4">
+                <li
+                  data-lang-en="Essential cookies: Required for website functionality"
+                  data-lang-sq="Cookies thelbësorë: Të nevojshëm për funksionalitetin e faqes së internetit"
+                  data-lang-de="Wesentliche Cookies: Erforderlich für die Website-Funktionalität"
+                >
+                  Essential cookies: Required for website functionality
+                </li>
+                <li
+                  data-lang-en="Analytics cookies: Help us understand website usage (Google Analytics)"
+                  data-lang-sq="Cookies analitikë: Na ndihmojnë të kuptojmë përdorimin e faqes së internetit (Google Analytics)"
+                  data-lang-de="Analytics-Cookies: Helfen uns, die Website-Nutzung zu verstehen (Google Analytics)"
+                >
+                  Analytics cookies: Help us understand website usage (Google
+                  Analytics)
+                </li>
+                <li
+                  data-lang-en="Preference cookies: Remember your language and theme choices"
+                  data-lang-sq="Cookies preferencash: Kujtojnë zgjedhjet tuaja të gjuhës dhe temës"
+                  data-lang-de="Präferenz-Cookies: Merken sich Ihre Sprach- und Theme-Auswahlen"
+                >
+                  Preference cookies: Remember your language and theme choices
+                </li>
+              </ul>
+              <p
+                data-lang-en="You can control cookie settings through your browser preferences or our cookie consent banner."
+                data-lang-sq="Ju mund të kontrolloni cilësimet e cookies përmes preferencave të shfletuesit tuaj ose përmes bannerit tonë të pëlqimit të cookies."
+                data-lang-de="Sie können Cookie-Einstellungen über Ihre Browser-Präferenzen oder unser Cookie-Zustimmungsbanner steuern."
+              >
+                You can control cookie settings through your browser preferences
+                or our cookie consent banner.
+              </p>
+            </div>
+
+            <!-- Data Sharing -->
+            <div class="mb-12">
+              <h2
+                class="text-2xl font-display font-bold mb-4 text-teal-blue"
+                data-lang-en="5. Data Sharing and Disclosure"
+                data-lang-sq="5. Ndarja dhe Zbulimi i të Dhënave"
+                data-lang-de="5. Datenaustausch und Offenlegung"
+              >
+                5. Data Sharing and Disclosure
+              </h2>
+              <p
+                data-lang-en="We do not sell, trade, or rent your personal information to third parties. We may share your information only in the following circumstances:"
+                data-lang-sq="Ne nuk shesim, tregtojmë ose japim me qira informacionin tuaj personal palëve të treta. Ne mund të ndajmë informacionin tuaj vetëm në rrethanat e mëposhtme:"
+                data-lang-de="Wir verkaufen, handeln nicht mit oder vermieten Ihre persönlichen Informationen an Dritte. Wir können Ihre Informationen nur in folgenden Umständen teilen:"
+              >
+                We do not sell, trade, or rent your personal information to
+                third parties. We may share your information only in the
+                following circumstances:
+              </p>
+              <ul class="list-disc pl-6 mb-4">
+                <li
+                  data-lang-en="With your explicit consent"
+                  data-lang-sq="Me pëlqimin tuaj të qartë"
+                  data-lang-de="Mit Ihrer ausdrücklichen Zustimmung"
+                >
+                  With your explicit consent
+                </li>
+                <li
+                  data-lang-en="To comply with legal requirements or court orders"
+                  data-lang-sq="Për të përputhur me kërkesat ligjore ose urdhrat e gjykatës"
+                  data-lang-de="Zur Einhaltung rechtlicher Anforderungen oder Gerichtsbeschlüsse"
+                >
+                  To comply with legal requirements or court orders
+                </li>
+                <li
+                  data-lang-en="With trusted service providers who assist in our operations (under strict confidentiality agreements)"
+                  data-lang-sq="Me ofrues të shërbimeve të besueshëm që ndihmojnë në operacionet tona (nën marrëveshje të rrepta të fshehtësisë)"
+                  data-lang-de="Mit vertrauenswürdigen Dienstleistern, die bei unseren Operationen helfen (unter strengen Vertraulichkeitsvereinbarungen)"
+                >
+                  With trusted service providers who assist in our operations
+                  (under strict confidentiality agreements)
+                </li>
+              </ul>
+            </div>
+
+            <!-- Data Security -->
+            <div class="mb-12">
+              <h2
+                class="text-2xl font-display font-bold mb-4 text-teal-blue"
+                data-lang-en="6. Data Security"
+                data-lang-sq="6. Siguria e të Dhënave"
+                data-lang-de="6. Datensicherheit"
+              >
+                6. Data Security
+              </h2>
+              <p
+                data-lang-en="We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction. These measures include:"
+                data-lang-sq="Ne implementojmë masa të përshtatshme teknike dhe organizative për të mbrojtur të dhënat tuaja personale kundër aksesit të paautorizuar, ndryshimit, zbulimit ose shkatërrimit. Këto masa përfshijnë:"
+                data-lang-de="Wir implementieren angemessene technische und organisatorische Maßnahmen zum Schutz Ihrer persönlichen Daten vor unbefugtem Zugriff, Änderung, Offenlegung oder Zerstörung. Diese Maßnahmen umfassen:"
+              >
+                We implement appropriate technical and organizational measures
+                to protect your personal data against unauthorized access,
+                alteration, disclosure, or destruction. These measures include:
+              </p>
+              <ul class="list-disc pl-6 mb-4">
+                <li
+                  data-lang-en="Encryption of data in transit and at rest"
+                  data-lang-sq="Enkriptimi i të dhënave në tranzit dhe në pushim"
+                  data-lang-de="Verschlüsselung von Daten während der Übertragung und im Ruhezustand"
+                >
+                  Encryption of data in transit and at rest
+                </li>
+                <li
+                  data-lang-en="Regular security assessments and updates"
+                  data-lang-sq="Vlerësimet dhe përditësimet e rregullta të sigurisë"
+                  data-lang-de="Regelmäßige Sicherheitsbewertungen und Updates"
+                >
+                  Regular security assessments and updates
+                </li>
+                <li
+                  data-lang-en="Access controls and authentication procedures"
+                  data-lang-sq="Kontrollin e aksesit dhe procedurat e autentifikimit"
+                  data-lang-de="Zugangskontrollen und Authentifizierungsverfahren"
+                >
+                  Access controls and authentication procedures
+                </li>
+                <li
+                  data-lang-en="Staff training on data protection best practices"
+                  data-lang-sq="Trajnimi i stafit për praktikat më të mira të mbrojtjes së të dhënave"
+                  data-lang-de="Schulung des Personals zu Datenschutz-Best-Practices"
+                >
+                  Staff training on data protection best practices
+                </li>
+              </ul>
+            </div>
+
+            <!-- Your Rights -->
+            <div class="mb-12">
+              <h2
+                class="text-2xl font-display font-bold mb-4 text-teal-blue"
+                data-lang-en="7. Your Rights"
+                data-lang-sq="7. Të Drejtat Tuaja"
+                data-lang-de="7. Ihre Rechte"
+              >
+                7. Your Rights
+              </h2>
+              <p
+                data-lang-en="Under applicable data protection laws, you have the following rights regarding your personal data:"
+                data-lang-sq="Nën ligjet e zbatueshme të mbrojtjes së të dhënave, ju keni të drejtat e mëposhtme në lidhje me të dhënat tuaja personale:"
+                data-lang-de="Unter geltenden Datenschutzgesetzen haben Sie folgende Rechte bezüglich Ihrer persönlichen Daten:"
+              >
+                Under applicable data protection laws, you have the following
+                rights regarding your personal data:
+              </p>
+              <ul class="list-disc pl-6 mb-4">
+                <li
+                  data-lang-en="Right to access: Request a copy of your personal data"
+                  data-lang-sq="E drejta e aksesit: Kërkoni një kopje të të dhënave tuaja personale"
+                  data-lang-de="Recht auf Zugang: Anforderung einer Kopie Ihrer persönlichen Daten"
+                >
+                  Right to access: Request a copy of your personal data
+                </li>
+                <li
+                  data-lang-en="Right to rectification: Correct inaccurate or incomplete data"
+                  data-lang-sq="E drejta e korrigjimit: Korrigjoni të dhënat e pasakta ose të paplota"
+                  data-lang-de="Recht auf Berichtigung: Korrektur ungenauer oder unvollständiger Daten"
+                >
+                  Right to rectification: Correct inaccurate or incomplete data
+                </li>
+                <li
+                  data-lang-en="Right to erasure: Request deletion of your personal data"
+                  data-lang-sq="E drejta e fshirjes: Kërkoni fshirjen e të dhënave tuaja personale"
+                  data-lang-de="Recht auf Löschung: Anforderung der Löschung Ihrer persönlichen Daten"
+                >
+                  Right to erasure: Request deletion of your personal data
+                </li>
+                <li
+                  data-lang-en="Right to restrict processing: Limit how we use your data"
+                  data-lang-sq="E drejta për të kufizuar përpunimin: Kufizoni se si ne përdorim të dhënat tuaja"
+                  data-lang-de="Recht auf Einschränkung der Verarbeitung: Begrenzen Sie, wie wir Ihre Daten verwenden"
+                >
+                  Right to restrict processing: Limit how we use your data
+                </li>
+                <li
+                  data-lang-en="Right to data portability: Receive your data in a structured format"
+                  data-lang-sq="E drejta e portabilitetit të të dhënave: Merrni të dhënat tuaja në një format të strukturuar"
+                  data-lang-de="Recht auf Datenübertragbarkeit: Erhalten Sie Ihre Daten in einem strukturierten Format"
+                >
+                  Right to data portability: Receive your data in a structured
+                  format
+                </li>
+                <li
+                  data-lang-en="Right to object: Object to processing of your personal data"
+                  data-lang-sq="E drejta për të kundërshtuar: Kundërshtoni përpunimin e të dhënave tuaja personale"
+                  data-lang-de="Widerspruchsrecht: Widerspruch gegen die Verarbeitung Ihrer persönlichen Daten"
+                >
+                  Right to object: Object to processing of your personal data
+                </li>
+              </ul>
+              <p
+                data-lang-en="To exercise these rights, please contact us using the information provided in the Contact section below."
+                data-lang-sq="Për të ushtruar këto të drejta, ju lutemi na kontaktoni duke përdorur informacionin e dhënë në seksionin e Kontaktit më poshtë."
+                data-lang-de="Um diese Rechte auszuüben, kontaktieren Sie uns bitte mit den unten im Kontaktbereich angegebenen Informationen."
+              >
+                To exercise these rights, please contact us using the
+                information provided in the Contact section below.
+              </p>
+            </div>
+
+            <!-- Data Retention -->
+            <div class="mb-12">
+              <h2
+                class="text-2xl font-display font-bold mb-4 text-teal-blue"
+                data-lang-en="8. Data Retention"
+                data-lang-sq="8. Ruajtja e të Dhënave"
+                data-lang-de="8. Datenspeicherung"
+              >
+                8. Data Retention
+              </h2>
+              <p
+                data-lang-en="We retain your personal data only for as long as necessary to fulfill the purposes outlined in this privacy policy, unless a longer retention period is required or permitted by law. Generally:"
+                data-lang-sq="Ne ruajmë të dhënat tuaja personale vetëm për aq kohë sa është e nevojshme për të përmbushur qëllimet e përshkruara në këtë politikë të privatësisë, përveç nëse kërkohet ose lejohet një periudhë më e gjatë ruajtjeje nga ligji. Në përgjithësi:"
+                data-lang-de="Wir speichern Ihre persönlichen Daten nur so lange, wie es zur Erfüllung der in dieser Datenschutzrichtlinie beschriebenen Zwecke erforderlich ist, es sei denn, eine längere Speicherdauer ist gesetzlich vorgeschrieben oder erlaubt. Im Allgemeinen:"
+              >
+                We retain your personal data only for as long as necessary to
+                fulfill the purposes outlined in this privacy policy, unless a
+                longer retention period is required or permitted by law.
+                Generally:
+              </p>
+              <ul class="list-disc pl-6 mb-4">
+                <li
+                  data-lang-en="Contact form submissions: 3 years"
+                  data-lang-sq="Dërgesat e formularit të kontaktit: 3 vjet"
+                  data-lang-de="Kontaktformular-Einreichungen: 3 Jahre"
+                >
+                  Contact form submissions: 3 years
+                </li>
+                <li
+                  data-lang-en="Client project data: Duration of project + 7 years"
+                  data-lang-sq="Të dhënat e projektit të klientit: Kohëzgjatja e projektit + 7 vjet"
+                  data-lang-de="Kundenprojektdaten: Projektdauer + 7 Jahre"
+                >
+                  Client project data: Duration of project + 7 years
+                </li>
+                <li
+                  data-lang-en="Website analytics data: 26 months"
+                  data-lang-sq="Të dhënat analitike të faqes së internetit: 26 muaj"
+                  data-lang-de="Website-Analytics-Daten: 26 Monate"
+                >
+                  Website analytics data: 26 months
+                </li>
+              </ul>
+            </div>
+
+            <!-- International Transfers -->
+            <div class="mb-12">
+              <h2
+                class="text-2xl font-display font-bold mb-4 text-teal-blue"
+                data-lang-en="9. International Data Transfers"
+                data-lang-sq="9. Transferimet Ndërkombëtare të të Dhënave"
+                data-lang-de="9. Internationale Datenübertragungen"
+              >
+                9. International Data Transfers
+              </h2>
+              <p
+                data-lang-en="Some of our service providers may be located outside Kosovo. When we transfer your personal data internationally, we ensure appropriate safeguards are in place, including:"
+                data-lang-sq="Disa nga ofruesit e shërbimeve tona mund të jenë të vendosur jashtë Kosovës. Kur ne transferojmë të dhënat tuaja personale ndërkombëtarisht, ne sigurohemi që të jenë në vend mbrojtjet e përshtatshme, duke përfshirë:"
+                data-lang-de="Einige unserer Dienstleister können außerhalb des Kosovo ansässig sein. Bei internationalen Übertragungen Ihrer persönlichen Daten stellen wir sicher, dass angemessene Schutzmaßnahmen vorhanden sind, einschließlich:"
+              >
+                Some of our service providers may be located outside Kosovo.
+                When we transfer your personal data internationally, we ensure
+                appropriate safeguards are in place, including:
+              </p>
+              <ul class="list-disc pl-6 mb-4">
+                <li
+                  data-lang-en="Standard contractual clauses approved by relevant authorities"
+                  data-lang-sq="Klauzolat kontraktuale standarde të miratuara nga autoritetet përkatëse"
+                  data-lang-de="Von den zuständigen Behörden genehmigte Standardvertragsklauseln"
+                >
+                  Standard contractual clauses approved by relevant authorities
+                </li>
+                <li
+                  data-lang-en="Adequacy decisions by relevant data protection authorities"
+                  data-lang-sq="Vendimet e përshtatshmërisë nga autoritetet përkatëse të mbrojtjes së të dhënave"
+                  data-lang-de="Angemessenheitsbeschlüsse der zuständigen Datenschutzbehörden"
+                >
+                  Adequacy decisions by relevant data protection authorities
+                </li>
+                <li
+                  data-lang-en="Other appropriate safeguards as required by law"
+                  data-lang-sq="Mbrojtje të tjera të përshtatshme siç kërkohet nga ligji"
+                  data-lang-de="Andere angemessene Schutzmaßnahmen, wie gesetzlich vorgeschrieben"
+                >
+                  Other appropriate safeguards as required by law
+                </li>
+              </ul>
+            </div>
+
+            <!-- Children's Privacy -->
+            <div class="mb-12">
+              <h2
+                class="text-2xl font-display font-bold mb-4 text-teal-blue"
+                data-lang-en="10. Children's Privacy"
+                data-lang-sq="10. Privatësia e Fëmijëve"
+                data-lang-de="10. Datenschutz von Kindern"
+              >
+                10. Children's Privacy
+              </h2>
+              <p
+                data-lang-en="Our services are not directed to children under 16 years of age. We do not knowingly collect personal information from children under 16. If you are a parent or guardian and believe your child has provided us with personal information, please contact us immediately."
+                data-lang-sq="Shërbimet tona nuk janë të drejtuara për fëmijët nën 16 vjeç. Ne nuk mbledhim me dashje informacion personal nga fëmijët nën 16 vjeç. Nëse jeni prind ose kujdestar dhe besoni se fëmija juaj na ka dhënë informacion personal, ju lutemi na kontaktoni menjëherë."
+                data-lang-de="Unsere Dienstleistungen richten sich nicht an Kinder unter 16 Jahren. Wir sammeln nicht wissentlich persönliche Informationen von Kindern unter 16 Jahren. Wenn Sie Elternteil oder Vormund sind und glauben, dass Ihr Kind uns persönliche Informationen zur Verfügung gestellt hat, kontaktieren Sie uns bitte sofort."
+              >
+                Our services are not directed to children under 16 years of age.
+                We do not knowingly collect personal information from children
+                under 16. If you are a parent or guardian and believe your child
+                has provided us with personal information, please contact us
+                immediately.
+              </p>
+            </div>
+
+            <!-- Changes to Privacy Policy -->
+            <div class="mb-12">
+              <h2
+                class="text-2xl font-display font-bold mb-4 text-teal-blue"
+                data-lang-en="11. Changes to This Privacy Policy"
+                data-lang-sq="11. Ndryshimet në këtë Politikë të Privatësisë"
+                data-lang-de="11. Änderungen an dieser Datenschutzrichtlinie"
+              >
+                11. Changes to This Privacy Policy
+              </h2>
+              <p
+                data-lang-en='We may update this privacy policy from time to time to reflect changes in our practices or applicable laws. We will notify you of any material changes by posting the updated policy on our website and updating the "Last updated" date. We encourage you to review this policy periodically.'
+                data-lang-sq='Ne mund të përditësojmë këtë politikë të privatësisë herë pas here për të reflektuar ndryshimet në praktikat tona ose në ligjet e zbatueshme. Ne do t&apos;ju njoftojmë për çdo ndryshim të rëndësishëm duke postuar politikën e përditësuar në faqen tonë të internetit dhe duke përditësuar datën "Përditësuar së fundmi". Ne ju inkurajojmë të rishikoni këtë politikë periodikisht.'
+                data-lang-de='Wir können diese Datenschutzrichtlinie von Zeit zu Zeit aktualisieren, um Änderungen in unseren Praktiken oder geltenden Gesetzen widerzuspiegeln. Wir werden Sie über wesentliche Änderungen informieren, indem wir die aktualisierte Richtlinie auf unserer Website veröffentlichen und das Datum "Zuletzt aktualisiert" aktualisieren. Wir empfehlen Ihnen, diese Richtlinie regelmäßig zu überprüfen.'
+              >
+                We may update this privacy policy from time to time to reflect
+                changes in our practices or applicable laws. We will notify you
+                of any material changes by posting the updated policy on our
+                website and updating the "Last updated" date. We encourage you
+                to review this policy periodically.
+              </p>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="mb-12">
+              <h2
+                class="text-2xl font-display font-bold mb-4 text-teal-blue"
+                data-lang-en="12. Contact Information"
+                data-lang-sq="12. Informacioni i Kontaktit"
+                data-lang-de="12. Kontaktinformationen"
+              >
+                12. Contact Information
+              </h2>
+              <p
+                data-lang-en="If you have any questions about this privacy policy or our data practices, please contact us:"
+                data-lang-sq="Nëse keni ndonjë pyetje për këtë politikë të privatësisë ose praktikat tona të të dhënave, ju lutemi na kontaktoni:"
+                data-lang-de="Wenn Sie Fragen zu dieser Datenschutzrichtlinie oder unseren Datenpraktiken haben, kontaktieren Sie uns bitte:"
+              >
+                If you have any questions about this privacy policy or our data
+                practices, please contact us:
+              </p>
+              <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg mt-4">
+                <p class="font-semibold mb-2">LaraTech sh.p.k</p>
+                <p
+                  data-lang-en="Address: Rr. Safet Boletini 46, Iliridë, Mitrovica, Kosovo"
+                  data-lang-sq="Adresa: Rr. Safet Boletini 46, Iliridë, Mitrovica, Kosovo"
+                  data-lang-de="Adresse: Rr. Safet Boletini 46, Iliridë, Mitrovica, Kosovo"
+                >
+                  Address: Rr. Safet Boletini 46, Iliridë, Mitrovica, Kosovo
+                </p>
+                <p>Email: office@laratech.ai</p>
+                <p>Phone: +383 49 479 759</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <!-- Company Info -->
+          <div class="md:col-span-2">
+            <div class="flex items-center space-x-3 mb-4">
+              <img
+                src="assets/Logo.png"
+                alt="LaraTech Logo"
+                class="h-16 w-auto object-contain logo-theme"
+              />
+            </div>
+            <p
+              class="text-gray-300 mb-4"
+              data-lang-en="Digital & Automation Services | Smart-Tech & Web Solutions"
+              data-lang-sq="Shërbime Digjitale & Automatizimi | Zgjidhje Smart-Tech & Web"
+              data-lang-de="Digitale & Automatisierungsdienstleistungen | Smart-Tech & Web-Lösungen"
+            >
+              Digital & Automation Services | Smart-Tech & Web Solutions
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="https://linkedin.com/company/laratech.ai"
+                class="text-gray-400 hover:text-teal-blue transition-colors"
+                aria-label="LinkedIn"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://instagram.com/laratech.ai"
+                class="text-gray-400 hover:text-teal-blue transition-colors"
+                aria-label="Instagram"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.198 14.895 3.708 13.744 3.708 12.447s.49-2.448 1.297-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.807.875 1.297 2.026 1.297 3.323s-.49 2.448-1.297 3.323c-.875.807-2.026 1.297-3.323 1.297zm7.83-9.281h-1.297v1.297h1.297V7.707zm-3.323 1.297c-.49 0-.807-.317-.807-.807s.317-.807.807-.807.807.317.807.807-.317.807-.807.807zm6.62 0c-3.323 0-6.62-2.297-6.62-5.62s2.297-5.62 5.62-5.62 5.62 2.297 5.62 5.62-2.297 5.62-5.62 5.62z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://x.com/Laratech_eu"
+                class="text-gray-400 hover:text-teal-blue transition-colors"
+                aria-label="X (Twitter)"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://facebook.com/laratech.eu"
+                class="text-gray-400 hover:text-teal-blue transition-colors"
+                aria-label="Facebook"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h3
+              class="text-lg font-semibold mb-4"
+              data-lang-en="Quick Links"
+              data-lang-sq="Lidhje të Shpejta"
+              data-lang-de="Schnelle Links"
+            >
+              Quick Links
+            </h3>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="services.html"
+                  class="text-gray-300 hover:text-teal-blue transition-colors"
+                  data-lang-en="Services"
+                  data-lang-sq="Shërbimet"
+                  data-lang-de="Dienstleistungen"
+                  >Services</a
+                >
+              </li>
+              <li>
+                <a
+                  href="projects.html"
+                  class="text-gray-300 hover:text-teal-blue transition-colors"
+                  data-lang-en="Projects"
+                  data-lang-sq="Projektet"
+                  data-lang-de="Projekte"
+                  >Projects</a
+                >
+              </li>
+              <li>
+                <a
+                  href="about.html"
+                  class="text-gray-300 hover:text-teal-blue transition-colors"
+                  data-lang-en="About"
+                  data-lang-sq="Rreth Nesh"
+                  data-lang-de="Über uns"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a
+                  href="blog.html"
+                  class="text-gray-300 hover:text-teal-blue transition-colors"
+                  data-lang-en="Blog"
+                  data-lang-sq="Blog"
+                  data-lang-de="Blog"
+                  >Blog</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact Info -->
+          <div>
+            <h3
+              class="text-lg font-semibold mb-4"
+              data-lang-en="Contact"
+              data-lang-sq="Kontakti"
+              data-lang-de="Kontakt"
+            >
+              Contact
+            </h3>
+            <div class="space-y-2 text-gray-300">
+              <p>📧 office@laratech.ai</p>
+              <p>📞 +383 49 479 759</p>
+              <p
+                data-lang-en="📍 Mitrovica, Kosovo"
+                data-lang-sq="📍 Mitrovicë, Kosovo"
+                data-lang-de="📍 Mitrovica, Kosovo"
+              >
+                📍 Mitrovica, Kosovo
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div
+          class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p
+            class="text-gray-400 text-sm"
+            data-lang-en="© 2025 LaraTech sh.p.k. All rights reserved."
+            data-lang-sq="© 2025 LaraTech sh.p.k. Të gjitha të drejtat e rezervuara."
+            data-lang-de="© 2025 LaraTech sh.p.k. Alle Rechte vorbehalten."
+          >
+            © 2025 LaraTech sh.p.k. All rights reserved.
+          </p>
+          <div class="flex space-x-6 mt-4 md:mt-0">
+            <a
+              href="privacy-policy.html"
+              class="text-gray-400 hover:text-teal-blue transition-colors text-sm"
+              data-lang-en="Privacy Policy"
+              data-lang-sq="Politika e Privatësisë"
+              data-lang-de="Datenschutzrichtlinie"
+              >Privacy Policy</a
+            >
+            <a
+              href="terms-of-service.html"
+              class="text-gray-400 hover:text-teal-blue transition-colors text-sm"
+              data-lang-en="Terms of Service"
+              data-lang-sq="Kushtet e Shërbimit"
+              data-lang-de="Nutzungsbedingungen"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+  </body>
+</html>

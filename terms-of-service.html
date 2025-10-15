@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Terms of Service - LaraTech sh.p.k</title>
+    <meta
+      name="description"
+      content="Terms of Service for LaraTech sh.p.k - Service agreement, intellectual property rights, and terms of use for our digital and automation services."
+    />
+    <link rel="icon" type="image/png" href="assets/favicon.png" />
+    <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "teal-blue": "#00C8C8",
+              "neon-blue": "#00FFFF",
+              "electric-orange": "#FF6B00",
+              "jet-black": "#0A0A0A",
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+              display: ["Orbitron", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body
+    class="bg-gray-50 dark:bg-jet-black text-gray-900 dark:text-gray-100 transition-colors duration-300"
+  >
+    <!-- Navigation -->
+    <nav
+      id="navbar"
+      class="fixed top-0 w-full z-40 transition-all duration-300 py-4 px-4 md:px-6"
+    >
+      <div class="container mx-auto">
+        <div class="flex items-center justify-between">
+          <!-- Logo -->
+          <a href="index.html" class="flex items-center space-x-3 group">
+            <img
+              src="assets/Logo.png"
+              alt="LaraTech Logo"
+              class="h-16 w-auto object-contain group-hover:scale-110 transition-transform duration-300 logo-theme"
+            />
+          </a>
+
+          <!-- Desktop Menu -->
+          <div class="hidden lg:flex items-center space-x-8">
+            <a
+              href="index.html"
+              class="nav-link"
+              data-lang-en="Home"
+              data-lang-sq="Ballina"
+              data-lang-de="Startseite"
+              >Home</a
+            >
+            <a
+              href="services.html"
+              class="nav-link"
+              data-lang-en="Services"
+              data-lang-sq="Shërbimet"
+              data-lang-de="Dienstleistungen"
+              >Services</a
+            >
+            <a
+              href="projects.html"
+              class="nav-link"
+              data-lang-en="Projects"
+              data-lang-sq="Projektet"
+              data-lang-de="Projekte"
+              >Projects</a
+            >
+            <a
+              href="about.html"
+              class="nav-link"
+              data-lang-en="About"
+              data-lang-sq="Rreth Nesh"
+              data-lang-de="Über uns"
+              >About</a
+            >
+            <a
+              href="blog.html"
+              class="nav-link"
+              data-lang-en="Blog"
+              data-lang-sq="Blog"
+              data-lang-de="Blog"
+              >Blog</a
+            >
+            <a
+              href="contact.html"
+              class="nav-link"
+              data-lang-en="Contact"
+              data-lang-sq="Kontakti"
+              data-lang-de="Kontakt"
+              >Contact</a
+            >
+          </div>
+
+          <!-- Controls -->
+          <div class="flex items-center space-x-4">
+            <!-- Language Dropdown -->
+            <div class="lang-dropdown">
+              <button
+                id="lang-dropdown-btn"
+                class="lang-dropdown-btn"
+                aria-label="Select Language"
+              >
+                <span id="current-lang-flag" class="lang-flag">🇬🇧</span>
+                <span id="current-lang-code" class="lang-code">EN</span>
+                <svg
+                  class="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+              <div id="lang-dropdown-content" class="lang-dropdown-content">
+                <div class="lang-option active" data-lang="en">
+                  <span class="lang-flag">🇬🇧</span>
+                  <span>English</span>
+                </div>
+                <div class="lang-option" data-lang="sq">
+                  <span class="lang-flag">🇦🇱</span>
+                  <span>Shqip</span>
+                </div>
+                <div class="lang-option" data-lang="de">
+                  <span class="lang-flag">🇩🇪</span>
+                  <span>Deutsch</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Theme Toggle -->
+            <button
+              id="theme-toggle"
+              class="theme-toggle"
+              aria-label="Toggle Dark Mode"
+            >
+              <svg
+                id="theme-icon-dark"
+                class="w-5 h-5 hidden dark:block"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"
+                ></path>
+              </svg>
+              <svg
+                id="theme-icon-light"
+                class="w-5 h-5 block dark:hidden"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fill-rule="evenodd"
+                  d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z"
+                  clip-rule="evenodd"
+                ></path>
+              </svg>
+            </button>
+
+            <!-- Mobile Menu Button -->
+            <button
+              id="mobile-menu-btn"
+              class="lg:hidden p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
+            >
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div
+          id="mobile-menu"
+          class="lg:hidden mt-4 pb-4 border-t border-gray-200 dark:border-gray-700 hidden"
+        >
+          <div class="flex flex-col space-y-2 pt-4">
+            <a
+              href="index.html"
+              class="nav-link-mobile"
+              data-lang-en="Home"
+              data-lang-sq="Ballina"
+              data-lang-de="Startseite"
+              >Home</a
+            >
+            <a
+              href="services.html"
+              class="nav-link-mobile"
+              data-lang-en="Services"
+              data-lang-sq="Shërbimet"
+              data-lang-de="Dienstleistungen"
+              >Services</a
+            >
+            <a
+              href="projects.html"
+              class="nav-link-mobile"
+              data-lang-en="Projects"
+              data-lang-sq="Projektet"
+              data-lang-de="Projekte"
+              >Projects</a
+            >
+            <a
+              href="about.html"
+              class="nav-link-mobile"
+              data-lang-en="About"
+              data-lang-sq="Rreth Nesh"
+              data-lang-de="Über uns"
+              >About</a
+            >
+            <a
+              href="blog.html"
+              class="nav-link-mobile"
+              data-lang-en="Blog"
+              data-lang-sq="Blog"
+              data-lang-de="Blog"
+              >Blog</a
+            >
+            <a
+              href="contact.html"
+              class="nav-link-mobile"
+              data-lang-en="Contact"
+              data-lang-sq="Kontakti"
+              data-lang-de="Kontakt"
+              >Contact</a
+            >
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="pt-24">
+      <!-- Hero Section -->
+      <section
+        class="py-20 bg-gradient-to-br from-teal-blue/10 to-electric-orange/10"
+      >
+        <div class="container mx-auto px-4">
+          <div class="text-center max-w-4xl mx-auto">
+            <h1
+              class="text-4xl md:text-6xl font-display font-bold mb-6"
+              data-lang-en="Terms of Service"
+              data-lang-sq="Kushtet e Shërbimit"
+              data-lang-de="Nutzungsbedingungen"
+            >
+              Terms of Service
+            </h1>
+            <p
+              class="text-xl text-gray-600 dark:text-gray-300"
+              data-lang-en="Last updated: January 7, 2025"
+              data-lang-sq="Përditësuar së fundmi: 7 Janar 2025"
+              data-lang-de="Zuletzt aktualisiert: 7. Januar 2025"
+            >
+              Last updated: January 7, 2025
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Terms Content -->
+      <section class="py-16">
+        <div class="container mx-auto px-4 max-w-4xl">
+          <div class="prose prose-lg dark:prose-invert max-w-none">
+            <!-- Introduction -->
+            <div class="mb-12">
+              <h2
+                class="text-2xl font-display font-bold mb-4 text-teal-blue"
+                data-lang-en="1. Agreement to Terms"
+                data-lang-sq="1. Marrëveshja për Kushtet"
+                data-lang-de="1. Vereinbarung zu den Bedingungen"
+              >
+                1. Agreement to Terms
+              </h2>
+              <p
+                data-lang-en="By accessing and using LaraTech sh.p.k services, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our services."
+                data-lang-sq="Duke aksesuar dhe përdorur shërbimet e LaraTech sh.p.k, ju pajtoheni të jeni të lidhur me këto Kushte të Shërbimit. Nëse nuk pajtoheni me këto kushte, ju lutemi mos përdorni shërbimet tona."
+                data-lang-de="Durch den Zugriff auf und die Nutzung der Dienstleistungen von LaraTech sh.p.k stimmen Sie zu, an diese Nutzungsbedingungen gebunden zu sein. Wenn Sie diesen Bedingungen nicht zustimmen, nutzen Sie bitte unsere Dienstleistungen nicht."
+              >
+                By accessing and using LaraTech sh.p.k services, you agree to be
+                bound by these Terms of Service. If you do not agree to these
+                terms, please do not use our services.
+              </p>
+            </div>
+
+            <!-- Services -->
+            <div class="mb-12">
+              <h2
+                class="text-2xl font-display font-bold mb-4 text-teal-blue"
+                data-lang-en="2. Services Provided"
+                data-lang-sq="2. Shërbimet e Ofruara"
+                data-lang-de="2. Erbrachte Dienstleistungen"
+              >
+                2. Services Provided
+              </h2>
+              <p
+                data-lang-en="LaraTech sh.p.k provides the following services:"
+                data-lang-sq="LaraTech sh.p.k ofron shërbimet e mëposhtme:"
+                data-lang-de="LaraTech sh.p.k bietet folgende Dienstleistungen:"
+              >
+                LaraTech sh.p.k provides the following services:
+              </p>
+              <ul class="list-disc pl-6 mb-4">
+                <li
+                  data-lang-en="Digital automation and workflow optimization"
+                  data-lang-sq="Automatizimi digjital dhe optimizimi i rrjedhës së punës"
+                  data-lang-de="Digitale Automatisierung und Workflow-Optimierung"
+                >
+                  Digital automation and workflow optimization
+                </li>
+                <li
+                  data-lang-en="Web development and design"
+                  data-lang-sq="Zhvillimi dhe dizajni i faqeve të internetit"
+                  data-lang-de="Webentwicklung und Design"
+                >
+                  Web development and design
+                </li>
+                <li
+                  data-lang-en="Smart home solutions and IoT integration"
+                  data-lang-sq="Zgjidhje shtëpi të zgjuara dhe integrimi IoT"
+                  data-lang-de="Smart-Home-Lösungen und IoT-Integration"
+                >
+                  Smart home solutions and IoT integration
+                </li>
+                <li
+                  data-lang-en="AI workflow implementation"
+                  data-lang-sq="Implementimi i rrjedhës së punës AI"
+                  data-lang-de="KI-Workflow-Implementierung"
+                >
+                  AI workflow implementation
+                </li>
+                <li
+                  data-lang-en="Technical consulting and support"
+                  data-lang-sq="Konsulencë teknike dhe mbështetje"
+                  data-lang-de="Technische Beratung und Support"
+                >
+                  Technical consulting and support
+                </li>
+              </ul>
+            </div>
+
+            <!-- Intellectual Property -->
+            <div class="mb-12">
+              <h2
+                class="text-2xl font-display font-bold mb-4 text-teal-blue"
+                data-lang-en="3. Intellectual Property Rights"
+                data-lang-sq="3. Të Drejtat e Pronësisë Intelektuale"
+                data-lang-de="3. Geistige Eigentumsrechte"
+              >
+                3. Intellectual Property Rights
+              </h2>
+              <h3
+                class="text-xl font-semibold mb-3"
+                data-lang-en="3.1 Client Ownership"
+                data-lang-sq="3.1 Pronësia e Klientit"
+                data-lang-de="3.1 Kundenbesitz"
+              >
+                3.1 Client Ownership
+              </h3>
+              <p
+                data-lang-en="Upon full payment, clients retain ownership of all custom-developed solutions, code, and deliverables created specifically for their project."
+                data-lang-sq="Pas pagesës së plotë, klientët mbajnë pronësinë e të gjitha zgjidhjeve të zhvilluara me porosi, kodit dhe rezultateve të krijuara posaçërisht për projektin e tyre."
+                data-lang-de="Nach vollständiger Zahlung behalten Kunden das Eigentum an allen maßgeschneiderten Lösungen, Codes und Liefergegenständen, die speziell für ihr Projekt erstellt wurden."
+              >
+                Upon full payment, clients retain ownership of all
+                custom-developed solutions, code, and deliverables created
+                specifically for their project.
+              </p>
+
+              <h3
+                class="text-xl font-semibold mb-3"
+                data-lang-en="3.2 LaraTech Rights"
+                data-lang-sq="3.2 Të Drejtat e LaraTech"
+                data-lang-de="3.2 LaraTech-Rechte"
+              >
+                3.2 LaraTech Rights
+              </h3>
+              <p
+                data-lang-en="LaraTech retains rights to:"
+                data-lang-sq="LaraTech mban të drejtat për:"
+                data-lang-de="LaraTech behält Rechte an:"
+              >
+                LaraTech retains rights to:
+              </p>
+              <ul class="list-disc pl-6 mb-4">
+                <li
+                  data-lang-en="Pre-existing proprietary frameworks and methodologies"
+                  data-lang-sq="Kornizat dhe metodologjitë e pronësisë së ekzistuar"
+                  data-lang-de="Bestehende proprietäre Frameworks und Methodologien"
+                >
+                  Pre-existing proprietary frameworks and methodologies
+                </li>
+                <li
+                  data-lang-en="General knowledge and expertise gained during projects"
+                  data-lang-sq="Njohuritë dhe ekspertiza e përgjithshme e fituar gjatë projekteve"
+                  data-lang-de="Allgemeines Wissen und Expertise, die während Projekten gewonnen wurde"
+                >
+                  General knowledge and expertise gained during projects
+                </li>
+                <li
+                  data-lang-en="Portfolio rights to showcase completed work (with client permission)"
+                  data-lang-sq="Të drejtat e portofolit për të treguar punën e përfunduar (me lejen e klientit)"
+                  data-lang-de="Portfolio-Rechte zur Präsentation abgeschlossener Arbeiten (mit Kundenfreigabe)"
+                >
+                  Portfolio rights to showcase completed work (with client
+                  permission)
+                </li>
+              </ul>
+            </div>
+
+            <!-- Payment Terms -->
+            <div class="mb-12">
+              <h2
+                class="text-2xl font-display font-bold mb-4 text-teal-blue"
+                data-lang-en="4. Payment Terms"
+                data-lang-sq="4. Kushtet e Pagesës"
+                data-lang-de="4. Zahlungsbedingungen"
+              >
+                4. Payment Terms
+              </h2>
+              <h3
+                class="text-xl font-semibold mb-3"
+                data-lang-en="4.1 Payment Schedule"
+                data-lang-sq="4.1 Orari i Pagesës"
+                data-lang-de="4.1 Zahlungsplan"
+              >
+                4.1 Payment Schedule
+              </h3>
+              <ul class="list-disc pl-6 mb-4">
+                <li
+                  data-lang-en="Projects over €5,000: 50% upfront, 50% upon completion"
+                  data-lang-sq="Projektet mbi €5,000: 50% paraprakisht, 50% pas përfundimit"
+                  data-lang-de="Projekte über €5.000: 50% im Voraus, 50% bei Fertigstellung"
+                >
+                  Projects over €5,000: 50% upfront, 50% upon completion
+                </li>
+                <li
+                  data-lang-en="Projects under €5,000: Full payment upon completion"
+                  data-lang-sq="Projektet nën €5,000: Pagesa e plotë pas përfundimit"
+                  data-lang-de="Projekte unter €5.000: Vollständige Zahlung bei Fertigstellung"
+                >
+                  Projects under €5,000: Full payment upon completion
+                </li>
+                <li
+                  data-lang-en="Ongoing services: Monthly billing"
+                  data-lang-sq="Shërbimet e vazhdueshme: Faturimi mujor"
+                  data-lang-de="Laufende Dienstleistungen: Monatliche Abrechnung"
+                >
+                  Ongoing services: Monthly billing
+                </li>
+              </ul>
+
+              <h3
+                class="text-xl font-semibold mb-3"
+                data-lang-en="4.2 Late Payments"
+                data-lang-sq="4.2 Pagesat e Vonuara"
+                data-lang-de="4.2 Verspätete Zahlungen"
+              >
+                4.2 Late Payments
+              </h3>
+              <p
+                data-lang-en="Late payments may incur a 2% monthly service charge. Services may be suspended for payments overdue by more than 30 days."
+                data-lang-sq="Pagesat e vonuara mund të përfshijnë një tarifë shërbimi mujore prej 2%. Shërbimet mund të pezullohen për pagesat me mbi 30 ditë vonesë."
+                data-lang-de="Verspätete Zahlungen können eine monatliche Servicegebühr von 2% nach sich ziehen. Dienstleistungen können bei Zahlungen suspendiert werden, die mehr als 30 Tage überfällig sind."
+              >
+                Late payments may incur a 2% monthly service charge. Services
+                may be suspended for payments overdue by more than 30 days.
+              </p>
+            </div>
+
+            <!-- Limitation of Liability -->
+            <div class="mb-12">
+              <h2
+                class="text-2xl font-display font-bold mb-4 text-teal-blue"
+                data-lang-en="5. Limitation of Liability"
+                data-lang-sq="5. Kufizimi i Përgjegjësisë"
+                data-lang-de="5. Haftungsbeschränkung"
+              >
+                5. Limitation of Liability
+              </h2>
+              <p
+                data-lang-en="LaraTech's liability is limited to the total amount paid for the specific service. We are not liable for:"
+                data-lang-sq="Përgjegjësia e LaraTech është e kufizuar në shumën totale të paguar për shërbimin specifik. Ne nuk jemi përgjegjës për:"
+                data-lang-de="Die Haftung von LaraTech ist auf den Gesamtbetrag begrenzt, der für die spezifische Dienstleistung gezahlt wurde. Wir haften nicht für:"
+              >
+                LaraTech's liability is limited to the total amount paid for the
+                specific service. We are not liable for:
+              </p>
+              <ul class="list-disc pl-6 mb-4">
+                <li
+                  data-lang-en="Indirect, incidental, or consequential damages"
+                  data-lang-sq="Dëmet indirekte, të rastësishme ose pasojnë"
+                  data-lang-de="Indirekte, zufällige oder Folgeschäden"
+                >
+                  Indirect, incidental, or consequential damages
+                </li>
+                <li
+                  data-lang-en="Loss of profits or business opportunities"
+                  data-lang-sq="Humbja e fitimeve ose mundësive të biznesit"
+                  data-lang-de="Verlust von Gewinnen oder Geschäftsmöglichkeiten"
+                >
+                  Loss of profits or business opportunities
+                </li>
+                <li
+                  data-lang-en="Third-party actions or external factors beyond our control"
+                  data-lang-sq="Veprimet e palëve të treta ose faktorët e jashtëm jashtë kontrollit tonë"
+                  data-lang-de="Handlungen Dritter oder externe Faktoren außerhalb unserer Kontrolle"
+                >
+                  Third-party actions or external factors beyond our control
+                </li>
+              </ul>
+            </div>
+
+            <!-- Dispute Resolution -->
+            <div class="mb-12">
+              <h2
+                class="text-2xl font-display font-bold mb-4 text-teal-blue"
+                data-lang-en="6. Dispute Resolution"
+                data-lang-sq="6. Zgjidhja e Mosmarrëveshjeve"
+                data-lang-de="6. Streitbeilegung"
+              >
+                6. Dispute Resolution
+              </h2>
+              <p
+                data-lang-en="Any disputes arising from these terms or our services will be resolved through:"
+                data-lang-sq="Çdo mosmarrëveshje që lind nga këto kushte ose shërbimet tona do të zgjidhet përmes:"
+                data-lang-de="Alle Streitigkeiten, die aus diesen Bedingungen oder unseren Dienstleistungen entstehen, werden gelöst durch:"
+              >
+                Any disputes arising from these terms or our services will be
+                resolved through:
+              </p>
+              <ol class="list-decimal pl-6 mb-4">
+                <li
+                  data-lang-en="Good faith negotiation between parties"
+                  data-lang-sq="Negociata me besim të mirë midis palëve"
+                  data-lang-de="Verhandlungen in gutem Glauben zwischen den Parteien"
+                >
+                  Good faith negotiation between parties
+                </li>
+                <li
+                  data-lang-en="Mediation through a mutually agreed mediator"
+                  data-lang-sq="Mediacioni përmes një mediatori të pajtuar reciprokisht"
+                  data-lang-de="Mediation durch einen gegenseitig vereinbarten Mediator"
+                >
+                  Mediation through a mutually agreed mediator
+                </li>
+                <li
+                  data-lang-en="Arbitration under Kosovo law if mediation fails"
+                  data-lang-sq="Arbitrazhi sipas ligjit të Kosovës nëse mediacioni dështon"
+                  data-lang-de="Schiedsverfahren nach kosovarischem Recht, wenn die Mediation scheitert"
+                >
+                  Arbitration under Kosovo law if mediation fails
+                </li>
+              </ol>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="mb-12">
+              <h2
+                class="text-2xl font-display font-bold mb-4 text-teal-blue"
+                data-lang-en="7. Contact Information"
+                data-lang-sq="7. Informacioni i Kontaktit"
+                data-lang-de="7. Kontaktinformationen"
+              >
+                7. Contact Information
+              </h2>
+              <p
+                data-lang-en="For questions about these terms, please contact us:"
+                data-lang-sq="Për pyetje rreth këtyre kushteve, ju lutemi na kontaktoni:"
+                data-lang-de="Bei Fragen zu diesen Bedingungen kontaktieren Sie uns bitte:"
+              >
+                For questions about these terms, please contact us:
+              </p>
+              <div class="bg-gray-100 dark:bg-gray-800 p-6 rounded-lg mt-4">
+                <p class="font-semibold mb-2">LaraTech sh.p.k</p>
+                <p
+                  data-lang-en="Address: Rr. Safet Boletini 46, Iliridë, Mitrovica, Kosovo"
+                  data-lang-sq="Adresa: Rr. Safet Boletini 46, Iliridë, Mitrovica, Kosovo"
+                  data-lang-de="Adresse: Rr. Safet Boletini 46, Iliridë, Mitrovica, Kosovo"
+                >
+                  Address: Rr. Safet Boletini 46, Iliridë, Mitrovica, Kosovo
+                </p>
+                <p>Email: office@laratech.ai</p>
+                <p>Phone: +383 49 479 759</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-12">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+          <!-- Company Info -->
+          <div class="md:col-span-2">
+            <div class="flex items-center space-x-3 mb-4">
+              <img
+                src="assets/Logo.png"
+                alt="LaraTech Logo"
+                class="h-16 w-auto object-contain logo-theme"
+              />
+            </div>
+            <p
+              class="text-gray-300 mb-4"
+              data-lang-en="Digital & Automation Services | Smart-Tech & Web Solutions"
+              data-lang-sq="Shërbime Digjitale & Automatizimi | Zgjidhje Smart-Tech & Web"
+              data-lang-de="Digitale & Automatisierungsdienstleistungen | Smart-Tech & Web-Lösungen"
+            >
+              Digital & Automation Services | Smart-Tech & Web Solutions
+            </p>
+            <div class="flex space-x-4">
+              <a
+                href="https://linkedin.com/company/laratech.ai"
+                class="text-gray-400 hover:text-teal-blue transition-colors"
+                aria-label="LinkedIn"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://instagram.com/laratech.ai"
+                class="text-gray-400 hover:text-teal-blue transition-colors"
+                aria-label="Instagram"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 6.62 5.367 11.987 11.988 11.987 6.62 0 11.987-5.367 11.987-11.987C24.014 5.367 18.637.001 12.017.001zM8.449 16.988c-1.297 0-2.448-.49-3.323-1.297C4.198 14.895 3.708 13.744 3.708 12.447s.49-2.448 1.297-3.323c.875-.807 2.026-1.297 3.323-1.297s2.448.49 3.323 1.297c.807.875 1.297 2.026 1.297 3.323s-.49 2.448-1.297 3.323c-.875.807-2.026 1.297-3.323 1.297zm7.83-9.281h-1.297v1.297h1.297V7.707zm-3.323 1.297c-.49 0-.807-.317-.807-.807s.317-.807.807-.807.807.317.807.807-.317.807-.807.807zm6.62 0c-3.323 0-6.62-2.297-6.62-5.62s2.297-5.62 5.62-5.62 5.62 2.297 5.62 5.62-2.297 5.62-5.62 5.62z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://x.com/Laratech_eu"
+                class="text-gray-400 hover:text-teal-blue transition-colors"
+                aria-label="X (Twitter)"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                  />
+                </svg>
+              </a>
+              <a
+                href="https://facebook.com/laratech.eu"
+                class="text-gray-400 hover:text-teal-blue transition-colors"
+                aria-label="Facebook"
+              >
+                <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
+                  />
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div>
+            <h3
+              class="text-lg font-semibold mb-4"
+              data-lang-en="Quick Links"
+              data-lang-sq="Lidhje të Shpejta"
+              data-lang-de="Schnelle Links"
+            >
+              Quick Links
+            </h3>
+            <ul class="space-y-2">
+              <li>
+                <a
+                  href="services.html"
+                  class="text-gray-300 hover:text-teal-blue transition-colors"
+                  data-lang-en="Services"
+                  data-lang-sq="Shërbimet"
+                  data-lang-de="Dienstleistungen"
+                  >Services</a
+                >
+              </li>
+              <li>
+                <a
+                  href="projects.html"
+                  class="text-gray-300 hover:text-teal-blue transition-colors"
+                  data-lang-en="Projects"
+                  data-lang-sq="Projektet"
+                  data-lang-de="Projekte"
+                  >Projects</a
+                >
+              </li>
+              <li>
+                <a
+                  href="about.html"
+                  class="text-gray-300 hover:text-teal-blue transition-colors"
+                  data-lang-en="About"
+                  data-lang-sq="Rreth Nesh"
+                  data-lang-de="Über uns"
+                  >About</a
+                >
+              </li>
+              <li>
+                <a
+                  href="blog.html"
+                  class="text-gray-300 hover:text-teal-blue transition-colors"
+                  data-lang-en="Blog"
+                  data-lang-sq="Blog"
+                  data-lang-de="Blog"
+                  >Blog</a
+                >
+              </li>
+            </ul>
+          </div>
+
+          <!-- Contact Info -->
+          <div>
+            <h3
+              class="text-lg font-semibold mb-4"
+              data-lang-en="Contact"
+              data-lang-sq="Kontakti"
+              data-lang-de="Kontakt"
+            >
+              Contact
+            </h3>
+            <div class="space-y-2 text-gray-300">
+              <p>📧 office@laratech.ai</p>
+              <p>📞 +383 49 479 759</p>
+              <p
+                data-lang-en="📍 Mitrovica, Kosovo"
+                data-lang-sq="📍 Mitrovicë, Kosovo"
+                data-lang-de="📍 Mitrovica, Kosovo"
+              >
+                📍 Mitrovica, Kosovo
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Bar -->
+        <div
+          class="border-t border-gray-700 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p
+            class="text-gray-400 text-sm"
+            data-lang-en="© 2025 LaraTech sh.p.k. All rights reserved."
+            data-lang-sq="© 2025 LaraTech sh.p.k. Të gjitha të drejtat e rezervuara."
+            data-lang-de="© 2025 LaraTech sh.p.k. Alle Rechte vorbehalten."
+          >
+            © 2025 LaraTech sh.p.k. All rights reserved.
+          </p>
+          <div class="flex space-x-6 mt-4 md:mt-0">
+            <a
+              href="privacy-policy.html"
+              class="text-gray-400 hover:text-teal-blue transition-colors text-sm"
+              data-lang-en="Privacy Policy"
+              data-lang-sq="Politika e Privatësisë"
+              data-lang-de="Datenschutzrichtlinie"
+              >Privacy Policy</a
+            >
+            <a
+              href="terms-of-service.html"
+              class="text-gray-400 hover:text-teal-blue transition-colors text-sm"
+              data-lang-en="Terms of Service"
+              data-lang-sq="Kushtet e Shërbimit"
+              data-lang-de="Nutzungsbedingungen"
+              >Terms of Service</a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+  </body>
+</html>

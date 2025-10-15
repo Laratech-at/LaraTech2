@@ -222,12 +222,15 @@ vercel domains add laratech.ai
 - [ ] All pages load correctly
 - [ ] Navigation works (desktop & mobile)
 - [ ] Dark/light mode toggle
-- [ ] Language switcher (EN/SQ)
-- [ ] Contact form submission
+- [ ] Language switcher (EN/SQ/DE)
+- [ ] Contact form submission with enhanced fields
+- [ ] Project filtering and view toggle functionality
+- [ ] Legal pages (Privacy Policy, Terms of Service) accessible
 - [ ] Google Maps loads and shows correct location
 - [ ] "Get Directions" button works on mobile
 - [ ] Tawk.to chat widget appears
 - [ ] All links work (no 404s)
+- [ ] Lead magnet section displays correctly
 
 ### 2. Performance Testing
 
@@ -377,9 +380,13 @@ Before going live:
 - [ ] Added logo and brand assets
 - [ ] Set up contact form backend
 - [ ] Updated domain in all files
+- [ ] Tested project filtering functionality
+- [ ] Verified legal pages are accessible
+- [ ] Tested enhanced contact form fields
 - [ ] Uploaded to hosting/platform
 - [ ] Enabled SSL/HTTPS
 - [ ] Tested all functionality
+- [ ] Ran QA checklist (`QA_CHECKLIST.md`)
 - [ ] Ran Lighthouse audit
 - [ ] Submitted sitemap to Google
 - [ ] Configured Google Search Console
@@ -388,6 +395,6 @@ Before going live:
 
 ---
 
-**Last Updated**: October 7, 2025
+**Last Updated**: January 7, 2025
 
 Good luck with your deployment! 🚀
