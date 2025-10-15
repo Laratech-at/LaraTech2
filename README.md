@@ -267,7 +267,7 @@ The contact form currently prevents default submit. To integrate:
 - 🌐 Website: www.laratech.ai
 - 💼 LinkedIn: linkedin.com/company/laratech.ai
 - 📸 Instagram: instagram.com/laratech.ai
-- 🐦 X (Twitter): x.com/Laratech_eu
+- 🐦 X (Twitter): x.com/LaraTech_AI
 - 📘 Facebook: facebook.com/laratech.eu
 
 ## 📝 Change Log

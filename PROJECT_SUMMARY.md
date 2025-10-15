@@ -244,7 +244,7 @@ Off White:     #F3F4F6  (Light mode text)
 - **Website**: www.laratech.ai
 - **LinkedIn**: linkedin.com/company/laratech.ai
 - **Instagram**: instagram.com/laratech.ai
-- **Twitter/X**: x.com/Laratech_eu
+- **Twitter/X**: x.com/LaraTech_AI
 - **Facebook**: facebook.com/laratech.eu
 
 ## 🚀 Quick Start Guide
