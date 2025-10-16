@@ -173,8 +173,46 @@
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 
-    <!-- Tailwind CSS - Local build instead of CDN -->
-    <link rel="stylesheet" href="css/tailwind.css" />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "teal-blue": "#00C8C8",
+              "neon-blue": "#00FFFF",
+              "electric-orange": "#FF6B00",
+              "jet-black": "#0A0A0A",
+            },
+            fontFamily: {
+              sans: ["Inter", "system-ui", "sans-serif"],
+              display: ["Orbitron", "sans-serif"],
+            },
+            animation: {
+              "glow-pulse": "glow-pulse 2s ease-in-out infinite",
+              float: "float 3s ease-in-out infinite",
+              "slide-up": "slide-up 0.6s ease-out",
+            },
+            keyframes: {
+              "glow-pulse": {
+                "0%, 100%": { boxShadow: "0 0 20px rgba(0, 255, 255, 0.5)" },
+                "50%": { boxShadow: "0 0 40px rgba(0, 255, 255, 0.8)" },
+              },
+              float: {
+                "0%, 100%": { transform: "translateY(0px)" },
+                "50%": { transform: "translateY(-20px)" },
+              },
+              "slide-up": {
+                "0%": { opacity: "0", transform: "translateY(30px)" },
+                "100%": { opacity: "1", transform: "translateY(0)" },
+              },
+            },
+          },
+        },
+      };
+    </script>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
