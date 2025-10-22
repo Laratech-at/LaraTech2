@@ -38,7 +38,10 @@ self.addEventListener("install", (event) => {
         return Promise.allSettled(
           CRITICAL_RESOURCES.map((resource) =>
             cache.add(resource).catch((error) => {
-              console.warn(`Service Worker: Failed to cache ${resource}:`, error);
+              console.warn(
+                `Service Worker: Failed to cache ${resource}:`,
+                error
+              );
               return null; // Continue with other resources
             })
           )
@@ -78,10 +81,11 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// Fetch event - implement caching strategies
+// Fetch event - implement caching strategies with performance monitoring
 self.addEventListener("fetch", (event) => {
   const { request } = event;
   const url = new URL(request.url);
+  const startTime = performance.now();
 
   // Skip non-GET requests
   if (request.method !== "GET") {
@@ -93,19 +97,51 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
-  // Handle different types of requests
+  // Handle different types of requests with performance monitoring
   if (isCriticalResource(request.url)) {
     // Cache First strategy for critical resources
-    event.respondWith(cacheFirst(request));
+    event.respondWith(
+      cacheFirst(request).then((response) => {
+        const endTime = performance.now();
+        console.log(
+          `Fetch (Cache First): ${request.url} - ${(endTime - startTime).toFixed(2)}ms`
+        );
+        return response;
+      })
+    );
   } else if (isImageResource(request.url)) {
     // Cache First strategy for images
-    event.respondWith(cacheFirst(request));
+    event.respondWith(
+      cacheFirst(request).then((response) => {
+        const endTime = performance.now();
+        console.log(
+          `Fetch (Image): ${request.url} - ${(endTime - startTime).toFixed(2)}ms`
+        );
+        return response;
+      })
+    );
   } else if (isHTMLResource(request.url)) {
     // Network First strategy for HTML pages
-    event.respondWith(networkFirst(request));
+    event.respondWith(
+      networkFirst(request).then((response) => {
+        const endTime = performance.now();
+        console.log(
+          `Fetch (Network First): ${request.url} - ${(endTime - startTime).toFixed(2)}ms`
+        );
+        return response;
+      })
+    );
   } else {
     // Stale While Revalidate for other resources
-    event.respondWith(staleWhileRevalidate(request));
+    event.respondWith(
+      staleWhileRevalidate(request).then((response) => {
+        const endTime = performance.now();
+        console.log(
+          `Fetch (Stale While Revalidate): ${request.url} - ${(endTime - startTime).toFixed(2)}ms`
+        );
+        return response;
+      })
+    );
   }
 });
 
@@ -228,35 +264,6 @@ self.addEventListener("message", (event) => {
       caches.open(STATIC_CACHE).then((cache) => cache.addAll(event.data.urls))
     );
   }
-});
-
-// Performance monitoring
-self.addEventListener("fetch", (event) => {
-  const startTime = performance.now();
-
-  event.respondWith(
-    (async () => {
-      try {
-        const response = await fetch(event.request);
-        const endTime = performance.now();
-
-        // Log performance metrics
-        console.log(
-          `Fetch: ${event.request.url} - ${(endTime - startTime).toFixed(2)}ms`
-        );
-
-        return response;
-      } catch (error) {
-        const endTime = performance.now();
-        console.log(
-          `Fetch failed: ${event.request.url} - ${(endTime - startTime).toFixed(
-            2
-          )}ms`
-        );
-        throw error;
-      }
-    })()
-  );
 });
 
 console.log("LaraTech Service Worker loaded successfully! 🚀");
