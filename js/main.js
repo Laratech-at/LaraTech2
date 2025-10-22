@@ -959,34 +959,33 @@ const initPerformanceMonitoring = () => {
     window.performanceMetrics = performanceMetrics;
   }
 
-  // Monitor frame rate - Optimized to reduce overhead
+  // Monitor frame rate - Highly optimized with limited duration
   let frameCount = 0;
   let lastTime = performance.now();
-  let isMonitoring = true;
+  let startTime = performance.now();
+  const monitorDuration = 8000; // Only monitor for 8 seconds
 
   const measureFPS = () => {
-    if (!isMonitoring) return;
+    const currentTime = performance.now();
+    
+    // Stop monitoring after duration
+    if (currentTime - startTime > monitorDuration) {
+      return;
+    }
 
     frameCount++;
-    const currentTime = performance.now();
 
-    if (currentTime - lastTime >= 2000) {
-      // Check every 2 seconds instead of 1
+    if (currentTime - lastTime >= 3000) {
+      // Check every 3 seconds
       const fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
 
-      // Only log if FPS is consistently low
-      if (fps < 25) {
+      // Only log if FPS is critically low
+      if (fps < 20) {
         console.warn("⚠️ Low FPS detected:", fps);
       }
 
       frameCount = 0;
       lastTime = currentTime;
-    }
-
-    // Stop monitoring after 10 seconds to reduce overhead
-    if (currentTime - performance.now() > 10000) {
-      isMonitoring = false;
-      return;
     }
 
     requestAnimationFrame(measureFPS);
@@ -995,7 +994,7 @@ const initPerformanceMonitoring = () => {
   // Start FPS monitoring with delay to avoid initial load impact
   setTimeout(() => {
     requestAnimationFrame(measureFPS);
-  }, 2000);
+  }, 3000);
 };
 
 // ============================================

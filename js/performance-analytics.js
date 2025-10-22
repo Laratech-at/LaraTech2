@@ -136,10 +136,12 @@ const PerformanceAnalytics = {
     }
   },
 
-  // Track User Interactions
+  // Track User Interactions (Throttled)
   trackUserInteractions() {
     let interactionCount = 0;
     let lastInteraction = 0;
+    let scrollThrottle = null;
+    let scrollCount = 0;
 
     const trackInteraction = (type) => {
       const now = performance.now();
@@ -155,29 +157,67 @@ const PerformanceAnalytics = {
       });
     };
 
-    ["click", "keydown", "scroll", "touchstart"].forEach((eventType) => {
+    // Throttled scroll tracking (only log every 500ms)
+    const trackScroll = () => {
+      if (scrollThrottle) return;
+      
+      scrollThrottle = setTimeout(() => {
+        scrollCount++;
+        const now = performance.now();
+        const timeSinceLastInteraction = now - lastInteraction;
+        
+        // Only log scroll events every 10th scroll or after 5 seconds
+        if (scrollCount % 10 === 0 || timeSinceLastInteraction > 5000) {
+          interactionCount++;
+          lastInteraction = now;
+          
+          this.reportMetric("user-interaction", {
+            type: "scroll",
+            count: interactionCount,
+            scrollCount: scrollCount,
+            timeSinceLastInteraction,
+          });
+        }
+        
+        scrollThrottle = null;
+      }, 500);
+    };
+
+    // Regular tracking for other events
+    ["click", "keydown", "touchstart"].forEach((eventType) => {
       document.addEventListener(eventType, () => trackInteraction(eventType), {
         passive: true,
       });
     });
+
+    // Throttled scroll tracking
+    document.addEventListener("scroll", trackScroll, { passive: true });
   },
 
-  // Track Frame Rate
+  // Track Frame Rate (Optimized - runs for limited time)
   trackFrameRate() {
     let frameCount = 0;
     let lastTime = performance.now();
     let fpsHistory = [];
+    let startTime = performance.now();
+    const monitorDuration = 10000; // Only monitor for 10 seconds
 
     const measureFPS = () => {
       frameCount++;
       const currentTime = performance.now();
 
-      if (currentTime - lastTime >= 1000) {
+      // Stop monitoring after duration
+      if (currentTime - startTime > monitorDuration) {
+        return;
+      }
+
+      if (currentTime - lastTime >= 2000) {
+        // Check every 2 seconds instead of 1
         const fps = Math.round((frameCount * 1000) / (currentTime - lastTime));
         fpsHistory.push(fps);
 
-        // Keep only last 10 measurements
-        if (fpsHistory.length > 10) {
+        // Keep only last 5 measurements
+        if (fpsHistory.length > 5) {
           fpsHistory.shift();
         }
 
@@ -190,8 +230,8 @@ const PerformanceAnalytics = {
           history: fpsHistory,
         };
 
-        // Report low FPS
-        if (fps < 30) {
+        // Only report critically low FPS (< 20)
+        if (fps < 20) {
           this.reportMetric("low-fps", { fps, average: avgFPS });
         }
 
@@ -202,7 +242,10 @@ const PerformanceAnalytics = {
       requestAnimationFrame(measureFPS);
     };
 
-    requestAnimationFrame(measureFPS);
+    // Delay start to avoid initial load impact
+    setTimeout(() => {
+      requestAnimationFrame(measureFPS);
+    }, 3000);
   },
 
   // Track Custom Metrics

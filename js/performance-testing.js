@@ -95,10 +95,25 @@ const PerformanceTestSuite = {
 PerformanceTestSuite.addTest(
   "Page Load Time",
   async () => {
+    // If already loaded, return immediately
+    if (document.readyState === "complete") {
+      const navigation = performance.getEntriesByType("navigation")[0];
+      if (navigation) {
+        const loadTime = navigation.loadEventEnd - navigation.fetchStart;
+        return loadTime > 0 ? loadTime : navigation.duration;
+      }
+      return performance.now();
+    }
+    
     return new Promise((resolve) => {
       window.addEventListener("load", () => {
         const navigation = performance.getEntriesByType("navigation")[0];
-        resolve(navigation.loadEventEnd - navigation.navigationStart);
+        if (navigation) {
+          const loadTime = navigation.loadEventEnd - navigation.fetchStart;
+          resolve(loadTime > 0 ? loadTime : navigation.duration);
+        } else {
+          resolve(performance.now());
+        }
       });
     });
   },
