@@ -1318,116 +1318,14 @@ const initLoadingStates = () => {
 };
 
 // ============================================
-// Particle Animation
+// Particle Animation - Removed duplicate system
 // ============================================
+// Particle animation is now handled in index.html inline script
+// to avoid conflicts and ensure proper initialization
 const initParticleAnimation = () => {
-  const canvas = document.getElementById("particles-canvas");
-  if (!canvas) {
-    console.log("Particles canvas not found");
-    return;
-  }
-
-  const ctx = canvas.getContext("2d");
-  let particles = [];
-  let animationId;
-  let isAnimating = false;
-
-  // Set canvas size
-  const resizeCanvas = () => {
-    const rect = canvas.getBoundingClientRect();
-    canvas.width = rect.width;
-    canvas.height = rect.height;
-    console.log(`Canvas resized to: ${canvas.width}x${canvas.height}`);
-  };
-
-  // Initialize canvas
-  resizeCanvas();
-  window.addEventListener("resize", resizeCanvas);
-
-  // Particle class
-  class Particle {
-    constructor() {
-      this.x = Math.random() * canvas.width;
-      this.y = Math.random() * canvas.height;
-      this.vx = (Math.random() - 0.5) * 2;
-      this.vy = (Math.random() - 0.5) * 2;
-      this.size = Math.random() * 3 + 1;
-      this.opacity = Math.random() * 0.8 + 0.2;
-      this.hue = Math.random() * 60 + 180; // Teal to cyan range
-    }
-
-    update() {
-      this.x += this.vx;
-      this.y += this.vy;
-
-      // Wrap around screen
-      if (this.x < 0) this.x = canvas.width;
-      if (this.x > canvas.width) this.x = 0;
-      if (this.y < 0) this.y = canvas.height;
-      if (this.y > canvas.height) this.y = 0;
-    }
-
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-      ctx.fillStyle = `hsla(${this.hue}, 70%, 50%, ${this.opacity})`;
-      ctx.fill();
-    }
-  }
-
-  // Create particles
-  const createParticles = () => {
-    particles = [];
-    const particleCount = Math.min(
-      50,
-      Math.floor((canvas.width * canvas.height) / 10000)
-    );
-    for (let i = 0; i < particleCount; i++) {
-      particles.push(new Particle());
-    }
-    console.log(`Created ${particles.length} particles`);
-  };
-
-  // Animation loop
-  const animate = () => {
-    if (!isAnimating) return;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    particles.forEach((particle) => {
-      particle.update();
-      particle.draw();
-    });
-
-    animationId = requestAnimationFrame(animate);
-  };
-
-  // Start animation
-  const startAnimation = () => {
-    if (isAnimating) return;
-    isAnimating = true;
-    createParticles();
-    animate();
-    console.log("Particle animation started");
-  };
-
-  // Stop animation
-  const stopAnimation = () => {
-    isAnimating = false;
-    if (animationId) {
-      cancelAnimationFrame(animationId);
-      animationId = null;
-    }
-    console.log("Particle animation stopped");
-  };
-
-  // Start animation after a short delay to ensure DOM is ready
-  setTimeout(startAnimation, 100);
-
-  // Cleanup function
-  return () => {
-    stopAnimation();
-  };
+  // This function is now disabled to prevent conflicts
+  // with the main particle system in index.html
+  console.log("Particle animation handled by index.html script");
 };
 
 // ============================================
