@@ -14,97 +14,106 @@
 // ============================================
 const initLanguageSwitcher = () => {
   console.log("Initializing language switcher...");
-  const langDropdownBtn = document.getElementById("lang-dropdown-btn");
-  const langDropdownContent = document.getElementById("lang-dropdown-content");
-  const currentLangFlag = document.getElementById("current-lang-flag");
-  const currentLangCode = document.getElementById("current-lang-code");
-  const langOptions = document.querySelectorAll(".lang-option");
+  
+  // Add a small delay to ensure DOM is ready
+  setTimeout(() => {
+    const langDropdownBtn = document.getElementById("lang-dropdown-btn");
+    const langDropdownContent = document.getElementById("lang-dropdown-content");
+    const currentLangFlag = document.getElementById("current-lang-flag");
+    const currentLangCode = document.getElementById("current-lang-code");
+    const langOptions = document.querySelectorAll(".lang-option");
 
-  console.log("Language switcher elements:", {
-    langDropdownBtn: !!langDropdownBtn,
-    langDropdownContent: !!langDropdownContent,
-    currentLangFlag: !!currentLangFlag,
-    currentLangCode: !!currentLangCode,
-    langOptions: langOptions.length,
-  });
-
-  // Language configuration with codes
-  const languages = {
-    en: { flag: "EN", name: "English", code: "EN" },
-    sq: { flag: "SQ", name: "Shqip", code: "SQ" },
-    de: { flag: "DE", name: "Deutsch", code: "DE" },
-  };
-
-  // Get saved language or default to EN
-  let currentLang = localStorage.getItem("lang") || "en";
-  updateLanguage(currentLang);
-
-  // Toggle dropdown
-  langDropdownBtn?.addEventListener("click", (e) => {
-    console.log("Language dropdown clicked");
-    e.preventDefault();
-    e.stopPropagation();
-    const isOpen = langDropdownContent?.classList.contains("show");
-    if (isOpen) {
-      langDropdownContent?.classList.remove("show");
-    } else {
-      langDropdownContent?.classList.add("show");
-    }
-    console.log("Dropdown show class toggled:", !isOpen);
-  });
-
-  // Close dropdown when clicking outside
-  document.addEventListener("click", (e) => {
-    if (
-      !langDropdownBtn?.contains(e.target) &&
-      !langDropdownContent?.contains(e.target)
-    ) {
-      langDropdownContent?.classList.remove("show");
-    }
-  });
-
-  // Language option click handlers
-  langOptions.forEach((option) => {
-    option.addEventListener("click", () => {
-      const selectedLang = option.getAttribute("data-lang");
-      if (selectedLang && selectedLang !== currentLang) {
-        currentLang = selectedLang;
-        localStorage.setItem("lang", currentLang);
-        updateLanguage(currentLang);
-        langDropdownContent?.classList.remove("show");
-      }
+    console.log("Language switcher elements:", {
+      langDropdownBtn: !!langDropdownBtn,
+      langDropdownContent: !!langDropdownContent,
+      currentLangFlag: !!currentLangFlag,
+      currentLangCode: !!currentLangCode,
+      langOptions: langOptions.length,
     });
-  });
 
-  function updateLanguage(lang) {
-    const langConfig = languages[lang];
-    if (!langConfig) return;
+    if (!langDropdownBtn || !langDropdownContent) {
+      console.error("Language dropdown elements not found!");
+      return;
+    }
 
-    // Update button display (globe icon stays, just update code)
-    if (currentLangCode) currentLangCode.textContent = langConfig.code;
+    // Language configuration with codes
+    const languages = {
+      en: { flag: "EN", name: "English", code: "EN" },
+      sq: { flag: "SQ", name: "Shqip", code: "SQ" },
+      de: { flag: "DE", name: "Deutsch", code: "DE" },
+    };
 
-    // Update active state in dropdown
-    langOptions.forEach((option) => {
-      if (option.getAttribute("data-lang") === lang) {
-        option.classList.add("active");
+    // Get saved language or default to EN
+    let currentLang = localStorage.getItem("lang") || "en";
+    updateLanguage(currentLang);
+
+    // Toggle dropdown
+    langDropdownBtn.addEventListener("click", (e) => {
+      console.log("Language dropdown clicked");
+      e.preventDefault();
+      e.stopPropagation();
+      const isOpen = langDropdownContent.classList.contains("show");
+      if (isOpen) {
+        langDropdownContent.classList.remove("show");
       } else {
-        option.classList.remove("active");
+        langDropdownContent.classList.add("show");
+      }
+      console.log("Dropdown show class toggled:", !isOpen);
+    });
+
+    // Close dropdown when clicking outside
+    document.addEventListener("click", (e) => {
+      if (
+        !langDropdownBtn.contains(e.target) &&
+        !langDropdownContent.contains(e.target)
+      ) {
+        langDropdownContent.classList.remove("show");
       }
     });
 
-    // Update all elements with language attributes
-    document.querySelectorAll("[data-lang-en]").forEach((element) => {
-      const text = element.getAttribute(`data-lang-${lang}`);
-      if (text) {
-        // Check if it's an input/textarea placeholder
-        if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
-          element.placeholder = text;
-        } else {
-          element.textContent = text;
+    // Language option click handlers
+    langOptions.forEach((option) => {
+      option.addEventListener("click", () => {
+        const selectedLang = option.getAttribute("data-lang");
+        if (selectedLang && selectedLang !== currentLang) {
+          currentLang = selectedLang;
+          localStorage.setItem("lang", currentLang);
+          updateLanguage(currentLang);
+          langDropdownContent.classList.remove("show");
         }
-      }
+      });
     });
-  }
+
+    function updateLanguage(lang) {
+      const langConfig = languages[lang];
+      if (!langConfig) return;
+
+      // Update button display (globe icon stays, just update code)
+      if (currentLangCode) currentLangCode.textContent = langConfig.code;
+
+      // Update active state in dropdown
+      langOptions.forEach((option) => {
+        if (option.getAttribute("data-lang") === lang) {
+          option.classList.add("active");
+        } else {
+          option.classList.remove("active");
+        }
+      });
+
+      // Update all elements with language attributes
+      document.querySelectorAll("[data-lang-en]").forEach((element) => {
+        const text = element.getAttribute(`data-lang-${lang}`);
+        if (text) {
+          // Check if it's an input/textarea placeholder
+          if (element.tagName === "INPUT" || element.tagName === "TEXTAREA") {
+            element.placeholder = text;
+          } else {
+            element.textContent = text;
+          }
+        }
+      });
+    }
+  }, 100); // 100ms delay to ensure DOM is ready
 };
 
 // ============================================
