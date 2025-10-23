@@ -431,47 +431,51 @@ const initLazyLoading = () => {
 // ============================================
 const initCookieConsent = () => {
   console.log("Initializing cookie consent...");
-  const cookieBanner = document.getElementById("cookie-banner");
-  const acceptButton = document.getElementById("accept-cookies");
-  const rejectButton = document.getElementById("reject-cookies");
-
-  console.log("Cookie banner elements:", {
-    cookieBanner: !!cookieBanner,
-    acceptButton: !!acceptButton,
-    rejectButton: !!rejectButton,
-  });
-
-  // Always show cookie banner for testing
-  cookieBanner?.classList.add("show");
-  console.log("Cookie banner shown immediately");
   
-  // Check if user has already made a choice
-  const cookieChoice = localStorage.getItem("cookies-choice");
-  if (cookieChoice) {
-    console.log("Cookie choice already made:", cookieChoice);
-  }
+  // Add a small delay to ensure DOM is fully loaded
+  setTimeout(() => {
+    const cookieBanner = document.getElementById("cookie-banner");
+    const acceptButton = document.getElementById("accept-cookies");
+    const rejectButton = document.getElementById("reject-cookies");
 
-  // Accept cookies
-  acceptButton?.addEventListener("click", () => {
-    console.log("Accept cookies clicked");
-    localStorage.setItem("cookies-choice", "accepted");
-    localStorage.setItem("cookies-accepted", "true");
-    cookieBanner?.classList.remove("show");
+    console.log("Cookie banner elements:", {
+      cookieBanner: !!cookieBanner,
+      acceptButton: !!acceptButton,
+      rejectButton: !!rejectButton,
+    });
 
-    // Here you can enable analytics, tracking, etc.
-    console.log("Cookies accepted");
-  });
+    // Always show cookie banner for testing
+    cookieBanner?.classList.add("show");
+    console.log("Cookie banner shown immediately");
+    
+    // Check if user has already made a choice
+    const cookieChoice = localStorage.getItem("cookies-choice");
+    if (cookieChoice) {
+      console.log("Cookie choice already made:", cookieChoice);
+    }
 
-  // Reject cookies
-  rejectButton?.addEventListener("click", () => {
-    console.log("Reject cookies clicked");
-    localStorage.setItem("cookies-choice", "rejected");
-    localStorage.removeItem("cookies-accepted");
-    cookieBanner?.classList.remove("show");
+    // Accept cookies
+    acceptButton?.addEventListener("click", () => {
+      console.log("Accept cookies clicked");
+      localStorage.setItem("cookies-choice", "accepted");
+      localStorage.setItem("cookies-accepted", "true");
+      cookieBanner?.classList.remove("show");
 
-    // Here you can disable analytics, tracking, etc.
-    console.log("Cookies rejected");
-  });
+      // Here you can enable analytics, tracking, etc.
+      console.log("Cookies accepted");
+    });
+
+    // Reject cookies
+    rejectButton?.addEventListener("click", () => {
+      console.log("Reject cookies clicked");
+      localStorage.setItem("cookies-choice", "rejected");
+      localStorage.removeItem("cookies-accepted");
+      cookieBanner?.classList.remove("show");
+
+      // Here you can disable analytics, tracking, etc.
+      console.log("Cookies rejected");
+    });
+  }, 100); // 100ms delay to ensure DOM is ready
 };
 
 // ============================================
