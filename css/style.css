@@ -16,34 +16,18 @@
   --glass-shadow: rgba(0, 0, 0, 0.2);
 }
 
-/* Prevent layout shift during loading */
-#particles-container {
+/* Simple hero background */
+.hero-background {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  background: #f9fafb;
   z-index: 1;
-  overflow: hidden;
-  touch-action: pan-x pan-y; /* Allow scrolling while preserving Liquid Ether */
-  pointer-events: none; /* Allow mouse events to pass through container */
-  /* Prevent layout shift */
-  min-height: 100vh;
-  contain: layout style paint;
 }
 
-#particles-container canvas {
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100% !important;
-  height: 100% !important;
-  display: block !important;
-  z-index: 1 !important;
-  pointer-events: auto !important; /* Enable mouse interaction on canvas */
-}
-
-/* Hero content - allow mouse events to pass through to Liquid Ether */
+/* Hero content */
 #hero .container {
   pointer-events: none; /* Allow mouse events to pass through to background */
   /* Prevent layout shift */
@@ -73,13 +57,6 @@
     .secondary-button
   ):not(.glass-button) {
   pointer-events: none; /* Allow mouse events to pass through text elements */
-}
-
-/* Force Liquid Ether colors to remain constant in dark/light mode */
-#particles-container,
-#particles-container canvas {
-  filter: none !important;
-  opacity: 1 !important;
 }
 
 .dark {
@@ -234,29 +211,10 @@
   font-weight: 600;
 }
 
-/* Gradient Text */
+/* Solid Text Color */
 .text-gradient {
-  background: linear-gradient(
-    135deg,
-    var(--color-teal-blue),
-    var(--color-neon-blue),
-    var(--color-electric-orange)
-  );
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  background-size: 200% 200%;
-  animation: gradient-shift 8s ease infinite;
-}
-
-@keyframes gradient-shift {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
+  color: #000000;
+  font-weight: 700;
 }
 
 /* Glitch Effect */
@@ -289,43 +247,18 @@
 .cta-button {
   display: inline-block;
   padding: 1rem 2rem;
-  background: linear-gradient(
-    135deg,
-    var(--color-teal-blue),
-    var(--color-neon-blue)
-  );
+  background: #000000;
   color: white;
   font-weight: 600;
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0, 200, 200, 0.3);
-  position: relative;
-  overflow: hidden;
-}
-
-.cta-button::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.3),
-    transparent
-  );
-  transition: left 0.5s ease;
-}
-
-.cta-button:hover::before {
-  left: 100%;
+  border: 2px solid #000000;
 }
 
 .cta-button:hover {
+  background: #333333;
+  border-color: #333333;
   transform: translateY(-2px);
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.6);
 }
 
 /* Glassmorphism button for hero */
@@ -354,18 +287,17 @@
   display: inline-block;
   padding: 1rem 2rem;
   background: transparent;
-  color: var(--color-teal-blue);
+  color: #000000;
   font-weight: 600;
-  border: 2px solid var(--color-teal-blue);
-  border-radius: 0.75rem;
+  border: 2px solid #000000;
+  border-radius: 0.5rem;
   transition: all 0.3s ease;
 }
 
 .secondary-button:hover {
-  background: var(--color-teal-blue);
+  background: #000000;
   color: white;
   transform: translateY(-2px);
-  box-shadow: 0 0 20px rgba(0, 200, 200, 0.4);
 }
 
 /* Magnetic Button Effect */
@@ -385,42 +317,6 @@
 .service-card-3d:hover,
 .project-card-3d:hover {
   transform: rotateY(5deg) rotateX(5deg);
-}
-
-/* Neural Network Particles Background */
-#particles-container {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
-  background: radial-gradient(
-    ellipse at center,
-    transparent 0%,
-    rgba(0, 200, 200, 0.02) 100%
-  );
-  z-index: 0; /* behind content */
-  pointer-events: none; /* never block interactions */
-}
-
-#neural-canvas {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 2;
-}
-
-/* Circuit Board Pattern Overlay */
-/* Disable intrusive pseudo-element overlays for production */
-#particles-container::before {
-  content: none;
-}
-
-/* Data Stream Glow Effect */
-#particles-container::after {
-  content: none;
 }
 
 @keyframes data-flow {
@@ -561,20 +457,16 @@ button:focus-visible {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-jet-black);
+  background: #f3f4f6;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(
-    180deg,
-    var(--color-teal-blue),
-    var(--color-neon-blue)
-  );
+  background: #000000;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-electric-orange);
+  background: #333333;
 }
 
 /* Utility Classes */
@@ -691,38 +583,34 @@ button:focus-visible {
 }
 
 .cookie-accept-btn {
-  background: linear-gradient(
-    135deg,
-    var(--color-teal-blue),
-    var(--color-neon-blue)
-  );
+  background: #000000;
   color: white;
-  border-color: var(--color-teal-blue);
+  border-color: #000000;
 }
 
 .cookie-accept-btn:hover {
+  background: #333333;
   transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 200, 200, 0.3);
 }
 
 .cookie-reject-btn {
   background: transparent;
-  color: var(--color-teal-blue);
-  border-color: var(--color-teal-blue);
+  color: #000000;
+  border-color: #000000;
 }
 
 .cookie-reject-btn:hover {
-  background: rgba(0, 200, 200, 0.1);
+  background: #f3f4f6;
 }
 
 .cookie-learn-more-btn {
   background: transparent;
-  color: var(--color-electric-orange);
-  border-color: var(--color-electric-orange);
+  color: #000000;
+  border-color: #000000;
 }
 
 .cookie-learn-more-btn:hover {
-  background: rgba(255, 107, 0, 0.1);
+  background: #f3f4f6;
 }
 
 /* Form Styles */
@@ -901,52 +789,177 @@ body {
   }
 }
 
-/* Dark Mode Specific Adjustments */
-.dark .glass-card {
-  background: rgba(15, 15, 15, 0.6);
+/* ========================================
+   VISUAL IMPROVEMENTS - IMPLEMENTATION
+   ======================================== */
+
+/* 1. Enhanced Visual Hierarchy */
+.service-card-3d {
+  box-shadow: 0 4px 20px rgba(0, 200, 200, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
 
-.dark .glass-nav {
-  background: rgba(10, 10, 10, 0.8);
+.service-card-3d:hover {
+  box-shadow: 0 8px 30px rgba(0, 200, 200, 0.2);
+  transform: translateY(-2px);
+}
+
+.project-card-3d {
+  box-shadow: 0 4px 20px rgba(255, 107, 0, 0.1);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.project-card-3d:hover {
+  box-shadow: 0 8px 30px rgba(255, 107, 0, 0.2);
+  transform: translateY(-2px);
+}
+
+/* 2. Improved Button States */
+.cta-button:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+.cta-button:focus {
+  outline: 2px solid var(--color-teal-blue);
+  outline-offset: 2px;
+}
+
+.secondary-button:active {
+  transform: scale(0.98);
+  transition: transform 0.1s ease;
+}
+
+.secondary-button:focus {
+  outline: 2px solid var(--color-electric-orange);
+  outline-offset: 2px;
+}
+
+/* 3. Better Mobile Experience */
+@media (max-width: 768px) {
+  .cta-button,
+  .secondary-button {
+    min-height: 48px;
+    padding: 12px 24px;
+    font-size: 16px;
+  }
+
+  .nav-link-mobile {
+    padding: 16px 0;
+    min-height: 48px;
+    display: flex;
+    align-items: center;
+  }
+
+  .glass-button {
+    min-height: 48px;
+    min-width: 48px;
+  }
+}
+
+/* 4. Enhanced Loading States */
+img {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+img[src] {
+  background: none;
+  animation: none;
+}
+
+@keyframes loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Loading skeleton for cards */
+.service-card-3d:not(.loaded) {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: loading 1.5s infinite;
+}
+
+/* 5. Improved Accessibility */
+*:focus {
+  outline: 2px solid var(--color-teal-blue);
+  outline-offset: 2px;
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .glass-card {
+    border: 2px solid var(--color-teal-blue);
+  }
+
+  .glass-nav {
+    border: 2px solid var(--color-teal-blue);
+  }
+
+  .cta-button {
+    border: 2px solid var(--color-teal-blue);
+  }
+}
+
+/* Skip to content link for screen readers */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--color-teal-blue);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 10000;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* 6. Performance Optimizations */
+@media (prefers-reduced-motion: reduce) {
+  .particle,
+  .service-card-3d,
+  .project-card-3d,
+  .cta-button,
+  .secondary-button {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .service-card-3d:hover,
+  .project-card-3d:hover {
+    transform: none !important;
+  }
+
+  img {
+    animation: none !important;
+  }
 }
 
 /* Logo Theme Adjustments */
 .logo-theme {
   transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
-  /* Add a subtle border to help visualize the logo area */
   border-radius: 4px;
   padding: 2px;
 }
 
-/* Ensure logo theme styles have high specificity */
-html.light .logo-theme,
-html.dark .logo-theme {
-  transition: filter 0.3s ease, opacity 0.3s ease, transform 0.3s ease;
-}
-
 /* Light mode logo adjustments - keep original colors for light background */
-html.light .logo-theme {
+.logo-theme {
   filter: none !important;
   opacity: 1 !important;
 }
 
-/* Dark mode logo adjustments - invert colors so black becomes white on dark background */
-html.dark .logo-theme {
-  filter: invert(1) !important;
-  opacity: 1 !important;
-}
-
-/* Hover effects for logo in both themes */
+/* Hover effects for logo */
 .logo-theme:hover {
   transform: scale(1.05);
-}
-
-html.light .logo-theme:hover {
   filter: brightness(0.8) !important;
-}
-
-html.dark .logo-theme:hover {
-  filter: invert(1) brightness(0.8) !important;
 }
 
 /* Footer Logo - always white/inverted for contrast on dark footer */
@@ -1082,60 +1095,14 @@ html.light footer img[alt*="logo"] {
   top: 0;
   left: 0;
   height: 3px;
-  background: linear-gradient(
-    90deg,
-    var(--color-teal-blue),
-    var(--color-neon-blue),
-    var(--color-electric-orange)
-  );
+  background: #000000;
   z-index: 9999;
   transform-origin: left;
   transform: scaleX(0);
   transition: transform 0.1s ease;
-  box-shadow: 0 0 10px rgba(0, 200, 200, 0.5);
 }
 
-/* AI-Themed Additional Effects */
-.neural-glow {
-  position: relative;
-}
-
-.neural-glow::before {
-  content: "";
-  position: absolute;
-  top: -2px;
-  left: -2px;
-  right: -2px;
-  bottom: -2px;
-  background: linear-gradient(
-    45deg,
-    var(--color-teal-blue),
-    var(--color-neon-blue),
-    var(--color-electric-orange),
-    var(--color-teal-blue)
-  );
-  border-radius: inherit;
-  z-index: -1;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  animation: neural-pulse 3s ease-in-out infinite;
-}
-
-.neural-glow:hover::before {
-  opacity: 0.7;
-}
-
-@keyframes neural-pulse {
-  0%,
-  100% {
-    background-size: 200% 200%;
-    background-position: 0% 50%;
-  }
-  50% {
-    background-size: 200% 200%;
-    background-position: 100% 50%;
-  }
-}
+/* Removed neural glow - simplified design */
 
 /* Binary Code Rain Effect */
 .binary-rain {
@@ -1175,55 +1142,7 @@ html.light footer img[alt*="logo"] {
   }
 }
 
-/* Holographic Effect */
-.holographic {
-  background: linear-gradient(
-    45deg,
-    rgba(0, 200, 200, 0.1),
-    rgba(0, 255, 255, 0.1),
-    rgba(255, 107, 0, 0.1),
-    rgba(0, 200, 200, 0.1)
-  );
-  background-size: 400% 400%;
-  animation: holographic-shift 4s ease-in-out infinite;
-  position: relative;
-  overflow: hidden;
-}
-
-.holographic::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
-  animation: holographic-scan 3s ease-in-out infinite;
-}
-
-@keyframes holographic-shift {
-  0%,
-  100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
-
-@keyframes holographic-scan {
-  0% {
-    left: -100%;
-  }
-  100% {
-    left: 100%;
-  }
-}
+/* Removed holographic effect - simplified design */
 
 /* Language Dropdown with Flags */
 .lang-dropdown {
@@ -1336,78 +1255,6 @@ html.light footer img[alt*="logo"] {
   border-radius: 0 0 0.5rem 0.5rem;
 }
 
-/* Theme Toggle - Sun/Moon Design */
-.theme-toggle {
-  position: relative;
-  width: 60px;
-  height: 32px;
-  background: var(--glass-bg);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 2px solid rgba(0, 200, 200, 0.5);
-  border-radius: 50px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  overflow: hidden;
-  padding: 0;
-}
-
-.theme-toggle:hover {
-  border-color: var(--color-teal-blue);
-  transform: scale(1.05);
-}
-
-.theme-toggle::before {
-  content: "";
-  position: absolute;
-  top: 2px;
-  left: 2px;
-  width: 24px;
-  height: 24px;
-  background: linear-gradient(
-    135deg,
-    var(--color-teal-blue),
-    var(--color-neon-blue)
-  );
-  border-radius: 50%;
-  transition: transform 0.3s ease;
-  z-index: 1;
-}
-
-.dark .theme-toggle::before {
-  transform: translateX(28px);
-  background: linear-gradient(135deg, #1e293b, #334155);
-}
-
-.sun-icon,
-.moon-icon {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 1rem;
-  line-height: 1;
-  transition: all 0.3s ease;
-  z-index: 2;
-}
-
-.sun-icon {
-  left: 6px;
-  opacity: 1;
-}
-
-.moon-icon {
-  right: 6px;
-  opacity: 0.3;
-}
-
-.dark .sun-icon {
-  opacity: 0.3;
-}
-
-.dark .moon-icon {
-  opacity: 1;
-}
-
 /* Floating WhatsApp CTA Button */
 .floating-whatsapp {
   position: fixed;
@@ -1415,21 +1262,19 @@ html.light footer img[alt*="logo"] {
   right: 30px;
   width: 60px;
   height: 60px;
-  background: linear-gradient(135deg, #25d366, #128c7e);
+  background: #25d366;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
   cursor: pointer;
   transition: all 0.3s ease;
   z-index: 9999;
-  animation: float-bounce 3s ease-in-out infinite;
 }
 
 .floating-whatsapp:hover {
+  background: #128c7e;
   transform: scale(1.1);
-  box-shadow: 0 6px 30px rgba(37, 211, 102, 0.6);
 }
 
 .floating-whatsapp svg {
@@ -1445,16 +1290,11 @@ html.light footer img[alt*="logo"] {
   left: 30px;
   width: 50px;
   height: 50px;
-  background: linear-gradient(
-    135deg,
-    var(--color-teal-blue),
-    var(--color-neon-blue)
-  );
+  background: #000000;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 20px rgba(0, 200, 200, 0.4);
   cursor: pointer;
   transition: all 0.3s ease;
   z-index: 9999;
@@ -1470,8 +1310,8 @@ html.light footer img[alt*="logo"] {
 }
 
 .back-to-top:hover {
+  background: #333333;
   transform: translateY(-5px);
-  box-shadow: 0 6px 30px rgba(0, 200, 200, 0.6);
 }
 
 .back-to-top svg {
@@ -1480,88 +1320,24 @@ html.light footer img[alt*="logo"] {
   fill: white;
 }
 
-@keyframes float-bounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
 /* Full Width Navbar - Removed conflicting styles */
 
-/* Technologies & Partners Floating Animation */
+/* Technologies & Partners Simple Hover */
 .tech-logo,
 .partner-logo {
   transition: all 0.3s ease;
-  animation: float-gentle 6s ease-in-out infinite;
+  opacity: 0.8;
 }
 
 .tech-logo:hover,
 .partner-logo:hover {
-  animation-play-state: paused;
-  transform: translateY(-20px) scale(1.15) !important;
-  filter: brightness(1.3) drop-shadow(0 10px 20px rgba(0, 200, 200, 0.3));
+  opacity: 1;
+  transform: scale(1.05);
 }
 
-.tech-logo:nth-child(1) {
-  animation-delay: 0s;
-}
-.tech-logo:nth-child(2) {
-  animation-delay: 0.5s;
-}
-.tech-logo:nth-child(3) {
-  animation-delay: 1s;
-}
-.tech-logo:nth-child(4) {
-  animation-delay: 1.5s;
-}
-.tech-logo:nth-child(5) {
-  animation-delay: 2s;
-}
-.tech-logo:nth-child(6) {
-  animation-delay: 2.5s;
-}
-.tech-logo:nth-child(7) {
-  animation-delay: 3s;
-}
-.tech-logo:nth-child(8) {
-  animation-delay: 3.5s;
-}
-
-@keyframes float-gentle {
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-15px);
-  }
-}
-
-/* Loading Screen Enhancements */
-
+/* Loading Screen - Simplified */
 .logo-glow-pulse {
-  background: radial-gradient(
-    circle,
-    rgba(0, 255, 255, 0.4) 0%,
-    transparent 70%
-  );
-  animation: glow-pulse 2s ease-in-out infinite;
-}
-
-@keyframes glow-pulse {
-  0%,
-  100% {
-    transform: scale(1);
-    opacity: 0.6;
-  }
-  50% {
-    transform: scale(1.2);
-    opacity: 0.8;
-  }
+  background: transparent;
 }
 
 /* Loading screen logo - always inverted for dark background */

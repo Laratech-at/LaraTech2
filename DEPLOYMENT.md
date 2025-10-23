@@ -2,7 +2,7 @@
 
 Complete guide for deploying the LaraTech sh.p.k website to production.
 
-## 📋 Pre-Deployment Checklist
+## Pre-Deployment Checklist
 
 ### 1. Update Configuration Files
 
@@ -103,7 +103,7 @@ Add to form in `contact.html`:
 <form name="contact" netlify></form>
 ```
 
-## 🚀 Deployment Options
+## Deployment Options
 
 ### Option 1: Vercel (Recommended)
 
@@ -189,7 +189,7 @@ vercel domains add laratech.ai
 5. Enable HTTPS redirect:
    - Uncomment redirect section in `.htaccess`
 
-## 🔒 SSL/HTTPS Setup
+## SSL/HTTPS Setup
 
 ### Vercel/Netlify
 
@@ -221,7 +221,6 @@ vercel domains add laratech.ai
 
 - [ ] All pages load correctly
 - [ ] Navigation works (desktop & mobile)
-- [ ] Dark/light mode toggle
 - [ ] Language switcher (EN/SQ/DE)
 - [ ] Contact form submission with enhanced fields
 - [ ] Project filtering and view toggle functionality
@@ -231,6 +230,10 @@ vercel domains add laratech.ai
 - [ ] Tawk.to chat widget appears
 - [ ] All links work (no 404s)
 - [ ] Lead magnet section displays correctly
+- [ ] Enhanced visual hierarchy and hover effects work
+- [ ] Mobile touch targets are properly sized (48px minimum)
+- [ ] Skip-to-content links work for accessibility
+- [ ] Focus indicators are visible for keyboard navigation
 
 ### 2. Performance Testing
 
@@ -281,7 +284,7 @@ Test on:
 - Facebook Debugger: https://developers.facebook.com/tools/debug/
 - Twitter Card Validator: https://cards-dev.twitter.com/validator
 
-## 📊 Analytics Setup
+## Analytics Setup
 
 ### Google Analytics
 
@@ -302,7 +305,7 @@ Test on:
 - Automatically enabled
 - View at: https://vercel.com/dashboard/analytics
 
-## 🔧 Ongoing Maintenance
+## Ongoing Maintenance
 
 ### Weekly
 
@@ -362,7 +365,7 @@ Test on:
 - Verify main.js is loaded
 - Check for JavaScript errors in console
 
-## 📞 Support
+## Support
 
 For deployment issues:
 
@@ -370,7 +373,7 @@ For deployment issues:
 - **Documentation**: See README.md
 - **Hosting Support**: Contact your hosting provider
 
-## 📋 Deployment Checklist Summary
+## Deployment Checklist Summary
 
 Before going live:
 
@@ -397,4 +400,4 @@ Before going live:
 
 **Last Updated**: January 7, 2025
 
-Good luck with your deployment! 🚀
+Good luck with your deployment!

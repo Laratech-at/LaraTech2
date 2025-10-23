@@ -104,7 +104,9 @@ self.addEventListener("fetch", (event) => {
       cacheFirst(request).then((response) => {
         const endTime = performance.now();
         console.log(
-          `Fetch (Cache First): ${request.url} - ${(endTime - startTime).toFixed(2)}ms`
+          `Fetch (Cache First): ${request.url} - ${(
+            endTime - startTime
+          ).toFixed(2)}ms`
         );
         return response;
       })
@@ -115,7 +117,9 @@ self.addEventListener("fetch", (event) => {
       cacheFirst(request).then((response) => {
         const endTime = performance.now();
         console.log(
-          `Fetch (Image): ${request.url} - ${(endTime - startTime).toFixed(2)}ms`
+          `Fetch (Image): ${request.url} - ${(endTime - startTime).toFixed(
+            2
+          )}ms`
         );
         return response;
       })
@@ -126,7 +130,9 @@ self.addEventListener("fetch", (event) => {
       networkFirst(request).then((response) => {
         const endTime = performance.now();
         console.log(
-          `Fetch (Network First): ${request.url} - ${(endTime - startTime).toFixed(2)}ms`
+          `Fetch (Network First): ${request.url} - ${(
+            endTime - startTime
+          ).toFixed(2)}ms`
         );
         return response;
       })
@@ -137,7 +143,9 @@ self.addEventListener("fetch", (event) => {
       staleWhileRevalidate(request).then((response) => {
         const endTime = performance.now();
         console.log(
-          `Fetch (Stale While Revalidate): ${request.url} - ${(endTime - startTime).toFixed(2)}ms`
+          `Fetch (Stale While Revalidate): ${request.url} - ${(
+            endTime - startTime
+          ).toFixed(2)}ms`
         );
         return response;
       })

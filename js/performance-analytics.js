@@ -101,15 +101,18 @@ const PerformanceAnalytics = {
     }
   },
 
-  // Track Long Tasks
+  // Track Long Tasks (only significant ones)
   trackLongTasks() {
     if ("PerformanceObserver" in window) {
       const longTaskObserver = new PerformanceObserver((list) => {
         list.getEntries().forEach((entry) => {
-          this.reportMetric("long-task", {
-            duration: entry.duration,
-            startTime: entry.startTime,
-          });
+          // Only track tasks longer than 100ms to reduce overhead
+          if (entry.duration > 100) {
+            this.reportMetric("long-task", {
+              duration: entry.duration,
+              startTime: entry.startTime,
+            });
+          }
         });
       });
       longTaskObserver.observe({ entryTypes: ["longtask"] });
@@ -160,17 +163,17 @@ const PerformanceAnalytics = {
     // Throttled scroll tracking (only log every 500ms)
     const trackScroll = () => {
       if (scrollThrottle) return;
-      
+
       scrollThrottle = setTimeout(() => {
         scrollCount++;
         const now = performance.now();
         const timeSinceLastInteraction = now - lastInteraction;
-        
+
         // Only log scroll events every 10th scroll or after 5 seconds
         if (scrollCount % 10 === 0 || timeSinceLastInteraction > 5000) {
           interactionCount++;
           lastInteraction = now;
-          
+
           this.reportMetric("user-interaction", {
             type: "scroll",
             count: interactionCount,
@@ -178,7 +181,7 @@ const PerformanceAnalytics = {
             timeSinceLastInteraction,
           });
         }
-        
+
         scrollThrottle = null;
       }, 500);
     };
@@ -261,8 +264,18 @@ const PerformanceAnalytics = {
 
   // Report metrics to analytics
   reportMetric(type, data) {
-    // Console logging for development
-    console.log(`Performance Metric [${type}]:`, data);
+    // Console logging for development (only for critical metrics)
+    const criticalMetrics = [
+      "lcp",
+      "fid",
+      "cls",
+      "fcp",
+      "long-task",
+      "low-fps",
+    ];
+    if (criticalMetrics.includes(type)) {
+      console.log(`Performance Metric [${type}]:`, data);
+    }
 
     // Send to analytics service (Google Analytics, etc.)
     if (typeof gtag !== "undefined") {
@@ -273,8 +286,11 @@ const PerformanceAnalytics = {
       });
     }
 
-    // Store in localStorage for offline analysis
-    this.storeMetric(type, data);
+    // Store in localStorage for offline analysis (throttled)
+    if (Math.random() < 0.1) {
+      // Only store 10% of metrics
+      this.storeMetric(type, data);
+    }
   },
 
   // Store metrics locally

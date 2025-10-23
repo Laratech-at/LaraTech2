@@ -104,7 +104,7 @@ PerformanceTestSuite.addTest(
       }
       return performance.now();
     }
-    
+
     return new Promise((resolve) => {
       window.addEventListener("load", () => {
         const navigation = performance.getEntriesByType("navigation")[0];

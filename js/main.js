@@ -5,23 +5,9 @@
  */
 
 // ============================================
-// Theme Toggle (Dark/Light Mode)
+// Theme Toggle (Dark/Light Mode) - REMOVED
 // ============================================
-const initTheme = () => {
-  const themeToggle = document.getElementById("theme-toggle");
-  const html = document.documentElement;
-
-  // Check for saved theme preference or default to dark mode
-  const currentTheme = localStorage.getItem("theme") || "dark";
-  html.classList.add(currentTheme);
-
-  themeToggle?.addEventListener("click", () => {
-    const isDark = html.classList.contains("dark");
-    html.classList.remove("dark", "light");
-    html.classList.add(isDark ? "light" : "dark");
-    localStorage.setItem("theme", isDark ? "light" : "dark");
-  });
-};
+// Dark mode functionality has been removed for simplicity
 
 // ============================================
 // Language Switcher (EN / SQ / DE) with Dropdown
@@ -33,11 +19,11 @@ const initLanguageSwitcher = () => {
   const currentLangCode = document.getElementById("current-lang-code");
   const langOptions = document.querySelectorAll(".lang-option");
 
-  // Language configuration with flags
+  // Language configuration with codes
   const languages = {
-    en: { flag: "🇬🇧", name: "English", code: "EN" },
-    sq: { flag: "🇦🇱", name: "Shqip", code: "SQ" },
-    de: { flag: "🇩🇪", name: "Deutsch", code: "DE" },
+    en: { flag: "EN", name: "English", code: "EN" },
+    sq: { flag: "SQ", name: "Shqip", code: "SQ" },
+    de: { flag: "DE", name: "Deutsch", code: "DE" },
   };
 
   // Get saved language or default to EN
@@ -77,8 +63,7 @@ const initLanguageSwitcher = () => {
     const langConfig = languages[lang];
     if (!langConfig) return;
 
-    // Update button display
-    if (currentLangFlag) currentLangFlag.textContent = langConfig.flag;
+    // Update button display (globe icon stays, just update code)
     if (currentLangCode) currentLangCode.textContent = langConfig.code;
 
     // Update active state in dropdown
@@ -330,6 +315,8 @@ const initMagneticButtons = () => {
     let targetY = 0;
     let currentX = 0;
     let currentY = 0;
+    let cachedRect = null;
+    let rectCacheTime = 0;
 
     const animate = () => {
       if (!isHovering) {
@@ -350,9 +337,15 @@ const initMagneticButtons = () => {
     button.addEventListener(
       "mousemove",
       (e) => {
-        const rect = button.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
+        // Cache rect for 100ms to avoid forced reflows
+        const now = performance.now();
+        if (!cachedRect || now - rectCacheTime > 100) {
+          cachedRect = button.getBoundingClientRect();
+          rectCacheTime = now;
+        }
+
+        const x = e.clientX - cachedRect.left - cachedRect.width / 2;
+        const y = e.clientY - cachedRect.top - cachedRect.height / 2;
 
         const distance = Math.sqrt(x * x + y * y);
         const maxDistance = 100;
@@ -375,299 +368,9 @@ const initMagneticButtons = () => {
       isHovering = false;
       targetX = 0;
       targetY = 0;
+      cachedRect = null; // Clear cache on leave
     });
   });
-};
-
-// ============================================
-// Neural Network Particles Background Animation
-// ============================================
-const initParticles = () => {
-  const particlesContainer = document.getElementById("particles-container");
-  if (!particlesContainer) return;
-
-  // Respect prefers-reduced-motion for accessibility
-  const reduceMotion = window.matchMedia(
-    "(prefers-reduced-motion: reduce)"
-  ).matches;
-  if (reduceMotion) return;
-
-  // Create canvas for neural network
-  const canvas = document.createElement("canvas");
-  canvas.id = "neural-canvas";
-  canvas.style.position = "absolute";
-  canvas.style.top = "0";
-  canvas.style.left = "0";
-  canvas.style.width = "100%";
-  canvas.style.height = "100%";
-  canvas.style.pointerEvents = "none";
-  canvas.style.zIndex = "1";
-
-  particlesContainer.appendChild(canvas);
-
-  const ctx = canvas.getContext("2d");
-  let animationId;
-  let mouse = { x: 0, y: 0 };
-
-  // Neural network nodes
-  const nodes = [];
-  const connections = [];
-  const dataStreams = [];
-
-  const nodeCount = 25;
-  const maxConnections = 3;
-  const maxDistance = 150;
-
-  // Resize canvas
-  const resizeCanvas = () => {
-    canvas.width = particlesContainer.offsetWidth;
-    canvas.height = particlesContainer.offsetHeight;
-  };
-
-  // Initialize nodes
-  const initNodes = () => {
-    for (let i = 0; i < nodeCount; i++) {
-      nodes.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        size: Math.random() * 3 + 2,
-        pulse: Math.random() * Math.PI * 2,
-        connections: [],
-        type: Math.random() > 0.7 ? "data" : "neural",
-        activity: Math.random(),
-      });
-    }
-  };
-
-  // Create connections between nearby nodes
-  const createConnections = () => {
-    connections.length = 0;
-    nodes.forEach((node, i) => {
-      node.connections = [];
-      nodes.forEach((otherNode, j) => {
-        if (i !== j) {
-          const dx = node.x - otherNode.x;
-          const dy = node.y - otherNode.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (
-            distance < maxDistance &&
-            node.connections.length < maxConnections
-          ) {
-            connections.push({
-              from: node,
-              to: otherNode,
-              distance: distance,
-              strength: 1 - distance / maxDistance,
-              pulse: Math.random() * Math.PI * 2,
-            });
-            node.connections.push(otherNode);
-          }
-        }
-      });
-    });
-  };
-
-  // Create data streams
-  const createDataStreams = () => {
-    dataStreams.length = 0;
-    const streamCount = 8;
-
-    for (let i = 0; i < streamCount; i++) {
-      dataStreams.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 2,
-        vy: (Math.random() - 0.5) * 2,
-        size: Math.random() * 2 + 1,
-        opacity: Math.random() * 0.8 + 0.2,
-        trail: [],
-        maxTrailLength: 20,
-      });
-    }
-  };
-
-  // Update nodes
-  const updateNodes = () => {
-    nodes.forEach((node) => {
-      // Update position
-      node.x += node.vx;
-      node.y += node.vy;
-
-      // Bounce off edges
-      if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
-      if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
-
-      // Keep within bounds
-      node.x = Math.max(0, Math.min(canvas.width, node.x));
-      node.y = Math.max(0, Math.min(canvas.height, node.y));
-
-      // Update pulse
-      node.pulse += 0.02;
-
-      // Update activity based on mouse proximity
-      const dx = node.x - mouse.x;
-      const dy = node.y - mouse.y;
-      const mouseDistance = Math.sqrt(dx * dx + dy * dy);
-      node.activity = Math.max(0.3, 1 - mouseDistance / 200);
-    });
-  };
-
-  // Update data streams
-  const updateDataStreams = () => {
-    dataStreams.forEach((stream) => {
-      // Update position
-      stream.x += stream.vx;
-      stream.y += stream.vy;
-
-      // Add to trail
-      stream.trail.push({ x: stream.x, y: stream.y, opacity: stream.opacity });
-      if (stream.trail.length > stream.maxTrailLength) {
-        stream.trail.shift();
-      }
-
-      // Bounce off edges
-      if (stream.x < 0 || stream.x > canvas.width) stream.vx *= -1;
-      if (stream.y < 0 || stream.y > canvas.height) stream.vy *= -1;
-
-      // Keep within bounds
-      stream.x = Math.max(0, Math.min(canvas.width, stream.x));
-      stream.y = Math.max(0, Math.min(canvas.height, stream.y));
-    });
-  };
-
-  // Draw neural network
-  const draw = () => {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Draw connections
-    ctx.strokeStyle = "rgba(0, 200, 200, 0.6)";
-    ctx.lineWidth = 2;
-    connections.forEach((conn) => {
-      const alpha = conn.strength * 0.8;
-      ctx.strokeStyle = `rgba(0, 200, 200, ${alpha})`;
-
-      ctx.beginPath();
-      ctx.moveTo(conn.from.x, conn.from.y);
-      ctx.lineTo(conn.to.x, conn.to.y);
-      ctx.stroke();
-
-      // Animated pulse along connection
-      const pulseX =
-        conn.from.x +
-        (conn.to.x - conn.from.x) * (0.5 + 0.3 * Math.sin(conn.pulse));
-      const pulseY =
-        conn.from.y +
-        (conn.to.y - conn.from.y) * (0.5 + 0.3 * Math.sin(conn.pulse));
-
-      ctx.fillStyle = `rgba(0, 255, 255, ${alpha * 0.9})`;
-      ctx.beginPath();
-      ctx.arc(pulseX, pulseY, 2, 0, Math.PI * 2);
-      ctx.fill();
-
-      conn.pulse += 0.05;
-    });
-
-    // Draw data streams
-    dataStreams.forEach((stream) => {
-      // Draw trail
-      stream.trail.forEach((point, index) => {
-        const trailAlpha = (index / stream.trail.length) * point.opacity * 0.7;
-        ctx.fillStyle = `rgba(0, 255, 255, ${trailAlpha})`;
-        ctx.beginPath();
-        ctx.arc(point.x, point.y, stream.size * 0.8, 0, Math.PI * 2);
-        ctx.fill();
-      });
-
-      // Draw current position
-      ctx.fillStyle = `rgba(0, 255, 255, ${stream.opacity})`;
-      ctx.beginPath();
-      ctx.arc(stream.x, stream.y, stream.size * 1.5, 0, Math.PI * 2);
-      ctx.fill();
-    });
-
-    // Draw nodes
-    nodes.forEach((node) => {
-      const pulseSize = node.size + Math.sin(node.pulse) * 2;
-      const alpha = node.activity;
-
-      // Node glow
-      const gradient = ctx.createRadialGradient(
-        node.x,
-        node.y,
-        0,
-        node.x,
-        node.y,
-        pulseSize * 4
-      );
-      gradient.addColorStop(0, `rgba(0, 200, 200, ${alpha * 0.9})`);
-      gradient.addColorStop(0.5, `rgba(0, 255, 255, ${alpha * 0.6})`);
-      gradient.addColorStop(1, "rgba(0, 255, 255, 0)");
-
-      ctx.fillStyle = gradient;
-      ctx.beginPath();
-      ctx.arc(node.x, node.y, pulseSize * 4, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Node core
-      ctx.fillStyle =
-        node.type === "data"
-          ? `rgba(255, 107, 0, ${alpha})`
-          : `rgba(0, 200, 200, ${alpha})`;
-      ctx.beginPath();
-      ctx.arc(node.x, node.y, pulseSize, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Node center
-      ctx.fillStyle = "rgba(255, 255, 255, 0.9)";
-      ctx.beginPath();
-      ctx.arc(node.x, node.y, pulseSize * 0.4, 0, Math.PI * 2);
-      ctx.fill();
-    });
-  };
-
-  // Animation loop
-  const animate = () => {
-    updateNodes();
-    updateDataStreams();
-    draw();
-    animationId = requestAnimationFrame(animate);
-  };
-
-  // Mouse tracking
-  const handleMouseMove = (e) => {
-    const rect = canvas.getBoundingClientRect();
-    mouse.x = e.clientX - rect.left;
-    mouse.y = e.clientY - rect.top;
-  };
-
-  // Initialize
-  resizeCanvas();
-  initNodes();
-  createConnections();
-  createDataStreams();
-
-  // Event listeners
-  window.addEventListener("resize", () => {
-    resizeCanvas();
-    createConnections();
-  });
-
-  canvas.addEventListener("mousemove", handleMouseMove);
-
-  // Start animation
-  animate();
-
-  // Cleanup function
-  return () => {
-    if (animationId) {
-      cancelAnimationFrame(animationId);
-    }
-    window.removeEventListener("resize", resizeCanvas);
-    canvas.removeEventListener("mousemove", handleMouseMove);
-  };
 };
 
 // ============================================
@@ -850,27 +553,60 @@ const initBeforeAfterSlider = () => {
   sliders.forEach((slider) => {
     const after = slider.querySelector(".after");
     let isDragging = false;
+    let cachedSliderRect = null;
+    let sliderRectCacheTime = 0;
 
     const updateSlider = (x) => {
-      const rect = slider.getBoundingClientRect();
-      const position = ((x - rect.left) / rect.width) * 100;
+      // Cache rect for 100ms to avoid forced reflows during drag
+      const now = performance.now();
+      if (!cachedSliderRect || now - sliderRectCacheTime > 100) {
+        cachedSliderRect = slider.getBoundingClientRect();
+        sliderRectCacheTime = now;
+      }
+
+      const position =
+        ((x - cachedSliderRect.left) / cachedSliderRect.width) * 100;
       const clampedPosition = Math.max(0, Math.min(100, position));
-      after.style.clipPath = `inset(0 ${100 - clampedPosition}% 0 0)`;
+
+      // Use requestAnimationFrame to batch style changes
+      requestAnimationFrame(() => {
+        after.style.clipPath = `inset(0 ${100 - clampedPosition}% 0 0)`;
+      });
     };
 
-    slider.addEventListener("mousedown", () => (isDragging = true));
-    slider.addEventListener("mouseup", () => (isDragging = false));
-    slider.addEventListener("mouseleave", () => (isDragging = false));
-
-    slider.addEventListener("mousemove", (e) => {
-      if (isDragging) {
-        updateSlider(e.clientX);
-      }
+    slider.addEventListener("mousedown", () => {
+      isDragging = true;
+      cachedSliderRect = slider.getBoundingClientRect(); // Cache on start
+      sliderRectCacheTime = performance.now();
     });
 
-    slider.addEventListener("touchmove", (e) => {
-      updateSlider(e.touches[0].clientX);
+    slider.addEventListener("mouseup", () => {
+      isDragging = false;
+      cachedSliderRect = null; // Clear cache
     });
+
+    slider.addEventListener("mouseleave", () => {
+      isDragging = false;
+      cachedSliderRect = null; // Clear cache
+    });
+
+    slider.addEventListener(
+      "mousemove",
+      (e) => {
+        if (isDragging) {
+          updateSlider(e.clientX);
+        }
+      },
+      { passive: true }
+    );
+
+    slider.addEventListener(
+      "touchmove",
+      (e) => {
+        updateSlider(e.touches[0].clientX);
+      },
+      { passive: true }
+    );
   });
 };
 
@@ -946,11 +682,14 @@ const initPerformanceMonitoring = () => {
     });
     fcpObserver.observe({ entryTypes: ["paint"] });
 
-    // Monitor long tasks (main thread blocking)
+    // Monitor long tasks (main thread blocking) - Only critical ones
     const longTaskObserver = new PerformanceObserver((list) => {
       list.getEntries().forEach((entry) => {
-        console.warn("⚠️ Long task detected:", entry.duration, "ms");
-        console.log("Long task details:", entry);
+        // Only log tasks longer than 100ms to reduce console spam
+        if (entry.duration > 100) {
+          console.warn("⚠️ Long task detected:", entry.duration, "ms");
+          console.log("Long task details:", entry);
+        }
       });
     });
     longTaskObserver.observe({ entryTypes: ["longtask"] });
@@ -967,7 +706,7 @@ const initPerformanceMonitoring = () => {
 
   const measureFPS = () => {
     const currentTime = performance.now();
-    
+
     // Stop monitoring after duration
     if (currentTime - startTime > monitorDuration) {
       return;
@@ -1106,34 +845,34 @@ const init = () => {
     "(prefers-reduced-motion: reduce)"
   ).matches;
 
-  if (!prefersReducedMotion) {
-    initLoadingAnimation();
-  } else {
-    // Hide loading immediately if reduced motion is preferred
-    const loadingOverlay = document.getElementById("loading-overlay");
-    if (loadingOverlay) loadingOverlay.style.display = "none";
-  }
+  // Loading animation removed for immediate page load
+  // if (!prefersReducedMotion) {
+  //   initLoadingAnimation();
+  // } else {
+  //   // Hide loading immediately if reduced motion is preferred
+  //   const loadingOverlay = document.getElementById("loading-overlay");
+  //   if (loadingOverlay) loadingOverlay.style.display = "none";
+  // }
 
   // Core functionality
-  initTheme();
+  // initTheme(); // Removed - dark mode disabled
   initLanguageSwitcher();
   initMobileMenu();
   initStickyNav();
   initCounters();
   initFadeInObserver();
-  initMagneticButtons();
-  // initParticles(); // Disabled - replaced with Liquid Ether
+  // initMagneticButtons(); // Disabled - removed for simplicity
   initLazyLoading();
   initCookieConsent();
   initContactForm();
-  initLightbox();
-  initProgressBar();
-  initBeforeAfterSlider();
-  initPerformanceMonitoring();
+  // initLightbox(); // Disabled for simplicity
+  // initProgressBar(); // Disabled for simplicity
+  // initBeforeAfterSlider(); // Disabled for simplicity
+  // initPerformanceMonitoring(); // Disabled for simplicity
   initDirectionsButton();
   initBackToTop();
   initProjectsFilter();
-  initServiceWorker();
+  // initServiceWorker(); // Disabled for simplicity
 
   console.log("LaraTech website initialized successfully! 🚀");
 };
@@ -1256,21 +995,30 @@ const initProjectsFilter = () => {
 
 // Run initialization when DOM is ready
 if (document.readyState === "loading") {
-  document.addEventListener("DOMContentLoaded", init);
+  document.addEventListener("DOMContentLoaded", () => {
+    init();
+    // Initialize Lucide icons
+    if (typeof lucide !== "undefined") {
+      lucide.createIcons();
+    }
+  });
 } else {
   init();
+  // Initialize Lucide icons
+  if (typeof lucide !== "undefined") {
+    lucide.createIcons();
+  }
 }
 
 // Export functions for use in other scripts
 window.LaraTech = {
-  initTheme,
+  // initTheme, // Removed - dark mode disabled
   initLanguageSwitcher,
   initMobileMenu,
   initStickyNav,
   initCounters,
   initFadeInObserver,
   initMagneticButtons,
-  initParticles,
   initLazyLoading,
   initCookieConsent,
   initContactForm,

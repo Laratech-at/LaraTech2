@@ -18,7 +18,7 @@ const initGSAPAnimations = () => {
   // Hero Section Animations
   // ============================================
   const animateHero = () => {
-    const tl = gsap.timeline({ delay: 3.5 }); // After loading animation
+    const tl = gsap.timeline({ delay: 0.3 }); // Quick delay for immediate page load
 
     tl.from(".hero-title", {
       opacity: 0,
@@ -602,9 +602,9 @@ const initGSAPAnimations = () => {
     animateHero();
     animateServiceCards();
     animateProjectCards();
-    animateTestimonials();
+    // animateTestimonials(); // Disabled for simplicity
     animateSectionHeaders();
-    animateStats();
+    // animateStats(); // Disabled for simplicity
 
     // Reduced animations for better performance
     // initParallax(); // Disabled - causes performance issues
