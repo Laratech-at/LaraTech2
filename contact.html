@@ -50,7 +50,7 @@
     <!-- Navigation -->
     <nav
       id="navbar"
-      class="fixed top-0 w-full z-40 transition-all duration-300 py-4 px-4 md:px-6"
+      class="fixed top-0 w-full z-40 transition-all duration-300 py-4 px-4 md:px-6 glass-nav"
     >
       <div class="container mx-auto">
         <div class="flex items-center justify-between">
@@ -257,7 +257,7 @@
           >
             Get In Touch
           </h1>
-          <p class="text-xl text-gray-600 dark:text-gray-300 mb-8">
+          <p class="text-xl text-gray-600 mb-8">
             Let's discuss your project and bring your vision to life
           </p>
 
@@ -268,12 +268,12 @@
             <h2 class="text-2xl font-display font-bold mb-4">
               Free Resources to Get Started
             </h2>
-            <p class="text-gray-600 dark:text-gray-300 mb-6">
+            <p class="text-gray-600 mb-6">
               Download our free guides and tools to help you plan your
               automation project
             </p>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div class="bg-white dark:bg-gray-800 rounded-lg p-6 text-left">
+              <div class="bg-white rounded-lg p-6 text-left">
                 <div class="flex items-center mb-4">
                   <div
                     class="w-12 h-12 bg-teal-blue/20 rounded-lg flex items-center justify-center mr-4"
@@ -296,7 +296,7 @@
                     Automation ROI Calculator
                   </h3>
                 </div>
-                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                <p class="text-gray-600 mb-4">
                   Calculate potential time and cost savings from automating your
                   business processes.
                 </p>
@@ -307,7 +307,7 @@
                 </button>
               </div>
 
-              <div class="bg-white dark:bg-gray-800 rounded-lg p-6 text-left">
+              <div class="bg-white rounded-lg p-6 text-left">
                 <div class="flex items-center mb-4">
                   <div
                     class="w-12 h-12 bg-electric-orange/20 rounded-lg flex items-center justify-center mr-4"
@@ -330,7 +330,7 @@
                     Smart Home Planning Guide
                   </h3>
                 </div>
-                <p class="text-gray-600 dark:text-gray-300 mb-4">
+                <p class="text-gray-600 mb-4">
                   Complete guide to planning and implementing smart home
                   solutions for your property.
                 </p>
@@ -373,7 +373,7 @@
                   </svg>
                   <div>
                     <h3 class="font-bold mb-1">Address</h3>
-                    <p class="text-gray-600 dark:text-gray-300">
+                    <p class="text-gray-600
                       Rr. Safet Boletini 46, Iliridë<br />Mitrovica, Kosovo
                     </p>
                   </div>
@@ -443,7 +443,7 @@
                   </svg>
                   <div>
                     <h3 class="font-bold mb-1">Business Hours</h3>
-                    <p class="text-gray-600 dark:text-gray-300">
+                    <p class="text-gray-600
                       Monday - Saturday: 09:00 - 19:00<br />Sunday: Closed
                     </p>
                   </div>
@@ -484,7 +484,7 @@
                     id="name"
                     name="name"
                     required
-                    class="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-teal-blue"
+                    class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-teal-blue"
                   />
                 </div>
 
@@ -497,7 +497,7 @@
                     id="email"
                     name="email"
                     required
-                    class="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-teal-blue"
+                    class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-teal-blue"
                   />
                 </div>
 
@@ -509,7 +509,7 @@
                     type="tel"
                     id="phone"
                     name="phone"
-                    class="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-teal-blue"
+                    class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-teal-blue"
                   />
                 </div>
 
@@ -521,7 +521,7 @@
                     type="text"
                     id="company"
                     name="company"
-                    class="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-teal-blue"
+                    class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-teal-blue"
                   />
                 </div>
 
@@ -533,7 +533,7 @@
                     id="service"
                     name="service"
                     required
-                    class="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-teal-blue"
+                    class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-teal-blue"
                   >
                     <option value="">Select a service...</option>
                     <option value="automation">
@@ -553,7 +553,7 @@
                   <select
                     id="budget"
                     name="budget"
-                    class="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-teal-blue"
+                    class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-teal-blue"
                   >
                     <option value="">Select budget range...</option>
                     <option value="under-5k">Under €5,000</option>
@@ -572,7 +572,7 @@
                   <select
                     id="timeline"
                     name="timeline"
-                    class="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-teal-blue"
+                    class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-teal-blue"
                   >
                     <option value="">Select timeline...</option>
                     <option value="asap">ASAP</option>
@@ -592,7 +592,7 @@
                   <select
                     id="contact-method"
                     name="contact-method"
-                    class="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-teal-blue"
+                    class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-teal-blue"
                   >
                     <option value="">Select preferred method...</option>
                     <option value="email">Email</option>
@@ -612,7 +612,7 @@
                     required
                     rows="5"
                     placeholder="Please describe your project requirements, goals, and any specific challenges you're facing..."
-                    class="w-full px-4 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:border-teal-blue"
+                    class="w-full px-4 py-3 bg-white border border-gray-300 rounded-lg focus:outline-none focus:border-teal-blue"
                   ></textarea>
                 </div>
 
@@ -625,7 +625,7 @@
                   />
                   <label
                     for="newsletter"
-                    class="text-sm text-gray-600 dark:text-gray-300"
+                    class="text-sm text-gray-600
                   >
                     I'd like to receive updates about new services, case
                     studies, and automation tips via email.
@@ -642,7 +642,7 @@
                   />
                   <label
                     for="privacy"
-                    class="text-sm text-gray-600 dark:text-gray-300"
+                    class="text-sm text-gray-600
                   >
                     I agree to the
                     <a
@@ -675,7 +675,7 @@
       </div>
     </section>
 
-    <footer class="bg-gray-900 dark:bg-black text-gray-300 pt-16 pb-8">
+    <footer class="bg-gray-900 text-gray-300 pt-16 pb-8">
       <div class="container mx-auto px-4 md:px-6">
         <div
           class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500"

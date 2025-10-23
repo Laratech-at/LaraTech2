@@ -603,25 +603,7 @@ const initGSAPAnimations = () => {
     animateHero();
     animateServiceCards();
     animateProjectCards();
-    // animateTestimonials(); // Disabled for simplicity
     animateSectionHeaders();
-    // animateStats(); // Disabled for simplicity
-
-    // Reduced animations for better performance
-    // initParallax(); // Disabled - causes performance issues
-    // animatePartnerLogos(); // Disabled - not critical
-    // animateCTA(); // Disabled - not critical
-    // animateFooter(); // Disabled - not critical
-    // initScrollStory(); // Disabled - causes performance issues
-    // initPageTransitions(); // Disabled - not critical
-    // initMicroInteractions(); // Disabled - causes performance issues
-    // initImageZoom(); // Disabled - causes performance issues
-    // initScrollProgress(); // Disabled - causes performance issues
-
-    // Optional effects (disabled for performance)
-    // initNeonGlow();
-    // initCursorTrail();
-    // animateTextReveal();
 
     console.log("GSAP animations initialized! ✨");
   };

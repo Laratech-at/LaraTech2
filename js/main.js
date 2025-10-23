@@ -445,10 +445,9 @@ const initCookieConsent = () => {
   const cookieChoice = localStorage.getItem("cookies-choice");
 
   if (!cookieChoice) {
-    setTimeout(() => {
-      cookieBanner?.classList.add("show");
-      console.log("Cookie banner shown");
-    }, 2000);
+    // Show cookie banner immediately for better UX
+    cookieBanner?.classList.add("show");
+    console.log("Cookie banner shown immediately");
   } else {
     console.log("Cookie choice already made:", cookieChoice);
   }
@@ -1444,6 +1443,39 @@ const initBackToTop = () => {
 };
 
 // ============================================
+// Service Cards Click Handler
+// ============================================
+const initServiceCards = () => {
+  const serviceCards = document.querySelectorAll(".service-card-3d");
+
+  serviceCards.forEach((card) => {
+    card.style.cursor = "pointer";
+
+    card.addEventListener("click", (e) => {
+      // Don't trigger if clicking on the Learn More link
+      if (e.target.closest("a")) {
+        return;
+      }
+
+      // Find the Learn More link within this card
+      const learnMoreLink = card.querySelector('a[href*="services.html"]');
+      if (learnMoreLink) {
+        window.location.href = learnMoreLink.href;
+      }
+    });
+
+    // Add hover effect
+    card.addEventListener("mouseenter", () => {
+      card.style.transform = "translateY(-4px)";
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "translateY(0)";
+    });
+  });
+};
+
+// ============================================
 // Service Worker Registration
 // ============================================
 const initServiceWorker = () => {
@@ -1492,30 +1524,15 @@ const init = () => {
     "(prefers-reduced-motion: reduce)"
   ).matches;
 
-  // Loading animation removed for immediate page load
-  // if (!prefersReducedMotion) {
-  //   initLoadingAnimation();
-  // } else {
-  //   // Hide loading immediately if reduced motion is preferred
-  //   const loadingOverlay = document.getElementById("loading-overlay");
-  //   if (loadingOverlay) loadingOverlay.style.display = "none";
-  // }
-
   // Core functionality
-  // initTheme(); // Removed - dark mode disabled
   initLanguageSwitcher();
   initMobileMenu();
   initStickyNav();
   initCounters();
   initFadeInObserver();
-  // initMagneticButtons(); // Disabled - removed for simplicity
   initLazyLoading();
   initCookieConsent();
   initContactForm();
-  // initLightbox(); // Disabled for simplicity
-  // initProgressBar(); // Disabled for simplicity
-  // initBeforeAfterSlider(); // Disabled for simplicity
-  // initPerformanceMonitoring(); // Disabled for simplicity
   initDirectionsButton();
   initBackToTop();
   initProjectsFilter();
@@ -1523,7 +1540,7 @@ const init = () => {
   initLoadingStates();
   initMicroInteractions();
   initContactForm();
-  // initServiceWorker(); // Disabled for simplicity
+  initServiceCards();
 
   console.log("LaraTech website initialized successfully! 🚀");
 };
@@ -1663,7 +1680,6 @@ if (document.readyState === "loading") {
 
 // Export functions for use in other scripts
 window.LaraTech = {
-  // initTheme, // Removed - dark mode disabled
   initLanguageSwitcher,
   initMobileMenu,
   initStickyNav,
@@ -1684,4 +1700,5 @@ window.LaraTech = {
   initLoadingStates,
   initMicroInteractions,
   initContactForm,
+  initServiceCards,
 };
