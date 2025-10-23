@@ -18,15 +18,31 @@ const initGSAPAnimations = () => {
   // Hero Section Animations
   // ============================================
   const animateHero = () => {
+    // Check if hero elements exist before animating
+    const heroTitle = document.querySelector(".hero-title");
+    const heroSubtitle = document.querySelector(".hero-subtitle");
+    const ctaButtons = document.querySelectorAll(
+      ".cta-button, .secondary-button"
+    );
+
+    if (!heroTitle && !heroSubtitle && ctaButtons.length === 0) {
+      console.log("Hero elements not found, skipping hero animations");
+      return;
+    }
+
     const tl = gsap.timeline({ delay: 0.3 }); // Quick delay for immediate page load
 
-    tl.from(".hero-title", {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      ease: "power3.out",
-    })
-      .from(
+    if (heroTitle) {
+      tl.from(".hero-title", {
+        opacity: 0,
+        y: 50,
+        duration: 1,
+        ease: "power3.out",
+      });
+    }
+
+    if (heroSubtitle) {
+      tl.from(
         ".hero-subtitle",
         {
           opacity: 0,
@@ -34,9 +50,12 @@ const initGSAPAnimations = () => {
           duration: 0.8,
           ease: "power3.out",
         },
-        "-=0.5"
-      )
-      .from(
+        heroTitle ? "-=0.5" : 0
+      );
+    }
+
+    if (ctaButtons.length > 0) {
+      tl.from(
         ".cta-button, .secondary-button",
         {
           opacity: 0,
@@ -46,8 +65,13 @@ const initGSAPAnimations = () => {
           ease: "back.out(1.7)",
         },
         "-=0.4"
-      )
-      .from(
+      );
+    }
+
+    // Check if stat cards exist before animating
+    const statCards = document.querySelectorAll(".stat-card");
+    if (statCards.length > 0) {
+      tl.from(
         ".stat-card",
         {
           opacity: 0,
@@ -58,6 +82,7 @@ const initGSAPAnimations = () => {
         },
         "-=0.3"
       );
+    }
   };
 
   // ============================================

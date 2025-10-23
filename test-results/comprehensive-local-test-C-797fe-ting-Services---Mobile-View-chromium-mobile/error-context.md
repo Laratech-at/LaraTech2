@@ -1,0 +1,173 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#hero"
+  - navigation [ref=e3]:
+    - generic [ref=e5]:
+      - link "LaraTech Logo" [ref=e6] [cursor=pointer]:
+        - /url: index.html
+        - img "LaraTech Logo" [ref=e7]
+      - generic [ref=e8]:
+        - button "Select Language" [ref=e10] [cursor=pointer]
+        - button [ref=e11] [cursor=pointer]:
+          - img [ref=e12]
+  - main [ref=e14]:
+    - generic [ref=e18]:
+      - heading "Our Services" [level=1] [ref=e19]
+      - paragraph [ref=e20]: Comprehensive digital solutions designed to transform your business and drive innovation
+    - generic [ref=e22]:
+      - generic [ref=e23]:
+        - generic [ref=e25]:
+          - img [ref=e27]
+          - heading "Automation & AI Workflows" [level=2] [ref=e29]
+          - paragraph [ref=e30]: Transform repetitive tasks into intelligent, automated workflows that save time, reduce errors, and boost productivity.
+          - list [ref=e31]:
+            - listitem [ref=e32]:
+              - img [ref=e33]
+              - generic [ref=e35]: Custom n8n workflow design and implementation
+            - listitem [ref=e36]:
+              - img [ref=e37]
+              - generic [ref=e39]: OpenAI API integration (ChatGPT, GPT-4, DALL-E)
+            - listitem [ref=e40]:
+              - img [ref=e41]
+              - generic [ref=e43]: Zapier and Make.com automation setup
+            - listitem [ref=e44]:
+              - img [ref=e45]
+              - generic [ref=e47]: Business process automation (invoicing, data entry, reporting)
+            - listitem [ref=e48]:
+              - img [ref=e49]
+              - generic [ref=e51]: API integrations and webhooks
+          - link "Request Quote" [ref=e52] [cursor=pointer]:
+            - /url: contact.html
+        - generic [ref=e55]: n8n
+      - generic [ref=e56]:
+        - generic [ref=e59]: WEB
+        - generic [ref=e61]:
+          - img [ref=e63]
+          - heading "Web Development" [level=2] [ref=e65]
+          - paragraph [ref=e66]: Modern, responsive, and lightning-fast websites that convert visitors into customers.
+          - list [ref=e67]:
+            - listitem [ref=e68]:
+              - img [ref=e69]
+              - generic [ref=e71]: Custom website design and development
+            - listitem [ref=e72]:
+              - img [ref=e73]
+              - generic [ref=e75]: E-commerce platforms (Shopify, WooCommerce, custom)
+            - listitem [ref=e76]:
+              - img [ref=e77]
+              - generic [ref=e79]: Next.js, React, and full-stack applications
+            - listitem [ref=e80]:
+              - img [ref=e81]
+              - generic [ref=e83]: SEO optimization and performance tuning
+            - listitem [ref=e84]:
+              - img [ref=e85]
+              - generic [ref=e87]: Ongoing maintenance and support
+          - link "Request Quote" [ref=e88] [cursor=pointer]:
+            - /url: contact.html
+      - generic [ref=e89]:
+        - generic [ref=e91]:
+          - img [ref=e93]
+          - heading "Smart Home & Security Systems" [level=2] [ref=e95]
+          - paragraph [ref=e96]: Transform your home or office into a connected, secure, and intelligent environment.
+          - list [ref=e97]:
+            - listitem [ref=e98]:
+              - img [ref=e99]
+              - generic [ref=e101]: Smart home automation (lighting, climate, security)
+            - listitem [ref=e102]:
+              - img [ref=e103]
+              - generic [ref=e105]: Surveillance camera installation and monitoring
+            - listitem [ref=e106]:
+              - img [ref=e107]
+              - generic [ref=e109]: Access control and alarm systems
+            - listitem [ref=e110]:
+              - img [ref=e111]
+              - generic [ref=e113]: Home network setup and WiFi optimization
+            - listitem [ref=e114]:
+              - img [ref=e115]
+              - generic [ref=e117]: Integration with Google Home, Alexa, and Apple HomeKit
+          - link "Request Quote" [ref=e118] [cursor=pointer]:
+            - /url: contact.html
+        - img [ref=e121]
+    - generic [ref=e123]:
+      - generic [ref=e124]:
+        - heading "Our Process" [level=2] [ref=e125]
+        - paragraph [ref=e126]: From consultation to deployment, we guide you every step of the way
+      - generic [ref=e127]:
+        - generic [ref=e128]:
+          - generic [ref=e129]: "1"
+          - heading "Discovery" [level=3] [ref=e130]
+          - paragraph [ref=e131]: We learn about your business, goals, and challenges
+        - generic [ref=e132]:
+          - generic [ref=e133]: "2"
+          - heading "Planning" [level=3] [ref=e134]
+          - paragraph [ref=e135]: We create a tailored strategy and roadmap
+        - generic [ref=e136]:
+          - generic [ref=e137]: "3"
+          - heading "Development" [level=3] [ref=e138]
+          - paragraph [ref=e139]: We build and test your solution with precision
+        - generic [ref=e140]:
+          - generic [ref=e141]: "4"
+          - heading "Launch & Support" [level=3] [ref=e142]
+          - paragraph [ref=e143]: We deploy and provide ongoing support
+    - generic [ref=e146]:
+      - heading "Ready to Get Started?" [level=2] [ref=e147]
+      - paragraph [ref=e148]: Let's discuss your project and find the perfect solution for your needs.
+      - link "Book Free Consultation" [ref=e149] [cursor=pointer]:
+        - /url: contact.html
+  - contentinfo [ref=e150]:
+    - generic [ref=e151]:
+      - generic [ref=e152]:
+        - generic [ref=e153]:
+          - generic [ref=e154]:
+            - generic [ref=e156]: L
+            - generic [ref=e157]: LaraTech
+          - paragraph [ref=e158]: Digital & Automation Services
+        - generic [ref=e159]:
+          - heading "Quick Links" [level=3] [ref=e160]
+          - list [ref=e161]:
+            - listitem [ref=e162]:
+              - link "Home" [ref=e163] [cursor=pointer]:
+                - /url: index.html
+            - listitem [ref=e164]:
+              - link "Services" [ref=e165] [cursor=pointer]:
+                - /url: services.html
+            - listitem [ref=e166]:
+              - link "Projects" [ref=e167] [cursor=pointer]:
+                - /url: projects.html
+            - listitem [ref=e168]:
+              - link "About" [ref=e169] [cursor=pointer]:
+                - /url: about.html
+            - listitem [ref=e170]:
+              - link "Contact" [ref=e171] [cursor=pointer]:
+                - /url: contact.html
+        - generic [ref=e172]:
+          - heading "Contact" [level=3] [ref=e173]
+          - list [ref=e174]:
+            - listitem [ref=e175]:
+              - text: Rr. Safet Boletini 46, Iliridë
+              - text: Mitrovica, Kosovo
+            - listitem [ref=e176]:
+              - link "+383 49 479 759" [ref=e177] [cursor=pointer]:
+                - /url: tel:+38349479759
+            - listitem [ref=e178]:
+              - link "office@laratech.ai" [ref=e179] [cursor=pointer]:
+                - /url: mailto:office@laratech.ai
+        - generic [ref=e180]:
+          - heading "Follow Us" [level=3] [ref=e181]
+          - generic [ref=e182]:
+            - link [ref=e183] [cursor=pointer]:
+              - /url: https://linkedin.com/company/laratech.ai
+              - img [ref=e184]
+            - link [ref=e186] [cursor=pointer]:
+              - /url: https://instagram.com/laratech.ai
+              - img [ref=e187]
+      - generic [ref=e189]:
+        - paragraph [ref=e190]: © 2025 LaraTech sh.p.k. All rights reserved.
+        - generic [ref=e191]:
+          - link "Privacy Policy" [ref=e192] [cursor=pointer]:
+            - /url: privacy-policy.html
+          - link "Terms of Service" [ref=e193] [cursor=pointer]:
+            - /url: terms-of-service.html
+```

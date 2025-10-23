@@ -1,0 +1,208 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - link "Skip to main content" [ref=e2] [cursor=pointer]:
+    - /url: "#hero"
+  - navigation [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - link "LaraTech Logo" [ref=e6] [cursor=pointer]:
+          - /url: index.html
+          - img "LaraTech Logo" [ref=e7]
+        - generic [ref=e8]:
+          - button "Select Language" [ref=e10] [cursor=pointer]
+          - button "Toggle mobile menu" [ref=e11] [cursor=pointer]:
+            - img [ref=e12]
+      - generic [ref=e14]:
+        - link "Home" [ref=e15] [cursor=pointer]:
+          - /url: index.html
+        - link "Services" [ref=e16] [cursor=pointer]:
+          - /url: services.html
+        - link "Projects" [ref=e17] [cursor=pointer]:
+          - /url: projects.html
+        - link "About" [ref=e18] [cursor=pointer]:
+          - /url: about.html
+        - link "Blog" [ref=e19] [cursor=pointer]:
+          - /url: blog.html
+        - link "Contact" [ref=e20] [cursor=pointer]:
+          - /url: contact.html
+  - main [ref=e21]:
+    - banner "Hero section" [ref=e22]:
+      - generic:
+        - generic:
+          - heading "Digital Innovation Meets Automation" [level=1]:
+            - text: Digital Innovation
+            - text: Meets Automation
+          - paragraph: Expert automation, AI workflows, web development, and smart-tech solutions from Kosovo for businesses globally.
+          - generic:
+            - link "Start Your Project" [ref=e23] [cursor=pointer]:
+              - /url: contact.html
+            - link "Explore Services" [ref=e24] [cursor=pointer]:
+              - /url: services.html
+          - generic:
+            - generic [ref=e25] [cursor=pointer]:
+              - generic: "30"
+              - generic: Automations Delivered
+            - generic [ref=e26] [cursor=pointer]:
+              - generic: "50"
+              - generic: Happy Clients
+            - generic [ref=e27] [cursor=pointer]:
+              - generic: "99"
+              - generic: Uptime %
+            - generic [ref=e28] [cursor=pointer]:
+              - generic: "24"
+              - generic: Support Hours
+      - img [ref=e30]
+    - region "Services preview" [ref=e32]:
+      - generic [ref=e33]:
+        - generic [ref=e34]:
+          - heading "Our Services" [level=2] [ref=e35]
+          - paragraph [ref=e36]: Comprehensive digital solutions tailored to transform your business
+        - generic [ref=e37]:
+          - generic [ref=e39]:
+            - img [ref=e41]
+            - heading "Automation & AI Workflows" [level=3] [ref=e43]
+            - paragraph [ref=e44]: Streamline operations with OpenAI, n8n, and custom automation solutions.
+            - link "Learn More" [ref=e45] [cursor=pointer]:
+              - /url: services.html#automation
+              - generic [ref=e46]: Learn More
+              - img [ref=e47]
+          - generic [ref=e50]:
+            - img [ref=e52]
+            - heading "Web Development" [level=3] [ref=e54]
+            - paragraph [ref=e55]: Modern, fast, and SEO-optimized websites and web applications.
+            - link "Learn More" [ref=e56] [cursor=pointer]:
+              - /url: services.html#web
+              - generic [ref=e57]: Learn More
+              - img [ref=e58]
+          - generic [ref=e61]:
+            - img [ref=e63]
+            - heading "Smart Home & Security" [level=3] [ref=e65]
+            - paragraph [ref=e66]: Complete smart home integration and surveillance systems.
+            - link "Learn More" [ref=e67] [cursor=pointer]:
+              - /url: services.html#smarthome
+              - generic [ref=e68]: Learn More
+              - img [ref=e69]
+          - generic [ref=e72]:
+            - img [ref=e74]
+            - heading "IT Consulting & Support" [level=3] [ref=e76]
+            - paragraph [ref=e77]: Expert IT guidance and ongoing technical support for your business.
+            - link "Learn More" [ref=e78] [cursor=pointer]:
+              - /url: services.html#consulting
+              - generic [ref=e79]: Learn More
+              - img [ref=e80]
+          - generic [ref=e83]:
+            - img [ref=e85]
+            - heading "Business Process Optimization" [level=3] [ref=e87]
+            - paragraph [ref=e88]: Transform and optimize workflows to maximize efficiency and ROI.
+            - link "Learn More" [ref=e89] [cursor=pointer]:
+              - /url: services.html#optimization
+              - generic [ref=e90]: Learn More
+              - img [ref=e91]
+          - generic [ref=e94]:
+            - img [ref=e96]
+            - heading "Digital Presence Setup" [level=3] [ref=e98]
+            - paragraph [ref=e99]: Google Business, social media, and complete digital branding.
+            - link "Learn More" [ref=e100] [cursor=pointer]:
+              - /url: services.html#digital
+              - generic [ref=e101]: Learn More
+              - img [ref=e102]
+        - link "View All Services" [ref=e105] [cursor=pointer]:
+          - /url: services.html
+    - region "Call to action" [ref=e106]:
+      - generic [ref=e108]:
+        - heading "Ready to Transform Your Business?" [level=2] [ref=e109]
+        - paragraph [ref=e110]: Let's discuss how we can help you automate, innovate, and grow with cutting-edge digital solutions.
+        - generic [ref=e111]:
+          - link "Book Free Consultation" [ref=e112] [cursor=pointer]:
+            - /url: contact.html
+          - link "+383 49 479 759" [ref=e113] [cursor=pointer]:
+            - /url: tel:+38349479759
+            - img [ref=e114]
+            - text: +383 49 479 759
+  - contentinfo "Site footer" [ref=e116]:
+    - generic [ref=e117]:
+      - generic [ref=e118]:
+        - generic [ref=e119]:
+          - img "LaraTech Logo" [ref=e121]
+          - paragraph [ref=e122]: Digital & Automation Services
+          - paragraph [ref=e123]: Smart-Tech & Web Solutions for Modern Businesses
+        - generic [ref=e124]:
+          - heading "Quick Links" [level=3] [ref=e125]
+          - list [ref=e126]:
+            - listitem [ref=e127]:
+              - link "Home" [ref=e128] [cursor=pointer]:
+                - /url: index.html
+            - listitem [ref=e129]:
+              - link "Services" [ref=e130] [cursor=pointer]:
+                - /url: services.html
+            - listitem [ref=e131]:
+              - link "Projects" [ref=e132] [cursor=pointer]:
+                - /url: projects.html
+            - listitem [ref=e133]:
+              - link "About" [ref=e134] [cursor=pointer]:
+                - /url: about.html
+            - listitem [ref=e135]:
+              - link "Blog" [ref=e136] [cursor=pointer]:
+                - /url: blog.html
+            - listitem [ref=e137]:
+              - link "Contact" [ref=e138] [cursor=pointer]:
+                - /url: contact.html
+        - generic [ref=e139]:
+          - heading "Contact" [level=3] [ref=e140]
+          - list [ref=e141]:
+            - listitem [ref=e142]:
+              - img [ref=e143]
+              - generic "Address" [ref=e146] [cursor=pointer]:
+                - text: Rr. Safet Boletini 46, Iliridë
+                - text: Mitrovica, Kosovo
+            - listitem [ref=e147]:
+              - img [ref=e148]
+              - link "+383 49 479 759" [ref=e150] [cursor=pointer]:
+                - /url: tel:+38349479759
+            - listitem [ref=e151]:
+              - img [ref=e152]
+              - link "office@laratech.ai" [ref=e154] [cursor=pointer]:
+                - /url: mailto:office@laratech.ai
+            - listitem [ref=e155]:
+              - img [ref=e156]
+              - generic [ref=e158]: "Mon-Sat: 09:00-19:00"
+        - generic [ref=e159]:
+          - heading "Follow Us" [level=3] [ref=e160]
+          - generic [ref=e161]:
+            - link [ref=e162] [cursor=pointer]:
+              - /url: https://linkedin.com/company/laratech.ai
+              - img [ref=e163]
+            - link [ref=e165] [cursor=pointer]:
+              - /url: https://instagram.com/laratech.ai
+              - img [ref=e166]
+            - link [ref=e168] [cursor=pointer]:
+              - /url: https://x.com/LaraTech_AI
+              - img [ref=e169]
+            - link [ref=e171] [cursor=pointer]:
+              - /url: https://facebook.com/laratech.eu
+              - img [ref=e172]
+          - paragraph [ref=e174]: 🌍 www.laratech.ai
+      - generic [ref=e175]:
+        - paragraph [ref=e176]: © 2025 LaraTech sh.p.k. All rights reserved.
+        - generic [ref=e177]:
+          - link "Privacy Policy" [ref=e178] [cursor=pointer]:
+            - /url: privacy-policy.html
+          - link "Terms of Service" [ref=e179] [cursor=pointer]:
+            - /url: terms-of-service.html
+          - link "Cookie Policy" [ref=e180] [cursor=pointer]:
+            - /url: cookie-policy.html
+  - dialog "Cookie Consent" [ref=e181]:
+    - generic [ref=e182]:
+      - heading "Cookie Consent" [level=2] [ref=e183]
+      - paragraph [ref=e185]: We use cookies to improve your experience and analyze site traffic. By continuing to use this site, you agree to our use of cookies.
+      - generic [ref=e186]:
+        - button "Accept all cookies" [ref=e187] [cursor=pointer]: Accept All
+        - button "Reject all cookies" [ref=e188] [cursor=pointer]: Reject All
+        - link "Learn More" [ref=e189] [cursor=pointer]:
+          - /url: cookie-policy.html
+  - link "Contact us on WhatsApp" [ref=e190] [cursor=pointer]:
+    - /url: https://wa.me/38349479759
+    - img [ref=e191]
+```
