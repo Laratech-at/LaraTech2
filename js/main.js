@@ -42,9 +42,15 @@ const initLanguageSwitcher = () => {
   // Toggle dropdown
   langDropdownBtn?.addEventListener("click", (e) => {
     console.log("Language dropdown clicked");
+    e.preventDefault();
     e.stopPropagation();
-    langDropdownContent?.classList.toggle("show");
-    console.log("Dropdown show class toggled");
+    const isOpen = langDropdownContent?.classList.contains("show");
+    if (isOpen) {
+      langDropdownContent?.classList.remove("show");
+    } else {
+      langDropdownContent?.classList.add("show");
+    }
+    console.log("Dropdown show class toggled:", !isOpen);
   });
 
   // Close dropdown when clicking outside
@@ -441,7 +447,10 @@ const initCookieConsent = () => {
   if (!cookieChoice) {
     setTimeout(() => {
       cookieBanner?.classList.add("show");
+      console.log("Cookie banner shown");
     }, 2000);
+  } else {
+    console.log("Cookie choice already made:", cookieChoice);
   }
 
   // Accept cookies
