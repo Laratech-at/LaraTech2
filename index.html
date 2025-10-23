@@ -285,6 +285,7 @@
         class="relative pb-20 md:pb-32 overflow-hidden"
         role="banner"
         aria-label="Hero section"
+        style="z-index: -1; pointer-events: none;"
       >
         <!-- Particle Background -->
         <canvas
@@ -293,7 +294,7 @@
           style="background: #f9fafb; pointer-events: none"
         ></canvas>
 
-        <div class="container mx-auto px-4 md:px-6 relative z-10 pt-32 pb-20">
+        <div class="container mx-auto px-4 md:px-6 relative z-0 pt-32 pb-20" style="pointer-events: auto;">
           <div class="text-center max-w-5xl mx-auto">
             <h1
               class="hero-title text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-6 leading-tight"
