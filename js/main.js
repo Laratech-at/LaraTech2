@@ -441,14 +441,13 @@ const initCookieConsent = () => {
     rejectButton: !!rejectButton,
   });
 
+  // Always show cookie banner for testing
+  cookieBanner?.classList.add("show");
+  console.log("Cookie banner shown immediately");
+  
   // Check if user has already made a choice
   const cookieChoice = localStorage.getItem("cookies-choice");
-
-  if (!cookieChoice) {
-    // Show cookie banner immediately for better UX
-    cookieBanner?.classList.add("show");
-    console.log("Cookie banner shown immediately");
-  } else {
+  if (cookieChoice) {
     console.log("Cookie choice already made:", cookieChoice);
   }
 
