@@ -251,338 +251,345 @@
       </div>
     </nav>
 
-    <section class="pt-32 pb-20">
-      <div class="container mx-auto px-4 md:px-6">
-        <div class="text-center max-w-4xl mx-auto mb-16">
-          <h1
-            class="text-5xl md:text-7xl font-display font-bold mb-6 text-gradient"
+    <!-- Main Content -->
+    <main>
+      <section class="pt-32 pb-20">
+        <div class="container mx-auto px-4 md:px-6">
+          <div class="text-center max-w-4xl mx-auto mb-16">
+            <h1
+              class="text-5xl md:text-7xl font-display font-bold mb-6 text-gradient"
+            >
+              Our Projects
+            </h1>
+            <p class="text-xl text-gray-600 mb-8">
+              Real-world solutions that drive results
+            </p>
+
+            <!-- Filter Controls -->
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+              <button
+                class="filter-btn active"
+                data-filter="all"
+                data-lang-en="All Projects"
+                data-lang-sq="Të Gjitha Projektet"
+                data-lang-de="Alle Projekte"
+              >
+                All Projects
+              </button>
+              <button
+                class="filter-btn"
+                data-filter="automation"
+                data-lang-en="Automation"
+                data-lang-sq="Automatizimi"
+                data-lang-de="Automatisierung"
+              >
+                Automation
+              </button>
+              <button
+                class="filter-btn"
+                data-filter="web-development"
+                data-lang-en="Web Development"
+                data-lang-sq="Zhvillimi i Faqeve"
+                data-lang-de="Webentwicklung"
+              >
+                Web Development
+              </button>
+              <button
+                class="filter-btn"
+                data-filter="smart-home"
+                data-lang-en="Smart Home"
+                data-lang-sq="Shtëpi e Zgjuar"
+                data-lang-de="Smart Home"
+              >
+                Smart Home
+              </button>
+              <button
+                class="filter-btn"
+                data-filter="ai-workflows"
+                data-lang-en="AI Workflows"
+                data-lang-sq="Rrjedhat AI"
+                data-lang-de="KI-Workflows"
+              >
+                AI Workflows
+              </button>
+            </div>
+
+            <!-- View Toggle -->
+            <div class="flex justify-center items-center gap-4 mb-8">
+              <span class="text-sm text-gray-600">View:</span>
+              <button
+                id="grid-view-btn"
+                class="view-toggle-btn active"
+                data-view="grid"
+                aria-label="Grid View"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
+                  />
+                </svg>
+              </button>
+              <button
+                id="list-view-btn"
+                class="view-toggle-btn"
+                data-view="list"
+                aria-label="List View"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                  <path
+                    fill-rule="evenodd"
+                    d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <!-- Projects Grid -->
+          <div
+            id="projects-container"
+            class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12"
           >
-            Our Projects
-          </h1>
-          <p class="text-xl text-gray-600 mb-8">
-            Real-world solutions that drive results
+            <div
+              class="project-card-3d glass-card overflow-hidden"
+              data-category="web-development"
+              data-project="topyachts"
+            >
+              <div
+                class="relative h-64 bg-gradient-to-br from-teal-blue to-neon-blue flex items-center justify-center"
+              >
+                <span class="text-6xl font-display text-white opacity-20"
+                  >TopYachts</span
+                >
+              </div>
+              <div class="p-8">
+                <div class="flex items-center justify-between mb-3">
+                  <h3 class="text-2xl font-display font-bold">
+                    TopYachts Platform
+                  </h3>
+                  <span class="text-sm text-gray-500">3 months</span>
+                </div>
+                <p class="text-gray-600 mb-4">
+                  Full-stack yacht charter booking platform with real-time
+                  availability, payment processing, and admin dashboard.
+                </p>
+                <div class="flex items-center gap-4 mb-4 text-sm text-gray-500">
+                  <span><strong>Client:</strong> Maritime Industry</span>
+                  <span><strong>Team:</strong> 3 developers</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span class="glass-badge px-3 py-1 text-sm">Next.js</span>
+                  <span class="glass-badge px-3 py-1 text-sm">Supabase</span>
+                  <span class="glass-badge px-3 py-1 text-sm">Stripe</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="text-sm text-gray-500">
+                    <span class="text-green-600 font-semibold"
+                      >+150% bookings</span
+                    >
+                    <span class="mx-2">•</span>
+                    <span class="text-blue-600 font-semibold"
+                      >-40% admin time</span
+                    >
+                  </div>
+                  <a
+                    href="case-studies/topyachts-platform.html"
+                    class="text-teal-blue hover:text-neon-blue font-semibold"
+                  >
+                    View Case Study →
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="project-card-3d glass-card overflow-hidden"
+              data-category="automation"
+              data-project="business-automation"
+            >
+              <div
+                class="relative h-64 bg-gradient-to-br from-electric-orange to-teal-blue flex items-center justify-center"
+              >
+                <span class="text-6xl font-display text-white opacity-20"
+                  >n8n</span
+                >
+              </div>
+              <div class="p-8">
+                <div class="flex items-center justify-between mb-3">
+                  <h3 class="text-2xl font-display font-bold">
+                    Business Automation Suite
+                  </h3>
+                  <span class="text-sm text-gray-500">2 months</span>
+                </div>
+                <p class="text-gray-600 mb-4">
+                  Custom n8n workflows automating invoicing, customer
+                  communication, and data processing for Austrian SMEs.
+                </p>
+                <div class="flex items-center gap-4 mb-4 text-sm text-gray-500">
+                  <span><strong>Client:</strong> Manufacturing</span>
+                  <span><strong>Team:</strong> 2 developers</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span class="glass-badge px-3 py-1 text-sm">n8n</span>
+                  <span class="glass-badge px-3 py-1 text-sm">OpenAI</span>
+                  <span class="glass-badge px-3 py-1 text-sm">APIs</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="text-sm text-gray-500">
+                    <span class="text-green-600 font-semibold"
+                      >-60% manual work</span
+                    >
+                    <span class="mx-2">•</span>
+                    <span class="text-blue-600 font-semibold"
+                      >+200% efficiency</span
+                    >
+                  </div>
+                  <a
+                    href="case-studies/business-automation-suite.html"
+                    class="text-electric-orange hover:text-teal-blue font-semibold"
+                  >
+                    View Case Study →
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="project-card-3d glass-card overflow-hidden"
+              data-category="smart-home"
+              data-project="smart-home-integration"
+            >
+              <div
+                class="relative h-64 bg-gradient-to-br from-neon-blue to-electric-orange flex items-center justify-center"
+              >
+                <svg
+                  class="w-32 h-32 text-white opacity-20"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1"
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                  />
+                </svg>
+              </div>
+              <div class="p-8">
+                <div class="flex items-center justify-between mb-3">
+                  <h3 class="text-2xl font-display font-bold">
+                    Smart Home Integration
+                  </h3>
+                  <span class="text-sm text-gray-500">1 month</span>
+                </div>
+                <p class="text-gray-600 mb-4">
+                  Complete home automation with lighting, climate control, and
+                  security system integration.
+                </p>
+                <div class="flex items-center gap-4 mb-4 text-sm text-gray-500">
+                  <span><strong>Client:</strong> Residential</span>
+                  <span><strong>Team:</strong> 2 specialists</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span class="glass-badge px-3 py-1 text-sm"
+                    >Home Assistant</span
+                  >
+                  <span class="glass-badge px-3 py-1 text-sm">IoT</span>
+                  <span class="glass-badge px-3 py-1 text-sm">Security</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="text-sm text-gray-500">
+                    <span class="text-green-600 font-semibold"
+                      >-30% energy costs</span
+                    >
+                    <span class="mx-2">•</span>
+                    <span class="text-blue-600 font-semibold"
+                      >24/7 monitoring</span
+                    >
+                  </div>
+                  <a
+                    href="case-studies/smart-home-integration.html"
+                    class="text-neon-blue hover:text-electric-orange font-semibold"
+                  >
+                    View Case Study →
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div
+              class="project-card-3d glass-card overflow-hidden"
+              data-category="web-development"
+              data-project="ecommerce-platform"
+            >
+              <div
+                class="relative h-64 bg-gradient-to-br from-teal-blue to-electric-orange flex items-center justify-center"
+              >
+                <span class="text-6xl font-display text-white opacity-20"
+                  >WEB</span
+                >
+              </div>
+              <div class="p-8">
+                <div class="flex items-center justify-between mb-3">
+                  <h3 class="text-2xl font-display font-bold">
+                    E-Commerce Platform
+                  </h3>
+                  <span class="text-sm text-gray-500">4 months</span>
+                </div>
+                <p class="text-gray-600 mb-4">
+                  Modern online store with inventory management, payment
+                  gateway, and customer analytics.
+                </p>
+                <div class="flex items-center gap-4 mb-4 text-sm text-gray-500">
+                  <span><strong>Client:</strong> Retail</span>
+                  <span><strong>Team:</strong> 4 developers</span>
+                </div>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span class="glass-badge px-3 py-1 text-sm">React</span>
+                  <span class="glass-badge px-3 py-1 text-sm">Node.js</span>
+                  <span class="glass-badge px-3 py-1 text-sm">PostgreSQL</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <div class="text-sm text-gray-500">
+                    <span class="text-green-600 font-semibold"
+                      >+300% sales</span
+                    >
+                    <span class="mx-2">•</span>
+                    <span class="text-blue-600 font-semibold"
+                      >-50% cart abandonment</span
+                    >
+                  </div>
+                  <a
+                    href="case-studies/ecommerce-platform.html"
+                    class="text-teal-blue hover:text-electric-orange font-semibold"
+                  >
+                    View Case Study →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="py-20 bg-gray-100">
+        <div class="container mx-auto px-4 md:px-6 text-center">
+          <h2 class="text-4xl md:text-6xl font-display font-bold mb-6">
+            Have a Project in Mind?
+          </h2>
+          <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+            Let's build something amazing together
           </p>
-
-          <!-- Filter Controls -->
-          <div class="flex flex-wrap justify-center gap-4 mb-8">
-            <button
-              class="filter-btn active"
-              data-filter="all"
-              data-lang-en="All Projects"
-              data-lang-sq="Të Gjitha Projektet"
-              data-lang-de="Alle Projekte"
-            >
-              All Projects
-            </button>
-            <button
-              class="filter-btn"
-              data-filter="automation"
-              data-lang-en="Automation"
-              data-lang-sq="Automatizimi"
-              data-lang-de="Automatisierung"
-            >
-              Automation
-            </button>
-            <button
-              class="filter-btn"
-              data-filter="web-development"
-              data-lang-en="Web Development"
-              data-lang-sq="Zhvillimi i Faqeve"
-              data-lang-de="Webentwicklung"
-            >
-              Web Development
-            </button>
-            <button
-              class="filter-btn"
-              data-filter="smart-home"
-              data-lang-en="Smart Home"
-              data-lang-sq="Shtëpi e Zgjuar"
-              data-lang-de="Smart Home"
-            >
-              Smart Home
-            </button>
-            <button
-              class="filter-btn"
-              data-filter="ai-workflows"
-              data-lang-en="AI Workflows"
-              data-lang-sq="Rrjedhat AI"
-              data-lang-de="KI-Workflows"
-            >
-              AI Workflows
-            </button>
-          </div>
-
-          <!-- View Toggle -->
-          <div class="flex justify-center items-center gap-4 mb-8">
-            <span class="text-sm text-gray-600">View:</span>
-            <button
-              id="grid-view-btn"
-              class="view-toggle-btn active"
-              data-view="grid"
-              aria-label="Grid View"
-            >
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"
-                />
-              </svg>
-            </button>
-            <button
-              id="list-view-btn"
-              class="view-toggle-btn"
-              data-view="list"
-              aria-label="List View"
-            >
-              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fill-rule="evenodd"
-                  d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-                  clip-rule="evenodd"
-                />
-              </svg>
-            </button>
-          </div>
+          <a
+            href="contact.html"
+            class="cta-button text-lg px-8 py-4 inline-block"
+            >Start Your Project</a
+          >
         </div>
-
-        <!-- Projects Grid -->
-        <div
-          id="projects-container"
-          class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-12"
-        >
-          <div
-            class="project-card-3d glass-card overflow-hidden"
-            data-category="web-development"
-            data-project="topyachts"
-          >
-            <div
-              class="relative h-64 bg-gradient-to-br from-teal-blue to-neon-blue flex items-center justify-center"
-            >
-              <span class="text-6xl font-display text-white opacity-20"
-                >TopYachts</span
-              >
-            </div>
-            <div class="p-8">
-              <div class="flex items-center justify-between mb-3">
-                <h3 class="text-2xl font-display font-bold">
-                  TopYachts Platform
-                </h3>
-                <span class="text-sm text-gray-500">3 months</span>
-              </div>
-              <p class="text-gray-600 mb-4">
-                Full-stack yacht charter booking platform with real-time
-                availability, payment processing, and admin dashboard.
-              </p>
-              <div class="flex items-center gap-4 mb-4 text-sm text-gray-500">
-                <span><strong>Client:</strong> Maritime Industry</span>
-                <span><strong>Team:</strong> 3 developers</span>
-              </div>
-              <div class="flex flex-wrap gap-2 mb-6">
-                <span class="glass-badge px-3 py-1 text-sm">Next.js</span>
-                <span class="glass-badge px-3 py-1 text-sm">Supabase</span>
-                <span class="glass-badge px-3 py-1 text-sm">Stripe</span>
-              </div>
-              <div class="flex items-center justify-between">
-                <div class="text-sm text-gray-500">
-                  <span class="text-green-600 font-semibold"
-                    >+150% bookings</span
-                  >
-                  <span class="mx-2">•</span>
-                  <span class="text-blue-600 font-semibold"
-                    >-40% admin time</span
-                  >
-                </div>
-                <a
-                  href="case-studies/topyachts-platform.html"
-                  class="text-teal-blue hover:text-neon-blue font-semibold"
-                >
-                  View Case Study →
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="project-card-3d glass-card overflow-hidden"
-            data-category="automation"
-            data-project="business-automation"
-          >
-            <div
-              class="relative h-64 bg-gradient-to-br from-electric-orange to-teal-blue flex items-center justify-center"
-            >
-              <span class="text-6xl font-display text-white opacity-20"
-                >n8n</span
-              >
-            </div>
-            <div class="p-8">
-              <div class="flex items-center justify-between mb-3">
-                <h3 class="text-2xl font-display font-bold">
-                  Business Automation Suite
-                </h3>
-                <span class="text-sm text-gray-500">2 months</span>
-              </div>
-              <p class="text-gray-600 mb-4">
-                Custom n8n workflows automating invoicing, customer
-                communication, and data processing for Austrian SMEs.
-              </p>
-              <div class="flex items-center gap-4 mb-4 text-sm text-gray-500">
-                <span><strong>Client:</strong> Manufacturing</span>
-                <span><strong>Team:</strong> 2 developers</span>
-              </div>
-              <div class="flex flex-wrap gap-2 mb-6">
-                <span class="glass-badge px-3 py-1 text-sm">n8n</span>
-                <span class="glass-badge px-3 py-1 text-sm">OpenAI</span>
-                <span class="glass-badge px-3 py-1 text-sm">APIs</span>
-              </div>
-              <div class="flex items-center justify-between">
-                <div class="text-sm text-gray-500">
-                  <span class="text-green-600 font-semibold"
-                    >-60% manual work</span
-                  >
-                  <span class="mx-2">•</span>
-                  <span class="text-blue-600 font-semibold"
-                    >+200% efficiency</span
-                  >
-                </div>
-                <a
-                  href="case-studies/business-automation-suite.html"
-                  class="text-electric-orange hover:text-teal-blue font-semibold"
-                >
-                  View Case Study →
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="project-card-3d glass-card overflow-hidden"
-            data-category="smart-home"
-            data-project="smart-home-integration"
-          >
-            <div
-              class="relative h-64 bg-gradient-to-br from-neon-blue to-electric-orange flex items-center justify-center"
-            >
-              <svg
-                class="w-32 h-32 text-white opacity-20"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="1"
-                  d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                />
-              </svg>
-            </div>
-            <div class="p-8">
-              <div class="flex items-center justify-between mb-3">
-                <h3 class="text-2xl font-display font-bold">
-                  Smart Home Integration
-                </h3>
-                <span class="text-sm text-gray-500">1 month</span>
-              </div>
-              <p class="text-gray-600 mb-4">
-                Complete home automation with lighting, climate control, and
-                security system integration.
-              </p>
-              <div class="flex items-center gap-4 mb-4 text-sm text-gray-500">
-                <span><strong>Client:</strong> Residential</span>
-                <span><strong>Team:</strong> 2 specialists</span>
-              </div>
-              <div class="flex flex-wrap gap-2 mb-6">
-                <span class="glass-badge px-3 py-1 text-sm"
-                  >Home Assistant</span
-                >
-                <span class="glass-badge px-3 py-1 text-sm">IoT</span>
-                <span class="glass-badge px-3 py-1 text-sm">Security</span>
-              </div>
-              <div class="flex items-center justify-between">
-                <div class="text-sm text-gray-500">
-                  <span class="text-green-600 font-semibold"
-                    >-30% energy costs</span
-                  >
-                  <span class="mx-2">•</span>
-                  <span class="text-blue-600 font-semibold"
-                    >24/7 monitoring</span
-                  >
-                </div>
-                <a
-                  href="case-studies/smart-home-integration.html"
-                  class="text-neon-blue hover:text-electric-orange font-semibold"
-                >
-                  View Case Study →
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div
-            class="project-card-3d glass-card overflow-hidden"
-            data-category="web-development"
-            data-project="ecommerce-platform"
-          >
-            <div
-              class="relative h-64 bg-gradient-to-br from-teal-blue to-electric-orange flex items-center justify-center"
-            >
-              <span class="text-6xl font-display text-white opacity-20"
-                >WEB</span
-              >
-            </div>
-            <div class="p-8">
-              <div class="flex items-center justify-between mb-3">
-                <h3 class="text-2xl font-display font-bold">
-                  E-Commerce Platform
-                </h3>
-                <span class="text-sm text-gray-500">4 months</span>
-              </div>
-              <p class="text-gray-600 mb-4">
-                Modern online store with inventory management, payment gateway,
-                and customer analytics.
-              </p>
-              <div class="flex items-center gap-4 mb-4 text-sm text-gray-500">
-                <span><strong>Client:</strong> Retail</span>
-                <span><strong>Team:</strong> 4 developers</span>
-              </div>
-              <div class="flex flex-wrap gap-2 mb-6">
-                <span class="glass-badge px-3 py-1 text-sm">React</span>
-                <span class="glass-badge px-3 py-1 text-sm">Node.js</span>
-                <span class="glass-badge px-3 py-1 text-sm">PostgreSQL</span>
-              </div>
-              <div class="flex items-center justify-between">
-                <div class="text-sm text-gray-500">
-                  <span class="text-green-600 font-semibold">+300% sales</span>
-                  <span class="mx-2">•</span>
-                  <span class="text-blue-600 font-semibold"
-                    >-50% cart abandonment</span
-                  >
-                </div>
-                <a
-                  href="case-studies/ecommerce-platform.html"
-                  class="text-teal-blue hover:text-electric-orange font-semibold"
-                >
-                  View Case Study →
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="py-20 bg-gray-100">
-      <div class="container mx-auto px-4 md:px-6 text-center">
-        <h2 class="text-4xl md:text-6xl font-display font-bold mb-6">
-          Have a Project in Mind?
-        </h2>
-        <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
-          Let's build something amazing together
-        </p>
-        <a href="contact.html" class="cta-button text-lg px-8 py-4 inline-block"
-          >Start Your Project</a
-        >
-      </div>
-    </section>
+      </section>
+    </main>
 
     <footer class="bg-gray-900 text-gray-300 pt-16 pb-8">
       <div class="container mx-auto px-4 md:px-6">

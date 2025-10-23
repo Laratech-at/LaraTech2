@@ -2369,7 +2369,8 @@ input[type="checkbox"]:checked {
 #hero .container .secondary-button,
 #hero .container .glass-button,
 #hero .container .magnetic-button,
-#hero .container .stat-card {
+#hero .container .stat-card,
+#hero .container .mobile-nav-link {
   pointer-events: auto !important; /* Re-enable pointer events for interactive elements */
 }
 
@@ -2405,6 +2406,13 @@ input[type="checkbox"]:checked {
 html,
 body {
   overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Prevent horizontal overflow on all elements */
+* {
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 /* Fix for fixed navbar taking up space */
@@ -2477,7 +2485,7 @@ body {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  z-index: 1001; /* Higher than hero section */
 }
 
 #navbar.scrolled {
