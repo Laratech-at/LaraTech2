@@ -105,7 +105,7 @@ const ImageOptimizer = {
 
   // Preload critical images
   preloadCriticalImages() {
-    const criticalImages = ["/assets/logo.png", "/assets/favicon.svg"];
+    const criticalImages = ["/assets/Logo.png", "/assets/favicon.svg"];
 
     criticalImages.forEach((src) => {
       const link = document.createElement("link");

@@ -431,7 +431,7 @@ const initLazyLoading = () => {
 // ============================================
 const initCookieConsent = () => {
   console.log("Initializing cookie consent...");
-  
+
   // Add a small delay to ensure DOM is fully loaded
   setTimeout(() => {
     const cookieBanner = document.getElementById("cookie-banner");
@@ -447,7 +447,7 @@ const initCookieConsent = () => {
     // Always show cookie banner for testing
     cookieBanner?.classList.add("show");
     console.log("Cookie banner shown immediately");
-    
+
     // Check if user has already made a choice
     const cookieChoice = localStorage.getItem("cookies-choice");
     if (cookieChoice) {

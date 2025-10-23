@@ -14,7 +14,7 @@ const CRITICAL_RESOURCES = [
   "/css/style.css",
   "/js/main.js",
   "/js/animations.js",
-  "/assets/logo.png",
+  "/assets/Logo.png",
   "/assets/favicon.svg",
 ];
 

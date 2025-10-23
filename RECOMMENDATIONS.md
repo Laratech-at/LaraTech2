@@ -213,7 +213,7 @@ const pwaFeatures = {
       '/',
       '/css/style.css',
       '/js/main.js',
-      '/assets/logo.png'
+      '/assets/Logo.png'
     ];
     
     // Implement app shell caching
