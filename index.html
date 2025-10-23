@@ -285,13 +285,13 @@
         class="relative py-16 md:py-24 overflow-hidden min-h-screen flex items-center"
         role="banner"
         aria-label="Hero section"
-        style="z-index: 0;"
+        style="z-index: 0"
       >
         <!-- Particle Background -->
         <canvas
           id="particles-canvas"
           class="absolute inset-0 w-full h-full"
-          style="background: #f9fafb; pointer-events: none; z-index: 0;"
+          style="background: #f9fafb; z-index: 0"
         ></canvas>
 
         <div class="container mx-auto px-4 md:px-6 relative z-10 w-full">
@@ -1580,6 +1580,19 @@
           const rect = canvas.getBoundingClientRect();
           mouse.x = e.clientX - rect.left;
           mouse.y = e.clientY - rect.top;
+        });
+
+        // Also listen to mouse events on the document for better interaction
+        document.addEventListener("mousemove", (e) => {
+          const rect = canvas.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          // Only update mouse position if it's within the canvas bounds
+          if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) {
+            mouse.x = x;
+            mouse.y = y;
+          }
         });
 
         canvas.addEventListener("mouseleave", () => {
