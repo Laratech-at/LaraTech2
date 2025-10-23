@@ -53,7 +53,6 @@
 
     <!-- Preload Critical Resources -->
     <link rel="preload" href="css/style.css" as="style" />
-    <link rel="preload" href="js/main.js" as="script" />
     <link rel="preload" href="assets/logo.png" as="image" />
 
     <!-- Load fonts asynchronously without preload to avoid warnings -->
@@ -173,7 +172,23 @@
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 
     <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Tailwind CSS - Production build -->
+    <script>
+      tailwind = {
+        config: {
+          theme: {
+            extend: {
+              colors: {
+                primary: "#00c8c8",
+                secondary: "#00ffff",
+                accent: "#ff6b6b",
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <script src="https://cdn.tailwindcss.com/3.4.0"></script>
 
     <!-- Lucide Icons -->
     <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
@@ -262,7 +277,9 @@
     <!-- Navigation -->
     <nav
       id="navbar"
-      class="fixed top-0 w-full z-40 transition-all duration-300 py-4 px-4 md:px-6"
+      class="fixed top-0 w-full z-40 transition-all duration-300 py-4 px-4 md:px-6 glass-nav"
+      role="navigation"
+      aria-label="Main navigation"
     >
       <div class="container mx-auto">
         <div class="flex items-center justify-between">
@@ -376,6 +393,9 @@
             <button
               id="mobile-menu-toggle"
               class="lg:hidden glass-button p-2 rounded-lg"
+              aria-label="Toggle mobile menu"
+              aria-expanded="false"
+              aria-controls="mobile-menu"
             >
               <svg
                 class="w-6 h-6"
@@ -399,6 +419,8 @@
       <div
         id="mobile-menu"
         class="lg:hidden hidden mt-4 container mx-auto px-4 md:px-6"
+        role="navigation"
+        aria-label="Mobile navigation menu"
       >
         <div class="glass-nav p-6 rounded-2xl space-y-4">
           <a
@@ -455,6 +477,18 @@
             data-lang-en="Start Your Project"
             data-lang-sq="Filloni Projektin Tuaj"
             data-lang-de="Projekt Starten"
+            ><svg
+              class="inline-block w-5 h-5 mr-2"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+              ></path></svg
             >Start Your Project</a
           >
         </div>
@@ -462,7 +496,12 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="hero" class="relative pb-20 md:pb-32 overflow-hidden">
+    <section
+      id="hero"
+      class="relative pb-20 md:pb-32 overflow-hidden"
+      role="banner"
+      aria-label="Hero section"
+    >
       <!-- Particle Background -->
       <canvas
         id="particles-canvas"
@@ -615,11 +654,16 @@
     </section>
 
     <!-- Services Preview Section -->
-    <section id="services-preview" class="py-20 relative">
+    <section
+      id="services-preview"
+      class="py-20 relative"
+      role="region"
+      aria-label="Services preview"
+    >
       <div class="container mx-auto px-4 md:px-6">
         <div class="text-center mb-16">
           <h2
-            class="text-4xl md:text-6xl font-display font-bold mb-4"
+            class="text-4xl md:text-6xl font-display font-bold mb-4 section-title"
             data-lang-en="Our Services"
             data-lang-sq="Shërbimet Tona"
             data-lang-de="Unsere Dienstleistungen"
@@ -643,7 +687,7 @@
               class="glass-card p-8 h-full hover:scale-105 transition-all duration-300"
             >
               <div
-                class="w-16 h-16 bg-gradient-to-br from-teal-blue to-neon-blue rounded-xl flex items-center justify-center mb-6 group-hover:animate-glow-pulse"
+                class="w-16 h-16 bg-gradient-to-br from-teal-blue to-neon-blue rounded-xl flex items-center justify-center mb-6 service-icon"
               >
                 <svg
                   class="w-8 h-8 text-white"
@@ -660,7 +704,7 @@
                 </svg>
               </div>
               <h3
-                class="text-2xl font-display font-bold mb-4"
+                class="text-2xl font-display font-bold mb-4 card-title"
                 data-lang-en="Automation & AI Workflows"
                 data-lang-sq="Automatizim & Flukse AI"
                 data-lang-de="Automatisierung & KI-Workflows"
@@ -710,7 +754,7 @@
               class="glass-card p-8 h-full hover:scale-105 transition-all duration-300"
             >
               <div
-                class="w-16 h-16 bg-gradient-to-br from-electric-orange to-teal-blue rounded-xl flex items-center justify-center mb-6 group-hover:animate-glow-pulse"
+                class="w-16 h-16 bg-gradient-to-br from-electric-orange to-teal-blue rounded-xl flex items-center justify-center mb-6 service-icon"
               >
                 <svg
                   class="w-8 h-8 text-white"
@@ -727,7 +771,7 @@
                 </svg>
               </div>
               <h3
-                class="text-2xl font-display font-bold mb-4"
+                class="text-2xl font-display font-bold mb-4 card-title"
                 data-lang-en="Web Development"
                 data-lang-sq="Zhvillim Ueb"
                 data-lang-de="Webentwicklung"
@@ -775,7 +819,7 @@
               class="glass-card p-8 h-full hover:scale-105 transition-all duration-300"
             >
               <div
-                class="w-16 h-16 bg-gradient-to-br from-neon-blue to-electric-orange rounded-xl flex items-center justify-center mb-6 group-hover:animate-glow-pulse"
+                class="w-16 h-16 bg-gradient-to-br from-neon-blue to-electric-orange rounded-xl flex items-center justify-center mb-6 service-icon"
               >
                 <svg
                   class="w-8 h-8 text-white"
@@ -792,7 +836,7 @@
                 </svg>
               </div>
               <h3
-                class="text-2xl font-display font-bold mb-4"
+                class="text-2xl font-display font-bold mb-4 card-title"
                 data-lang-en="Smart Home & Security"
                 data-lang-sq="Shtëpi Inteligjente & Siguri"
                 data-lang-de="Smart Home & Sicherheit"
@@ -840,7 +884,7 @@
               class="glass-card p-8 h-full hover:scale-105 transition-all duration-300"
             >
               <div
-                class="w-16 h-16 bg-gradient-to-br from-teal-blue to-electric-orange rounded-xl flex items-center justify-center mb-6 group-hover:animate-glow-pulse"
+                class="w-16 h-16 bg-gradient-to-br from-teal-blue to-electric-orange rounded-xl flex items-center justify-center mb-6 service-icon"
               >
                 <svg
                   class="w-8 h-8 text-white"
@@ -857,7 +901,7 @@
                 </svg>
               </div>
               <h3
-                class="text-2xl font-display font-bold mb-4"
+                class="text-2xl font-display font-bold mb-4 card-title"
                 data-lang-en="IT Consulting & Support"
                 data-lang-sq="Konsulencë IT & Mbështetje"
                 data-lang-de="IT-Beratung & Support"
@@ -906,7 +950,7 @@
               class="glass-card p-8 h-full hover:scale-105 transition-all duration-300"
             >
               <div
-                class="w-16 h-16 bg-gradient-to-br from-electric-orange to-neon-blue rounded-xl flex items-center justify-center mb-6 group-hover:animate-glow-pulse"
+                class="w-16 h-16 bg-gradient-to-br from-electric-orange to-neon-blue rounded-xl flex items-center justify-center mb-6 service-icon"
               >
                 <svg
                   class="w-8 h-8 text-white"
@@ -923,7 +967,7 @@
                 </svg>
               </div>
               <h3
-                class="text-2xl font-display font-bold mb-4"
+                class="text-2xl font-display font-bold mb-4 card-title"
                 data-lang-en="Business Process Optimization"
                 data-lang-sq="Optimizim i Proceseve të Biznesit"
                 data-lang-de="Geschäftsprozess-Optimierung"
@@ -971,7 +1015,7 @@
               class="glass-card p-8 h-full hover:scale-105 transition-all duration-300"
             >
               <div
-                class="w-16 h-16 bg-gradient-to-br from-neon-blue to-teal-blue rounded-xl flex items-center justify-center mb-6 group-hover:animate-glow-pulse"
+                class="w-16 h-16 bg-gradient-to-br from-neon-blue to-teal-blue rounded-xl flex items-center justify-center mb-6 service-icon"
               >
                 <svg
                   class="w-8 h-8 text-white"
@@ -988,7 +1032,7 @@
                 </svg>
               </div>
               <h3
-                class="text-2xl font-display font-bold mb-4"
+                class="text-2xl font-display font-bold mb-4 card-title"
                 data-lang-en="Digital Presence Setup"
                 data-lang-sq="Krijimi i Prezencës Digjitale"
                 data-lang-de="Aufbau Digitaler Präsenz"
@@ -1046,15 +1090,20 @@
     </section>
 
     <!-- CTA Section -->
-    <section id="cta" class="py-20 relative overflow-hidden">
+    <section
+      id="cta"
+      class="py-20 relative overflow-hidden"
+      role="region"
+      aria-label="Call to action"
+    >
       <div
-        class="absolute inset-0 bg-gradient-to-br from-teal-blue to-electric-orange opacity-10 pointer-events-none"
+        class="absolute inset-0 bg-gradient-to-br from-teal-blue to-electric-orange opacity-10 pointer-events-none z-0"
         aria-hidden="true"
       ></div>
-      <div class="container mx-auto px-4 md:px-6 relative z-10">
+      <div class="container mx-auto px-4 md:px-6 relative z-20">
         <div class="glass-card p-12 md:p-16 text-center max-w-4xl mx-auto">
           <h2
-            class="text-4xl md:text-6xl font-display font-bold mb-6"
+            class="text-4xl md:text-6xl font-display font-bold mb-6 section-title"
             data-lang-en="Ready to Transform Your Business?"
             data-lang-sq="Gati për të Transformuar Biznesin Tuaj?"
           >
@@ -1077,7 +1126,19 @@
               data-lang-en="Book Free Consultation"
               data-lang-sq="Rezervo Konsulencë Falas"
             >
-              Book Free Consultation
+              <svg
+                class="inline-block w-5 h-5 mr-2"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+                ></path></svg
+              >Book Free Consultation
             </a>
             <a
               href="tel:+38349479759"
@@ -1092,7 +1153,11 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 dark:bg-black text-gray-300 pt-16 pb-8">
+    <footer
+      class="bg-gray-900 dark:bg-black text-gray-300 pt-16 pb-8"
+      role="contentinfo"
+      aria-label="Site footer"
+    >
       <div class="container mx-auto px-4 md:px-6">
         <div
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12"
@@ -1125,7 +1190,7 @@
           <!-- Quick Links -->
           <div>
             <h3
-              class="text-white font-display font-bold text-lg mb-4"
+              class="text-white font-display font-bold text-lg mb-4 card-title"
               data-lang-en="Quick Links"
               data-lang-sq="Lidhje të Shpejta"
             >
@@ -1192,7 +1257,7 @@
           <!-- Contact Info -->
           <div>
             <h3
-              class="text-white font-display font-bold text-lg mb-4"
+              class="text-white font-display font-bold text-lg mb-4 card-title"
               data-lang-en="Contact"
               data-lang-sq="Kontakti"
             >
@@ -1289,7 +1354,7 @@
           <!-- Social & Newsletter -->
           <div>
             <h3
-              class="text-white font-display font-bold text-lg mb-4"
+              class="text-white font-display font-bold text-lg mb-4 card-title"
               data-lang-en="Follow Us"
               data-lang-sq="Na Ndiqni"
             >
@@ -1397,10 +1462,18 @@
     </footer>
 
     <!-- Cookie Consent Banner -->
-    <div id="cookie-banner" class="cookie-banner">
+    <div
+      id="cookie-banner"
+      class="cookie-banner"
+      role="dialog"
+      aria-labelledby="cookie-banner-title"
+      aria-describedby="cookie-banner-description"
+    >
       <div class="cookie-banner-content">
+        <h2 id="cookie-banner-title" class="sr-only">Cookie Consent</h2>
         <div class="cookie-banner-text">
           <p
+            id="cookie-banner-description"
             data-lang-en="We use cookies to improve your experience and analyze site traffic. By continuing to use this site, you agree to our use of cookies."
             data-lang-sq="Ne përdorim cookies për të përmirësuar përvojën tuaj dhe për të analizuar trafikun e faqes. Duke vazhduar të përdorni këtë faqe, ju pranoni përdorimin tonë të cookies."
             data-lang-de="Wir verwenden Cookies, um Ihre Erfahrung zu verbessern und den Website-Traffic zu analysieren. Durch die weitere Nutzung dieser Website stimmen Sie unserer Verwendung von Cookies zu."
@@ -1413,6 +1486,7 @@
           <button
             id="accept-cookies"
             class="cookie-accept-btn"
+            aria-label="Accept all cookies"
             data-lang-en="Accept All"
             data-lang-sq="Prano Të Gjitha"
             data-lang-de="Alle Akzeptieren"
@@ -1422,6 +1496,7 @@
           <button
             id="reject-cookies"
             class="cookie-reject-btn"
+            aria-label="Reject all cookies"
             data-lang-en="Reject All"
             data-lang-sq="Refuzo Të Gjitha"
             data-lang-de="Alle Ablehnen"
@@ -1709,13 +1784,17 @@
         });
 
         // Touch support
-        canvas.addEventListener("touchmove", (e) => {
-          e.preventDefault();
-          const rect = canvas.getBoundingClientRect();
-          const touch = e.touches[0];
-          mouse.x = touch.clientX - rect.left;
-          mouse.y = touch.clientY - rect.top;
-        });
+        canvas.addEventListener(
+          "touchmove",
+          (e) => {
+            e.preventDefault();
+            const rect = canvas.getBoundingClientRect();
+            const touch = e.touches[0];
+            mouse.x = touch.clientX - rect.left;
+            mouse.y = touch.clientY - rect.top;
+          },
+          { passive: false }
+        );
 
         canvas.addEventListener("touchend", () => {
           mouse.x = null;
@@ -1767,11 +1846,34 @@
       });
     </script>
 
-    <!-- Custom Scripts -->
-    <!-- Optimized Script Loading with priorities -->
-    <!-- Critical scripts load first -->
-    <script src="js/main.js" defer></script>
-    <script src="js/animations.js" defer></script>
+    <!-- Force Counter Animation -->
+    <script>
+      // Ensure counters animate immediately
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(() => {
+          const counters = document.querySelectorAll(".counter");
+          console.log(`Found ${counters.length} counters to animate`);
+
+          counters.forEach((counter) => {
+            const target = parseInt(counter.getAttribute("data-target"));
+            console.log(`Animating counter to ${target}`);
+
+            let current = 0;
+            const increment = target / 50;
+            const interval = setInterval(() => {
+              current += increment;
+              if (current >= target) {
+                counter.textContent = target;
+                clearInterval(interval);
+                console.log(`Counter animation complete: ${target}`);
+              } else {
+                counter.textContent = Math.floor(current);
+              }
+            }, 40);
+          });
+        }, 1000);
+      });
+    </script>
 
     <!-- Non-critical scripts load after interaction or timeout -->
     <script>
@@ -1809,6 +1911,33 @@
 
       // Or load after 2 seconds if no interaction
       setTimeout(load, 2000);
+    </script>
+
+    <!-- Initialize LaraTech Functions -->
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Ensure page starts at top
+        window.scrollTo(0, 0);
+
+        // Initialize all LaraTech functions
+        if (window.LaraTech) {
+          window.LaraTech.initLanguageSwitcher();
+          window.LaraTech.initMobileMenu();
+          window.LaraTech.initStickyNav();
+          window.LaraTech.initCounters();
+          window.LaraTech.initFadeInObserver();
+          window.LaraTech.initMagneticButtons();
+          window.LaraTech.initLazyLoading();
+          window.LaraTech.initCookieConsent();
+          window.LaraTech.initContactForm();
+          window.LaraTech.initLightbox();
+          window.LaraTech.initProgressBar();
+          window.LaraTech.initBeforeAfterSlider();
+          window.LaraTech.initPerformanceMonitoring();
+          window.LaraTech.initDirectionsButton();
+          window.LaraTech.initProjectsFilter();
+        }
+      });
     </script>
   </body>
 </html>

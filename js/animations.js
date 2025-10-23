@@ -105,7 +105,8 @@ const initGSAPAnimations = () => {
           trigger: card,
           start: "top 80%",
           end: "top 50%",
-          toggleActions: "play none none reverse",
+          toggleActions: "play none none none", // Changed from "play none none reverse"
+          once: true, // Only play once
         },
         opacity: 0,
         y: 60,

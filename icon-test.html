@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Icon Test</title>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+  </head>
+  <body>
+    <h1>Icon Test</h1>
+    <i data-lucide="calendar" style="width: 24px; height: 24px; color: red"></i>
+    <i data-lucide="phone" style="width: 24px; height: 24px; color: blue"></i>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        if (typeof lucide !== "undefined") {
+          lucide.createIcons();
+          console.log("Icons initialized");
+        } else {
+          console.log("Lucide not loaded");
+        }
+      });
+    </script>
+  </body>
+</html>

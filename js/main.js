@@ -13,11 +13,20 @@
 // Language Switcher (EN / SQ / DE) with Dropdown
 // ============================================
 const initLanguageSwitcher = () => {
+  console.log("Initializing language switcher...");
   const langDropdownBtn = document.getElementById("lang-dropdown-btn");
   const langDropdownContent = document.getElementById("lang-dropdown-content");
   const currentLangFlag = document.getElementById("current-lang-flag");
   const currentLangCode = document.getElementById("current-lang-code");
   const langOptions = document.querySelectorAll(".lang-option");
+
+  console.log("Language switcher elements:", {
+    langDropdownBtn: !!langDropdownBtn,
+    langDropdownContent: !!langDropdownContent,
+    currentLangFlag: !!currentLangFlag,
+    currentLangCode: !!currentLangCode,
+    langOptions: langOptions.length,
+  });
 
   // Language configuration with codes
   const languages = {
@@ -32,8 +41,10 @@ const initLanguageSwitcher = () => {
 
   // Toggle dropdown
   langDropdownBtn?.addEventListener("click", (e) => {
+    console.log("Language dropdown clicked");
     e.stopPropagation();
     langDropdownContent?.classList.toggle("show");
+    console.log("Dropdown show class toggled");
   });
 
   // Close dropdown when clicking outside
@@ -98,7 +109,11 @@ const initMobileMenu = () => {
   const mobileMenu = document.getElementById("mobile-menu");
 
   mobileMenuToggle?.addEventListener("click", () => {
+    const isHidden = mobileMenu.classList.contains("hidden");
     mobileMenu.classList.toggle("hidden");
+
+    // Update aria-expanded attribute
+    mobileMenuToggle.setAttribute("aria-expanded", !isHidden);
   });
 
   // Close mobile menu when clicking outside
@@ -108,6 +123,7 @@ const initMobileMenu = () => {
       !mobileMenuToggle?.contains(e.target)
     ) {
       mobileMenu?.classList.add("hidden");
+      mobileMenuToggle?.setAttribute("aria-expanded", "false");
     }
   });
 
@@ -115,6 +131,7 @@ const initMobileMenu = () => {
   mobileMenu?.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       mobileMenu.classList.add("hidden");
+      mobileMenuToggle?.setAttribute("aria-expanded", "false");
     });
   });
 };
@@ -159,33 +176,42 @@ const initStickyNav = () => {
 // Animated Counters
 // ============================================
 const initCounters = () => {
+  console.log("Initializing counters...");
   const counters = document.querySelectorAll(".counter");
-  let hasAnimated = false;
+  console.log(`Found ${counters.length} counters`);
 
   const animateCounter = (counter) => {
     const target = parseInt(counter.getAttribute("data-target"));
-    const duration = 2000; // 2 seconds
-    const increment = target / (duration / 16); // 60fps
+    console.log(`Animating counter to ${target}`);
+
     let current = 0;
-
-    const updateCounter = () => {
+    const increment = target / 50; // 50 steps for smooth animation
+    const interval = setInterval(() => {
       current += increment;
-      if (current < target) {
-        counter.textContent = Math.floor(current);
-        requestAnimationFrame(updateCounter);
-      } else {
+      if (current >= target) {
         counter.textContent = target;
+        clearInterval(interval);
+        console.log(`Counter animation complete: ${target}`);
+      } else {
+        counter.textContent = Math.floor(current);
       }
-    };
-
-    updateCounter();
+    }, 40); // 25fps
   };
 
+  // Force animation immediately
+  setTimeout(() => {
+    counters.forEach((counter) => {
+      animateCounter(counter);
+    });
+  }, 500);
+
+  // Also set up intersection observer for scroll-based animation
   const observer = new IntersectionObserver(
     (entries) => {
       entries.forEach((entry) => {
-        if (entry.isIntersecting && !hasAnimated) {
+        if (entry.isIntersecting) {
           animateCounter(entry.target);
+          observer.unobserve(entry.target);
         }
       });
     },
@@ -398,9 +424,16 @@ const initLazyLoading = () => {
 // Cookie Consent Banner
 // ============================================
 const initCookieConsent = () => {
+  console.log("Initializing cookie consent...");
   const cookieBanner = document.getElementById("cookie-banner");
   const acceptButton = document.getElementById("accept-cookies");
   const rejectButton = document.getElementById("reject-cookies");
+
+  console.log("Cookie banner elements:", {
+    cookieBanner: !!cookieBanner,
+    acceptButton: !!acceptButton,
+    rejectButton: !!rejectButton,
+  });
 
   // Check if user has already made a choice
   const cookieChoice = localStorage.getItem("cookies-choice");
@@ -413,6 +446,7 @@ const initCookieConsent = () => {
 
   // Accept cookies
   acceptButton?.addEventListener("click", () => {
+    console.log("Accept cookies clicked");
     localStorage.setItem("cookies-choice", "accepted");
     localStorage.setItem("cookies-accepted", "true");
     cookieBanner?.classList.remove("show");
@@ -423,6 +457,7 @@ const initCookieConsent = () => {
 
   // Reject cookies
   rejectButton?.addEventListener("click", () => {
+    console.log("Reject cookies clicked");
     localStorage.setItem("cookies-choice", "rejected");
     localStorage.removeItem("cookies-accepted");
     cookieBanner?.classList.remove("show");
@@ -433,18 +468,251 @@ const initCookieConsent = () => {
 };
 
 // ============================================
-// Contact Form Handling
+// Enhanced Contact Form Handling
 // ============================================
 const initContactForm = () => {
   const contactForm = document.getElementById("contact-form");
+  if (!contactForm) return;
 
-  contactForm?.addEventListener("submit", async (e) => {
+  // Form validation rules
+  const validationRules = {
+    name: {
+      required: true,
+      minLength: 2,
+      maxLength: 50,
+      pattern: /^[a-zA-Z\s]+$/,
+      message:
+        "Name must be 2-50 characters and contain only letters and spaces",
+    },
+    email: {
+      required: true,
+      pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+      message: "Please enter a valid email address",
+    },
+    phone: {
+      required: false,
+      pattern: /^[\+]?[1-9][\d]{0,15}$/,
+      message: "Please enter a valid phone number",
+    },
+    company: {
+      required: false,
+      maxLength: 100,
+      message: "Company name must be less than 100 characters",
+    },
+    service: {
+      required: true,
+      message: "Please select a service",
+    },
+    message: {
+      required: true,
+      minLength: 10,
+      maxLength: 1000,
+      message: "Message must be 10-1000 characters",
+    },
+    privacy: {
+      required: true,
+      message: "You must agree to the privacy policy",
+    },
+  };
+
+  // Initialize form validation
+  const initFormValidation = () => {
+    // Add form group wrapper to each field
+    const formFields = contactForm.querySelectorAll("input, select, textarea");
+
+    formFields.forEach((field) => {
+      const wrapper = field.closest("div");
+      if (wrapper && !wrapper.classList.contains("form-group")) {
+        wrapper.classList.add("form-group");
+      }
+
+      // Add validation classes
+      if (field.classList.contains("form-input")) return;
+
+      field.classList.add("form-input");
+
+      // Add error message container
+      if (!wrapper.querySelector(".error-message")) {
+        const errorDiv = document.createElement("div");
+        errorDiv.className = "error-message";
+        wrapper.appendChild(errorDiv);
+      }
+
+      // Add success message container
+      if (!wrapper.querySelector(".success-message")) {
+        const successDiv = document.createElement("div");
+        successDiv.className = "success-message";
+        wrapper.appendChild(successDiv);
+      }
+    });
+
+    // Add progress bar
+    if (!contactForm.querySelector(".form-progress")) {
+      const progressDiv = document.createElement("div");
+      progressDiv.className = "form-progress";
+      progressDiv.innerHTML = '<div class="form-progress-bar"></div>';
+      contactForm.insertBefore(progressDiv, contactForm.firstChild);
+    }
+  };
+
+  // Validate individual field
+  const validateField = (field) => {
+    const fieldName = field.name;
+    const fieldValue = field.value.trim();
+    const rules = validationRules[fieldName];
+
+    if (!rules) return true;
+
+    const wrapper = field.closest(".form-group");
+    const errorMessage = wrapper?.querySelector(".error-message");
+    const successMessage = wrapper?.querySelector(".success-message");
+
+    // Clear previous states
+    wrapper?.classList.remove("has-error", "has-success");
+
+    // Required field validation
+    if (rules.required && !fieldValue) {
+      wrapper?.classList.add("has-error");
+      if (errorMessage) {
+        errorMessage.textContent = `${
+          fieldName.charAt(0).toUpperCase() + fieldName.slice(1)
+        } is required`;
+      }
+      return false;
+    }
+
+    // Skip validation if field is empty and not required
+    if (!fieldValue && !rules.required) {
+      return true;
+    }
+
+    // Pattern validation
+    if (rules.pattern && !rules.pattern.test(fieldValue)) {
+      wrapper?.classList.add("has-error");
+      if (errorMessage) {
+        errorMessage.textContent = rules.message;
+      }
+      return false;
+    }
+
+    // Length validation
+    if (rules.minLength && fieldValue.length < rules.minLength) {
+      wrapper?.classList.add("has-error");
+      if (errorMessage) {
+        errorMessage.textContent = rules.message;
+      }
+      return false;
+    }
+
+    if (rules.maxLength && fieldValue.length > rules.maxLength) {
+      wrapper?.classList.add("has-error");
+      if (errorMessage) {
+        errorMessage.textContent = rules.message;
+      }
+      return false;
+    }
+
+    // Success state
+    wrapper?.classList.add("has-success");
+    if (successMessage) {
+      successMessage.textContent = "✓ Valid";
+    }
+
+    return true;
+  };
+
+  // Update form progress
+  const updateFormProgress = () => {
+    const fields = contactForm.querySelectorAll(
+      "input[required], select[required], textarea[required]"
+    );
+    const validFields = Array.from(fields).filter((field) => {
+      const wrapper = field.closest(".form-group");
+      return wrapper?.classList.contains("has-success");
+    });
+
+    const progress = (validFields.length / fields.length) * 100;
+    const progressBar = contactForm.querySelector(".form-progress-bar");
+    if (progressBar) {
+      progressBar.style.width = `${progress}%`;
+    }
+  };
+
+  // Real-time validation
+  const initRealTimeValidation = () => {
+    const fields = contactForm.querySelectorAll("input, select, textarea");
+
+    fields.forEach((field) => {
+      // Validate on blur
+      field.addEventListener("blur", () => {
+        validateField(field);
+        updateFormProgress();
+      });
+
+      // Validate on input (for immediate feedback)
+      field.addEventListener("input", () => {
+        // Clear error state on input
+        const wrapper = field.closest(".form-group");
+        wrapper?.classList.remove("has-error");
+
+        // Validate after a short delay
+        setTimeout(() => {
+          validateField(field);
+          updateFormProgress();
+        }, 300);
+      });
+
+      // Special handling for checkboxes
+      if (field.type === "checkbox") {
+        field.addEventListener("change", () => {
+          validateField(field);
+          updateFormProgress();
+        });
+      }
+    });
+  };
+
+  // Form submission with enhanced validation
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
 
-    const formData = new FormData(contactForm);
-    const data = Object.fromEntries(formData);
+    // Validate all fields
+    const fields = contactForm.querySelectorAll("input, select, textarea");
+    let isValid = true;
+
+    fields.forEach((field) => {
+      if (!validateField(field)) {
+        isValid = false;
+      }
+    });
+
+    if (!isValid) {
+      // Scroll to first error
+      const firstError = contactForm.querySelector(".has-error");
+      if (firstError) {
+        firstError.scrollIntoView({ behavior: "smooth", block: "center" });
+        firstError.querySelector("input, select, textarea")?.focus();
+      }
+      return;
+    }
+
+    // Show loading state
+    const submitBtn = contactForm.querySelector('button[type="submit"]');
+    const originalText = submitBtn.textContent;
+
+    submitBtn.classList.add("loading");
+    submitBtn.disabled = true;
+    submitBtn.textContent = "Sending...";
+
+    contactForm.classList.add("form-loading");
 
     try {
+      const formData = new FormData(contactForm);
+      const data = Object.fromEntries(formData);
+
+      // Simulate API call (replace with actual endpoint)
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
       // TODO: Replace with actual API endpoint
       const response = await fetch("/api/contact", {
         method: "POST",
@@ -455,16 +723,50 @@ const initContactForm = () => {
       });
 
       if (response.ok) {
-        alert("Message sent successfully! We'll get back to you soon.");
-        contactForm.reset();
+        // Success state
+        contactForm.innerHTML = `
+          <div class="form-success">
+            <h3 class="text-xl font-bold text-green-600 mb-2">✓ Message Sent Successfully!</h3>
+            <p class="text-green-700">Thank you for your inquiry. We'll get back to you within 24 hours.</p>
+            <button type="button" onclick="location.reload()" class="mt-4 btn btn-primary">
+              Send Another Message
+            </button>
+          </div>
+        `;
       } else {
         throw new Error("Failed to send message");
       }
     } catch (error) {
       console.error("Error:", error);
-      alert("Failed to send message. Please try again or contact us directly.");
+
+      // Error state
+      const errorDiv = document.createElement("div");
+      errorDiv.className = "form-error";
+      errorDiv.innerHTML = `
+        <h3 class="text-xl font-bold text-red-600 mb-2">❌ Failed to Send Message</h3>
+        <p class="text-red-700">Please try again or contact us directly at info@laratech.com</p>
+        <button type="button" onclick="location.reload()" class="mt-4 btn btn-primary">
+          Try Again
+        </button>
+      `;
+
+      contactForm.innerHTML = "";
+      contactForm.appendChild(errorDiv);
+    } finally {
+      // Reset button state
+      submitBtn.classList.remove("loading");
+      submitBtn.disabled = false;
+      submitBtn.textContent = originalText;
+      contactForm.classList.remove("form-loading");
     }
-  });
+  };
+
+  // Initialize everything
+  initFormValidation();
+  initRealTimeValidation();
+
+  // Add submit event listener
+  contactForm.addEventListener("submit", handleFormSubmit);
 };
 
 // ============================================
@@ -771,6 +1073,342 @@ const initDirectionsButton = () => {
 };
 
 // ============================================
+// Micro-Interactions & Animation Management
+// ============================================
+const initMicroInteractions = () => {
+  // Staggered animations for cards
+  const staggerElements = document.querySelectorAll(".stagger-animation");
+
+  const staggerObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("animate");
+        }
+      });
+    },
+    { threshold: 0.1 }
+  );
+
+  staggerElements.forEach((element) => {
+    staggerObserver.observe(element);
+  });
+
+  // Page transition animations
+  const pageElements = document.querySelectorAll(".page-transition");
+
+  setTimeout(() => {
+    pageElements.forEach((element) => {
+      element.classList.add("loaded");
+    });
+  }, 100);
+
+  // Ripple effect for buttons
+  const rippleButtons = document.querySelectorAll(".ripple-effect");
+
+  rippleButtons.forEach((button) => {
+    button.addEventListener("click", function (e) {
+      const ripple = document.createElement("span");
+      const rect = this.getBoundingClientRect();
+      const size = Math.max(rect.width, rect.height);
+      const x = e.clientX - rect.left - size / 2;
+      const y = e.clientY - rect.top - size / 2;
+
+      ripple.style.width = ripple.style.height = size + "px";
+      ripple.style.left = x + "px";
+      ripple.style.top = y + "px";
+      ripple.classList.add("ripple");
+
+      this.appendChild(ripple);
+
+      setTimeout(() => {
+        ripple.remove();
+      }, 600);
+    });
+  });
+
+  // Magnetic effect for buttons
+  const magneticButtons = document.querySelectorAll(".magnetic-button");
+
+  magneticButtons.forEach((button) => {
+    button.addEventListener("mousemove", function (e) {
+      const rect = this.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+
+      this.style.transform = `translate(${x * 0.1}px, ${y * 0.1}px)`;
+    });
+
+    button.addEventListener("mouseleave", function () {
+      this.style.transform = "translate(0, 0)";
+    });
+  });
+
+  // Success/Error animations
+  const successElements = document.querySelectorAll(".success-message");
+  const errorElements = document.querySelectorAll(".error-message");
+
+  successElements.forEach((element) => {
+    element.classList.add("bounce-animation");
+  });
+
+  errorElements.forEach((element) => {
+    element.classList.add("shake-animation");
+  });
+
+  // Counter animations
+  const counters = document.querySelectorAll(".counter");
+
+  counters.forEach((counter) => {
+    counter.classList.add("counter-animation");
+  });
+
+  // Progress bar animations
+  const progressBars = document.querySelectorAll(".progress-bar");
+
+  progressBars.forEach((bar) => {
+    bar.classList.add("progress-bar-animation");
+  });
+
+  // Typing animation for text
+  const typingElements = document.querySelectorAll(".typing-animation");
+
+  typingElements.forEach((element) => {
+    const text = element.textContent;
+    element.textContent = "";
+    element.style.width = "0";
+
+    setTimeout(() => {
+      element.style.width = "100%";
+      element.textContent = text;
+    }, 1000);
+  });
+
+  // Floating animations for decorative elements
+  const floatingElements = document.querySelectorAll(".float-animation");
+
+  floatingElements.forEach((element, index) => {
+    element.style.animationDelay = `${index * 0.5}s`;
+  });
+
+  // Glow effect for focus states
+  const glowElements = document.querySelectorAll(".glow-animation");
+
+  glowElements.forEach((element) => {
+    element.addEventListener("focus", function () {
+      this.classList.add("glow-animation");
+    });
+
+    element.addEventListener("blur", function () {
+      this.classList.remove("glow-animation");
+    });
+  });
+
+  // Pulse animation for interactive elements
+  const pulseElements = document.querySelectorAll(".pulse-animation");
+
+  pulseElements.forEach((element) => {
+    element.addEventListener("mouseenter", function () {
+      this.style.animationPlayState = "paused";
+    });
+
+    element.addEventListener("mouseleave", function () {
+      this.style.animationPlayState = "running";
+    });
+  });
+};
+
+// ============================================
+// Loading State Management
+// ============================================
+const initLoadingStates = () => {
+  // Button loading states
+  const buttons = document.querySelectorAll(
+    ".btn, .cta-button, .secondary-button, .glass-button"
+  );
+
+  buttons.forEach((button) => {
+    button.addEventListener("click", function (e) {
+      // Only add loading state for buttons that don't have preventDefault
+      if (!e.defaultPrevented) {
+        this.classList.add("loading");
+
+        // Remove loading state after 2 seconds (or when page changes)
+        setTimeout(() => {
+          this.classList.remove("loading");
+        }, 2000);
+      }
+    });
+  });
+
+  // Form loading states
+  const forms = document.querySelectorAll("form");
+
+  forms.forEach((form) => {
+    form.addEventListener("submit", function (e) {
+      this.classList.add("form-loading");
+
+      // Add loading spinner
+      const spinner = document.createElement("div");
+      spinner.className = "loading-spinner";
+      this.appendChild(spinner);
+
+      // Remove loading state after 3 seconds
+      setTimeout(() => {
+        this.classList.remove("form-loading");
+        const existingSpinner = this.querySelector(".loading-spinner");
+        if (existingSpinner) {
+          existingSpinner.remove();
+        }
+      }, 3000);
+    });
+  });
+
+  // Image loading states
+  const images = document.querySelectorAll("img");
+
+  images.forEach((img) => {
+    if (!img.complete) {
+      img.classList.add("image-loading");
+    }
+
+    img.addEventListener("load", function () {
+      this.classList.remove("image-loading");
+    });
+
+    img.addEventListener("error", function () {
+      this.classList.remove("image-loading");
+      this.classList.add("image-error");
+    });
+  });
+
+  // Lazy loading with skeleton
+  const lazyElements = document.querySelectorAll("[data-lazy]");
+
+  lazyElements.forEach((element) => {
+    element.classList.add("skeleton");
+
+    // Simulate loading delay
+    setTimeout(() => {
+      element.classList.remove("skeleton");
+    }, Math.random() * 2000 + 1000);
+  });
+};
+
+// ============================================
+// Particle Animation
+// ============================================
+const initParticleAnimation = () => {
+  const canvas = document.getElementById("particles-canvas");
+  if (!canvas) {
+    console.log("Particles canvas not found");
+    return;
+  }
+
+  const ctx = canvas.getContext("2d");
+  let particles = [];
+  let animationId;
+  let isAnimating = false;
+
+  // Set canvas size
+  const resizeCanvas = () => {
+    const rect = canvas.getBoundingClientRect();
+    canvas.width = rect.width;
+    canvas.height = rect.height;
+    console.log(`Canvas resized to: ${canvas.width}x${canvas.height}`);
+  };
+
+  // Initialize canvas
+  resizeCanvas();
+  window.addEventListener("resize", resizeCanvas);
+
+  // Particle class
+  class Particle {
+    constructor() {
+      this.x = Math.random() * canvas.width;
+      this.y = Math.random() * canvas.height;
+      this.vx = (Math.random() - 0.5) * 2;
+      this.vy = (Math.random() - 0.5) * 2;
+      this.size = Math.random() * 3 + 1;
+      this.opacity = Math.random() * 0.8 + 0.2;
+      this.hue = Math.random() * 60 + 180; // Teal to cyan range
+    }
+
+    update() {
+      this.x += this.vx;
+      this.y += this.vy;
+
+      // Wrap around screen
+      if (this.x < 0) this.x = canvas.width;
+      if (this.x > canvas.width) this.x = 0;
+      if (this.y < 0) this.y = canvas.height;
+      if (this.y > canvas.height) this.y = 0;
+    }
+
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = `hsla(${this.hue}, 70%, 50%, ${this.opacity})`;
+      ctx.fill();
+    }
+  }
+
+  // Create particles
+  const createParticles = () => {
+    particles = [];
+    const particleCount = Math.min(
+      50,
+      Math.floor((canvas.width * canvas.height) / 10000)
+    );
+    for (let i = 0; i < particleCount; i++) {
+      particles.push(new Particle());
+    }
+    console.log(`Created ${particles.length} particles`);
+  };
+
+  // Animation loop
+  const animate = () => {
+    if (!isAnimating) return;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    particles.forEach((particle) => {
+      particle.update();
+      particle.draw();
+    });
+
+    animationId = requestAnimationFrame(animate);
+  };
+
+  // Start animation
+  const startAnimation = () => {
+    if (isAnimating) return;
+    isAnimating = true;
+    createParticles();
+    animate();
+    console.log("Particle animation started");
+  };
+
+  // Stop animation
+  const stopAnimation = () => {
+    isAnimating = false;
+    if (animationId) {
+      cancelAnimationFrame(animationId);
+      animationId = null;
+    }
+    console.log("Particle animation stopped");
+  };
+
+  // Start animation after a short delay to ensure DOM is ready
+  setTimeout(startAnimation, 100);
+
+  // Cleanup function
+  return () => {
+    stopAnimation();
+  };
+};
+
+// ============================================
 // Back to Top Button
 // ============================================
 const initBackToTop = () => {
@@ -872,6 +1510,10 @@ const init = () => {
   initDirectionsButton();
   initBackToTop();
   initProjectsFilter();
+  initParticleAnimation();
+  initLoadingStates();
+  initMicroInteractions();
+  initContactForm();
   // initServiceWorker(); // Disabled for simplicity
 
   console.log("LaraTech website initialized successfully! 🚀");
@@ -1027,5 +1669,10 @@ window.LaraTech = {
   initBeforeAfterSlider,
   initPerformanceMonitoring,
   initDirectionsButton,
+  initBackToTop,
   initProjectsFilter,
+  initParticleAnimation,
+  initLoadingStates,
+  initMicroInteractions,
+  initContactForm,
 };
