@@ -14,28 +14,28 @@ class NavbarComponent {
 
   getCurrentPage() {
     const path = window.location.pathname;
-    const page = path.split('/').pop().replace('.html', '') || 'index';
-    return page === 'index' ? 'home' : page;
+    const page = path.split("/").pop().replace(".html", "") || "index";
+    return page === "index" ? "home" : page;
   }
 
   updateActiveNavLink() {
     // Update desktop nav links
-    document.querySelectorAll('.nav-link').forEach(link => {
-      const page = link.getAttribute('data-page');
+    document.querySelectorAll(".nav-link").forEach((link) => {
+      const page = link.getAttribute("data-page");
       if (page === this.currentPage) {
-        link.classList.add('active');
+        link.classList.add("active");
       } else {
-        link.classList.remove('active');
+        link.classList.remove("active");
       }
     });
 
     // Update mobile nav links
-    document.querySelectorAll('.mobile-nav-link').forEach(link => {
-      const page = link.getAttribute('data-page');
+    document.querySelectorAll(".mobile-nav-link").forEach((link) => {
+      const page = link.getAttribute("data-page");
       if (page === this.currentPage) {
-        link.classList.add('active');
+        link.classList.add("active");
       } else {
-        link.classList.remove('active');
+        link.classList.remove("active");
       }
     });
   }
@@ -43,7 +43,9 @@ class NavbarComponent {
   initLanguageSwitcher() {
     console.log("Initializing language switcher...");
     const langDropdownBtn = document.getElementById("lang-dropdown-btn");
-    const langDropdownContent = document.getElementById("lang-dropdown-content");
+    const langDropdownContent = document.getElementById(
+      "lang-dropdown-content"
+    );
     const currentLangFlag = document.getElementById("current-lang-flag");
     const currentLangCode = document.getElementById("current-lang-code");
     const langOptions = document.querySelectorAll(".lang-option");
@@ -98,7 +100,12 @@ class NavbarComponent {
         if (selectedLang && selectedLang !== currentLang) {
           currentLang = selectedLang;
           localStorage.setItem("lang", currentLang);
-          this.updateLanguage(currentLang, languages, currentLangCode, langOptions);
+          this.updateLanguage(
+            currentLang,
+            languages,
+            currentLangCode,
+            langOptions
+          );
           langDropdownContent?.classList.remove("show");
         }
       });
@@ -176,7 +183,7 @@ class NavbarComponent {
 
     window.addEventListener("scroll", () => {
       const currentScrollY = window.scrollY;
-      
+
       if (currentScrollY > 100) {
         nav?.classList.add("scrolled");
       } else {

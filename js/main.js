@@ -14,11 +14,13 @@
 // ============================================
 const initLanguageSwitcher = () => {
   console.log("Initializing language switcher...");
-  
+
   // Add a small delay to ensure DOM is ready
   setTimeout(() => {
     const langDropdownBtn = document.getElementById("lang-dropdown-btn");
-    const langDropdownContent = document.getElementById("lang-dropdown-content");
+    const langDropdownContent = document.getElementById(
+      "lang-dropdown-content"
+    );
     const currentLangFlag = document.getElementById("current-lang-flag");
     const currentLangCode = document.getElementById("current-lang-code");
     const langOptions = document.querySelectorAll(".lang-option");

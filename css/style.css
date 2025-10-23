@@ -3981,7 +3981,7 @@ html.light footer img[alt*="logo"] {
 }
 
 .nav-link.active::after {
-  content: '';
+  content: "";
   position: absolute;
   bottom: -0.5rem;
   left: 50%;
