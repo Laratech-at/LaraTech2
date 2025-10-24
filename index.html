@@ -5,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="LaraTech sh.p.k - Digital & Automation Services, Smart-Tech & Web Services in Kosovo. Expert automation, AI workflows, web development, and smart home solutions."
+      content="LaraTech sh.p.k - Honest, Fair and Competent AI Solutions. Expert web development, automation, and smart-tech solutions from Kosovo for businesses globally."
     />
     <meta
       name="keywords"
-      content="LaraTech Kosovo, IT Services Pristina, Automation Kosovo, Smart Home Kosovo, Web Development Kosovo, n8n automation, AI workflows"
+      content="LaraTech Kosovo, AI Solutions, Web Development, Automation Kosovo, Smart Home Kosovo, n8n automation, AI workflows"
     />
     <meta name="author" content="LaraTech sh.p.k" />
 
@@ -18,11 +18,11 @@
     <meta property="og:url" content="https://laratech.ai/" />
     <meta
       property="og:title"
-      content="LaraTech sh.p.k - Digital & Automation Services"
+      content="LaraTech sh.p.k - Honest, Fair and Competent AI Solutions"
     />
     <meta
       property="og:description"
-      content="Expert automation, AI workflows, web development, and smart home solutions in Kosovo."
+      content="Expert web development, automation, and smart-tech solutions from Kosovo for businesses globally."
     />
     <meta
       property="og:image"
@@ -33,11 +33,11 @@
     <meta name="twitter:url" content="https://laratech.ai/" />
     <meta
       name="twitter:title"
-      content="LaraTech sh.p.k - Digital & Automation Services"
+      content="LaraTech sh.p.k - Honest, Fair and Competent AI Solutions"
     />
     <meta
       name="twitter:description"
-      content="Expert automation, AI workflows, web development, and smart home solutions in Kosovo."
+      content="Expert web development, automation, and smart-tech solutions from Kosovo for businesses globally."
     />
     <meta
       name="twitter:image"
@@ -55,402 +55,399 @@
     <link rel="preload" href="css/style.css" as="style" />
     <link rel="preload" href="assets/logo.png" as="image" />
 
-    <!-- Load fonts asynchronously without preload to avoid warnings -->
+    <!-- Load fonts asynchronously -->
     <link
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;700;900&display=swap"
-      media="print"
-      onload="this.media='all'"
     />
-    <noscript>
-      <link
-        rel="stylesheet"
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Orbitron:wght@400;500;700;900&display=swap"
-      />
-    </noscript>
 
     <!-- Critical CSS Inlined -->
     <style>
       /* Critical CSS for above-the-fold content */
-      body {
-        margin: 0;
-        font-family: system-ui, -apple-system, sans-serif;
+      :root {
+        --primary: #2563eb;
+        --secondary: #7c3aed;
+        --accent: #06b6d4;
+        --neutral-50: #f8fafc;
+        --neutral-100: #f1f5f9;
+        --neutral-200: #e2e8f0;
+        --neutral-300: #cbd5e1;
+        --neutral-400: #94a3b8;
+        --neutral-500: #64748b;
+        --neutral-600: #475569;
+        --neutral-700: #334155;
+        --neutral-800: #1e293b;
+        --neutral-900: #0f172a;
+        --glass-bg: rgba(255, 255, 255, 0.1);
+        --glass-border: rgba(255, 255, 255, 0.2);
+        --glass-shadow: rgba(0, 0, 0, 0.1);
       }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", system-ui, -apple-system, sans-serif;
+        background: var(--neutral-50);
+        color: var(--neutral-800);
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+
+      @media (min-width: 768px) {
+        .container {
+          padding: 0 2rem;
+        }
+      }
+
+      /* Skip to content link for accessibility */
+      .skip-link {
+        position: absolute;
+        top: -40px;
+        left: 6px;
+        background: var(--primary);
+        color: white;
+        padding: 8px;
+        text-decoration: none;
+        z-index: 10000;
+        border-radius: 4px;
+      }
+
+      .skip-link:focus {
+        top: 6px;
+      }
+
+      /* Hero Section */
       .hero {
         min-height: 100vh;
         display: flex;
         align-items: center;
+        position: relative;
+        background: linear-gradient(
+          135deg,
+          var(--neutral-50) 0%,
+          var(--neutral-100) 100%
+        );
       }
-      .navbar {
-        position: sticky;
-        top: 0;
-        z-index: 1000;
+
+      .hero-content {
+        text-align: center;
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 10;
       }
-      .cta-button {
-        display: inline-block;
-        padding: 1rem 2rem;
-        background: linear-gradient(135deg, #00c8c8, #00ffff);
-        color: white;
+
+      .hero-title {
+        font-family: "Orbitron", sans-serif;
+        font-size: clamp(2.5rem, 5vw, 4rem);
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        background: linear-gradient(
+          135deg,
+          var(--primary),
+          var(--secondary),
+          var(--accent)
+        );
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        line-height: 1.2;
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1.125rem, 2vw, 1.5rem);
+        color: var(--neutral-600);
+        margin-bottom: 2rem;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      /* Glassmorphism Cards */
+      .glass-card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border: 1px solid var(--glass-border);
+        border-radius: 1rem;
+        box-shadow: 0 8px 32px var(--glass-shadow);
+        transition: all 0.3s ease;
+      }
+
+      .glass-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 12px 40px rgba(0, 0, 0, 0.15);
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.875rem 2rem;
+        font-size: 1rem;
+        font-weight: 600;
         border-radius: 0.75rem;
+        text-decoration: none;
+        transition: all 0.3s ease;
+        border: 2px solid transparent;
+        cursor: pointer;
+        min-height: 48px;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(37, 99, 235, 0.4);
+      }
+
+      .btn-secondary {
+        background: transparent;
+        color: var(--primary);
+        border-color: var(--primary);
+      }
+
+      .btn-secondary:hover {
+        background: var(--primary);
+        color: white;
+        transform: translateY(-2px);
+      }
+
+      /* Particle Background */
+      .particles-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .particle {
+        position: absolute;
+        width: 4px;
+        height: 4px;
+        background: var(--accent);
+        border-radius: 50%;
+        opacity: 0.6;
+        animation: float 6s ease-in-out infinite;
+      }
+
+      .particle:nth-child(odd) {
+        background: var(--primary);
+        animation-delay: -2s;
+      }
+
+      .particle:nth-child(3n) {
+        background: var(--secondary);
+        animation-delay: -4s;
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px) translateX(0px);
+        }
+        25% {
+          transform: translateY(-20px) translateX(10px);
+        }
+        50% {
+          transform: translateY(-10px) translateX(-10px);
+        }
+        75% {
+          transform: translateY(-30px) translateX(5px);
+        }
+      }
+
+      /* Connection Lines */
+      .connection {
+        position: absolute;
+        height: 1px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--accent),
+          transparent
+        );
+        opacity: 0.3;
+        animation: pulse 3s ease-in-out infinite;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          opacity: 0.1;
+        }
+        50% {
+          opacity: 0.4;
+        }
+      }
+
+      /* Mobile optimizations */
+      @media (max-width: 768px) {
+        .particle {
+          width: 3px;
+          height: 3px;
+        }
+
+        .connection {
+          height: 0.5px;
+        }
+      }
+
+      /* Reduced motion support */
+      @media (prefers-reduced-motion: reduce) {
+        .particle,
+        .connection {
+          animation: none;
+        }
+      }
+
+      /* Services Section */
+      .py-20 {
+        padding: 5rem 0;
+      }
+
+      /* Footer */
+      footer {
+        background: var(--neutral-900);
+        color: var(--neutral-300);
+        padding: 3rem 0 1rem;
+      }
+
+      .hidden {
+        display: none;
       }
     </style>
 
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "LaraTech sh.p.k",
-        "alternateName": "LaraTech",
-        "url": "https://laratech.ai",
-        "logo": "https://laratech-qjbn5u15l-laratechs-projects.vercel.app/assets/Logo.png",
-        "description": "Digital & Automation Services, Smart-Tech & Web Solutions in Kosovo. Expert automation, AI workflows, web development, and smart home solutions.",
-        "foundingDate": "2024",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Rr. Safet Boletini 46",
-          "addressLocality": "Iliridë",
-          "addressRegion": "Mitrovica",
-          "addressCountry": "XK"
-        },
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+383-49-479-759",
-          "contactType": "customer service",
-          "email": "office@laratech.ai",
-          "availableLanguage": ["English", "Albanian", "German"]
-        },
-        "sameAs": [
-          "https://linkedin.com/company/laratech.ai",
-          "https://instagram.com/laratech.ai",
-          "https://x.com/LaraTech_AI",
-          "https://facebook.com/laratech.eu"
-        ],
-        "serviceArea": {
-          "@type": "Country",
-          "name": "Kosovo"
-        },
-        "hasOfferCatalog": {
-          "@type": "OfferCatalog",
-          "name": "Digital Services",
-          "itemListElement": [
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Automation & AI Workflows",
-                "description": "Custom automation solutions using n8n and AI technologies"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Web Development",
-                "description": "Modern web applications and websites"
-              }
-            },
-            {
-              "@type": "Offer",
-              "itemOffered": {
-                "@type": "Service",
-                "name": "Smart Home Solutions",
-                "description": "Home automation and IoT integration"
-              }
-            }
-          ]
-        }
-      }
-    </script>
-
-    <title>
-      LaraTech sh.p.k - Digital & Automation Services | Smart-Tech Solutions
-      Kosovo
-    </title>
-
-    <!-- Favicon -->
+    <title>LaraTech sh.p.k - Honest, Fair and Competent AI Solutions</title>
     <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
 
     <!-- Tailwind CSS -->
-    <!-- Tailwind CSS - Production build -->
-    <script>
-      tailwind = {
-        config: {
-          theme: {
-            extend: {
-              colors: {
-                primary: "#00c8c8",
-                secondary: "#00ffff",
-                accent: "#ff6b6b",
-              },
-            },
-          },
-        },
-      };
-    </script>
     <script src="https://cdn.tailwindcss.com/3.4.0"></script>
-
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
     <script>
       tailwind.config = {
-        darkMode: "class",
         theme: {
           extend: {
             colors: {
-              "teal-blue": "#00C8C8",
-              "neon-blue": "#00FFFF",
-              "electric-orange": "#FF6B00",
-              "jet-black": "#0A0A0A",
+              primary: "#2563eb",
+              secondary: "#7c3aed",
+              accent: "#06b6d4",
             },
             fontFamily: {
               sans: ["Inter", "system-ui", "sans-serif"],
               display: ["Orbitron", "sans-serif"],
             },
-            animation: {
-              "glow-pulse": "glow-pulse 2s ease-in-out infinite",
-              float: "float 3s ease-in-out infinite",
-              "slide-up": "slide-up 0.6s ease-out",
-            },
-            keyframes: {
-              "glow-pulse": {
-                "0%, 100%": { boxShadow: "0 0 20px rgba(0, 255, 255, 0.5)" },
-                "50%": { boxShadow: "0 0 40px rgba(0, 255, 255, 0.8)" },
-              },
-              float: {
-                "0%, 100%": { transform: "translateY(0px)" },
-                "50%": { transform: "translateY(-20px)" },
-              },
-              "slide-up": {
-                "0%": { opacity: "0", transform: "translateY(30px)" },
-                "100%": { opacity: "1", transform: "translateY(0)" },
-              },
-            },
           },
         },
       };
     </script>
 
-    <!-- Google Fonts - Loaded via preload above -->
-
-    <!-- Custom Styles -->
     <link rel="stylesheet" href="css/style.css" />
-
-    <!-- GSAP Animation Library -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-
-    <!-- Structured Data (Schema.org) -->
-    <script type="application/ld+json">
-      {
-        "@context": "https://schema.org",
-        "@type": "Organization",
-        "name": "LaraTech sh.p.k",
-        "url": "https://laratech.ai",
-        "logo": "https://laratech-qjbn5u15l-laratechs-projects.vercel.app/assets/Logo.png",
-        "description": "Digital & Automation Services, Smart-Tech & Web Services in Kosovo",
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "Rr. Safet Boletini 46, Iliridë",
-          "addressLocality": "Mitrovica",
-          "addressCountry": "XK"
-        },
-        "contactPoint": {
-          "@type": "ContactPoint",
-          "telephone": "+383-49-479-759",
-          "contactType": "customer service",
-          "email": "office@laratech.ai"
-        },
-        "sameAs": [
-          "https://linkedin.com/company/laratech.ai",
-          "https://instagram.com/laratech.ai",
-          "https://x.com/LaraTech_AI",
-          "https://facebook.com/laratech.eu"
-        ]
-      }
-    </script>
   </head>
-  <body class="bg-gray-50 text-gray-900">
+
+  <body>
     <!-- Skip to content link for accessibility -->
-    <a href="#hero" class="skip-link">Skip to main content</a>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
 
     <!-- Navigation -->
     <div id="navbar-container"></div>
 
     <!-- Main Content -->
-    <main>
+    <main id="main-content">
       <!-- Hero Section -->
-      <section
-        id="hero"
-        class="relative py-16 md:py-24 overflow-hidden min-h-screen flex items-center"
-        role="banner"
-        aria-label="Hero section"
-        style="z-index: 0"
-      >
+      <section class="hero" role="banner" aria-label="Hero section">
         <!-- Particle Background -->
-        <canvas
-          id="particles-canvas"
-          class="absolute inset-0 w-full h-full"
-          style="background: #f9fafb; z-index: 0"
-        ></canvas>
+        <div class="particles-container" id="particles-container"></div>
 
-        <div class="container mx-auto px-4 md:px-6 relative z-10 w-full">
-          <div class="text-center max-w-5xl mx-auto">
-            <h1
-              class="hero-title text-5xl md:text-7xl lg:text-8xl font-display font-bold mb-6 leading-tight"
-            >
+        <div class="container">
+          <div class="hero-content">
+            <h1 class="hero-title">
               <span
-                class="text-gradient"
-                data-lang-en="Digital Innovation"
-                data-lang-sq="Inovacion Digjital"
-                data-lang-de="Digitale Innovation"
-                >Digital Innovation</span
+                data-lang-en="Honest, Fair and Competent"
+                data-lang-sq="I Drejtë, E Drejtë dhe Kompetente"
+                data-lang-de="Ehrlich, Fair und Kompetent"
+                >Honest, Fair and Competent</span
               ><br />
               <span
-                class="text-gradient"
-                data-lang-en="Meets Automation"
-                data-lang-sq="Takon Automatizimin"
-                data-lang-de="Trifft auf Automatisierung"
-                >Meets Automation</span
+                data-lang-en="AI Solutions"
+                data-lang-sq="Zgjidhje AI"
+                data-lang-de="KI-Lösungen"
+                >AI Solutions</span
               >
             </h1>
 
             <p
-              class="hero-subtitle text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto"
-              data-lang-en="Expert automation, AI workflows, web development, and smart-tech solutions from Kosovo for businesses globally."
-              data-lang-sq="Automatizim ekspert, flukse AI, zhvillim ueb dhe zgjidhje smart-tech nga Kosova për biznese globale."
-              data-lang-de="Experten-Automatisierung, KI-Workflows, Webentwicklung und Smart-Tech-Lösungen aus dem Kosovo für Unternehmen weltweit."
+              class="hero-subtitle"
+              data-lang-en="We believe in delivering honest, fair, and competent AI solutions that transform businesses. Our expertise in web development and automation helps companies in Kosovo and globally achieve their digital transformation goals."
+              data-lang-sq="Ne besojmë në ofrimin e zgjidhjeve AI të drejta, të drejta dhe kompetente që transformojnë bizneset. Ekspertiza jonë në zhvillimin e ueb-it dhe automatizimin ndihmon kompanitë në Kosovë dhe globalisht të arrijnë qëllimet e tyre të transformimit digjital."
+              data-lang-de="Wir glauben an die Bereitstellung ehrlicher, fairer und kompetenter KI-Lösungen, die Unternehmen transformieren. Unsere Expertise in Webentwicklung und Automatisierung hilft Unternehmen in Kosovo und weltweit, ihre digitalen Transformationsziele zu erreichen."
             >
-              Expert automation, AI workflows, web development, and smart-tech
-              solutions from Kosovo for businesses globally.
+              We believe in delivering honest, fair, and competent AI solutions
+              that transform businesses. Our expertise in web development and
+              automation helps companies in Kosovo and globally achieve their
+              digital transformation goals.
             </p>
 
             <div
-              class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16"
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+                margin-top: 2rem;
+              "
             >
-              <a
-                href="contact.html"
-                class="cta-button"
-                data-lang-en="Start Your Project"
-                data-lang-sq="Filloni Projektin Tuaj"
-                data-lang-de="Projekt Starten"
-              >
-                Start Your Project
+              <a href="contact.html" class="btn btn-primary">
+                <span
+                  data-lang-en="Get Free Consultation"
+                  data-lang-sq="Merr Konsulencë Falas"
+                  data-lang-de="Kostenlose Beratung Erhalten"
+                  >Get Free Consultation</span
+                >
               </a>
-              <a
-                href="services.html"
-                class="secondary-button"
-                data-lang-en="Explore Services"
-                data-lang-sq="Eksploro Shërbimet"
-                data-lang-de="Dienste Erkunden"
-              >
-                Explore Services
+              <a href="services.html" class="btn btn-secondary">
+                <span
+                  data-lang-en="Explore Our Services"
+                  data-lang-sq="Eksploro Shërbimet Tona"
+                  data-lang-de="Unsere Dienstleistungen Erkunden"
+                  >Explore Our Services</span
+                >
               </a>
-            </div>
-
-            <!-- Dynamic Counter Stats -->
-            <div
-              class="grid grid-cols-2 md:grid-cols-4 gap-8 max-w-4xl mx-auto"
-            >
-              <div class="stat-card">
-                <div
-                  class="text-4xl md:text-5xl font-display font-bold text-gradient counter"
-                  data-target="30"
-                >
-                  0
-                </div>
-                <div
-                  class="text-sm md:text-base text-gray-600 mt-2"
-                  data-lang-en="Automations Delivered"
-                  data-lang-sq="Automatizime të Dorëzuara"
-                  data-lang-de="Automatisierungen Geliefert"
-                >
-                  Automations Delivered
-                </div>
-              </div>
-              <div class="stat-card">
-                <div
-                  class="text-4xl md:text-5xl font-display font-bold text-gradient counter"
-                  data-target="50"
-                >
-                  0
-                </div>
-                <div
-                  class="text-sm md:text-base text-gray-600 mt-2"
-                  data-lang-en="Happy Clients"
-                  data-lang-sq="Klientë të Kënaqur"
-                  data-lang-de="Zufriedene Kunden"
-                >
-                  Happy Clients
-                </div>
-              </div>
-              <div class="stat-card">
-                <div
-                  class="text-4xl md:text-5xl font-display font-bold text-gradient counter"
-                  data-target="99"
-                >
-                  0
-                </div>
-                <div
-                  class="text-sm md:text-base text-gray-600 mt-2"
-                  data-lang-en="Uptime %"
-                  data-lang-sq="% Kohë Aktive"
-                  data-lang-de="Betriebszeit %"
-                >
-                  Uptime %
-                </div>
-              </div>
-              <div class="stat-card">
-                <div
-                  class="text-4xl md:text-5xl font-display font-bold text-gradient counter"
-                  data-target="24"
-                >
-                  0
-                </div>
-                <div
-                  class="text-sm md:text-base text-gray-600 mt-2"
-                  data-lang-en="Support Hours"
-                  data-lang-sq="Orë Mbështetje"
-                  data-lang-de="Support-Stunden"
-                >
-                  Support Hours
-                </div>
-              </div>
             </div>
           </div>
         </div>
-
-        <!-- Scroll Indicator -->
-        <div
-          class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce"
-        >
-          <svg
-            class="w-6 h-6 text-teal-blue"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              stroke-width="2"
-              d="M19 14l-7 7m0 0l-7-7m7 7V3"
-            />
-          </svg>
-        </div>
       </section>
 
-      <!-- Services Preview Section -->
-      <section
-        id="services-preview"
-        class="py-20 relative"
-        role="region"
-        aria-label="Services preview"
-      >
-        <div class="container mx-auto px-4 md:px-6">
-          <div class="text-center mb-16">
+      <!-- Services Section -->
+      <section class="py-20" role="region" aria-label="Our Services">
+        <div class="container">
+          <div style="text-align: center; margin-bottom: 4rem">
             <h2
-              class="text-4xl md:text-6xl font-display font-bold mb-4 section-title"
+              style="
+                font-family: 'Orbitron', sans-serif;
+                font-size: clamp(2rem, 4vw, 3rem);
+                font-weight: 700;
+                margin-bottom: 1rem;
+                color: var(--neutral-800);
+              "
               data-lang-en="Our Services"
               data-lang-sq="Shërbimet Tona"
               data-lang-de="Unsere Dienstleistungen"
@@ -458,7 +455,12 @@
               Our Services
             </h2>
             <p
-              class="text-xl text-gray-600 max-w-3xl mx-auto"
+              style="
+                font-size: 1.25rem;
+                color: var(--neutral-600);
+                max-width: 600px;
+                margin: 0 auto;
+              "
               data-lang-en="Comprehensive digital solutions tailored to transform your business"
               data-lang-sq="Zgjidhje digjitale gjithëpërfshirëse të përshtatura për të transformuar biznesin tuaj"
               data-lang-de="Umfassende digitale Lösungen maßgeschneidert, um Ihr Unternehmen zu transformieren"
@@ -468,411 +470,424 @@
             </p>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Service Card 1 -->
-            <div class="service-card-3d group">
-              <div
-                class="glass-card p-8 h-full hover:scale-105 transition-all duration-300"
-              >
-                <div
-                  class="w-16 h-16 bg-gradient-to-br from-teal-blue to-neon-blue rounded-xl flex items-center justify-center mb-6 service-icon"
-                >
-                  <svg
-                    class="w-8 h-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M13 10V3L4 14h7v7l9-11h-7z"
-                    />
-                  </svg>
-                </div>
-                <h3
-                  class="text-2xl font-display font-bold mb-4 card-title"
-                  data-lang-en="Automation & AI Workflows"
-                  data-lang-sq="Automatizim & Flukse AI"
-                  data-lang-de="Automatisierung & KI-Workflows"
-                >
-                  Automation & AI Workflows
-                </h3>
-                <p
-                  class="text-gray-600 mb-6"
-                  data-lang-en="Streamline operations with OpenAI, n8n, and custom automation solutions."
-                  data-lang-sq="Thjeshtoni operacionet me OpenAI, n8n dhe zgjidhje automatizimi të personalizuara."
-                  data-lang-de="Optimieren Sie Abläufe mit OpenAI, n8n und maßgeschneiderten Automatisierungslösungen."
-                >
-                  Streamline operations with OpenAI, n8n, and custom automation
-                  solutions.
-                </p>
-                <a
-                  href="services.html#automation"
-                  class="text-teal-blue hover:text-neon-blue font-semibold inline-flex items-center group-hover:translate-x-2 transition-transform duration-300"
-                >
-                  <span
-                    data-lang-en="Learn More"
-                    data-lang-sq="Mëso Më Shumë"
-                    data-lang-de="Mehr Erfahren"
-                    data-lang-de="Mehr Erfahren"
-                    >Learn More</span
-                  >
-                  <svg
-                    class="w-5 h-5 ml-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
+          <!-- Web Services Group -->
+          <div style="margin-bottom: 3rem">
+            <h3
+              style="
+                font-family: 'Orbitron', sans-serif;
+                font-size: 1.5rem;
+                font-weight: 600;
+                margin-bottom: 2rem;
+                color: var(--primary);
+                text-align: center;
+              "
+              data-lang-en="Web Services"
+              data-lang-sq="Shërbimet Ueb"
+              data-lang-de="Web-Dienstleistungen"
+            >
+              Web Services
+            </h3>
 
-            <!-- Service Card 2 -->
-            <div class="service-card-3d group">
-              <div
-                class="glass-card p-8 h-full hover:scale-105 transition-all duration-300"
-              >
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+              "
+            >
+              <!-- Web Development -->
+              <div class="glass-card" style="padding: 2rem">
                 <div
-                  class="w-16 h-16 bg-gradient-to-br from-electric-orange to-teal-blue rounded-xl flex items-center justify-center mb-6 service-icon"
+                  style="
+                    width: 4rem;
+                    height: 4rem;
+                    background: linear-gradient(
+                      135deg,
+                      var(--primary),
+                      var(--accent)
+                    );
+                    border-radius: 1rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 1.5rem;
+                  "
                 >
-                  <svg
-                    class="w-8 h-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
-                    />
+                  <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
+                    <path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
                   </svg>
                 </div>
-                <h3
-                  class="text-2xl font-display font-bold mb-4 card-title"
+                <h4
+                  style="
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                    margin-bottom: 1rem;
+                    color: var(--neutral-800);
+                  "
                   data-lang-en="Web Development"
                   data-lang-sq="Zhvillim Ueb"
                   data-lang-de="Webentwicklung"
                 >
                   Web Development
-                </h3>
+                </h4>
                 <p
-                  class="text-gray-600 mb-6"
-                  data-lang-en="Modern, fast, and SEO-optimized websites and web applications."
-                  data-lang-sq="Faqe interneti dhe aplikacione ueb moderne, të shpejta dhe të optimizuara për SEO."
-                  data-lang-de="Moderne, schnelle und SEO-optimierte Websites und Webanwendungen."
+                  style="color: var(--neutral-600); margin-bottom: 1.5rem"
+                  data-lang-en="Modern, fast, and SEO-optimized websites and web applications built with cutting-edge technologies."
+                  data-lang-sq="Faqe interneti dhe aplikacione ueb moderne, të shpejta dhe të optimizuara për SEO të ndërtuara me teknologji të fundit."
+                  data-lang-de="Moderne, schnelle und SEO-optimierte Websites und Webanwendungen, die mit modernsten Technologien entwickelt wurden."
                 >
-                  Modern, fast, and SEO-optimized websites and web applications.
+                  Modern, fast, and SEO-optimized websites and web applications
+                  built with cutting-edge technologies.
                 </p>
                 <a
                   href="services.html#web"
-                  class="text-electric-orange hover:text-teal-blue font-semibold inline-flex items-center group-hover:translate-x-2 transition-transform duration-300"
+                  style="
+                    color: var(--primary);
+                    font-weight: 600;
+                    text-decoration: none;
+                  "
+                  data-lang-en="Learn More"
+                  data-lang-sq="Mëso Më Shumë"
+                  data-lang-de="Mehr Erfahren"
+                  >Learn More →</a
                 >
-                  <span
-                    data-lang-en="Learn More"
-                    data-lang-sq="Mëso Më Shumë"
-                    data-lang-de="Mehr Erfahren"
-                    >Learn More</span
-                  >
-                  <svg
-                    class="w-5 h-5 ml-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </a>
               </div>
-            </div>
 
-            <!-- Service Card 3 -->
-            <div class="service-card-3d group">
-              <div
-                class="glass-card p-8 h-full hover:scale-105 transition-all duration-300"
-              >
+              <!-- Digital Presence Setup -->
+              <div class="glass-card" style="padding: 2rem">
                 <div
-                  class="w-16 h-16 bg-gradient-to-br from-neon-blue to-electric-orange rounded-xl flex items-center justify-center mb-6 service-icon"
+                  style="
+                    width: 4rem;
+                    height: 4rem;
+                    background: linear-gradient(
+                      135deg,
+                      var(--secondary),
+                      var(--primary)
+                    );
+                    border-radius: 1rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 1.5rem;
+                  "
                 >
-                  <svg
-                    class="w-8 h-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
+                  <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
-                    />
-                  </svg>
-                </div>
-                <h3
-                  class="text-2xl font-display font-bold mb-4 card-title"
-                  data-lang-en="Smart Home & Security"
-                  data-lang-sq="Shtëpi Inteligjente & Siguri"
-                  data-lang-de="Smart Home & Sicherheit"
-                >
-                  Smart Home & Security
-                </h3>
-                <p
-                  class="text-gray-600 mb-6"
-                  data-lang-en="Complete smart home integration and surveillance systems."
-                  data-lang-sq="Integrim i plotë i shtëpisë inteligjente dhe sisteme monitorimi."
-                  data-lang-de="Komplette Smart-Home-Integration und Überwachungssysteme."
-                >
-                  Complete smart home integration and surveillance systems.
-                </p>
-                <a
-                  href="services.html#smarthome"
-                  class="text-neon-blue hover:text-electric-orange font-semibold inline-flex items-center group-hover:translate-x-2 transition-transform duration-300"
-                >
-                  <span
-                    data-lang-en="Learn More"
-                    data-lang-sq="Mëso Më Shumë"
-                    data-lang-de="Mehr Erfahren"
-                    >Learn More</span
-                  >
-                  <svg
-                    class="w-5 h-5 ml-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <!-- Service Card 4 -->
-            <div class="service-card-3d group">
-              <div
-                class="glass-card p-8 h-full hover:scale-105 transition-all duration-300"
-              >
-                <div
-                  class="w-16 h-16 bg-gradient-to-br from-teal-blue to-electric-orange rounded-xl flex items-center justify-center mb-6 service-icon"
-                >
-                  <svg
-                    class="w-8 h-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                    />
-                  </svg>
-                </div>
-                <h3
-                  class="text-2xl font-display font-bold mb-4 card-title"
-                  data-lang-en="IT Consulting & Support"
-                  data-lang-sq="Konsulencë IT & Mbështetje"
-                  data-lang-de="IT-Beratung & Support"
-                >
-                  IT Consulting & Support
-                </h3>
-                <p
-                  class="text-gray-600 mb-6"
-                  data-lang-en="Expert IT guidance and ongoing technical support for your business."
-                  data-lang-sq="Udhëzim ekspert IT dhe mbështetje teknike e vazhdueshme për biznesin tuaj."
-                  data-lang-de="Fachkundige IT-Beratung und fortlaufender technischer Support für Ihr Unternehmen."
-                >
-                  Expert IT guidance and ongoing technical support for your
-                  business.
-                </p>
-                <a
-                  href="services.html#consulting"
-                  class="text-teal-blue hover:text-electric-orange font-semibold inline-flex items-center group-hover:translate-x-2 transition-transform duration-300"
-                >
-                  <span
-                    data-lang-en="Learn More"
-                    data-lang-sq="Mëso Më Shumë"
-                    data-lang-de="Mehr Erfahren"
-                    >Learn More</span
-                  >
-                  <svg
-                    class="w-5 h-5 ml-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <!-- Service Card 5 -->
-            <div class="service-card-3d group">
-              <div
-                class="glass-card p-8 h-full hover:scale-105 transition-all duration-300"
-              >
-                <div
-                  class="w-16 h-16 bg-gradient-to-br from-electric-orange to-neon-blue rounded-xl flex items-center justify-center mb-6 service-icon"
-                >
-                  <svg
-                    class="w-8 h-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
-                    />
-                  </svg>
-                </div>
-                <h3
-                  class="text-2xl font-display font-bold mb-4 card-title"
-                  data-lang-en="Business Process Optimization"
-                  data-lang-sq="Optimizim i Proceseve të Biznesit"
-                  data-lang-de="Geschäftsprozess-Optimierung"
-                >
-                  Business Process Optimization
-                </h3>
-                <p
-                  class="text-gray-600 mb-6"
-                  data-lang-en="Transform and optimize workflows to maximize efficiency and ROI."
-                  data-lang-sq="Transformoni dhe optimizoni flukset e punës për të maksimizuar efikasitetin dhe ROI."
-                  data-lang-de="Transformieren und optimieren Sie Arbeitsabläufe, um Effizienz und ROI zu maximieren."
-                >
-                  Transform and optimize workflows to maximize efficiency and
-                  ROI.
-                </p>
-                <a
-                  href="services.html#optimization"
-                  class="text-electric-orange hover:text-neon-blue font-semibold inline-flex items-center group-hover:translate-x-2 transition-transform duration-300"
-                >
-                  <span
-                    data-lang-en="Learn More"
-                    data-lang-sq="Mëso Më Shumë"
-                    data-lang-de="Mehr Erfahren"
-                    >Learn More</span
-                  >
-                  <svg
-                    class="w-5 h-5 ml-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
-                    />
-                  </svg>
-                </a>
-              </div>
-            </div>
-
-            <!-- Service Card 6 -->
-            <div class="service-card-3d group">
-              <div
-                class="glass-card p-8 h-full hover:scale-105 transition-all duration-300"
-              >
-                <div
-                  class="w-16 h-16 bg-gradient-to-br from-neon-blue to-teal-blue rounded-xl flex items-center justify-center mb-6 service-icon"
-                >
-                  <svg
-                    class="w-8 h-8 text-white"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
                       d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"
                     />
                   </svg>
                 </div>
-                <h3
-                  class="text-2xl font-display font-bold mb-4 card-title"
+                <h4
+                  style="
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                    margin-bottom: 1rem;
+                    color: var(--neutral-800);
+                  "
                   data-lang-en="Digital Presence Setup"
                   data-lang-sq="Krijimi i Prezencës Digjitale"
                   data-lang-de="Aufbau Digitaler Präsenz"
                 >
                   Digital Presence Setup
-                </h3>
+                </h4>
                 <p
-                  class="text-gray-600 mb-6"
-                  data-lang-en="Google Business, social media, and complete digital branding."
-                  data-lang-sq="Google Business, media sociale dhe branding digjital i plotë."
-                  data-lang-de="Google Business, Social Media und komplettes digitales Branding."
+                  style="color: var(--neutral-600); margin-bottom: 1.5rem"
+                  data-lang-en="Complete digital branding including Google Business, social media management, and online reputation building."
+                  data-lang-sq="Branding digjital i plotë duke përfshirë Google Business, menaxhimin e mediave sociale dhe ndërtimin e reputacionit online."
+                  data-lang-de="Komplettes digitales Branding einschließlich Google Business, Social Media Management und Online-Reputationsaufbau."
                 >
-                  Google Business, social media, and complete digital branding.
+                  Complete digital branding including Google Business, social
+                  media management, and online reputation building.
                 </p>
                 <a
                   href="services.html#digital"
-                  class="text-neon-blue hover:text-teal-blue font-semibold inline-flex items-center group-hover:translate-x-2 transition-transform duration-300"
+                  style="
+                    color: var(--primary);
+                    font-weight: 600;
+                    text-decoration: none;
+                  "
+                  data-lang-en="Learn More"
+                  data-lang-sq="Mëso Më Shumë"
+                  data-lang-de="Mehr Erfahren"
+                  >Learn More →</a
                 >
-                  <span
-                    data-lang-en="Learn More"
-                    data-lang-sq="Mëso Më Shumë"
-                    data-lang-de="Mehr Erfahren"
-                    >Learn More</span
-                  >
-                  <svg
-                    class="w-5 h-5 ml-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
+              </div>
+
+              <!-- IT Consulting & Support -->
+              <div class="glass-card" style="padding: 2rem">
+                <div
+                  style="
+                    width: 4rem;
+                    height: 4rem;
+                    background: linear-gradient(
+                      135deg,
+                      var(--accent),
+                      var(--secondary)
+                    );
+                    border-radius: 1rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 1.5rem;
+                  "
+                >
+                  <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
                     <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="2"
-                      d="M17 8l4 4m0 0l-4 4m4-4H3"
+                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                     />
                   </svg>
-                </a>
+                </div>
+                <h4
+                  style="
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                    margin-bottom: 1rem;
+                    color: var(--neutral-800);
+                  "
+                  data-lang-en="IT Consulting & Support"
+                  data-lang-sq="Konsulencë IT & Mbështetje"
+                  data-lang-de="IT-Beratung & Support"
+                >
+                  IT Consulting & Support
+                </h4>
+                <p
+                  style="color: var(--neutral-600); margin-bottom: 1.5rem"
+                  data-lang-en="Expert IT guidance and ongoing technical support to help your business stay ahead of technology trends."
+                  data-lang-sq="Udhëzim ekspert IT dhe mbështetje teknike e vazhdueshme për të ndihmuar biznesin tuaj të qëndrojë përpara trendeve të teknologjisë."
+                  data-lang-de="Fachkundige IT-Beratung und fortlaufender technischer Support, um Ihr Unternehmen an der Spitze der Technologietrends zu halten."
+                >
+                  Expert IT guidance and ongoing technical support to help your
+                  business stay ahead of technology trends.
+                </p>
+                <a
+                  href="services.html#consulting"
+                  style="
+                    color: var(--primary);
+                    font-weight: 600;
+                    text-decoration: none;
+                  "
+                  data-lang-en="Learn More"
+                  data-lang-sq="Mëso Më Shumë"
+                  data-lang-de="Mehr Erfahren"
+                  >Learn More →</a
+                >
               </div>
             </div>
           </div>
 
-          <div class="text-center mt-12">
-            <a
-              href="services.html"
-              class="cta-button magnetic-button inline-block"
-              data-lang-en="View All Services"
-              data-lang-sq="Shiko Të Gjitha Shërbimet"
-              data-lang-de="Alle Dienstleistungen Ansehen"
+          <!-- AI Services Group -->
+          <div>
+            <h3
+              style="
+                font-family: 'Orbitron', sans-serif;
+                font-size: 1.5rem;
+                font-weight: 600;
+                margin-bottom: 2rem;
+                color: var(--secondary);
+                text-align: center;
+              "
+              data-lang-en="AI Services"
+              data-lang-sq="Shërbimet AI"
+              data-lang-de="KI-Dienstleistungen"
             >
-              View All Services
+              AI Services
+            </h3>
+
+            <div
+              style="
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                gap: 2rem;
+              "
+            >
+              <!-- Automation & AI Workflows -->
+              <div class="glass-card" style="padding: 2rem">
+                <div
+                  style="
+                    width: 4rem;
+                    height: 4rem;
+                    background: linear-gradient(
+                      135deg,
+                      var(--primary),
+                      var(--accent)
+                    );
+                    border-radius: 1rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 1.5rem;
+                  "
+                >
+                  <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
+                    <path d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <h4
+                  style="
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                    margin-bottom: 1rem;
+                    color: var(--neutral-800);
+                  "
+                  data-lang-en="Automation & AI Workflows"
+                  data-lang-sq="Automatizim & Flukse AI"
+                  data-lang-de="Automatisierung & KI-Workflows"
+                >
+                  Automation & AI Workflows
+                </h4>
+                <p
+                  style="color: var(--neutral-600); margin-bottom: 1.5rem"
+                  data-lang-en="Streamline operations with OpenAI, n8n, and custom automation solutions that save time and reduce errors."
+                  data-lang-sq="Thjeshtoni operacionet me OpenAI, n8n dhe zgjidhje automatizimi të personalizuara që kursejnë kohë dhe reduktojnë gabimet."
+                  data-lang-de="Optimieren Sie Abläufe mit OpenAI, n8n und maßgeschneiderten Automatisierungslösungen, die Zeit sparen und Fehler reduzieren."
+                >
+                  Streamline operations with OpenAI, n8n, and custom automation
+                  solutions that save time and reduce errors.
+                </p>
+                <a
+                  href="services.html#automation"
+                  style="
+                    color: var(--primary);
+                    font-weight: 600;
+                    text-decoration: none;
+                  "
+                  data-lang-en="Learn More"
+                  data-lang-sq="Mëso Më Shumë"
+                  data-lang-de="Mehr Erfahren"
+                  >Learn More →</a
+                >
+              </div>
+
+              <!-- Business Process Optimization -->
+              <div class="glass-card" style="padding: 2rem">
+                <div
+                  style="
+                    width: 4rem;
+                    height: 4rem;
+                    background: linear-gradient(
+                      135deg,
+                      var(--secondary),
+                      var(--primary)
+                    );
+                    border-radius: 1rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 1.5rem;
+                  "
+                >
+                  <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
+                    <path
+                      d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+                    />
+                  </svg>
+                </div>
+                <h4
+                  style="
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                    margin-bottom: 1rem;
+                    color: var(--neutral-800);
+                  "
+                  data-lang-en="Business Process Optimization"
+                  data-lang-sq="Optimizim i Proceseve të Biznesit"
+                  data-lang-de="Geschäftsprozess-Optimierung"
+                >
+                  Business Process Optimization
+                </h4>
+                <p
+                  style="color: var(--neutral-600); margin-bottom: 1.5rem"
+                  data-lang-en="Transform and optimize workflows using AI to maximize efficiency, reduce costs, and improve ROI for your business."
+                  data-lang-sq="Transformoni dhe optimizoni flukset e punës duke përdorur AI për të maksimizuar efikasitetin, reduktuar kostot dhe përmirësuar ROI për biznesin tuaj."
+                  data-lang-de="Transformieren und optimieren Sie Arbeitsabläufe mit KI, um Effizienz zu maximieren, Kosten zu reduzieren und ROI für Ihr Unternehmen zu verbessern."
+                >
+                  Transform and optimize workflows using AI to maximize
+                  efficiency, reduce costs, and improve ROI for your business.
+                </p>
+                <a
+                  href="services.html#optimization"
+                  style="
+                    color: var(--primary);
+                    font-weight: 600;
+                    text-decoration: none;
+                  "
+                  data-lang-en="Learn More"
+                  data-lang-sq="Mëso Më Shumë"
+                  data-lang-de="Mehr Erfahren"
+                  >Learn More →</a
+                >
+              </div>
+
+              <!-- Smart Home & Security -->
+              <div class="glass-card" style="padding: 2rem">
+                <div
+                  style="
+                    width: 4rem;
+                    height: 4rem;
+                    background: linear-gradient(
+                      135deg,
+                      var(--accent),
+                      var(--secondary)
+                    );
+                    border-radius: 1rem;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-bottom: 1.5rem;
+                  "
+                >
+                  <svg width="24" height="24" fill="white" viewBox="0 0 24 24">
+                    <path
+                      d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                    />
+                  </svg>
+                </div>
+                <h4
+                  style="
+                    font-size: 1.25rem;
+                    font-weight: 600;
+                    margin-bottom: 1rem;
+                    color: var(--neutral-800);
+                  "
+                  data-lang-en="Smart Home & Security"
+                  data-lang-sq="Shtëpi Inteligjente & Siguri"
+                  data-lang-de="Smart Home & Sicherheit"
+                >
+                  Smart Home & Security
+                </h4>
+                <p
+                  style="color: var(--neutral-600); margin-bottom: 1.5rem"
+                  data-lang-en="Complete smart home integration and AI-powered surveillance systems for enhanced security and convenience."
+                  data-lang-sq="Integrim i plotë i shtëpisë inteligjente dhe sisteme monitorimi të fuqizuara nga AI për siguri dhe lehtësi të përmirësuar."
+                  data-lang-de="Komplette Smart-Home-Integration und KI-gestützte Überwachungssysteme für verbesserte Sicherheit und Komfort."
+                >
+                  Complete smart home integration and AI-powered surveillance
+                  systems for enhanced security and convenience.
+                </p>
+                <a
+                  href="services.html#smarthome"
+                  style="
+                    color: var(--primary);
+                    font-weight: 600;
+                    text-decoration: none;
+                  "
+                  data-lang-en="Learn More"
+                  data-lang-sq="Mëso Më Shumë"
+                  data-lang-de="Mehr Erfahren"
+                  >Learn More →</a
+                >
+              </div>
+            </div>
+          </div>
+
+          <div style="text-align: center; margin-top: 3rem">
+            <a href="services.html" class="btn btn-primary">
+              <span
+                data-lang-en="View All Services"
+                data-lang-sq="Shiko Të Gjitha Shërbimet"
+                data-lang-de="Alle Dienstleistungen Ansehen"
+                >View All Services</span
+              >
             </a>
           </div>
         </div>
@@ -880,73 +895,78 @@
 
       <!-- CTA Section -->
       <section
-        id="cta"
-        class="py-20 relative overflow-hidden"
+        class="py-20"
+        style="
+          background: linear-gradient(
+            135deg,
+            var(--neutral-100),
+            var(--neutral-200)
+          );
+        "
         role="region"
         aria-label="Call to action"
       >
-        <div
-          class="absolute inset-0 bg-gradient-to-br from-teal-blue to-electric-orange opacity-10 pointer-events-none z-0"
-          aria-hidden="true"
-        ></div>
-        <div class="container mx-auto px-4 md:px-6 relative z-20">
-          <div class="glass-card p-12 md:p-16 text-center max-w-4xl mx-auto">
+        <div class="container">
+          <div
+            class="glass-card"
+            style="
+              padding: 3rem;
+              text-align: center;
+              max-width: 800px;
+              margin: 0 auto;
+            "
+          >
             <h2
-              class="text-4xl md:text-6xl font-display font-bold mb-6 section-title"
+              style="
+                font-family: 'Orbitron', sans-serif;
+                font-size: clamp(2rem, 4vw, 2.5rem);
+                font-weight: 700;
+                margin-bottom: 1.5rem;
+                color: var(--neutral-800);
+              "
               data-lang-en="Ready to Transform Your Business?"
               data-lang-sq="Gati për të Transformuar Biznesin Tuaj?"
+              data-lang-de="Bereit, Ihr Unternehmen zu Transformieren?"
             >
               Ready to Transform Your Business?
             </h2>
             <p
-              class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto"
-              data-lang-en="Let's discuss how we can help you automate, innovate, and grow with cutting-edge digital solutions."
-              data-lang-sq="Le të diskutojmë se si mund t'ju ndihmojmë të automatizoni, inovoni dhe të rriteni me zgjidhje digjitale të fundit."
+              style="
+                font-size: 1.25rem;
+                color: var(--neutral-600);
+                margin-bottom: 2rem;
+              "
+              data-lang-en="Let's discuss how our honest, fair, and competent AI solutions can help you automate, innovate, and grow with cutting-edge digital solutions."
+              data-lang-sq="Le të diskutojmë se si zgjidhjet tona AI të drejta, të drejta dhe kompetente mund t'ju ndihmojnë të automatizoni, inovoni dhe të rriteni me zgjidhje digjitale të fundit."
+              data-lang-de="Lassen Sie uns besprechen, wie unsere ehrlichen, fairen und kompetenten KI-Lösungen Ihnen helfen können, zu automatisieren, zu innovieren und mit modernsten digitalen Lösungen zu wachsen."
             >
-              Let's discuss how we can help you automate, innovate, and grow
-              with cutting-edge digital solutions.
+              Let's discuss how our honest, fair, and competent AI solutions can
+              help you automate, innovate, and grow with cutting-edge digital
+              solutions.
             </p>
             <div
-              class="flex flex-col sm:flex-row gap-4 justify-center items-center"
+              style="
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+              "
             >
-              <a
-                href="contact.html"
-                class="cta-button magnetic-button neural-glow text-lg px-8 py-4"
-                data-lang-en="Book Free Consultation"
-                data-lang-sq="Rezervo Konsulencë Falas"
-              >
-                <svg
-                  class="inline-block w-5 h-5 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+              <a href="contact.html" class="btn btn-primary">
+                <span
+                  data-lang-en="Get Free Consultation"
+                  data-lang-sq="Merr Konsulencë Falas"
+                  data-lang-de="Kostenlose Beratung Erhalten"
+                  >Get Free Consultation</span
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  ></path></svg
-                >Book Free Consultation
               </a>
-              <a
-                href="tel:+38349479759"
-                class="secondary-button magnetic-button text-lg px-8 py-4"
-              >
-                <svg
-                  class="inline-block w-5 h-5 mr-2"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+              <a href="tel:+38349479759" class="btn btn-secondary">
+                <span
+                  data-lang-en="Call Us: +383 49 479 759"
+                  data-lang-sq="Na Thirrni: +383 49 479 759"
+                  data-lang-de="Rufen Sie uns an: +383 49 479 759"
+                  >Call Us: +383 49 479 759</span
                 >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  ></path>
-                </svg>
-                +383 49 479 759
               </a>
             </div>
           </div>
@@ -956,36 +976,68 @@
 
     <!-- Footer -->
     <footer
-      class="bg-gray-900 text-gray-300 pt-16 pb-8"
+      style="
+        background: var(--neutral-900);
+        color: var(--neutral-300);
+        padding: 3rem 0 1rem;
+      "
       role="contentinfo"
       aria-label="Site footer"
     >
-      <div class="container mx-auto px-4 md:px-6">
+      <div class="container">
         <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12"
+          style="
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+          "
         >
           <!-- Company Info -->
           <div>
-            <div class="flex items-center space-x-3 mb-6">
+            <div
+              style="
+                display: flex;
+                align-items: center;
+                gap: 0.75rem;
+                margin-bottom: 1rem;
+              "
+            >
               <img
                 src="assets/logo.png"
                 alt="LaraTech Logo"
-                class="h-16 w-auto object-contain"
+                style="
+                  height: 3rem;
+                  width: auto;
+                  filter: invert(1) brightness(2);
+                "
                 onerror="this.style.display='none'; this.nextElementSibling.style.display='block';"
               />
-              <div class="hidden text-2xl font-bold text-white">LaraTech</div>
+              <div
+                class="hidden"
+                style="
+                  display: none;
+                  font-size: 1.5rem;
+                  font-weight: bold;
+                  color: white;
+                "
+              >
+                LaraTech
+              </div>
             </div>
             <p
-              class="text-gray-400 mb-4"
-              data-lang-en="Digital & Automation Services"
-              data-lang-sq="Shërbime Digjitale & Automatizim"
+              style="color: var(--neutral-400); margin-bottom: 1rem"
+              data-lang-en="Honest, Fair and Competent AI Solutions"
+              data-lang-sq="Zgjidhje AI të Drejta, të Drejta dhe Kompetente"
+              data-lang-de="Ehrliche, Faire und Kompetente KI-Lösungen"
             >
-              Digital & Automation Services
+              Honest, Fair and Competent AI Solutions
             </p>
             <p
-              class="text-sm text-gray-500"
+              style="font-size: 0.875rem; color: var(--neutral-500)"
               data-lang-en="Smart-Tech & Web Solutions for Modern Businesses"
               data-lang-sq="Zgjidhje Smart-Tech & Ueb për Bizneset Moderne"
+              data-lang-de="Smart-Tech & Web-Lösungen für Moderne Unternehmen"
             >
               Smart-Tech & Web Solutions for Modern Businesses
             </p>
@@ -994,64 +1046,91 @@
           <!-- Quick Links -->
           <div>
             <h3
-              class="text-white font-display font-bold text-lg mb-4 card-title"
+              style="color: white; font-weight: 600; margin-bottom: 1rem"
               data-lang-en="Quick Links"
               data-lang-sq="Lidhje të Shpejta"
+              data-lang-de="Schnelle Links"
             >
               Quick Links
             </h3>
-            <ul class="space-y-2">
-              <li>
+            <ul style="list-style: none">
+              <li style="margin-bottom: 0.5rem">
                 <a
                   href="index.html"
-                  class="hover:text-teal-blue transition-colors"
+                  style="
+                    color: var(--neutral-400);
+                    text-decoration: none;
+                    transition: color 0.3s ease;
+                  "
+                  onmouseover="this.style.color='var(--accent)'"
+                  onmouseout="this.style.color='var(--neutral-400)'"
                   data-lang-en="Home"
                   data-lang-sq="Ballina"
+                  data-lang-de="Startseite"
                   >Home</a
                 >
               </li>
-              <li>
+              <li style="margin-bottom: 0.5rem">
                 <a
                   href="services.html"
-                  class="hover:text-teal-blue transition-colors"
+                  style="
+                    color: var(--neutral-400);
+                    text-decoration: none;
+                    transition: color 0.3s ease;
+                  "
+                  onmouseover="this.style.color='var(--accent)'"
+                  onmouseout="this.style.color='var(--neutral-400)'"
                   data-lang-en="Services"
                   data-lang-sq="Shërbimet"
+                  data-lang-de="Dienstleistungen"
                   >Services</a
                 >
               </li>
-              <li>
+              <li style="margin-bottom: 0.5rem">
                 <a
                   href="projects.html"
-                  class="hover:text-teal-blue transition-colors"
+                  style="
+                    color: var(--neutral-400);
+                    text-decoration: none;
+                    transition: color 0.3s ease;
+                  "
+                  onmouseover="this.style.color='var(--accent)'"
+                  onmouseout="this.style.color='var(--neutral-400)'"
                   data-lang-en="Projects"
                   data-lang-sq="Projektet"
+                  data-lang-de="Projekte"
                   >Projects</a
                 >
               </li>
-              <li>
+              <li style="margin-bottom: 0.5rem">
                 <a
                   href="about.html"
-                  class="hover:text-teal-blue transition-colors"
+                  style="
+                    color: var(--neutral-400);
+                    text-decoration: none;
+                    transition: color 0.3s ease;
+                  "
+                  onmouseover="this.style.color='var(--accent)'"
+                  onmouseout="this.style.color='var(--neutral-400)'"
                   data-lang-en="About"
                   data-lang-sq="Rreth Nesh"
+                  data-lang-de="Über Uns"
                   >About</a
                 >
               </li>
-              <li>
-                <a
-                  href="blog.html"
-                  class="hover:text-teal-blue transition-colors"
-                  data-lang-en="Blog"
-                  data-lang-sq="Blog"
-                  >Blog</a
-                >
-              </li>
-              <li>
+              <li style="margin-bottom: 0.5rem">
                 <a
                   href="contact.html"
-                  class="hover:text-teal-blue transition-colors"
+                  style="
+                    color: var(--neutral-400);
+                    text-decoration: none;
+                    transition: color 0.3s ease;
+                  "
+                  onmouseover="this.style.color='var(--accent)'"
+                  onmouseout="this.style.color='var(--neutral-400)'"
                   data-lang-en="Contact"
                   data-lang-sq="Kontakti"
+                  data-lang-de="Kontakt"
                   >Contact</a
                 >
               </li>
@@ -1061,185 +1140,121 @@
           <!-- Contact Info -->
           <div>
             <h3
-              class="text-white font-display font-bold text-lg mb-4 card-title"
+              style="color: white; font-weight: 600; margin-bottom: 1rem"
               data-lang-en="Contact"
               data-lang-sq="Kontakti"
+              data-lang-de="Kontakt"
             >
               Contact
             </h3>
-            <ul class="space-y-3 text-sm">
-              <li class="flex items-start">
+            <div style="font-size: 0.875rem">
+              <p
+                style="
+                  margin-bottom: 0.5rem;
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                "
+              >
                 <svg
-                  class="w-5 h-5 mr-2 mt-0.5 text-teal-blue flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
+                  width="16"
+                  height="16"
+                  fill="var(--accent)"
                   viewBox="0 0 24 24"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
                     d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
                   />
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
+                  <path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
                 </svg>
-                <span class="cursor-pointer" title="Address">
-                  Rr. Safet Boletini 46, Iliridë<br />Mitrovica, Kosovo
-                </span>
-              </li>
-              <li class="flex items-center">
+                Rr. Safet Boletini 46, Iliridë<br />Mitrovica, Kosovo
+              </p>
+              <p
+                style="
+                  margin-bottom: 0.5rem;
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                "
+              >
                 <svg
-                  class="w-5 h-5 mr-2 text-teal-blue"
-                  fill="none"
-                  stroke="currentColor"
+                  width="16"
+                  height="16"
+                  fill="var(--accent)"
                   viewBox="0 0 24 24"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
                     d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
                   />
                 </svg>
                 <a
                   href="tel:+38349479759"
-                  class="hover:text-teal-blue transition-colors"
+                  style="color: var(--neutral-400); text-decoration: none"
                   >+383 49 479 759</a
                 >
-              </li>
-              <li class="flex items-center">
+              </p>
+              <p
+                style="
+                  margin-bottom: 0.5rem;
+                  display: flex;
+                  align-items: center;
+                  gap: 0.5rem;
+                "
+              >
                 <svg
-                  class="w-5 h-5 mr-2 text-teal-blue"
-                  fill="none"
-                  stroke="currentColor"
+                  width="16"
+                  height="16"
+                  fill="var(--accent)"
                   viewBox="0 0 24 24"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
                     d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
                   />
                 </svg>
                 <a
                   href="mailto:office@laratech.ai"
-                  class="hover:text-teal-blue transition-colors"
+                  style="color: var(--neutral-400); text-decoration: none"
                   >office@laratech.ai</a
                 >
-              </li>
-              <li class="flex items-start">
-                <svg
-                  class="w-5 h-5 mr-2 mt-0.5 text-teal-blue flex-shrink-0"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
-                    d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-                <span
-                  data-lang-en="Mon-Sat: 09:00-19:00"
-                  data-lang-sq="Hën-Sht: 09:00-19:00"
-                  >Mon-Sat: 09:00-19:00</span
-                >
-              </li>
-            </ul>
-          </div>
-
-          <!-- Social & Newsletter -->
-          <div>
-            <h3
-              class="text-white font-display font-bold text-lg mb-4 card-title"
-              data-lang-en="Follow Us"
-              data-lang-sq="Na Ndiqni"
-            >
-              Follow Us
-            </h3>
-            <div class="flex space-x-4 mb-6">
-              <a
-                href="https://linkedin.com/company/laratech.ai"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-10 h-10 bg-gray-800 hover:bg-teal-blue rounded-lg flex items-center justify-center transition-colors"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
-                  />
-                </svg>
-              </a>
-              <a
-                href="https://instagram.com/laratech.ai"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-10 h-10 bg-gray-800 hover:bg-electric-orange rounded-lg flex items-center justify-center transition-colors"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
-                  />
-                </svg>
-              </a>
-              <a
-                href="https://x.com/LaraTech_AI"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-10 h-10 bg-gray-800 hover:bg-neon-blue rounded-lg flex items-center justify-center transition-colors"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
-                  />
-                </svg>
-              </a>
-              <a
-                href="https://facebook.com/laratech.eu"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="w-10 h-10 bg-gray-800 hover:bg-teal-blue rounded-lg flex items-center justify-center transition-colors"
-              >
-                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-                  <path
-                    d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"
-                  />
-                </svg>
-              </a>
+              </p>
             </div>
-            <p
-              class="text-sm text-gray-400 mb-2"
-              data-lang-en="🌍 www.laratech.ai"
-              data-lang-sq="🌍 www.laratech.ai"
-            >
-              🌍 www.laratech.ai
-            </p>
           </div>
         </div>
 
         <!-- Bottom Bar -->
         <div
-          class="border-t border-gray-800 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500"
+          style="
+            border-top: 1px solid var(--neutral-700);
+            padding-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            align-items: center;
+            text-align: center;
+            font-size: 0.875rem;
+            color: var(--neutral-500);
+          "
         >
           <p>
             &copy; 2025 LaraTech sh.p.k.
             <span
               data-lang-en="All rights reserved."
               data-lang-sq="Të gjitha të drejtat e rezervuara."
+              data-lang-de="Alle Rechte vorbehalten."
               >All rights reserved.</span
             >
           </p>
-          <div class="flex space-x-6 mt-4 md:mt-0">
+          <div
+            style="
+              display: flex;
+              gap: 1.5rem;
+              flex-wrap: wrap;
+              justify-content: center;
+            "
+          >
             <a
               href="privacy-policy.html"
-              class="hover:text-teal-blue transition-colors"
+              style="color: var(--neutral-500); text-decoration: none"
               data-lang-en="Privacy Policy"
               data-lang-sq="Politika e Privatësisë"
               data-lang-de="Datenschutzrichtlinie"
@@ -1247,7 +1262,7 @@
             >
             <a
               href="terms-of-service.html"
-              class="hover:text-teal-blue transition-colors"
+              style="color: var(--neutral-500); text-decoration: none"
               data-lang-en="Terms of Service"
               data-lang-sq="Kushtet e Shërbimit"
               data-lang-de="Nutzungsbedingungen"
@@ -1255,9 +1270,10 @@
             >
             <a
               href="cookie-policy.html"
-              class="hover:text-teal-blue transition-colors"
+              style="color: var(--neutral-500); text-decoration: none"
               data-lang-en="Cookie Policy"
               data-lang-sq="Politika e Cookies"
+              data-lang-de="Cookie-Richtlinie"
               >Cookie Policy</a
             >
           </div>
@@ -1265,499 +1281,133 @@
       </div>
     </footer>
 
-    <!-- Cookie Consent Banner -->
-    <div
-      id="cookie-banner"
-      class="cookie-banner"
-      role="dialog"
-      aria-labelledby="cookie-banner-title"
-      aria-describedby="cookie-banner-description"
-    >
-      <div class="cookie-banner-content">
-        <h2 id="cookie-banner-title" class="sr-only">Cookie Consent</h2>
-        <div class="cookie-banner-text">
-          <p
-            id="cookie-banner-description"
-            data-lang-en="We use cookies to improve your experience and analyze site traffic. By continuing to use this site, you agree to our use of cookies."
-            data-lang-sq="Ne përdorim cookies për të përmirësuar përvojën tuaj dhe për të analizuar trafikun e faqes. Duke vazhduar të përdorni këtë faqe, ju pranoni përdorimin tonë të cookies."
-            data-lang-de="Wir verwenden Cookies, um Ihre Erfahrung zu verbessern und den Website-Traffic zu analysieren. Durch die weitere Nutzung dieser Website stimmen Sie unserer Verwendung von Cookies zu."
-          >
-            We use cookies to improve your experience and analyze site traffic.
-            By continuing to use this site, you agree to our use of cookies.
-          </p>
-        </div>
-        <div class="cookie-banner-buttons">
-          <button
-            id="accept-cookies"
-            class="cookie-accept-btn"
-            aria-label="Accept all cookies"
-            data-lang-en="Accept All"
-            data-lang-sq="Prano Të Gjitha"
-            data-lang-de="Alle Akzeptieren"
-          >
-            Accept All
-          </button>
-          <button
-            id="reject-cookies"
-            class="cookie-reject-btn"
-            aria-label="Reject all cookies"
-            data-lang-en="Reject All"
-            data-lang-sq="Refuzo Të Gjitha"
-            data-lang-de="Alle Ablehnen"
-          >
-            Reject All
-          </button>
-          <a
-            href="cookie-policy.html"
-            class="cookie-learn-more-btn"
-            data-lang-en="Learn More"
-            data-lang-sq="Mëso Më Shumë"
-            data-lang-de="Mehr Erfahren"
-          >
-            Learn More
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <!-- Tawk.to Chat Widget -->
-    <!-- Uncomment and replace with your actual Tawk.to property ID -->
-    <!--
-    <script type="text/javascript">
-      var Tawk_API = Tawk_API || {},
-        Tawk_LoadStart = new Date();
-      (function () {
-        var s1 = document.createElement("script"),
-          s0 = document.getElementsByTagName("script")[0];
-        s1.async = true;
-        s1.src = "https://embed.tawk.to/YOUR_PROPERTY_ID/YOUR_WIDGET_ID";
-        s1.charset = "UTF-8";
-        s1.setAttribute("crossorigin", "*");
-        s0.parentNode.insertBefore(s1, s0);
-      })();
-    </script>
-    -->
-
-    <!-- Floating WhatsApp Button -->
-    <a
-      href="https://wa.me/38349479759"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="floating-whatsapp"
-      aria-label="Contact us on WhatsApp"
-    >
-      <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path
-          d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"
-        />
-      </svg>
-    </a>
-
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="back-to-top" aria-label="Back to top">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
-        <path
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          stroke-width="2"
-          d="M5 10l7-7m0 0l7 7m-7-7v18"
-        />
-      </svg>
-    </button>
-
-    <!-- Enhanced Network Particle System -->
+    <!-- JavaScript for Particles and Language Switching -->
     <script>
-      (function () {
-        const canvas = document.getElementById("particles-canvas");
-        if (!canvas) return;
+      // CSS-only Particle System
+      function createParticles() {
+        const container = document.getElementById("particles-container");
+        if (!container) return;
 
-        const ctx = canvas.getContext("2d");
-        let particles = [];
-        let animationId;
-        let isVisible = true;
-        let mouse = { x: null, y: null, radius: 150 };
+        const particleCount = window.innerWidth < 768 ? 20 : 40;
+        const particles = [];
 
-        // Brand colors
-        const colors = {
-          primary: { r: 0, g: 200, b: 200 }, // Teal-blue #00c8c8
-          secondary: { r: 255, g: 107, b: 0 }, // Orange #ff6b00
-          accent: { r: 0, g: 255, b: 255 }, // Cyan #00ffff
-        };
-
-        // Particle class
-        class Particle {
-          constructor() {
-            this.reset();
-            this.color = this.getRandomColor();
-          }
-
-          getRandomColor() {
-            const colorKeys = Object.keys(colors);
-            const randomKey =
-              colorKeys[Math.floor(Math.random() * colorKeys.length)];
-            return colors[randomKey];
-          }
-
-          reset() {
-            this.x = Math.random() * canvas.width;
-            this.y = Math.random() * canvas.height;
-            this.vx = (Math.random() - 0.5) * 0.8;
-            this.vy = (Math.random() - 0.5) * 0.8;
-            this.size = Math.random() * 3 + 1.5;
-            this.opacity = Math.random() * 0.6 + 0.3;
-          }
-
-          update() {
-            // Mouse interaction
-            if (mouse.x !== null && mouse.y !== null) {
-              const dx = mouse.x - this.x;
-              const dy = mouse.y - this.y;
-              const distance = Math.sqrt(dx * dx + dy * dy);
-
-              if (distance < mouse.radius) {
-                const force = (mouse.radius - distance) / mouse.radius;
-                const angle = Math.atan2(dy, dx);
-                this.vx -= Math.cos(angle) * force * 0.5;
-                this.vy -= Math.sin(angle) * force * 0.5;
-              }
-            }
-
-            this.x += this.vx;
-            this.y += this.vy;
-
-            // Damping
-            this.vx *= 0.99;
-            this.vy *= 0.99;
-
-            // Keep minimum velocity
-            if (Math.abs(this.vx) < 0.1) this.vx += (Math.random() - 0.5) * 0.1;
-            if (Math.abs(this.vy) < 0.1) this.vy += (Math.random() - 0.5) * 0.1;
-
-            // Wrap around edges
-            if (this.x < 0) this.x = canvas.width;
-            if (this.x > canvas.width) this.x = 0;
-            if (this.y < 0) this.y = canvas.height;
-            if (this.y > canvas.height) this.y = 0;
-          }
-
-          draw() {
-            // Particle glow effect
-            const gradient = ctx.createRadialGradient(
-              this.x,
-              this.y,
-              0,
-              this.x,
-              this.y,
-              this.size * 2
-            );
-            gradient.addColorStop(
-              0,
-              `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, ${this.opacity})`
-            );
-            gradient.addColorStop(
-              1,
-              `rgba(${this.color.r}, ${this.color.g}, ${this.color.b}, 0)`
-            );
-
-            ctx.fillStyle = gradient;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size * 2, 0, Math.PI * 2);
-            ctx.fill();
-
-            // Core particle
-            ctx.fillStyle = `rgba(${this.color.r}, ${this.color.g}, ${
-              this.color.b
-            }, ${this.opacity + 0.2})`;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
-          }
+        // Create particles
+        for (let i = 0; i < particleCount; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+          particle.style.left = Math.random() * 100 + "%";
+          particle.style.top = Math.random() * 100 + "%";
+          particle.style.animationDelay = Math.random() * 6 + "s";
+          container.appendChild(particle);
+          particles.push(particle);
         }
 
-        // Initialize
-        function init() {
-          resizeCanvas();
-
-          // Create particles (optimized for performance)
-          const particleCount = window.innerWidth < 768 ? 40 : 80;
-          particles = [];
-          for (let i = 0; i < particleCount; i++) {
-            particles.push(new Particle());
-          }
-
-          animate();
-        }
-
-        // Resize canvas
-        function resizeCanvas() {
-          const rect = canvas.getBoundingClientRect();
-          canvas.width = rect.width;
-          canvas.height = rect.height;
-        }
-
-        // Draw connection line
-        function drawConnection(p1, p2, distance, maxDistance) {
-          const opacity = 0.3 * (1 - distance / maxDistance);
-
-          // Gradient line for better visual
-          const gradient = ctx.createLinearGradient(p1.x, p1.y, p2.x, p2.y);
-          gradient.addColorStop(
-            0,
-            `rgba(${p1.color.r}, ${p1.color.g}, ${p1.color.b}, ${opacity})`
-          );
-          gradient.addColorStop(
-            1,
-            `rgba(${p2.color.r}, ${p2.color.g}, ${p2.color.b}, ${opacity})`
-          );
-
-          ctx.strokeStyle = gradient;
-          ctx.lineWidth = 1.5;
-          ctx.beginPath();
-          ctx.moveTo(p1.x, p1.y);
-          ctx.lineTo(p2.x, p2.y);
-          ctx.stroke();
-        }
-
-        // Animation loop
-        function animate() {
-          if (!isVisible) return;
-
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-          // Update and draw particles
-          particles.forEach((particle) => {
-            particle.update();
-          });
-
-          // Draw connections FIRST (behind particles)
-          const maxDistance = 150;
-          for (let i = 0; i < particles.length; i++) {
-            for (let j = i + 1; j < particles.length; j++) {
-              const dx = particles[i].x - particles[j].x;
-              const dy = particles[i].y - particles[j].y;
-              const distance = Math.sqrt(dx * dx + dy * dy);
-
-              if (distance < maxDistance) {
-                drawConnection(
-                  particles[i],
-                  particles[j],
-                  distance,
-                  maxDistance
-                );
-              }
-            }
-          }
-
-          // Draw particles on top
-          particles.forEach((particle) => {
-            particle.draw();
-          });
-
-          // Draw mouse connections
-          if (mouse.x !== null && mouse.y !== null) {
-            particles.forEach((particle) => {
-              const dx = mouse.x - particle.x;
-              const dy = mouse.y - particle.y;
-              const distance = Math.sqrt(dx * dx + dy * dy);
-
-              if (distance < mouse.radius) {
-                const opacity = 0.2 * (1 - distance / mouse.radius);
-                ctx.strokeStyle = `rgba(${particle.color.r}, ${particle.color.g}, ${particle.color.b}, ${opacity})`;
-                ctx.lineWidth = 2;
-                ctx.beginPath();
-                ctx.moveTo(particle.x, particle.y);
-                ctx.lineTo(mouse.x, mouse.y);
-                ctx.stroke();
-              }
-            });
-          }
-
-          animationId = requestAnimationFrame(animate);
-        }
-
-        // Mouse tracking
-        canvas.addEventListener("mousemove", (e) => {
-          const rect = canvas.getBoundingClientRect();
-          mouse.x = e.clientX - rect.left;
-          mouse.y = e.clientY - rect.top;
-        });
-
-        // Also listen to mouse events on the document for better interaction
-        document.addEventListener("mousemove", (e) => {
-          const rect = canvas.getBoundingClientRect();
-          const x = e.clientX - rect.left;
-          const y = e.clientY - rect.top;
-          
-          // Only update mouse position if it's within the canvas bounds
-          if (x >= 0 && x <= canvas.width && y >= 0 && y <= canvas.height) {
-            mouse.x = x;
-            mouse.y = y;
-          }
-        });
-
-        canvas.addEventListener("mouseleave", () => {
-          mouse.x = null;
-          mouse.y = null;
-        });
-
-        // Touch support
-        canvas.addEventListener(
-          "touchmove",
-          (e) => {
-            e.preventDefault();
-            const rect = canvas.getBoundingClientRect();
-            const touch = e.touches[0];
-            mouse.x = touch.clientX - rect.left;
-            mouse.y = touch.clientY - rect.top;
-          },
-          { passive: false }
-        );
-
-        canvas.addEventListener("touchend", () => {
-          mouse.x = null;
-          mouse.y = null;
-        });
-
-        // Pause when not visible
-        const observer = new IntersectionObserver((entries) => {
-          isVisible = entries[0].isIntersecting;
-          if (isVisible) animate();
-          else if (animationId) cancelAnimationFrame(animationId);
-        });
-        observer.observe(canvas);
-
-        // Handle resize
-        let resizeTimeout;
-        window.addEventListener("resize", () => {
-          clearTimeout(resizeTimeout);
-          resizeTimeout = setTimeout(() => {
-            resizeCanvas();
-            particles.forEach((p) => {
-              if (p.x > canvas.width) p.x = canvas.width;
-              if (p.y > canvas.height) p.y = canvas.height;
-            });
-          }, 250);
-        });
-
-        // Start
-        if (document.readyState === "loading") {
-          document.addEventListener("DOMContentLoaded", init);
-        } else {
-          init();
-        }
-      })();
-    </script>
-
-    <!-- Error Handling for Missing Assets -->
-    <script>
-      // Handle missing images gracefully
-      document.addEventListener("DOMContentLoaded", function () {
-        const images = document.querySelectorAll("img");
-        images.forEach((img) => {
-          img.addEventListener("error", function () {
-            console.warn("Image failed to load:", this.src);
-            // Keep original alt text or add fallback styling
-            this.style.display = "none";
-          });
-        });
-      });
-    </script>
-
-    <!-- Force Counter Animation -->
-    <script>
-      // Ensure counters animate immediately
-      document.addEventListener("DOMContentLoaded", function () {
+        // Create connections
         setTimeout(() => {
-          const counters = document.querySelectorAll(".counter");
-          console.log(`Found ${counters.length} counters to animate`);
-
-          counters.forEach((counter) => {
-            const target = parseInt(counter.getAttribute("data-target"));
-            console.log(`Animating counter to ${target}`);
-
-            let current = 0;
-            const increment = target / 50;
-            const interval = setInterval(() => {
-              current += increment;
-              if (current >= target) {
-                counter.textContent = target;
-                clearInterval(interval);
-                console.log(`Counter animation complete: ${target}`);
-              } else {
-                counter.textContent = Math.floor(current);
-              }
-            }, 40);
-          });
-        }, 1000);
-      });
-    </script>
-
-    <!-- Non-critical scripts load after interaction or timeout -->
-    <script>
-      // Defer non-critical scripts to reduce initial load
-      function loadNonCriticalScripts() {
-        const scripts = [
-          "js/image-optimization.js",
-          "js/bundle-optimization.js",
-          "js/performance-testing.js",
-        ];
-
-        scripts.forEach((src, index) => {
-          setTimeout(() => {
-            const script = document.createElement("script");
-            script.src = src;
-            script.defer = true;
-            document.body.appendChild(script);
-          }, 1000 + index * 200); // Stagger loading
-        });
+          createConnections(particles);
+        }, 100);
       }
 
-      // Load after user interaction or after 2 seconds
-      let loaded = false;
-      const load = () => {
-        if (!loaded) {
-          loaded = true;
-          loadNonCriticalScripts();
-        }
-      };
+      function createConnections(particles) {
+        const container = document.getElementById("particles-container");
 
-      // Load on first interaction
-      ["click", "scroll", "keydown", "touchstart"].forEach((event) => {
-        window.addEventListener(event, load, { once: true, passive: true });
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const distance = getDistance(particles[i], particles[j]);
+            if (distance < 200) {
+              const connection = document.createElement("div");
+              connection.className = "connection";
+
+              const angle = getAngle(particles[i], particles[j]);
+              const length = distance;
+
+              connection.style.left = particles[i].offsetLeft + "px";
+              connection.style.top = particles[i].offsetTop + "px";
+              connection.style.width = length + "px";
+              connection.style.transform = `rotate(${angle}deg)`;
+              connection.style.transformOrigin = "0 0";
+              connection.style.animationDelay = Math.random() * 3 + "s";
+
+              container.appendChild(connection);
+            }
+          }
+        }
+      }
+
+      function getDistance(el1, el2) {
+        const rect1 = el1.getBoundingClientRect();
+        const rect2 = el2.getBoundingClientRect();
+        const containerRect = document
+          .getElementById("particles-container")
+          .getBoundingClientRect();
+
+        const x1 = rect1.left - containerRect.left + rect1.width / 2;
+        const y1 = rect1.top - containerRect.top + rect1.height / 2;
+        const x2 = rect2.left - containerRect.left + rect2.width / 2;
+        const y2 = rect2.top - containerRect.top + rect2.height / 2;
+
+        return Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
+      }
+
+      function getAngle(el1, el2) {
+        const rect1 = el1.getBoundingClientRect();
+        const rect2 = el2.getBoundingClientRect();
+        const containerRect = document
+          .getElementById("particles-container")
+          .getBoundingClientRect();
+
+        const x1 = rect1.left - containerRect.left + rect1.width / 2;
+        const y1 = rect1.top - containerRect.top + rect1.height / 2;
+        const x2 = rect2.left - containerRect.left + rect2.width / 2;
+        const y2 = rect2.top - containerRect.top + rect2.height / 2;
+
+        return (Math.atan2(y2 - y1, x2 - x1) * 180) / Math.PI;
+      }
+
+      // Language Switching
+      function initLanguageSwitcher() {
+        const currentLang = localStorage.getItem("preferred-language") || "en";
+        switchLanguage(currentLang);
+      }
+
+      function switchLanguage(lang) {
+        const elements = document.querySelectorAll("[data-lang-en]");
+        elements.forEach((el) => {
+          const text = el.getAttribute(`data-lang-${lang}`);
+          if (text) {
+            el.textContent = text;
+          }
+        });
+        localStorage.setItem("preferred-language", lang);
+      }
+
+      // Initialize everything
+      document.addEventListener("DOMContentLoaded", function () {
+        createParticles();
+        initLanguageSwitcher();
+
+        // Load navbar
+        fetch("components/navbar.html")
+          .then((response) => response.text())
+          .then((html) => {
+            document.getElementById("navbar-container").innerHTML = html;
+          })
+          .catch((error) => {
+            console.warn("Could not load navbar:", error);
+          });
       });
 
-      // Or load after 2 seconds if no interaction
-      setTimeout(load, 2000);
-    </script>
-
-    <!-- Navbar Component Scripts -->
-    <script src="js/navbar.js"></script>
-    <script src="js/navbar-loader.js"></script>
-
-    <!-- Initialize LaraTech Functions -->
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
-        // Ensure page starts at top
-        window.scrollTo(0, 0);
-
-        // Initialize all LaraTech functions
-        if (window.LaraTech) {
-          window.LaraTech.initLanguageSwitcher();
-          window.LaraTech.initMobileMenu();
-          window.LaraTech.initStickyNav();
-          window.LaraTech.initCounters();
-          window.LaraTech.initFadeInObserver();
-          window.LaraTech.initMagneticButtons();
-          window.LaraTech.initLazyLoading();
-          window.LaraTech.initCookieConsent();
-          window.LaraTech.initContactForm();
-          window.LaraTech.initLightbox();
-          window.LaraTech.initProgressBar();
-          window.LaraTech.initBeforeAfterSlider();
-          window.LaraTech.initPerformanceMonitoring();
-          window.LaraTech.initDirectionsButton();
-          window.LaraTech.initProjectsFilter();
-        }
+      // Handle resize
+      let resizeTimeout;
+      window.addEventListener("resize", function () {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          const container = document.getElementById("particles-container");
+          if (container) {
+            container.innerHTML = "";
+            createParticles();
+          }
+        }, 250);
       });
     </script>
   </body>
